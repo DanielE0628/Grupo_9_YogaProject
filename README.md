@@ -1,5 +1,6 @@
-probando
+/*Nuestro E-commerce será orientado a la oferta de servicios y productos relacionados con la práctica de yoga, en el cual se podrán encontrar desde paquetes de clases precensiales para asistir a nuestros estudios en la ciudad, artículos complementar tu practica (mats de yoga, props, ropa). */
 
+/* Daniel Escobar: Tengo 23 años soy estudiante y trabajo para una empresa americana de transporte, con un equipo de desarrolladores y managers creadores de "Relay" un nuevo TMS propio de la empresa. En mi tiempo libre me gusta ir al gimnasio, tocar guitarra, practicar yoga y de vez en cuando jugar video juegos*/
 
 
 
