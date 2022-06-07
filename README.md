@@ -2,12 +2,6 @@
 
 /* Daniel Escobar: Tengo 23 años soy estudiante y trabajo para una empresa americana de transporte, con un equipo de desarrolladores y managers creadores de "Relay" un nuevo TMS propio de la empresa. En mi tiempo libre me gusta ir al gimnasio, tocar guitarra, practicar yoga y de vez en cuando jugar video juegos*/
 
-Gonzalo Cortegoso: 36 años nacido en Buenos Aires. Apacionado en la programacion. Actualmnete estudiando en Digital House. 
-Frase que lo describe :"Lo que no te mata te hace mas fuerte". 
-Fortaleza: Su sinceridad, fidelidad y saber escuchar al otro. 
-Pasatiempos: artes marciales y jugar videojuegos. 
-
-
 Mi nombre es Pablo Araya, tengo 31 años, soy de Mendoza - Argentina, actualmente trabajo como técnico en mantenimiento en redes de gas natural en el área de protección catódica.
 Me gusta ir al cine, hacer natación, salir a cenar y disfrutar de un buen vino.
 
