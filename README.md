@@ -26,3 +26,6 @@ Páginas de referencia
 Link de Tablero
     Sprint 1 https://trello.com/b/iznguFyO/sprint-1-wireframe-bocetos
     Sprint 2: https://trello.com/b/m23vYsMh/sprint-2-html-css
+
+RETROSPECTIVA:
+    https://app.mural.co/t/retrospectivasprint11244/m/retrospectivasprint11244/1656198573852/9f4dbd9b1415b2f6bff08c39a7c9c178174f81b4?sender=ub337bc43ca687109c41f9022
