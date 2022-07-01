@@ -20,6 +20,7 @@ Nuestro equipo de trabajo:
 
     Gonzalo 
         Me llamo Gonzalo Cortegoso, Gonzzo para los amigos, tengo 36 años, Actualmente soy Jefe de Sucursal en una Jugueteria. Estudiando en Digital House pretendo cambiar mi rubro laboralo y embarcarme en el mundo de la programacion. Una frase que me representa "lo que no te mata, te hace mas fuerte". Mis fortalezas son la sinceridad, fidelidad y saber escuchar al otro. Mi sueño es crear  Mi propio estudio de videojuegos. Me gusta entrenar artes marciales y me hobbie son los videosjuegos. Pd: me gustan los perros.
+        Horarios disponibles son Lunes a Sanadaos de 18 a 20hs.
 
 Páginas de referencia
 
