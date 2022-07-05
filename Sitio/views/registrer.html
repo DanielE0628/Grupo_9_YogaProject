@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Formulario de Registro</title>
+
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/styleForm.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet" />
+        <script src="https://kit.fontawesome.com/c3e5266b16.js" crossorigin="anonymous"></script>
+
+
+        
+    </head>
+    </head>
+
+    <body>
+        <header>
+
+        </header>
+
+        <main>
+            <form >
+                <div class="nombre_y_usuario">
+                    <h4>Nombre y Apellido</h4>
+                        <input class="campo" type="text" name="nombre-y-apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" required>
+                        <span class="feedback"></span>
+
+                    <h4>Usuario</h4>
+                        <input class="campo" type="text" name="usuario" id="usuario" placeholder="Nombre de usuari@" required>
+                        <span class="feedback"></span>
+                </div>
+                
+                <div class="cumpleaños_domicilio">
+                    <h4>Fecha de nacimiento</h4>
+                        <input class="campo" type="date" name="fecha-de-nacimiento" id="fecha-de-nacimiento" min="1920-01-01" max="2003-06-27" required>
+                        <span class="feedback"></span>
+
+                    <h4>Domicilio</h4>
+                        <input class="campo" type="text" name="domicilio" id="domicilio" placeholder="Domicilio" required>
+                        <span class="feedback"></span>
+                </div>
+
+                <div class="perfil_usuario">
+                    <h4>Perfil del usuario</h4>
+
+                    <p>
+                        <label for="perfil-de-usuario">Comprar</label>
+                        <input type="radio" name="perfil-de-usuario" value="Comprar"checked>
+                    </p>
+
+                    <p>    
+                        <label for="perfil-de-usuario">Vender</label>
+                        <input type="radio" name="perfil-de-usuario" value="Vender">
+                    </p>
+                </div>
+
+                <div class="intereses">
+                    <h4>Categorías de interés</h4>
+
+                    <p>
+                        <input type="checkbox" name="categorías-de-interes" value="Electro">
+                        <label>Electro</label>
+                    </p>
+
+                    <p>        
+                        <input type="checkbox" name="categorías-de-interes" value="Moda">
+                        <label>Moda</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" name="categorías-de-interes" value="Hogar">
+                        <label>Hogar</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" name="categorías-de-interes" value="Juguetería">
+                        <label>Juguetería</label>
+                    </p>
+
+                    <p>
+                        <input type="checkbox" name="categorías-de-interes" value="Vida sana" checked>
+                        <label>Vida sana</label>
+                    </p>
+
+                </div>
+
+                <div class="foto">
+                    <h4>Foto de usuario:</h4>
+                        <input class="campo" type="file" name="Foto-de-usuario" accept=".jpg">
+                        <span class="feedback"></span> 
+                </div>
+
+                <div class="password">
+                    <h4>Contraseña</h4>
+                        <input class="campo" type="password" name="pasword" id="password" required>
+                        <span class="feedback"></span>
+
+                    <h4>Confirmar contraseña</h4>
+                        <input class="campo" type="password" name="pasword" id="password" required>
+                        <span class="feedback"></span>
+                </div>
+
+                <div class="botones">
+                    <a href="/">
+                        <button type="button">Enviar</button>
+                    </a>
+                    <button type="reset" action="/">Borrar</button>
+                </div>
+            </form>
+
+        </main>
+
+        <footer>
+            
+        </footer>
+    </body>
+
+</html>
