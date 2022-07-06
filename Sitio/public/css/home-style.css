@@ -3,6 +3,7 @@
 }
 .titulo{
     text-align: center;
+    font-size: 220%;
 }
 .logo{
     display: flex;
