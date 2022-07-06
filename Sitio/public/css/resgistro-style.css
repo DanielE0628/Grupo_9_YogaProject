@@ -1,0 +1,22 @@
+:root {
+    --Rosa: #DD6C8E
+    --Rosa_claro: #FED1DC;
+    --Azul: #0084A0;
+    --Celeste: #B6DAEE;;
+    --sombra: rgb(100, 100, 100);
+    --blanco: #FFFFFF;
+    --botonActivo: #0022AA;
+}
+
+header{
+    background-color: var(--Rosa);
+}
+
+main{
+    background-color: var(--Rosa_claro);
+}
+
+footer{
+    background-color: var(--Azul);
+}
+
