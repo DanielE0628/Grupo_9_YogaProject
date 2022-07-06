@@ -82,18 +82,20 @@ root{
     flex-direction: column;
 }
 .contenedor-main-ofertas-titulo{
- 
+    margin-top: 10%;
     text-align: center;
 }
 .contenedor-main-ofertas{
     width: 100%;
-    margin: auto;
+    justify-content: space-between;
     padding: 2%;
-    text-align: center;
+
     display: flex;
     flex-direction: row;
 }
 .contenedor-main-ofertas-articulos{
+    width: 25%;
+    padding: 1%;
     display: flex;
     flex-direction: column;
     text-align: center;
