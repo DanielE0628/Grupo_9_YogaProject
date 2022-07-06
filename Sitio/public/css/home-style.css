@@ -1,0 +1,20 @@
+*{
+    box-sizing: border-box;
+}
+.titulo{
+    text-align: center;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+}
+.logo img{
+    width: 50%;
+    text-align: center;
+}
+.nav{
+    display: flex;
+    flex-direction: column;
+    font-size: 200%;
+    align-items: center;
+}
