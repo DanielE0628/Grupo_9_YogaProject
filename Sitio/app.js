@@ -38,6 +38,6 @@ app.get('/clases', (req, res) => {
     res.sendFile(path.join(__dirname, '/views/clases.html'));
 });
 
-app.get('/profesores', (req, res) => {
-    res.sendFile(path.join(__dirname, '/views/profesores.html'));
+app.get('/instructores', (req, res) => {
+    res.sendFile(path.join(__dirname, '/views/instructores.html'));
 });
