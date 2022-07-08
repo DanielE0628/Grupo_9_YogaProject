@@ -1,0 +1,137 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+:root {
+    --header: #DD6C8E;
+    --main: #B6DAEE;
+    --footer: #FED1DC;
+    --button: #0084A0;
+    --sombra: rgb(100, 100, 100);
+    --blanco: #FFFFFF;
+    --botonActivo: #0022AA;
+    --link: red;
+}
+
+header div{
+    background-color: var(--header);
+    height: 10vh;
+}
+
+main{
+    background-color: var(--main);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    padding: 3%;
+}
+    main form{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        padding: 20px;
+        background-color: var(--blanco);
+        flex-grow : 0.3;
+        align-items: center;
+        box-shadow: 0px 0px 10px var(--sombra);
+    }
+    main form div{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1%;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 90%;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+        main form input{
+            width: 80%;
+            outline: none;
+            border: none;
+        }
+        main form i{
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+    main form .foto{
+        border: none;
+    }
+        main form .foto button.add{
+            position: absolute;
+            border: none;
+            outline: none;
+            background-color: var(--button);
+            color: var(--blanco);
+            border-radius: 50%;
+            font-size: 1rem;
+            font-weight: bold;
+            width: 1rem;
+            height: 1rem;
+        }
+        main form .foto i{
+            font-size: 5rem;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        
+        } 
+        
+    main form .botones{
+        border: none;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding-top: 20px;
+    }
+        main form .botones button{
+            border: none;
+            outline: none;
+            background-color: var(--button);
+            color: var(--blanco);
+            border-radius: 5px;
+            padding: 10px;
+            margin-left: 5px;
+            margin-right: 5px;
+        }
+    main form .forgot{
+        border: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        justify-content:center;
+    }
+        main form .forgot a{
+            text-decoration: none;
+            color: var(--link);
+        }
+
+footer div{
+    background-color: var(--footer);
+    height: 10vh;
+}
+@media (max-width: 361px){
+}
+
+@media (min-width: 361px){
+    main form .forgot{
+        border: none;
+        display: flex;
+        flex-wrap: wrap;
+        padding-top: 20px;
+        justify-content:flex-end;
+    }
+}
+
+@media (min-width: 769px){
+    main form .botones button:hover{
+        background-color: var(--botonActivo);
+
+    }
+}

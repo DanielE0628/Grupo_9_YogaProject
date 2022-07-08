@@ -21,27 +21,42 @@
 
     <body>
         <header>
+            <div>esto es un header</div>
         </header>
 
         <main>
             <form action="">
-                <div class="nombre_y_usuario">
-                    <h4>Usuario</h4>
-                    <p><input class="campo" type="text" name="usuario" id="usuario" placeholder="Nombre de usuari@" required></p>
+
+                <div class="foto">
+                    <i class="fa-solid fa-circle-user"></i>
                 </div>
+
+                <div clas="e-mail">
+                    <i class="fa-solid fa-at"></i>
+                    <input type="text" name="usuario" id="usuario" placeholder="e-mail" required>
+                    <span class="feedback"></span>
+                </div>
+
                 <div class="password">
-                        <h4>Contraseña</h4>
-                        <input class="campo" type="password" name="pasword" id="password" required>
+                    <i class="fa-solid fa-unlock"></i>
+                    <input type="password" name="pasword" id="password" placeholder="Contraseña" required>
+                    <span class="feedback"></span>
                 </div>
+
                 <div class="botones">
                     <a href="/">
-                        <button type="button">Enviar</button>
+                        <button type="button">Ingresar</button>
                     </a>
+                </div>
+
+                <div class="forgot">
+                    <a href="/">¿Olvidó su contraseña?</a>
                 </div>
             </form>
         </main>
 
         <footer>
+            <div>aca va un footer</div>
         </footer>
     </body>
 </html>
