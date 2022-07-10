@@ -132,6 +132,10 @@ footer div{
 @media (min-width: 769px){
     main form .botones button:hover{
         background-color: var(--botonActivo);
-
     }
+
+    main form .forgot:hover{
+        text-decoration: underline;
+    }
+
 }
