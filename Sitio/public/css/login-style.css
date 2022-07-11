@@ -1,5 +1,5 @@
 :root {
-    --header: #DD6C8E;
+    --header: #FED1DC;
     --main: #B6DAEE;
     --footer: #FED1DC;
     --button: #0084A0;
@@ -23,6 +23,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 3%;
+    background-color: var(--header);
 }
     header nav{
         display: none;
@@ -30,6 +31,7 @@ header {
     header .menuHamburguesa{
         display: flex;
         justify-content: flex-start;
+        flex-grow: 0.3;
     }
         header .menuHamburguesa button{
             border: none;
@@ -44,8 +46,7 @@ header {
                 font-size: 1.5rem;
             }
     header .logo{
-        width: 30%;
-        flex-grow: 0.7;
+        flex-grow: 0.3;
     }
         header .logo a{
             display: flex;
@@ -72,7 +73,12 @@ header {
             font-weight: bold;
             padding-left: 5%;
             color: var(--Logo);
+            margin: 0;
         }
+    header .SearchBar{
+        flex-grow: 0.3;
+        text-align: right;
+    }
     header .SearchBar input{
         display: none;
     }
@@ -195,7 +201,7 @@ footer div{
     header nav{
         display: flex;
         flex-wrap: wrap;
-        width: 30%;
+        flex-grow: 0.3;
         justify-content: space-between;
     }
         header nav .listaMenu{
@@ -205,15 +211,19 @@ footer div{
                 text-decoration: none;
                 color: var(--button);
             }
-    header .logo{
-        width: 40%;
-        flex-grow: 0;
-    }
+
+        header .logo h1{
+            font-size: 4rem;
+        }
+        header .logo i{
+            font-size: 3rem;
+            padding: 2%;
+        }
     header .SearchBar{
         display: flex;
         flex-wrap: wrap;
-        width: 20%;
         flex-grow: 0.3;
+        justify-content: right;
     }
         header .SearchBar input{
             display: block;
@@ -250,6 +260,14 @@ footer div{
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
+    header .logo h1{
+        font-size: 4.5rem;
+    }
+    header .logo i{
+        font-size: 3.5rem;
+        padding: 2%;
+    }
+
     header .listaMenu a:hover{
         color: var(--botonActivo);
         text-decoration: underline var(--botonActivo)
@@ -272,9 +290,17 @@ footer div{
         background-color: var(--botonActivo);
     }
     main form .forgot:hover{
+        color: red;
         text-decoration: underline;
     }
 }
 
 @media (min-width: 82rem){
+    header .logo h1{
+        font-size: 5rem;
+    }
+    header .logo i{
+        font-size: 4rem;
+        padding: 2%;
+    }
 }

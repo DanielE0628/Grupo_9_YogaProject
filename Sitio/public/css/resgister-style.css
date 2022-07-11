@@ -1,5 +1,5 @@
 :root {
-    --header: #DD6C8E;
+    --header: #FED1DC;
     --main: #B6DAEE;
     --footer: #FED1DC;
     --button: #0084A0;
@@ -24,6 +24,7 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 3%;
+    background-color: var(--header);
 }
     header nav{
         display: none;
@@ -73,6 +74,7 @@ header {
             font-weight: bold;
             padding-left: 5%;
             color: var(--Logo);
+            margin: 0;
         }
     header .SearchBar input{
         display: none;
@@ -174,6 +176,7 @@ footer div{
 }
 
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
+
     header .menuHamburguesa{
         display: none;
     }
@@ -225,10 +228,17 @@ footer div{
                 color: var(--blanco);
                 font-size: 1rem;
             }
-
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
+    header .logo h1{
+        font-size: 4.5rem;
+    }
+    header .logo i{
+        font-size: 3.5rem;
+        padding: 2%;
+    }
+
     header .listaMenu a:hover{
         color: var(--botonActivo);
         text-decoration: underline var(--botonActivo)
@@ -256,4 +266,11 @@ footer div{
 }
 
 @media (min-width: 82rem){
+    header .logo h1{
+        font-size: 5rem;
+    }
+    header .logo i{
+        font-size: 4rem;
+        padding: 2%;
+    }
 }
