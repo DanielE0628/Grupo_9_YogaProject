@@ -46,8 +46,7 @@ header {
                 font-size: 1.5rem;
             }
     header .logo{
-        width: 30%;
-        flex-grow: 0.7;
+        width: 70%;
     }
         header .logo a{
             display: flex;
@@ -183,7 +182,6 @@ footer div{
     header nav{
         display: flex;
         flex-wrap: wrap;
-        width: 30%;
         justify-content: space-between;
     }
         header nav .listaMenu{
@@ -193,17 +191,25 @@ footer div{
                 text-decoration: none;
                 color: var(--button);
             }
+            header nav .listaMenu.Der{
+                padding-left: 1rem;
+            }
 
     header .logo{
         width: 40%;
-        flex-grow: 0;
     }
-
+        header .logo h1{
+            font-size: 3rem;
+        }
+        header .logo i{
+            font-size: 2.5rem;
+            padding: 2%;
+        }   
+    
     header .SearchBar{
         display: flex;
         flex-wrap: wrap;
         width: 20%;
-        flex-grow: 0.3;
     }
         header .SearchBar input{
             display: block;
@@ -232,7 +238,7 @@ footer div{
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
     header .logo h1{
-        font-size: 4.5rem;
+        font-size: 4rem;
     }
     header .logo i{
         font-size: 3.5rem;
@@ -267,7 +273,7 @@ footer div{
 
 @media (min-width: 82rem){
     header .logo h1{
-        font-size: 5rem;
+        font-size: 4.5rem;
     }
     header .logo i{
         font-size: 4rem;
