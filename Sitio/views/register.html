@@ -60,13 +60,13 @@
 
                 <div class="casilla">
                     <i class="fa-solid fa-user"></i>
-                    <input class="nombre_y_apellido" type="text" name="nombre-y-apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" required>
+                    <input class="nombre_y_apellido" type="text" name="nombre-y-apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" minlength="3"required>
                     <span class="feedback"></span>
                 </div>
 
                 <div class="casilla">
                     <i class="fa-solid fa-at"></i>
-                    <input type="text" name="usuario" id="usuario" placeholder="e-mail" required>
+                    <input type="email" name="email" id="email" placeholder="e-mail" required>
                     <span class="feedback"></span>
                 </div>
                 
@@ -78,20 +78,18 @@
 
                 <div class="casilla">
                     <i class="fa-solid fa-unlock"></i>
-                    <input type="password" name="pasword" id="password" placeholder="Contraseña" required>
+                    <input type="password" name="pasword" id="password" placeholder="Contraseña" minlength="8" alt="strongPass" required>
                     <span class="feedback"></span>
                 </div>
 
                 <div class="casilla">
                     <i class="fa-solid fa-lock"></i>
-                    <input type="password" name="pasword" id="password" placeholder="Confirmar contraseña" required>
+                    <input type="password" name="pasword" id="password" placeholder="Confirmar contraseña" minlength="8" alt="strongPass" required>
                     <span class="feedback"></span>
                 </div>
 
                 <div class="botones">
-                    <a href="/">
-                        <button type="button">Enviar</button>
-                    </a>
+                    <button type="submit">Enviar</button>
                     <button type="reset" action="/">Borrar</button>
                 </div>
             </form>
