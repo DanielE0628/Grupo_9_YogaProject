@@ -57,7 +57,7 @@ header {
             color: black;
         }
         header .logo img{
-            width: 30%;
+            width: 3rem;
         }
         header .logo i{
             font-size: 2rem;

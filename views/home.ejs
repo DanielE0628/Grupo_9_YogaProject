@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -33,16 +33,28 @@
         </div>
     </div>
     </header>
-    <div class="titulo"><h1>Aluna Yoga</h1></div>
-    <div class="logo"><img src="/images/logo1.png" alt="logo"></div>
+    <main> -->
+<!DOCTYPE html>
+<html lang="es">
     
-   <nav class="nav">
+    <%- include('./partials/head') %>
 
-        <a href="/productos" >Productos</a>
-        <a href="/instructores">Instructores</a>
-        <a href="/register" >Registro</a>
-        <a href="/login" >login</a>
+    <body>
+        
+        <%- include('./partials/header') %>
 
-    </nav>
+        <main>
+        <div class="titulo"><h1>Aluna Yoga</h1></div>
+        <div class="logo"><img src="/images/logo1.png" alt="logo"></div>
+        
+        <nav class="nav">
+            
+            <a href="/productos" >Productos</a>
+            <a href="/instructores">Instructores</a>
+            <a href="/register" >Registro</a>
+            <a href="/login" >Login</a>
+            
+        </nav>
+    </main>
 </body>
 </html>

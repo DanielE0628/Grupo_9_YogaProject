@@ -4,19 +4,19 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-    res.render('home', { title: 'Express' });
+    res.render('home', { title: 'home' });
 });
 router.get('/productos', function(req, res, next) {
-    res.render('productos');
+    res.render('productos', { title: 'producto' });
 });
 router.get('/detalle-productos', function(req, res, next) {
-    res.render('detalle-productos');
+    res.render('detalle-productos', { title: 'DetalleDeProducto' });
 });
 router.get('/register', function(req, res, next) {
-    res.render('register');
+    res.render('register',{ title: 'registro' } );
 });
 router.get('/login', function(req, res, next) {
-    res.render('login');
+    res.render('login', { title: 'login' });
 });
 
 
