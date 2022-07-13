@@ -3,19 +3,19 @@ const path = require ("path");
 
 const controlador = { 
     home: (req, res) => {
-        res.sendFile(path.join(__dirname, '../views/home.ejs'))
+        res.sendFile(path.join(__dirname, '../views/home'))
     },
     productos: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/productos.html"))
+        res.sendFile(path.join(__dirname,"../views/productos"))
     },
     login: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/login.html"))
+        res.sendFile(path.join(__dirname,"../views/login"))
     },
     register: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/register.html"))
+        res.sendFile(path.join(__dirname,"../views/register"))
     },
     detallesProductos: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/detalle-productos.html"))
+        res.sendFile(path.join(__dirname,"../views/detalle-productos"))
     },
 };
 

@@ -1,5 +1,5 @@
 var express = require('express');
-const mainController = require("../controllers/main");
+// const mainController = require("../controllers/main");
 var router = express.Router();
 
 /* GET home page. */
@@ -7,16 +7,16 @@ router.get('/', function(req, res, next) {
     res.render('home', { title: 'Express' });
 });
 router.get('/productos', function(req, res, next) {
-    res.render('productos', { title: 'Express' });
+    res.render('productos');
 });
 router.get('/detalle-productos', function(req, res, next) {
-    res.render('detalle-productos', { title: 'Express' });
+    res.render('detalle-productos');
 });
 router.get('/register', function(req, res, next) {
-    res.render('register', { title: 'Express' });
+    res.render('register');
 });
 router.get('/login', function(req, res, next) {
-    res.render('login', { title: 'Express' });
+    res.render('login');
 });
 
 
