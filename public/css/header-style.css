@@ -1,0 +1,91 @@
+:root {
+    --header: #FED1DC;
+    --main: #B6DAEE;
+    --footer: #FED1DC;
+    --button: #0084A0;
+    --sombra: rgb(100, 100, 100);
+    --blanco: #FFFFFF;
+    --botonActivo: #0022AA;
+    --Logo: #DD6C8E;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3%;
+    background-color: var(--header);
+}
+    header nav{
+        display: none;
+    }
+    header .menuHamburguesa{
+        display: flex;
+        justify-content: flex-start;
+    }
+        header .menuHamburguesa button{
+            border: none;
+            outline: none;
+            background-color: var(--button);
+            color: var(--blanco);
+            border-radius: 5px;
+            padding: 5px;
+                    
+        }
+            header .menuHamburguesa button i{
+                font-size: 1.5rem;
+            }
+    header .logo{
+        width: 70%;
+    }
+        header .logo a{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            color: black;
+        }
+        header .logo img{
+            width: 3rem;
+        }
+        header .logo i{
+            font-size: 2rem;
+            color: var(--blanco);
+            padding: 5px;
+            border: solid 1px var(--Logo);
+            background-color: var(--Logo);
+            border-radius: 50%;
+        }
+        header .logo h1{
+            font-family: 'Mr De Haviland', cursive;
+            font-size: 2.5rem;
+            font-weight: bold;
+            padding-left: 5%;
+            color: var(--Logo);
+            margin: 0;
+        }
+    header .SearchBar input{
+        display: none;
+    }
+        header .SearchBar button{
+            border: none;
+            border-radius: 5px;
+            background-color: var(--button);
+            padding: 5px;
+        }
+            header .SearchBar button i.fa-solid.fa-magnifying-glass{
+                color: var(--blanco);
+                font-size: 1.5rem;
+            }
+    
