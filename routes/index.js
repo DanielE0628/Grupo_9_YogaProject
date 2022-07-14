@@ -13,7 +13,7 @@ router.get('/detalle-productos', function(req, res, next) {
     res.render('detalle-productos', { title: 'DetalleDeProducto' });
 });
 router.get('/register', function(req, res, next) {
-    res.render('register',{ title: 'registro' } );
+    res.render('register',{ title: 'registro', estilo: '<link href="css/resgister-style.css" rel="stylesheet">'});
 });
 router.get('/login', function(req, res, next) {
     res.render('login', { title: 'login' });
