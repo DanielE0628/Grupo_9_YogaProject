@@ -1,21 +1,20 @@
 const express = require ("express");
-const path = require ("path");
 
 const controlador = { 
-    home: (req, res) => {
-        res.sendFile(path.join(__dirname, '../views/home'))
+    vistaHome: (req, res) => {
+        res.render('home',{title: 'Home'});
     },
     productos: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/productos"))
+        res.render('productos',{title: 'Productos'});
     },
     login: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/login"))
+        res.render('login',{title: 'Login'});
     },
     register: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/register"))
+        res.render('register', {title: 'Registro'});
     },
     detallesProductos: (req, res) => {
-        res.sendFile(path.join(__dirname,"../views/detalle-productos"))
+        res.render('detalle-productos', {title: 'DetalleDeProductos'});
     },
 };
 
