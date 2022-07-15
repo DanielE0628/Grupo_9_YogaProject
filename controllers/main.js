@@ -14,16 +14,19 @@ const controlador = {
         res.render('home',{title: 'Home', estilo: estilos.home});
     },
     productos: (req, res) => {
-        res.render('productos',{title: 'Productos', estilo: estilos.productos});
+        res.render('products/productos',{title: 'Productos', estilo: estilos.productos});
     },
     detallesProductos: (req, res) => {
-        res.render('detalle-productos', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
+        res.render('products/detalle-productos', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
     login: (req, res) => {
-        res.render('login',{title: 'Login', estilo: estilos.login});
+        res.render('users/login',{title: 'Login', estilo: estilos.login});
     },
     register: (req, res) => {
-        res.render('register', {title: 'Registro', estilo: estilos.register});
+        res.render('users/register', {title: 'Registro', estilo: estilos.register});
+    },
+    instuctores: (req, res) => {
+        res.render('users/instructores', {title: 'Instuctores', estilo: estilos.register});
     },
 };
 
