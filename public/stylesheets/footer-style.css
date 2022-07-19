@@ -1,14 +1,3 @@
-/* :root {
-    --header: #FED1DC;
-    --main: #B6DAEE;
-    --footer: #FED1DC;
-    --button: #0084A0;
-    --sombra: rgb(100, 100, 100);
-    --blanco: #FFFFFF;
-    --botonActivo: #0022AA;
-    --Logo: #DD6C8E;
-} */
-
 footer {
     display: flex;
     flex-wrap: wrap;
@@ -20,7 +9,16 @@ footer {
     footer section{
         padding-top: 1rem;
         padding-bottom: 1rem;
+    }
+
+    footer section.preguntasFrecuentes{
         border-top: 0.1rem dashed var(--sombra);
+    }
+
+    footer section.copyright{
+        padding-top: 1rem;
+        padding-bottom: 0;
+        border-top: none;
     }
 
     footer .redesSociales{
@@ -37,7 +35,7 @@ footer {
             padding: 1rem;
         }
         footer .redesSociales i{
-            font-size: 3rem;
+            font-size: 2rem;
             color: var(--button);
         }
     footer .preguntasFrecuentes{
@@ -51,13 +49,12 @@ footer {
             color: black;
             justify-content: center;
             align-items: center;
-            font-size: 3rem;
+            font-size: 2rem;
             text-align: center;
         }
         footer .preguntasFrecuentes i{
             color: var(--button);
             font-size: 2rem;
-            margin-right: 1rem;
         }
         footer .preguntasFrecuentes p{
             color: var(--button);
@@ -68,11 +65,9 @@ footer {
     footer .copyright{
         width: 100%;
         color: var(--sombra);
-        padding: 2rem 0;
+        padding: 1rem 0;
         text-align: center;
     }
-
-
 
 @media (max-width: 43rem){/* Media Breakpoints para celus */
 }
@@ -83,17 +78,15 @@ footer {
     }
     footer .preguntasFrecuentes p{
         width: auto;
+    
     }
     footer .copyright{
         text-align: right;
-        padding-right: 2rem;
+        padding-right: 0.5rem;
     }
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
-    footer section{
-        border-top: none;
-    }
     
     footer .redesSociales{
         display: flex;
@@ -103,8 +96,9 @@ footer {
         border-right: 0.1rem dashed var(--sombra);
     }
 
-    footer .preguntasFrecuentes{
+    footer section.preguntasFrecuentes{
         width: 50%;
+        border-top: none;
     }
     
     footer .redesSociales a:hover i{
