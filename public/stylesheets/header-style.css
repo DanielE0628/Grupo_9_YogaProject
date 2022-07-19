@@ -4,7 +4,7 @@ header {
     width: 100%;
     align-items: center;
     justify-content: space-between;
-    padding: 3%;
+    padding: 1rem;
     background-color: var(--header);
 }
     header nav{
@@ -20,7 +20,7 @@ header {
             background-color: var(--button);
             color: var(--blanco);
             border-radius: 5px;
-            padding: 5px;
+            padding: 0.5rem;
                     
         }
             header .menuHamburguesa button i{
@@ -44,7 +44,7 @@ header {
         header .logo i{
             font-size: 2rem;
             color: var(--blanco);
-            padding: 5px;
+            padding: 0.5rem;
             border: solid 1px var(--Logo);
             background-color: var(--Logo);
             border-radius: 50%;
@@ -53,7 +53,7 @@ header {
             font-family: 'Mr De Haviland', cursive;
             font-size: 2.5rem;
             font-weight: bold;
-            padding-left: 5%;
+            padding-left: 0.5rem;
             color: var(--Logo);
             margin: 0;
         }
@@ -64,7 +64,7 @@ header {
             border: none;
             border-radius: 5px;
             background-color: var(--button);
-            padding: 5px;
+            padding: 0.5rem;
         }
             header .SearchBar button i.fa-solid.fa-magnifying-glass{
                 color: var(--blanco);
@@ -75,26 +75,6 @@ header {
 }
 
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
-
-    header .menuHamburguesa{
-        display: none;
-    }
-    header nav{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-        header nav .listaMenu{
-            list-style-type: none;
-        }
-            header nav .listaMenu a{
-                text-decoration: none;
-                color: var(--button);
-            }
-            header nav .listaMenu.Der{
-                padding-left: 1rem;
-            }
-
     header .logo{
         width: 40%;
     }
@@ -103,13 +83,13 @@ header {
         }
         header .logo i{
             font-size: 2.5rem;
-            padding: 2%;
+            padding: 1rem;
         }   
     
     header .SearchBar{
         display: flex;
         flex-wrap: wrap;
-        width: 20%;
+        width: auto;
     }
         header .SearchBar input{
             display: block;
@@ -119,7 +99,7 @@ header {
             width: 80%;
             border-radius: 5px 0 0 5px;
             border-right: none;
-            padding: 2%;
+            padding: 1rem;
         }
         header .SearchBar button{
             border: none;
@@ -128,7 +108,7 @@ header {
             border-left: none;
             border-radius: 0 5px 5px 0;
             background-color: var(--button);
-            padding: 2%;
+            padding: 1rem;
         }
             header .SearchBar button i.fa-solid.fa-magnifying-glass{
                 color: var(--blanco);
@@ -137,12 +117,32 @@ header {
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
+    header .menuHamburguesa{
+        display: none;
+    }
+    header nav{
+        display: flex;
+        width: 30%;
+    }
+        header nav .listaMenu{
+            display: flex;
+            flex-wrap: wrap;
+            list-style-type: none;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+        }
+            header nav .listaMenu a{
+                text-decoration: none;
+                color: var(--button);
+            }
+    
     header .logo h1{
         font-size: 4rem;
     }
     header .logo i{
         font-size: 3.5rem;
-        padding: 2%;
+        padding: 1rem;
     }
 
     header .listaMenu a:hover{
@@ -168,7 +168,7 @@ header {
     }
     header .logo i{
         font-size: 4rem;
-        padding: 2%;
+        padding: 1rem;
     }
 }
     
