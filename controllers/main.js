@@ -6,7 +6,6 @@ const estilos = {
     detlleProducto:'/css/detalle-producto-style.css',
     register:'/css/register-style.css',
     login:'/css/login-style.css',
-
 }
 const productos = [
     {
