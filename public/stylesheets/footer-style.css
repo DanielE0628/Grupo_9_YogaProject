@@ -55,12 +55,12 @@ footer {
             text-align: center;
         }
         footer .preguntasFrecuentes i{
-            color: black;
+            color: var(--button);
             font-size: 2rem;
             margin-right: 1rem;
         }
         footer .preguntasFrecuentes p{
-            color: black;
+            color: var(--button);
             font-size: 2rem;
             width: 70%;
         }
