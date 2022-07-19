@@ -4,7 +4,7 @@ const router = express.Router();
 
 /* GET home page. */
 router.get('/', mainController.vistaHome); 
-router.get('/productos', mainController.productos); 
+router.get('/productos', mainController.vistaProductos); 
 router.get('/detalle-productos', mainController.detallesProductos); 
 router.get('/login', mainController.login); 
 router.get('/register', mainController.register); 

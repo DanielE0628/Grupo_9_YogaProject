@@ -8,13 +8,24 @@ const estilos = {
     login:'/css/login-style.css',
 
 }
-
+const productos = [
+    {
+        categoria: "Indumentaria",
+        subCategoria: "Mujer",
+        nombre: "Ropa ahoira funciona" ,
+        descripcion: " Lorem ipsum dolor sit amet consectetur adipisicing elit.Unde adipisci quam maiores eum",
+        precio: "$ 5000.00",
+        imagen:"/images/productos/indumentaria/mujer-1.png",
+        },
+    ]
+    
 const controlador = { 
     vistaHome: (req, res) => {
         res.render('home',{title: 'Home', estilo: estilos.home});
     },
-    productos: (req, res) => {
-        res.render('products/productos',{title: 'Productos', estilo: estilos.productos});
+    vistaProductos: (req, res) => {
+        
+        res.render('products/productos',{productos: productos,title: 'Productos', estilo: estilos.productos});
     },
     detallesProductos: (req, res) => {
         res.render('products/detalle-productos', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
