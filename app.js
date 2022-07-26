@@ -10,7 +10,7 @@ const app = express();
 const indexRouter = require('./routes/indexRoute');
 const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
-const cartRouter = require('./routes.cartRoutes')
+const cartRouter = require('./routes.cartRoute')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
