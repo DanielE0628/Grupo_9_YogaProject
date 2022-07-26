@@ -1,0 +1,23 @@
+*{
+    box-sizing: border-box;
+}
+
+.titulo{
+    text-align: center;
+    font-size: 120%;
+}
+.logo{
+    display: flex;
+    justify-content: center;
+}
+.logo img{
+    width: 30%;
+    text-align: center;
+}
+.nav{
+    display: flex;
+    flex-direction: column;
+    font-size: 100%;
+    align-items: center;
+}
+
