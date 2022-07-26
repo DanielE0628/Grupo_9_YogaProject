@@ -3,12 +3,13 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-//rutas
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
-
 
 const app = express();
+
+//rutas
+const indexRouter = require('./routes/indexRoute');
+const productsRouter = require('./routes/productsRoute');
+const usersRouter = require('./routes/usersRoute');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,9 +21,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-//rutas
+//link
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+// app.use('/login', usersRouter);
+// app.use('/register', usersRouter);
+// app.use('/instructors', usersRouter);
+
+// app.use("/productos", productsRouter);
+// app.use("/detalleProductos", productsRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
