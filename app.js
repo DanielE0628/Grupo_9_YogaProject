@@ -10,6 +10,7 @@ const app = express();
 const indexRouter = require('./routes/indexRoute');
 const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
+const cartRouter = require('./routes.cartRoutes')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +31,7 @@ app.use('/', indexRouter);
 
 // app.use("/productos", productsRouter);
 // app.use("/detalleProductos", productsRouter);
+// app.use("/cart",cartRouter);
 
 
 // catch 404 and forward to error handler
