@@ -87,6 +87,8 @@ main{
         main form .forgot a{
             text-decoration: none;
             color: var(--link);
+            width: 50%;
+            text-align: center;
         }
 
 footer div{
@@ -103,7 +105,12 @@ footer div{
         display: flex;
         flex-wrap: wrap;
         padding-top: 20px;
-        justify-content:flex-end;
+        justify-content:space-between;
+    }
+    main form .forgot a{
+        text-decoration: none;
+        color: var(--link);
+        width: auto;
     }
 
 }
@@ -116,8 +123,12 @@ footer div{
     main form .botones button:hover{
         background-color: var(--botonActivo);
     }
-    main form .forgot:hover{
+    main form .forgot .text-forgot:hover{
         color: red;
+        text-decoration: underline;
+    }
+    main form .forgot .text-register:hover{
+        color: var(--botonActivo);
         text-decoration: underline;
     }
 }
