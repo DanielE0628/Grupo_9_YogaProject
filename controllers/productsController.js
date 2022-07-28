@@ -18,10 +18,10 @@ const productos = [
 
 const controlador = { 
     vistaProductos: (req, res) => {
-        res.render('products/productos',{title: 'Productos', estilo: estilos.productos, productos: productos});
+        res.render('products/products',{title: 'Productos', estilo: estilos.productos, productos: productos});
     },
     detallesProductos: (req, res) => {
-        res.render('products/detalleProductos', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
+        res.render('products/detail', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
 }; 
 
