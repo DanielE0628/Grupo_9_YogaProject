@@ -1,13 +1,14 @@
 [
     {
-     "id": 1,
-     "name": "Ropa Mujer 1",
-     "price": 5000,
-     "discount": 3,
-     "category": "indumentaria",
-     "subCategory":"mujer",
-     "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-     "image": "mujer-1.png"
+    "id": 1,
+    "name": "Ropa Mujer 1",
+    "price": 5000,
+    "discount": 3,
+    "category": "indumentaria",
+    "subCategory":"mujer",
+    "quality":"talle m",
+    "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+    "image": "mujer-1.png"
     },
     {
         "id": 2,
