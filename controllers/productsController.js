@@ -1,28 +1,28 @@
-const express = require ("express");
+const fs = require('fs');
+const path = require('path');
+//datos JSON
+const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
+const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
     detalleProducto:'/stylesheets/detalle-producto-style.css',
 };
 
-const productos = [
-{
-    categoria: "Indumentaria",
-    subCategoria: "Mujer",
-    nombre: "Ropa mujer 1" ,
-    descripcion: " Lorem ipsum dolor sit amet consectetur adipisicing elit.Unde adipisci quam maiores eum",
-    precio: "$ 5000.00",
-    imagen:"/images/productos/indumentaria/mujer-1.png",
-    },
-];
 
 const controlador = { 
-    vistaProductos: (req, res) => {
-        res.render('products/products',{title: 'Productos', estilo: estilos.productos, productos: productos});
+    //todos los productos
+    index: (req, res) => {
+        res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
     },
-    detallesProductos: (req, res) => {
+    //detalla de un producto
+    detail: (req, res) => {
         res.render('products/detail', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
-}; 
 
+    //crear producto
+
+
+}; 
 module.exports = controlador;
