@@ -31,7 +31,7 @@ app.use('/', indexRouter);
 
 // app.use("/productos", productsRouter);
 // app.use("/detalleProductos", productsRouter);
-// app.use("/cart",cartRouter);
+app.use("/cart",cartRouter);
 
 
 // catch 404 and forward to error handler
