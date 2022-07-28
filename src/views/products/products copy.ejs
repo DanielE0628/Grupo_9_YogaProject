@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+<html lang="es">
+    
+    <%- include('../partials/head') %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+    <main class="contenedor-main">
+        <div class="contenedor-main-rutas">
+            <a href="/">inicio</a>
+            <a href="/productos">productos</a>
+            <a href="#">Indumentaria</a>
+        </div>
+        <div class="contenedor-main-padre"> 
+        <section class="contenedor-main-productos">
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/indumentaria/mujer-1.png" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2><%= products.name %></h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $5000.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>    
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/indumentaria/remera-hombre-1.jpg" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Remera hombre 1</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $3000.00
+                        </h2>
+                    </div>
+                    <div >
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>    
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/indumentaria/medias-1.jpg" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Medias 1</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $500.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>    
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/indumentaria/mujer-pantalon-1.jpg" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Pantalon Mujer 1</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $1500.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>  
+
+
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/Accesorios/bolso-negro.jpg" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Bolso Negro</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $2300.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>  
+
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/Accesorios/colchoneta-yoga.jpg" alt="ropa-mujer1">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Colchoneta</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $550.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>  
+
+
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/decorativos/cuadro-buda-zen.jpg" >
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Cuadro Buda Zen</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $1750.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>  
+
+            </article>
+            <article class="contenedor-main-productos-articulos">
+                <div class="contenedor-main-productos-articulos-imagen">
+                    <img src="/images/productos/decorativos/manta-yoga.jpg" alt="manta-yoga">
+                </div>
+                <div class="contenedor-main-productos-articulos-detalles">
+                    <div>
+                        <h2>Manta Aluna Relax</h2>
+                    </div>
+                    <div>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Unde adipisci quam maiores eum
+                        </p>
+                    </div>
+                    <div>
+                        <h2>
+                            $5500.00
+                        </h2>
+                    </div>
+                    <div>
+                        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+                            Comprar
+                        </button>
+                    </div>
+                </div>  
+
+
+            </article>
+            
+        </section>
+        <!-- section FILTRO -->
+        <button class="contenedor-main-filtro-button  >
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        
+        <section class="contenedor-main-filtro">
+            <h2>CATEGORIAS</h2>
+            <div >
+                <h3>Indumentaria</h3>
+                <form action="" class="contenedor-main-filtro-lista">
+                    <label><input type="radio" name="Mujer">Mujer</label>
+                    <label><input type="radio" name="Hombre">Hombre</label>
+                    <label><input type="radio" name="Pantalones">Pantalones</label>
+                    <label><input type="radio" name="Remeras">Remeras</label>
+                    <label><input type="radio" name="Calzado">Calzado</label>
+                </form>
+            </div>
+            <div>
+                <h3>Accesorios</h3>
+                <form action="" class="contenedor-main-filtro-lista">
+                    <label><input type="radio" name="Bolsos">Bolsos</label>
+                    <label><input type="radio" name="Colchonetas">Colchonetas</label>
+                </form>
+            </div>
+            <div>
+                <h3>Decorativos</h3>
+                <form action="" class="contenedor-main-filtro-lista">
+                    <label><input type="radio" name="Mantas">Mantas</label>
+                    <label><input type="radio" name="Cuadros">Cuadros</label>
+                    <label><input type="radio" name="Aromatisantes">Aromatisantes</label>
+                </form>
+            </div>
+            <div>
+                <h2>
+                    Filtrar por
+                </h2>
+            </div>
+            <div>
+                <h3>MARCA</h3>
+                <form action="" class="contenedor-main-filtro-lista">
+                    <label><input type="radio" name="Marca1">Marca 1</label>
+                    <label><input type="radio" name="Marca2">Marca 2</label>
+                    <label><input type="radio" name="Marca3">Marca 3</label>
+                </form>
+            </div>
+            <div>
+                <h3>ORDEN</h3>
+                <form action="" class="contenedor-main-filtro-lista">
+                    <label><input type="radio" name="Menor-precio">Menor precio</label>
+                    <label><input type="radio" name="Mayor-precio">Mayor precio</label>
+                    <label><input type="radio" name="Aromatisantes">Mas vendido</label>
+                    <label><input type="radio" name="a-z">A-Z</label>
+                    <label><input type="radio" name="z-a">Z-A</label>
+                    <label><input type="radio" name="fecha-lanzamiento">Fecha de lanzamiento</label>
+                </form>
+            </div>
+            <label ><button type="reset" name="resetear">Restear</button></label>
+        </section>
+        </div>
+<!-- section ofertas -->
+        <div class="contenedor-main-ofertas-titulo">
+            <h1>
+                OFERTAS
+            </h1>
+        </div>
+        <section class="contenedor-main-ofertas">
+            
+            <article class="contenedor-main-ofertas-articulos">
+                <img src="/images/productos/indumentaria/mujer-2.png" alt="ropa-mujer1">
+                <div>
+                    <h3>
+                        Conjunto yoga mujer 1
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Unde adipisci quam maiores eum
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        $5000.00
+                    </h3>
+                </div>
+                <div>
+                    <h2>
+                        $3500.00
+                    </h2>
+                </div>
+                <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
+                    Comprar
+                </button>
+            </article>
+            <article class="contenedor-main-ofertas-articulos">
+                <img src="/images/productos/indumentaria/remera-hombre-2.jpg" alt="ropa-mujer1">
+                <div>
+                    <h3>
+                        Remera yoga hombre 2
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Unde adipisci quam maiores eum
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        $5000.00
+                    </h3>
+                </div>
+                <div>
+                    <h2>
+                        $3500.00
+                    </h2>
+                </div>
+                <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
+                    Comprar
+                </button>
+            </article>
+            <article class="contenedor-main-ofertas-articulos">
+                <img src="/images/productos/indumentaria/mujer-pantalon-2.jpg" alt="ropa-mujer1">
+                <div>
+                    <h3>
+                        Pantalon yoga mujer 2
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Unde adipisci quam maiores eum
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        $5000.00
+                    </h3>
+                </div>
+                <div>
+                    <h2>
+                        $3500.00
+                    </h2>
+                </div>
+                <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
+                    Comprar
+                </button>
+            </article>
+            <article class="contenedor-main-ofertas-articulos">
+                <img src="/images/productos/indumentaria/medias-2.jpg" alt="ropa-mujer1">
+                <div>
+                    <h3>
+                        Medias yoga mujer 2
+                    </h3>
+                </div>
+                <div>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Unde adipisci quam maiores eum
+                    </p>
+                </div>
+                <div>
+                    <h3>
+                        $5000.00
+                    </h3>
+                </div>
+                <div>
+                    <h2>
+                        $3500.00
+                    </h2>
+                </div>
+                <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
+                    Comprar
+                </button>
+            </article>
+        </section>
+        <section class="contenedor-main-clases">
+            <div>
+                <a href="/clases"><h1>VER TODAS LAS CLASES</h1></a>
+            </div>
+        </section>
+    </main>
+    
+    <%- include('../partials/footer') %>
+
+</body>
+</html>
