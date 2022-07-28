@@ -1,0 +1,43 @@
+[
+    {
+    "id": 1,
+    "name": "Ropa Mujer 1",
+    "price": 5000,
+    "discount": 3,
+    "category": "indumentaria",
+    "subCategory":"mujer",
+    "quality":"talle m",
+    "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+    "image": "mujer-1.png"
+    },
+    {
+        "id": 2,
+        "name": "Ropa Mujer 2",
+        "price": 5000,
+        "discount": 3,
+        "category": "indumentaria",
+        "subCategory":"mujer",
+        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+        "image": "mujer-2.png"
+    },
+    {
+        "id": 3,
+        "name": "Remera hombre 1",
+        "price": 50002,
+        "discount": 3,
+        "category": "indumentaria",
+        "subCategory":"hombre",
+        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+        "image": "remera-hombre-1.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Remera hombre 2",
+        "price": 50002,
+        "discount": 3,
+        "category": "indumentaria",
+        "subCategory":"hombre",
+        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+        "image": "remera-hombre-2.jpg"
+    }
+]

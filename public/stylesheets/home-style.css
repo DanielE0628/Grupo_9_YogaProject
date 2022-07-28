@@ -1,23 +1,53 @@
-*{
-    box-sizing: border-box;
-}
-
-.titulo{
+main .titulo{
     text-align: center;
     font-size: 120%;
 }
-.logo{
+main .logo{
     display: flex;
     justify-content: center;
 }
-.logo img{
+main .logo img{
     width: 30%;
     text-align: center;
 }
-.nav{
+main .nav{
     display: flex;
     flex-direction: column;
     font-size: 100%;
-    align-items: center;
+    align-items:center;
+    justify-content: center;
+    padding: 1rem;
+}
+main .nav a{
+    padding: 1rem;
+    
+}
+main .nombreLogo{
+    font-family: 'Mr De Haviland', cursive;
+    font-size: 5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem;
+    color: var(--Logo);
+    margin: 0;
+    text-shadow: 2px 2px 5px var(--sombra);
+
 }
 
+@media (max-width: 43rem){/* Media Breakpoints para celus */
+}
+
+@media (min-width: 43rem){/* Media Breakpoints para tablet */
+    main .nav{
+        flex-direction: row;
+    }
+    main .nombreLogo{
+        text-align: left;
+    }
+}
+
+@media (min-width: 62rem){/* Media Breakpoints para Monitor */
+}
+
+@media (min-width: 82rem){
+}
