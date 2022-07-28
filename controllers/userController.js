@@ -1,9 +1,9 @@
 const express = require ("express");
 
 const estilos = {
-    register:'stylesheets/register-style.css',
-    login:'stylesheets/login-style.css',
-    instructors: '../stylesheets/instructors-style.css',
+    register:'/stylesheets/register-style.css',
+    login:'/stylesheets/login-style.css',
+    instructors: '/stylesheets/instructors-style.css',
 };
 
 const controlador = { 
