@@ -1,7 +1,3 @@
-*{
-    box-sizing: border-box;
-}
-
 .titulo{
     text-align: center;
     font-size: 120%;
@@ -16,7 +12,7 @@
 }
 .nav{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     font-size: 100%;
     align-items:center;
     justify-content: center;
@@ -36,3 +32,26 @@
     margin: 0;
 }
 
+@media (max-width: 43rem){/* Media Breakpoints para celus */
+}
+
+@media (min-width: 43rem){/* Media Breakpoints para tablet */
+    .nav{
+        display: flex;
+        flex-direction: row;
+        font-size: 100%;
+        align-items:center;
+        justify-content: center;
+        padding: 1rem;
+    }
+    .nav a{
+        padding: 1rem;
+        
+    }
+}
+
+@media (min-width: 62rem){/* Media Breakpoints para Monitor */
+}
+
+@media (min-width: 82rem){
+}
