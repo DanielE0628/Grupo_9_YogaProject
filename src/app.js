@@ -28,16 +28,6 @@ app.use('/users', usersRouter);
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
 
-<<<<<<< HEAD:app.js
-// app.use('/login', usersRouter);
-// app.use('/register', usersRouter);
-// app.use('/instructors', usersRouter);
-
-// app.use("/productos", productsRouter);
-// app.use("/detalleProductos", productsRouter);
-app.use("/cart",cartRouter);
-=======
->>>>>>> afa14c18b10e4638fb7d5bd2452afad2ca09b9f1:src/app.js
 
 
 // catch 404 and forward to error handler
