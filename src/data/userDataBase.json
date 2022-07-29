@@ -1,0 +1,21 @@
+[
+    {
+        "id": 0,
+        "name": "string",
+        "lastName": "otroString",
+        "birthdate": "dd/mm/yyyy",
+        "age": 0,
+        "image": "image.jpg",
+        "password": "xxxxxxxx"
+
+    },
+    {
+        "id": 1,
+        "name": "string",
+        "lastName": "otroString",
+        "birthdate": "dd/mm/yyyy",
+        "age": 0,
+        "image": "image.jpg",
+        "password": "xxxxxxxx"
+    }
+]
