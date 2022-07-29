@@ -20,6 +20,8 @@ main .nav{
 }
 main .nav a{
     padding: 1rem;
+    color:rgb(98, 2, 128);
+    background-color: rgba(255, 235, 205, 0.137);
     
 }
 main .nombreLogo{
@@ -30,8 +32,14 @@ main .nombreLogo{
     padding: 1rem;
     color: var(--Logo);
     margin: 0;
-    text-shadow: 2px 2px 5px var(--sombra);
+    text-shadow: 2px 2px 6px rgb(110, 40, 143);
+    color:rgb(98, 2, 128);
+}
 
+
+main {
+    background-image: url('https://i.pinimg.com/originals/be/4c/a3/be4ca373e7aba4ec922c7b86d36faa9e.jpg');
+    background-size: cover;
 }
 
 @media (max-width: 43rem){/* Media Breakpoints para celus */
