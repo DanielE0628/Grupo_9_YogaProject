@@ -6,7 +6,7 @@ const logger = require('morgan');
 
 const app = express();
 
-// view engine setup
+// view engine setup NO TOCAR
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -16,21 +16,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
+// crear editar codigo
 //rutas
 const indexRouter = require('./routes/indexRoute');
 const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
-const cartRouter = require('./routes/cartRoute')
 
 //link
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
+<<<<<<< HEAD
 app.use("/cart", cartRouter);
 
+=======
+>>>>>>> 133e0cfa4654907236a4bfd210b2eb25f75f8066
 
 
-// catch 404 and forward to error handler
+
+
+// catch 404 and forward to error handler no tocar
 app.use(function(req, res, next) {
   next(createError(404));
 });
