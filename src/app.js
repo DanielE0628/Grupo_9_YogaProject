@@ -21,13 +21,12 @@ app.use(express.static(path.join(__dirname, '../public')));
 const indexRouter = require('./routes/indexRoute');
 const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
-const cartRouter = require('./routes/cartRoute')
 
 //link
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
-app.use("/cart", cartRouter);
+
 
 
 
