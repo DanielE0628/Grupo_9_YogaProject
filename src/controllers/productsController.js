@@ -9,6 +9,7 @@ const estilos = {
     productos: '/stylesheets/productos-style.css',
     detalleProducto:'/stylesheets/detalle-producto-style.css',
     crearProducto:'/stylesheets/register-style.css'
+    
 };
 
 
