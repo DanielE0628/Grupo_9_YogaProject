@@ -8,8 +8,6 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const estilos = {
     productos: '/stylesheets/productos-style.css',
     detalleProducto:'/stylesheets/detalle-producto-style.css',
-    crearProducto:'/stylesheets/register-style.css'
-    
 };
 
 
@@ -24,9 +22,7 @@ const controlador = {
     },
 
     //crear producto
-    create: (req, res) => {
-        res.render('products/product-create', {title: 'CrearProducto', estilo: estilos.crearProducto});
-    },
+
 
 }; 
 module.exports = controlador;
