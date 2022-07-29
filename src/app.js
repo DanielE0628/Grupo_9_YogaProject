@@ -7,13 +7,13 @@ const logger = require('morgan');
 const app = express(); 
 
 //MiddleWare
-let logMiddleware = require('./middlewares/logMiddleware');
+//let logMiddleware = require('./middlewares/logMiddleware');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.use(logMiddleware);
+//app.use(logMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
