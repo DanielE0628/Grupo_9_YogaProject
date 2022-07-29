@@ -26,11 +26,6 @@ const usersRouter = require('./routes/usersRoute');
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
-<<<<<<< HEAD
-app.use("/cart", cartRouter);
-
-=======
->>>>>>> 133e0cfa4654907236a4bfd210b2eb25f75f8066
 
 
 
