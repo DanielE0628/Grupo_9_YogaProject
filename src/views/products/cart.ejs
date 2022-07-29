@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
-<!-- DOCS HEAD -->
-<%- include('./partials/head') %>
- <body>
-    <!-- HEADER -->
-    <%- include('./partials/header') % <!-- FALTA AGREGAR TITULO "Carrito de compras" al header -->
-    <main>
+    
+    <%- include('../partials/head') %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main>
         <section class="list_of_products">
             <article> 
                 <img src="#" alt="#">
@@ -41,9 +43,7 @@
         <section class="recommended_products">
         </section>
     </main>
-    <footer>
+    <%- include('../partials/footer') %>
 
-    </footer>
 </body>
-
 </html>
