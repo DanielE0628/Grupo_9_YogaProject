@@ -1,3 +1,4 @@
+//Express
 const fs = require('fs');
 const path = require('path');
 //datos JSON
@@ -26,6 +27,17 @@ const controlador = {
     //crear producto
     create: (req, res) => {
         res.render('products/product-create', {title: 'CrearProducto', estilo: estilos.crearProducto});
+    },
+    store: (req, res) => {
+        const newProduct = req.body;
+        newProduct.id = products.length + 1;
+        newProduct.image = req.file.filename;
+        products.push(newProduct);
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
+		res.redirect('/')
+
+
+    
     },
 
 }; 

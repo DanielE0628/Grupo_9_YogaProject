@@ -12,7 +12,7 @@
         <div class="contenedor-main-rutas">
             <a href="/">inicio</a>
             <a href="/products/product-create">Crear producto</a>
-            <a href="/">Indumentaria</a>
+            <a href="#">Indumentaria</a>
         </div>
         <% products.forEach(products => { %>
             <%  { %> 
@@ -30,12 +30,12 @@
                     </div>
                     <div>
                         <p>
-                            <%= products.description %>
+                            <%= products.category %>
                         </p>
                     </div>
                     <div>
                         <h2>
-                            <%= products.price %>
+                            <%= "$ " +products.price %>
                         </h2>
                     </div>
                     <div>
