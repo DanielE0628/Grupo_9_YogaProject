@@ -20,9 +20,7 @@ const controlador = {
     detail: (req, res) => {
         res.render('products/detail', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
-
     //crear producto
-
 
 }; 
 module.exports = controlador;
