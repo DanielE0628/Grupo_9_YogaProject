@@ -8,18 +8,24 @@
         <%- include('./partials/header') %>
 
         <main>
-        <div class="titulo"><h1 class="nombreLogo">Aluna Yoga</h1></div>
-        <div class="logo"><img src="/images/logoPag/lotus_color.png" alt="logo"></div>
+            <section class="logo">
+                <h1 class="titulo">Aluna Yoga</h1>
+                <img src="/images/logoPag/lotus_color.png" alt="logo">
+            </section>
         
-        <nav class="nav">
-            
-            <a href="/products" >Productos</a>
-            <a href="/users/instructors">Instructores</a>
-            <a href="/users/register" >Registro</a>
-            <a href="/users" >Login</a>
-            
-        </nav>
-    </main>
+            <section class="links">
+                <nav class="nav">
+                    <a href="/products" >Productos</a>
+                    <a href="/cart" >Carrito</a>
+                    <a href="/users">Usuarios</a>
+                    <a href="/users/instructors">Instructores</a>
+                    <a href="/users/register" >Registro</a>
+                    <a href="/users/login" >Login</a>
+                </nav>
+            </section>
+        </main>
+
     <%- include('./partials/footer') %>
-</body>
+
+    </body>
 </html>
