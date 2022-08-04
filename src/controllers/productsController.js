@@ -17,10 +17,12 @@ const estilos = {
 const controlador = { 
     //todos los productos
     index: (req, res) => {
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
         res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
     },
     //detalla de un producto
     detail: (req, res) => {
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
         res.render('products/detail', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
 
@@ -29,9 +31,19 @@ const controlador = {
         res.render('products/product-create', {title: 'CrearProducto', estilo: estilos.crearProducto});
     },
     store: (req, res) => {
+        //llamar de DATA JSON todos los productos
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+        //crear nuevo producto
         const newProduct = req.body;
+        //new id
         newProduct.id = products.length + 1;
-        newProduct.image = req.file.filename;
+        // agragar imagen
+        if(req.file){
+			newProduct.image = req.file.filename;
+		}else{
+			newProduct.image = "default-image.png";
+		}
+        //agregar nuevo porducto a DATA JSON
         products.push(newProduct);
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
 		res.redirect('/')

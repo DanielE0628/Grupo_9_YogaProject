@@ -31,7 +31,7 @@ router.get('/cart',cartController.cartView );
 
 //crear producto
 router.get('/product-create', productsController.create); 
-router.post('/', productsController.store); 
+router.post('/',upload.single('product-img'), productsController.store); 
 
 
 module.exports = router;

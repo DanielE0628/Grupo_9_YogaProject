@@ -11,8 +11,7 @@
     <main class="contenedor-main">
         <div class="contenedor-main-rutas">
             <a href="/">inicio</a>
-            <a href="/productos">productos</a>
-            <a href="#">Indumentaria</a>
+            <a href="/products/product-create">Crear Productos</a>
         </div>
         <% products.forEach(products => { %>
             <%  { %> 
@@ -29,13 +28,11 @@
                         <h2><%= products.name %></h2>
                     </div>
                     <div>
-                        <p>
-                            <%= products.description %>
-                        </p>
+
                     </div>
                     <div>
                         <h2>
-                            <%= products.price %>
+                            $ <%=  products.price %>
                         </h2>
                     </div>
                     <div>

@@ -1,42 +1,58 @@
 [
-    {
-     "id": 1,
-     "name": "Ropa Mujer 1",
-     "price": 5000,
-     "discount": 3,
-     "category": "indumentaria",
-     "subCategory":"mujer",
-     "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-     "image": "mujer-1.png"
-    },
-    {
-        "id": 2,
-        "name": "Ropa Mujer 2",
-        "price": 5000,
-        "discount": 3,
-        "category": "indumentaria",
-        "subCategory":"mujer",
-        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-        "image": "mujer-2.png"
-    },
-    {
-        "id": 3,
-        "name": "Remera hombre 1",
-        "price": 50002,
-        "discount": 3,
-        "category": "indumentaria",
-        "subCategory":"hombre",
-        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-        "image": "remera-hombre-1.jpg"
-    },
-    {
-        "id": 4,
-        "name": "Remera hombre 2",
-        "price": 50002,
-        "discount": 3,
-        "category": "indumentaria",
-        "subCategory":"hombre",
-        "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-        "image": "remera-hombre-2.jpg"
-    }
+ {
+  "id": 1,
+  "name": "Ropa Mujer 1",
+  "price": 5000,
+  "discount": 3,
+  "category": "indumentaria",
+  "subCategory": "mujer",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+  "image": "mujer-1.png"
+ },
+ {
+  "id": 2,
+  "name": "Ropa Mujer 2",
+  "price": 5000,
+  "discount": 3,
+  "category": "indumentaria",
+  "subCategory": "mujer",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+  "image": "mujer-2.png"
+ },
+ {
+  "id": 3,
+  "name": "Remera hombre 1",
+  "price": 50002,
+  "discount": 3,
+  "category": "indumentaria",
+  "subCategory": "hombre",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+  "image": "remera-hombre-1.jpg"
+ },
+ {
+  "id": 4,
+  "name": "Remera hombre 2",
+  "price": 50002,
+  "discount": 3,
+  "category": "indumentaria",
+  "subCategory": "hombre",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
+  "image": "remera-hombre-2.jpg"
+ },
+ {
+  "id": 5,
+  "image": "default-image.png"
+ },
+ {
+  "id": 6
+ },
+ {
+  "name": "Figura Luffy 4th Gear",
+  "description": "La primera forma del gear 4 se llama boundman (弾む男バウンドマン Baundoman?, lit. «Hombre-Rebote»): Esto provoca que Luffy aumente notablemente su masa muscular de manera similar a como ya hizo con su transformación en Nightmare Luffy, pero con algunas diferencias; ya que con el gear 4 su cuerpo adopta una apariencia más redonda, y es imbuido en busoshoku haki. También se vuelve físicamente más alto, alcanzando de pie los cuatro metros de altura. Como efecto secundario, es incapaz de quedarse quieto en el suelo, y en su lugar constantemente rebota en el acto. También en esta forma es capaz de volar gracias a la propulsión elástica de la goma.\r\n\r\n",
+  "price": "20000",
+  "category": "Decorativos",
+  "quality": "T-L",
+  "id": 7,
+  "image": "1659653521940-14177-logo_OP-MONKEY.D.LUFFY-GEAR4-WANOKUNI_1.jpg"
+ }
 ]
