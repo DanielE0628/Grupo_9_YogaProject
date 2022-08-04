@@ -6,14 +6,9 @@ const logger = require('morgan');
 
 const app = express(); 
 
-//MiddleWare
-//let logMiddleware = require('./middlewares/logMiddleware');
-
-// view engine setup
+// view engine setup NO TOCAR
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
-
-//app.use(logMiddleware);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -21,13 +16,17 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '../public')));
 
+// SI TOCAR
+
+//MiddleWare
+
 //rutas
 const indexRouter = require('./routes/indexRoute');
 const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
 const cartRouter = require('./routes/cartRoute')
 
-//link
+//linkS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
