@@ -9,7 +9,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 const estilos = {
     productos: '/stylesheets/productos-style.css',
     detalleProducto:'/stylesheets/detalle-producto-style.css',
-    crearProducto:'/stylesheets/register-style.css'
+    crearProducto:'/stylesheets/product-create-style.css'
     
 };
 
@@ -47,10 +47,42 @@ const controlador = {
         products.push(newProduct);
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
 		res.redirect('/')
-
-
-    
     },
-
-}; 
+    //editar un producto
+    edit: (req, res) => {
+        //llamar de DATA JSON todos los productos
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+        //buscamos la id del prodcuto a editar
+        const idProduct = req.params.id;
+        const productEdit = products.find( item => item.id == idProduct)
+        //renderisamos la vista
+        res.render('products/product-edit',{productEdit, title: 'Editanado Prodcuto: ', estilo: estilos.crearProducto});
+    },
+    update: (req, res) =>{
+        //llamar de DATA JSON todos los productos
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+        //buscamos la id del prodcuto a editar
+        const idProduct = req.params.id;
+        // agregamos el/los nuevos parametros del producto a editar
+        const productEdit = req.body;
+        //edtiamos los parametros
+        products.forEach(product => {
+            if (idProduct == product.id){
+                product.name = productEdit.name;
+				product.price = productEdit.price;
+				product.discount = productEdit.discount;
+				product.category = productEdit.category;
+                product.subCategory = productEdit.subCategory;
+                product.quality = productEdit.quality;
+				product.description = productEdit.description;
+                if(req.file){
+					product.image = req.file.filename;
+				}
+            }
+        });
+        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
+		res.redirect('/');
+    },
+        
+}
 module.exports = controlador;
