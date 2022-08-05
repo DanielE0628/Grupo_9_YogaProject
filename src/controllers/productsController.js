@@ -8,7 +8,7 @@ const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
-    detalleProducto:'/stylesheets/detalle-producto-style.css',
+    detalleProducto:'/stylesheets/detail-style.css',
     crearProducto:'/stylesheets/product-create-style.css'
     
 };
@@ -23,7 +23,9 @@ const controlador = {
     //detalla de un producto
     detail: (req, res) => {
         const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        res.render('products/detail', {title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
+        const idProduct = req.params.id;
+        const product = products.find( item => item.id == idProduct)
+        res.render('products/detail', { product ,title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
     },
 
     //crear producto
@@ -81,7 +83,7 @@ const controlador = {
             }
         });
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-		res.redirect('/');
+		res.redirect('/products');
     },
         
 }

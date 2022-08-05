@@ -21,7 +21,7 @@
             <article class="contenedor-main-productos-articulos">
                 
                 <div class="contenedor-main-productos-articulos-imagen">
-                    <img src="/images/productos/<%= products.image %>" alt="ropa-mujer1">
+                    <img src="/images/products/<%= products.image %>" alt="ropa-mujer1">
                 </div>
                 <div class="contenedor-main-productos-articulos-detalles">
                     <div>
@@ -34,6 +34,9 @@
                         <h2>
                             $ <%=  products.price %>
                         </h2>
+                    </div>
+                    <div>
+                        <a href="/products/detail/<%= products.id %>" class="action-button edit">Detalles</a>
                     </div>
                     <div>
                         <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">

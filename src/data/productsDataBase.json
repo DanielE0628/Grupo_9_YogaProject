@@ -1,13 +1,12 @@
 [
  {
   "id": 1,
-  "name": "Ropa Mujer 1",
-  "price": 5000,
-  "discount": 3,
-  "category": "indumentaria",
-  "subCategory": "mujer",
-  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-  "image": "mujer-1.png"
+  "name": "Ropa Mujer 1editado",
+  "price": "5000",
+  "category": "",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión. ",
+  "image": "mujer-1.png",
+  "quality": ""
  },
  {
   "id": 2,
@@ -49,8 +48,8 @@
   "name": "Figura Luffy 4th Gear \"Tank Man\"",
   "price": "25000",
   "category": "Decorativos",
-  "quality": "T-XL",
-  "description": " El tankman dota al cuerpo de Luffy de una increíble dureza gracias al haki: al contrario que su forma de boundman, a la que Cracker, a pesar de estar recubierta con haki, casi fue capaz de cortarla con su espada,[5] en esta forma Cracker no fue capaz de clavar la misma espada en el estómago de Luffy.[6] Además, esta forma incrementa la magnitud y el poder de la ofensiva basada en la compresión de la goma de la forma boundman usando el enorme estómago de Luffy como lanzadera, lo que le permitió derrotar a Cracker disparándole contra sus increíblemente duros soldados de galleta con el gomu gomu no cannonball.[7]",
+  "quality": "",
+  "description": " El tankman dota al cuerpo de Luffy de una increíble dureza gracias al haki: al contrario que su forma de boundman, a la que Cracker, a pesar de estar recubierta con haki, casi fue capaz de cortarla con su espada,[5] en esta forma Cracker no fue capaz de clavar la misma espada en el estómago de Luffy.[6] Además, esta forma incrementa la magnitud y el poder de la ofensiva basada en la compresión de la goma de la forma boundman usando el enorme estómago de Luffy como lanzadera, lo que le permitió derrotar a Cracker disparándole contra sus increíblemente duros soldados de galleta con el gomu gomu no cannonball.[7] ",
   "image": "1659658604191-lseven-luffy-tankman-resin-statue.jpg"
  },
  {
@@ -64,11 +63,11 @@
  },
  {
   "name": "Figura Luffy 4th Gear \"Snake Man\"",
-  "description": " En esta forma, Luffy aumenta significativamente, a costa de perder la capacidad de rebotar en el aire,[3] su velocidad y mejora su «python» para cambiar sus brazos de dirección a cada golpe, lo cual es capaz también de realizar en su forma boundman. No obstante, con el snakeman, sus ataques incrementen su velocidad cuanto cambios de dirección realicen; permitiendo a Luffy no solo atacar ferozmente a un enemigo que sea capaz de evitarlo, sino aumentar la velocidad y potencia del ataque hasta que llegue a su objetivo. Además de todo ello, es capaz de atacar a un oponente desde cualquier dirección con facilidad.[10] Esta forma también le permite saltar grandes alturas, como se vio cuando lo hizo desde el fondo de un gran cráter del Mirro-World, aunque se desconoce la comparativa de capacidad de salto con su forma boundman.[10] ",
+  "description": " En esta forma, Luffy aumenta significativamente, a costa de perder la capacidad de rebotar en el aire,[3] su velocidad y mejora su «python» para cambiar sus brazos de dirección a cada golpe, lo cual es capaz también de realizar en su forma boundman. No obstante, con el snakeman, sus ataques incrementen su velocidad cuanto cambios de dirección realicen; permitiendo a Luffy no solo atacar ferozmente a un enemigo que sea capaz de evitarlo, sino aumentar la velocidad y potencia del ataque hasta que llegue a su objetivo. Además de todo ello, es capaz de atacar a un oponente desde cualquier dirección con facilidad.[10] Esta forma también le permite saltar grandes alturas, como se vio cuando lo hizo desde el fondo de un gran cráter del Mirro-World, aunque se desconoce la comparativa de capacidad de salto con su forma boundman.[10]   ",
   "price": "30000",
   "category": "Decorativos",
-  "quality": "T-M",
+  "quality": "",
   "id": 8,
-  "image": "default-image.png"
+  "image": "1659658901856-one-piece-luffy-gear-4-snakeman.jpg"
  }
 ]

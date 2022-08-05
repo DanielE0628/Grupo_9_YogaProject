@@ -10,7 +10,7 @@ const productsController = require("../controllers/productsController");
 //Multer
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'public/images/productos')
+      cb(null, 'public/images/products')
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + '-' + file.originalname)
@@ -24,7 +24,7 @@ var storage = multer.diskStorage({
 router.get('/', productsController.index);
 
 //un producto 
-router.get('/detail', productsController.detail); 
+router.get('/detail/:id/', productsController.detail); 
 
 //crear producto
 router.get('/create', productsController.create); 
