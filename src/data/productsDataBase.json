@@ -3,10 +3,10 @@
   "id": 1,
   "name": "Ropa Mujer 1editado",
   "price": "5000",
-  "category": "",
-  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión. ",
+  "category": "Indumentaria",
+  "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.  ",
   "image": "mujer-1.png",
-  "quality": ""
+  "quality": "T-M"
  },
  {
   "id": 2,
@@ -69,5 +69,23 @@
   "quality": "",
   "id": 8,
   "image": "1659658901856-one-piece-luffy-gear-4-snakeman.jpg"
+ },
+ {
+  "name": "ejemplo 1233",
+  "description": " ",
+  "price": "0000",
+  "category": "Indumentaria",
+  "quality": "T-S",
+  "id": 9,
+  "image": "default-image.png"
+ },
+ {
+  "name": "Figura Sanji",
+  "description": "aguante la birra ",
+  "price": "20000000000000000",
+  "category": "Indumentaria",
+  "quality": "T-XXL",
+  "id": 10,
+  "image": "1659661460465-Figura-One-Piece-Sanji-Diable-Jambe-Premier-16-cm.jpg"
  }
 ]
