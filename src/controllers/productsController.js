@@ -85,6 +85,42 @@ const controlador = {
         fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
 		res.redirect('/products');
     },
-        
+    destroy: (req, res) =>{
+        //llamar de DATA JSON todos los productos
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+        //buscamos la id del prodcuto a eliminar
+        const idProduct = req.params.id;
+        //buscamos la imagen y la eliminamos
+        products.forEach(product => {
+            if(idProduct == product.id){
+                if(product.image && product.image != "default-image.png" ){
+                    const imagePath = path.join(__dirname, '../../public/images/products', product.image);
+					fs.unlinkSync(imagePath)
+                }
+            }
+        })
+        //flitramos al idproduct para dejarlo afuera del nuevo database
+        const productsList = products.filter(item => item.id != idProduct ) 
+        fs.writeFileSync(productsFilePath, JSON.stringify(productsList, null, ' '));
+		res.redirect('/products')
+    },
+    destroyImg: (req, res) =>{
+         //llamar de DATA JSON todos los productos
+        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+         //buscamos la id del prodcuto a eliminar
+        const idProduct = req.params.id; 
+        //buscamos la imagen y la eliminamos
+        products.forEach(product => {
+            if(idProduct == product.id){
+                if(product.image && product.image != "default-image.png" ){
+                    const imagePath = path.join(__dirname, '../../public/images/products', product.image);
+					fs.unlinkSync(imagePath)
+                }
+            } product.image = "default-image.png";	
+        })
+        res.redirect('/products')
+    },
 }
+
+
 module.exports = controlador;
