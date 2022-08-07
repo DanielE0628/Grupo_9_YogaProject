@@ -6,9 +6,13 @@ header {
     justify-content: space-between;
     padding: 1rem;
     background-color: var(--header);
+    position:sticky;
+    top: 0;
+    z-index: 1000;
 }
 header nav{
     width: 25%;
+    
 }
     header nav .listaMenu{
         display: none;
@@ -42,24 +46,15 @@ header nav{
             color: black;
         }
         header .logo .imgLogo{
-            padding-right: 1rem;
+            padding-right: 0.5rem;
         }
             header .logo .imgLogo img{
                 width: 2.5rem;
             }
-            header .logo i{
-                font-size: 2rem;
-                color: var(--blanco);
-                padding: 0.5rem;
-                border: solid 1px var(--logo);
-                background-color: var(--logo);
-                border-radius: 50%;
-            }
         header .logo .textLogo{
-            height: 100%;
             border-left: 3px solid var(--button);
             color: var(--button);
-            padding-left: 1rem;
+            padding-left: 0.5rem;
             position: relative;
         }
             header .logo h1.nombreLogo{
@@ -98,7 +93,6 @@ header nav{
 
 @media (max-width: 43rem){/* Media Breakpoints para celus */
 }
-
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
     header nav .menuHamburguesa{
         display: none;
@@ -130,7 +124,7 @@ header nav{
             border: none;
             outline: none;
             border: 1px solid var(--button);
-            width: 80%;
+            width: 70%;
             border-radius: 5px 0 0 5px;
             border-right: none;
             padding: 1rem;
@@ -143,7 +137,6 @@ header nav{
             border-left: none;
             border-radius: 0 5px 5px 0;
             background-color: var(--button);
-            padding: 1rem;
         }
             header .SearchBar button i.fa-solid.fa-magnifying-glass{
                 color: var(--blanco);
@@ -153,12 +146,26 @@ header nav{
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
     header .logo{
+        width: 30%;
+    }
+    /* 
+    header .logo{
         order:-10;
         width: 100%;
-        padding-bottom: 2rem;
+        padding-bottom: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+    header .logo a {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
     }
         header .logo a .imgLogo img{
-            width: 5rem;
+            width: 2rem;
         }
 
         header .logo a .textLogo{
@@ -168,16 +175,16 @@ header nav{
             align-items: center;
         }
         header .logo a .textLogo .nombreLogo{
-            font-size: 5rem;
+            font-size: 2rem;
         }
         header .logo a .textLogo h2.nombreLogo{
             position: relative;
             padding-left: 1rem;
-            font-size: 3rem;
-        }
+            font-size: 1rem;
+        } */
 
     header nav{
-        width: 40%;
+        width: 30%;
     }
         header nav .listaMenu .menu{
             display: none;
@@ -187,7 +194,10 @@ header nav{
             }
 
     header .SearchBar{
-        width: 40%;
+        width: 30%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
 
 
