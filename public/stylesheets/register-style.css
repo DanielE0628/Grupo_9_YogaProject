@@ -29,6 +29,7 @@ main{
                 background-color: var(--blanco);
                 position: absolute;
                 right: -1.5rem;
+                padding: 0;
 
             }
             main form i.fa-solid.fa-circle-plus{
@@ -71,11 +72,6 @@ main{
                 margin-left: 5px;
                 margin-right: 5px;
             }
-
-footer div{
-    background-color: var(--footer);
-    height: 10vh;
-}
 
 @media (max-width: 43rem){/* Media Breakpoints para celus */ 
 }
