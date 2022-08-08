@@ -4,7 +4,7 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const methodOverride = require("method-override")
+const methodOverride = require("method-override");
 
 // ************ express() - (don't touch) ************
 const app = express(); 
@@ -16,12 +16,12 @@ app.set('view engine', 'ejs');
 // ************ Middlewares - Importados (don't touch) ************
 app.use(logger('dev'));
 app.use(express.json());
+/*** Para que funcionen los form ***/
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
-
-
 //MiddleWare 
 
 //rutas

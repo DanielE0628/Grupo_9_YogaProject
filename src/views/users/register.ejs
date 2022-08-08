@@ -8,18 +8,23 @@
         <%- include('../partials/header') %>
 
         <main>          
-            <form >
+            <form action="/users/register" method="POST" enctype="multipart/form-data">
                 <div class="foto">
-                    <i class="fa-solid fa-circle-user"></i>
+                    <label for="imagenUsuario">
+                        <i class="fa-solid fa-circle-user"></i>
+                    </label>
                     
-                    <button class="add" type="button">
-                        <i class="fa-solid fa-circle-plus"></i>
+                    <button class="add" type="button" name="imagenUsuario">
+                        <label for="addImagenUsuario"> +
+                            <input id="addImagenUsuario" type="file" name="imagenUsuario" accept="image/png, image/jpg, image/gif, image/jpeg">
+                            </i>
+                        </label>
                     </button>
                 </div>
 
                 <div class="casilla">
                     <i class="fa-solid fa-user"></i>
-                    <input class="nombre_y_apellido" type="text" name="nombre-y-apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" minlength="3"required>
+                    <input class="nombre_y_apellido" type="text" name="nombre_y_apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" minlength="3"required>
                     <span class="feedback"></span>
                 </div>
 
@@ -31,7 +36,7 @@
                 
                 <div class="casilla">
                     <i class="fa-solid fa-calendar-days"></i>
-                    <input type="date" name="fecha-de-nacimiento" id="fecha-de-nacimiento" min="1920-01-01" max="2003-06-27" required>
+                    <input type="date" name="fecha_de_nacimiento" id="fecha_de_nacimiento" min="1920-01-01" max="2003-06-27" required>
                     <span class="feedback"></span>
                 </div>
 

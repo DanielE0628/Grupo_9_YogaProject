@@ -1,0 +1,46 @@
+[
+ {
+  "nombre-y-apellido": "pablo",
+  "email": "dsalattino@gmail.com",
+  "fecha-de-nacimiento": "2003-06-11",
+  "pasword": [
+   "tyujtyuty",
+   "tuktnktnukt"
+  ],
+  "id": 0,
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "nombre_y_apellido": "David",
+  "email": "dsalattino2@gmail.com",
+  "fecha_de_nacimiento": "2003-06-08",
+  "pasword": [
+   "dghdbgbhdgh",
+   "dghfndfnbhdb"
+  ],
+  "id": 1,
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "nombre_y_apellido": "juanpi",
+  "email": "juanpi@gmail.com",
+  "fecha_de_nacimiento": "2003-06-08",
+  "pasword": [
+   "dghdbgbhdgh",
+   "dghfndfnbhdb"
+  ],
+  "id": 3,
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "nombre_y_apellido": "OtroYo",
+  "email": "OtroYo@OtroYo.OtroYo",
+  "fecha_de_nacimiento": "2003-06-17",
+  "pasword": [
+   "OtroYoOtroYoOtroYo",
+   "OtroYoOtroYoOtroYo"
+  ],
+  "id": 3,
+  "imagenUsuario": "default-user.png"
+ }
+]

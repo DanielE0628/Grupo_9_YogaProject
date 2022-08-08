@@ -26,12 +26,24 @@ main{
             main form .foto .add{
                 border: none;
                 outline: none;
-                background-color: var(--blanco);
+                background-color:var(--button);
+                width: 1.5rem;
+                height: 1.5rem;
+                border-radius: 50%;
                 position: absolute;
                 right: -1.5rem;
-                padding: 0;
-
+                padding: 0.1rem;
             }
+                main form .foto .add label{
+                    cursor: pointer;
+                    font-size: 1rem;
+                    font-weight: bold;
+
+                }
+                    main form .foto  label input{
+                        display: none;
+                    }
+            
             main form i.fa-solid.fa-circle-plus{
                 color: var(--button);
                 font-size: 1.5rem;

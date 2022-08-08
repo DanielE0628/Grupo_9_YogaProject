@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <%- include('../partials/head', {title: 'userEdit', estilo:'/stylesheets/style.css'}) %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main> 
+        <h1>Lista de Usarios</h1>
+        <ul>
+            <% for (let i = 0; i < users.length; i++) { %>
+                <li>
+                    <a href="/users/detail/<%= users[i].id %>"><%= users[i].nombre_y_apellido %></a>
+                    <form method="POST"action="/users/delete/<%= users[i].id %>?_method=DELETE">
+                        <button type="submit">Eliminar</button>
+                    </form>
+
+                </li>
+            <% } %>
+        </ul>
+        <h2>Search</h2>
+        <form action="/users/search"method="GET">
+            <input type="text"name="search">
+        
+        </main>
+
+        <%- include('../partials/footer') %>
+
+    </body>
+</html>

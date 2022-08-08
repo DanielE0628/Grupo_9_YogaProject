@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <%- include('../partials/head', {title: 'userResult', estilo:'/stylesheets/style.css'}) %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main> 
+        <h1>Lista de Usarios</h1>
+        <ul>
+            <% for (let i = 0; i < usersResults.length; i++) { %>
+                <li>
+                    <a href="/users/detail/<%= usersResults[i].id %>"><%= usersResults[i].name %></a>
+                    <form method="POST"action="/users/delete/<%= usersResults[i].id %>?_method=DELETE">
+                        <button type="submit">Eliminar</button>
+                    </form>
+
+                </li>
+            <% } %>
+        </ul>
+        <h2>Search</h2>
+        <form action="/users/search"method="GET">
+            <input type="text"name="search">
+        
+        </main>
+
+        <%- include('../partials/footer') %>
+
+    </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <%- include('../partials/head', {title: 'userEdit', estilo:'/stylesheets/style.css'}) %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main>          
+            <form method="POST" action="/users/edit?_method=PUT" enctype="multipart/form-data">
+
+
+                <div class="casilla">
+                    <i class="fa-solid fa-user"></i>
+                    <input class="nombre_y_apellido" type="text" name="nombre-y-apellido" id="nombre-y-apellido" placeholder="Nombre y Apellido" minlength="3" value="<%= userToEdit.name %>" required>
+                    <span class="feedback"></span>
+                </div>
+
+                <div class="botones">
+                    <button type="submit">Editar</button>
+                    <button type="reset" action="/">Borrar</button>
+                </div>
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %>
+        
+    </body>
+</html>
