@@ -7,12 +7,13 @@ const userController = require("../controllers/userController");
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) =>{
-        let folder = path.join(__dirname,'../public/images/users/profileImages');
-        callback(null,folder);
+        // let folder = path.join(__dirname,'../../public/images/users/profileImages');
+    
+        cb(null, 'public/images/users/profileImages')
     },
-    filename: (req,file,callback) =>{
+    filename: (req,file,cb) =>{
         let imageNewName= 'user-' + Date.now() + path.extname(file.originalname);
-        callback(null,imageNewName);
+        cb(null,imageNewName);
     }
 });
 const upload = multer({storage});
@@ -31,9 +32,8 @@ router.get('/search',userController.search);
 router.get('/edit/:idUser',userController.edit);
 router.put('/edit/:idUser',userController.edit);
 
-router.delete('/delete/:idUser',function(req, res){
-    res.send("SOY DELETE!");
-});
+router.delete('/delete/:idUser',userController.destroy);
+// router.delete('/delete/:idUser/',userController.destroyImg);
 
 /* Procesamiento del Form */
 router.post('/register', upload.single('imagenUsuario'), userController.create);

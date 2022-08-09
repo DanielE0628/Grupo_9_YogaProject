@@ -2,6 +2,7 @@ const express = require ("express");
 const fs = require('fs');
 const path = require('path');
 const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
+const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const estilos = {
     register:'/stylesheets/register-style.css',
@@ -10,7 +11,7 @@ const estilos = {
 };
 
 //llamar de DATA JSON todos los usuarios
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+// const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
 
 const controlador = { 
     vistaUser: (req, res) => {
@@ -26,15 +27,15 @@ const controlador = {
     },
 
     vistaLista: (req, res) => {
-        
-        res.render('users/userList', {title: 'ListaDeUsuarios', estilo: estilos.register, users});
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+        res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, });
     },
 
     vistaInstructors: (req, res) => {
         res.render('users/instructors', {title: 'Instuctores', estilo: estilos.instructors});
     },
     create: (req, res) => {
-        
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
         //crear nuevo usuario
         const newUsers = req.body;
         //new id
@@ -67,7 +68,42 @@ const controlador = {
             }
         }
        res.render('users/userResults', {usersResults: usersResults})
-    }
+    }, 
+    destroy: (req, res) =>{
+        //llamar de DATA JSON todos los productos
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+        //buscamos la id del prodcuto a eliminar
+        const idUser = req.params.id;
+        //buscamos la imagen y la eliminamos
+        users.forEach(user => {
+            if(idUser== user.id){
+                if(user.imagenUsuario && user.imagenUsuario != "default-image.png" ){
+                    const imagePath = path.join(__dirname, '../../public/images/users/profileImage', product.image);
+					fs.unlinkSync(imagePath)
+                }
+            }
+        })
+        //flitramos al idproduct para dejarlo afuera del nuevo database
+        const userList = users.filter(item => item.id != idUser ) 
+        fs.writeFileSync(usersFilePath, JSON.stringify(userList, null, ' '));
+		res.redirect('/users/list')
+    },
+    // destroyImg: (req, res) =>{
+    //      //llamar de DATA JSON todos los productos
+    //     const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
+    //      //buscamos la id del prodcuto a eliminar
+    //     const idProduct = req.params.id; 
+    //     //buscamos la imagen y la eliminamos
+    //     products.forEach(product => {
+    //         if(idProduct == product.id){
+    //             if(product.image && product.image != "default-image.png" ){
+    //                 const imagePath = path.join(__dirname, '../../public/images/users/profileImage', product.image);
+	// 				fs.unlinkSync(imagePath)
+    //             }
+    //         } product.image = "default-image.png";	
+    //     })
+    //     res.redirect('/users/list')
+    // },
 };
 
 module.exports = controlador;
