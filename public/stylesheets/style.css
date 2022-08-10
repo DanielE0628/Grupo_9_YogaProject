@@ -43,6 +43,11 @@ a{
     color: var(--button);
     text-shadow: 2px 2px 6px var(--blanco);
 }
+.img{
+    width: 20px;
+    height: 20px;
+
+}
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
     button:hover{

@@ -29,15 +29,15 @@ const controlador = {
     },
 
     vistaLista: (req, res) => {
-        
-        res.render('users/userList', {title: 'ListaDeUsuarios', estilo: estilos.register, users});
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+        res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, });
     },
 
     vistaInstructors: (req, res) => {
         res.render('users/instructors', {title: 'Instuctores', estilo: estilos.instructors});
     },
     create: (req, res) => {
-        
+        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
         //crear nuevo usuario
         const newUsers = req.body;
         //new id
