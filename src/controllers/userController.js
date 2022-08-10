@@ -1,7 +1,11 @@
 const express = require ("express");
 const fs = require('fs');
 const path = require('path');
-const usersFilePath = path.join(__dirname, '../data/usersDataBase.json');
+
+//ubicación de DATA JSON todos los usuarios
+const usersDataBase = path.join(__dirname, '../data/usersDataBase.json');
+//llamar de DATA JSON todos los usuarios
+const users = JSON.parse(fs.readFileSync(usersDataBase, 'utf-8'));
 
 const estilos = {
     register:'/stylesheets/register-style.css',
@@ -9,8 +13,7 @@ const estilos = {
     instructors: '/stylesheets/instructors-style.css',
 };
 
-//llamar de DATA JSON todos los usuarios
-const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
+
 
 const controlador = { 
     vistaUser: (req, res) => {
@@ -47,14 +50,15 @@ const controlador = {
 		}
         //agregar nuevo usuario a DATA JSON
         users.push(newUsers);
-        fs.writeFileSync(usersFilePath, JSON.stringify(users, null, ' '));
+        
+        fs.writeFileSync(usersDataBase, JSON.stringify(users, null, ' '));
 
         res.redirect("/users/list");
     },
     edit: (req, res) =>{
         let idUser = req.params.idUser;
         let userToEdit=users[idUser];
-
+        
         res.render("userEdit",{userToEdit:userToEdit});
     },
     search:function(req,res){
@@ -66,7 +70,7 @@ const controlador = {
                 usersResults.push(users[i]);
             }
         }
-       res.render('users/userResults', {usersResults: usersResults})
+        res.render('users/userResults', {usersResults: usersResults})
     }
 };
 

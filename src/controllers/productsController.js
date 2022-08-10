@@ -32,6 +32,7 @@ const controlador = {
     create: (req, res) => {
         res.render('products/product-create', {title: 'CrearProducto', estilo: estilos.crearProducto});
     },
+    
     store: (req, res) => {
         //llamar de DATA JSON todos los productos
         const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));

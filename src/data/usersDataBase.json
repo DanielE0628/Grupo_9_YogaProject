@@ -42,5 +42,16 @@
   ],
   "id": 3,
   "imagenUsuario": "default-user.png"
+ },
+ {
+  "nombre_y_apellido": "David",
+  "email": "dsalattino@gmail.com",
+  "fecha_de_nacimiento": "2003-06-18",
+  "pasword": [
+   "klgkjfhgkjv ",
+   "vfvjgfvjhgfv"
+  ],
+  "id": 4,
+  "imagenUsuario": "default-user.png"
  }
 ]
