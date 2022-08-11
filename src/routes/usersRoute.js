@@ -32,7 +32,7 @@ router.get('/search',userController.search);
 router.get('/edit/:idUser',userController.edit);
 router.put('/edit/:idUser',userController.edit);
 
-router.delete('/delete/:idUser',userController.destroy);
+// router.delete('/delete/:idUser',userController.destroy);
 // router.delete('/delete/:idUser/',userController.destroyImg);
 
 /* Procesamiento del Form */

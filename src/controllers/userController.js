@@ -1,4 +1,4 @@
-const express = require ("express");
+// const express = require ("express");
 const fs = require('fs');
 const path = require('path');
 
@@ -29,7 +29,6 @@ const controlador = {
     },
 
     vistaLista: (req, res) => {
-        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
         res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, });
     },
 
@@ -37,7 +36,6 @@ const controlador = {
         res.render('users/instructors', {title: 'Instuctores', estilo: estilos.instructors});
     },
     create: (req, res) => {
-        const users = JSON.parse(fs.readFileSync(usersFilePath, 'utf-8'));
         //crear nuevo usuario
         const newUsers = req.body;
         //new id
@@ -49,10 +47,9 @@ const controlador = {
 			newUsers.imagenUsuario = "default-user.png";
 		}
         //agregar nuevo usuario a DATA JSON
+        console.log(newUsers);
         users.push(newUsers);
-        
         fs.writeFileSync(usersDataBase, JSON.stringify(users, null, ' '));
-
         res.redirect("/users/list");
     },
     edit: (req, res) =>{
