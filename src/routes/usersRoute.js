@@ -36,6 +36,6 @@ router.put('/edit/:idUser',userController.edit);
 // router.delete('/delete/:idUser/',userController.destroyImg);
 
 /* Procesamiento del Form */
-router.post('/register', upload.single('imagenUsuario'), userController.create);
+router.post('/', upload.single('imagenUsuario'), userController.create);
 
 module.exports = router;

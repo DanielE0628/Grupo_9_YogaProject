@@ -13,44 +13,49 @@ const estilos = {
     instructors: '/stylesheets/instructors-style.css',
 };
 
-
-
 const controlador = { 
     vistaUser: (req, res) => {
         res.render('users/user',{title: 'Usuario', estilo: estilos.login});
     },
 
     vistaLogin: (req, res) => {
-        res.render('users/login',{title: 'Login', estilo: estilos.login});
+        res.render('users/userLogin',{title: 'Login', estilo: estilos.login});
     },
 
     vistaRegister: (req, res) => {
-        res.render('users/register', {title: 'Registro', estilo: estilos.register});
+        res.render('users/userRegister', {title: 'Registro', estilo: estilos.register});
     },
 
     vistaLista: (req, res) => {
-        res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, });
+        res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, })
     },
 
     vistaInstructors: (req, res) => {
-        res.render('users/instructors', {title: 'Instuctores', estilo: estilos.instructors});
+        res.render('users/userInstructors', {title: 'Instuctores', estilo: estilos.instructors});
     },
     create: (req, res) => {
         //crear nuevo usuario
-        const newUsers = req.body;
+        const newUser = {
+            id: req.body.id,
+            nombre_y_apellido: req.body.nombre_y_apellido,
+            email: req.body.email,
+            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
+            pasword: req.body.pasword,
+            comfirmPasword: req.body.comfirmPasword,
+            imagenUsuario: req.body.imagenUsuario,
+        };
         //new id
-        newUsers.id = users.length ++;
+        newUser.id = users.length;
         // agragar imagen
         if(req.file){
-			newUsers.imagenUsuario = req.file.filename;
+			newUser.imagenUsuario = req.file.filename;
 		}else{
-			newUsers.imagenUsuario = "default-user.png";
+			newUser.imagenUsuario = 'default-user.png';
 		}
         //agregar nuevo usuario a DATA JSON
-        console.log(newUsers);
-        users.push(newUsers);
-        fs.writeFileSync(usersDataBase, JSON.stringify(users, null, ' '));
-        res.redirect("/users/list");
+            users.push(newUser);
+            fs.writeFileSync(usersDataBase, JSON.stringify(users, null, '   '));
+            res.redirect("/users/list");
     },
     edit: (req, res) =>{
         let idUser = req.params.idUser;
@@ -63,7 +68,7 @@ const controlador = {
 
         let usersResults = [];
         for(let i=0; i<users.length; i++){
-            if(users[i].name.includes(loQueBuscoElUsuario)){
+            if(users[i].nombre_y_apellido.includes(loQueBuscoElUsuario)){
                 usersResults.push(users[i]);
             }
         }
