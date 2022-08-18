@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
     
-    <%- include('../partials/head', {title: 'userEdit', estilo:'/stylesheets/style.css'}) %>
+    <%- include('../partials/head', {title: 'ListaDeUsuarios', estilo:'/stylesheets/style.css'}) %>
 
     <body>
         
@@ -13,17 +13,18 @@
             <% for (let i = 0; i < users.length; i++) { %>
                 
                 <li >
-                    <!-- <img class="img" src="/images/users/profileImages/<%= users[i].imagenUsuario%>" alt=""> -->
-                    <a href="/users/detail/<%= users[i].id %>"><%= users[i].nombre_y_apellido %></a>
-                    <!-- <form method="POST"action="/users/delete/<%= users.id %>?_method=DELETE">
-                        <button type="submit">Eliminar</button>
-                    </form> -->
+                    <div class="card">
+                        <img class="img" src="/images/users/profileImages/<%= users[i].imagenUsuario%>" alt="">
+                        <a href="/users/edit/<%= users[i].id %>"><%= users[i].nombre_y_apellido %></a>
+                        
+                    </div>
                 </li>
-            <% } %>
+            <% } %>                    
         </ul>
         <h2>Search</h2>
         <form action="/users/search"method="GET">
             <input type="text"name="search">
+            <button type="submit">Buscar</button>
         
         </main>
 

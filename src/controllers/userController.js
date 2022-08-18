@@ -3,36 +3,32 @@ const fs = require('fs');
 const path = require('path');
 
 //ubicación de DATA JSON todos los usuarios
-const usersDataBase = path.join(__dirname, '../data/usersDataBase.json');
+const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
+
 //llamar de DATA JSON todos los usuarios
 const users = JSON.parse(fs.readFileSync(usersDataBase, 'utf-8'));
 
-const estilos = {
-    register:'/stylesheets/register-style.css',
-    login:'/stylesheets/login-style.css',
-    instructors: '/stylesheets/instructors-style.css',
-};
-
 const controlador = { 
     vistaUser: (req, res) => {
-        res.render('users/user',{title: 'Usuario', estilo: estilos.login});
+        res.render('users/user');
     },
 
     vistaLogin: (req, res) => {
-        res.render('users/userLogin',{title: 'Login', estilo: estilos.login});
+        res.render('users/userLogin');
     },
 
     vistaRegister: (req, res) => {
-        res.render('users/userRegister', {title: 'Registro', estilo: estilos.register});
+        res.render('users/userRegister');
     },
 
     vistaLista: (req, res) => {
-        res.render('users/userList', {users, title: 'ListaDeUsuarios', estilo: estilos.register, })
+        res.render('users/userList', {users})
     },
 
     vistaInstructors: (req, res) => {
-        res.render('users/userInstructors', {title: 'Instuctores', estilo: estilos.instructors});
+        res.render('users/userInstructors');
     },
+
     create: (req, res) => {
         //crear nuevo usuario
         const newUser = {
@@ -44,25 +40,31 @@ const controlador = {
             comfirmPasword: req.body.comfirmPasword,
             imagenUsuario: req.body.imagenUsuario,
         };
+        
         //new id
         newUser.id = users.length;
+        
         // agragar imagen
         if(req.file){
 			newUser.imagenUsuario = req.file.filename;
 		}else{
 			newUser.imagenUsuario = 'default-user.png';
 		}
+        
         //agregar nuevo usuario a DATA JSON
             users.push(newUser);
             fs.writeFileSync(usersDataBase, JSON.stringify(users, null, '   '));
             res.redirect("/users/list");
     },
+
     edit: (req, res) =>{
         let idUser = req.params.idUser;
+        console.log(idUser);
         let userToEdit=users[idUser];
-        
-        res.render("userEdit",{userToEdit:userToEdit});
+        console.log(userToEdit);
+        res.render("users/userEdit",{userToEdit});
     },
+
     search:function(req,res){
         let loQueBuscoElUsuario = req.query.search;
 

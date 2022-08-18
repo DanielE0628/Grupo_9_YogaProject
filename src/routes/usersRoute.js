@@ -30,10 +30,13 @@ router.get('/search',userController.search);
 
 
 router.get('/edit/:idUser',userController.edit);
-router.put('/edit/:idUser',userController.edit);
+router.put('/edit', function(req, res){
+    res.send("fui por PUT");
+});
 
-// router.delete('/delete/:idUser',userController.destroy);
-// router.delete('/delete/:idUser/',userController.destroyImg);
+router.delete('/delete/:idUser',function(req, res){
+    res.send("fui por DELETE");
+});
 
 /* Procesamiento del Form */
 router.post('/', upload.single('imagenUsuario'), userController.create);
