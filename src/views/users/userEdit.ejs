@@ -17,7 +17,7 @@
             </div>
             
             <div class="botones">
-                <form method="POST" action="/users/edit?_method=PUT" enctype="multipart/form-data">
+                <form method="POST" action="/users/edit/<%= userToEdit.id %>?_method=PUT" enctype="multipart/form-data">
                     <button type="submit">Editar</button>
                 </form>
                 <form method="POST" action="/users/delete/<%= userToEdit.id %>?_method=DELETE">
