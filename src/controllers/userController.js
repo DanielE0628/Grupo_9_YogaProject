@@ -7,6 +7,7 @@ const { validationResult } =  require ( 'express-validator' );
 
 //ubicación de DATA JSON todos los usuarios
 const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
+const User = require ('../models/User.js')
 
 //llamar de DATA JSON todos los usuarios
 const users = JSON.parse(fs.readFileSync(usersDataBase, 'utf-8'));
@@ -37,30 +38,13 @@ const controlador = {
         res.render('users/userDetail', {user});
     },
 
-    create: (req, res) => {
-        //crear nuevo usuario
-        const newUser = {
-            id: null,
-            nombre_y_apellido: req.body.nombre_y_apellido,
-            email: req.body.email,
-            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
-            pasword: req.body.pasword,
-            comfirmPasword: req.body.comfirmPasword,
-            imagenUsuario: req.body.imagenUsuario,
-        };
-        
-        //new id
-        newUser.id = users.length;
-        
+    registro: (req, res) => {
         // agragar imagen
         if(req.file){
 			newUser.imagenUsuario = req.file.filename;
 		}else{
 			newUser.imagenUsuario = 'default-user.png';
 		};
-        
-        
-        
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
 	
@@ -70,11 +54,8 @@ const controlador = {
                 oldData: req.body
             })
         };
-        
-
-        //agregar nuevo usuario a DATA JSON
-        users.push(newUser);
-        fs.writeFileSync(usersDataBase, JSON.stringify(users, null, '   '));
+        //crear nuevo usuario
+        User.create(req.body);
         
         res.redirect("/users/list");
     },

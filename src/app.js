@@ -21,8 +21,7 @@ app.use(express.json());
 /*** Para que funcionen los form ***/
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(session({ secret: 'ClarkKentEsSuperman',  resave: false, saveUninitialized: false
-}));
+app.use(session({ secret: 'ClarkKentEsSuperman',  resave: false, saveUninitialized: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ extended: false }))//ver lo que viaja por post en req.body de un form 
