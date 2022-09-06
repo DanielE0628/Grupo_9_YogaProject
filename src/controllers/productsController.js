@@ -12,7 +12,22 @@ const estilos = {
     crearProducto:'/stylesheets/product-create-style.css'
     
 };
+const controladorDb ={
+    //vistas los productos
+    index: (req, res) => {},
+    detail: (req, res) => {},
+    //crear productos
+    create: (req, res) => {},
+    store: (req, res) => {},
+    //editar productos
+    edit: (req, res) => {},
+    update: (req, res) => {},
+    //borrar porductos
+    delete: (req, res) => {},
+    destroy: (req, res) => {},
+    destroyImg: (req, res) => {},
 
+}
 
 const controlador = { 
     //todos los productos
@@ -116,8 +131,10 @@ const controlador = {
                 if(product.image && product.image != "default-image.png" ){
                     const imagePath = path.join(__dirname, '../../public/images/products', product.image);
 					fs.unlinkSync(imagePath)
+                    product.image = "default-image.png";
                 }
-            } product.image = "default-image.png";	
+            } 
+            fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '))
         })
         res.redirect('/products')
     },

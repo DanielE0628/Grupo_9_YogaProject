@@ -24,7 +24,7 @@ const registerValidation = [
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
 		.isLength( {min: 5} ).withMessage("La contraseña debe tener al menos 5 caracteres").bail()
 		.isLength( {max: 15} ).withMessage("La contraseña debe tener máximo 15 caracteres")
-        .isStrongPassword().withMessage("La contraseña debe contener un caracter especial").bail()
+        //.isStrongPassword().withMessage("La contraseña debe contener un caracter especial").bail()
     ,
 
 	body("comfirmPasword")
@@ -33,21 +33,22 @@ const registerValidation = [
         ,
         
 	
-    // body('avatar')
-	// 	.custom((value, {req}) => {
-	// 		let file = req.file;
-	// 		let acceptedExtensions = [ '..jpg', '.png', '.gif' ];
-
-	// 		if ( !file ) {
-	// 			throw new Error ('tienes que subir una imagen');
-	// 		} else {
-	// 			let fileExtension = path.extname ( file.originalname );
-	// 			if ( !acceptedExtension.includes( fileExtension ) ) {
-	// 			    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
-	// 			}
-	// 		return true;
-    //         }
-	// 	})
+    body('imagenUsuario')
+		.custom((value, {req}) => {
+			let file = req.file;
+			let acceptedExtensions = [ '.jpg', '.png', '.gif', ".jpng" ];
+			//hacer console.log(req.file) para saber el peso de las imagenes
+			if ( !file ) {
+				throw new Error ('tienes que subir una imagen');
+			} else {
+				//fileExtencion ejemplo.jpg  dejando solo ".jpg" y comparando con acceptedExtensions
+				let fileExtension = path.extname ( file.originalname );
+				if ( !acceptedExtensions.includes( fileExtension ) ) {
+				    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
+				}
+			return true;
+            }
+		})//acceptedExtensions
 ];
 
 module.exports = registerValidation;

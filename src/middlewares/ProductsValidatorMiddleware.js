@@ -3,51 +3,37 @@ const { body } = require ( 'express-validator' );
 
 //Validaciones
 const registerValidation = [
-	body("nombre_y_apellido")
-		.notEmpty().withMessage("Por favor complete con su nombre").bail()
-		.isLength( {min: 3} ).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength( {max: 15} ).withMessage("El Nombre debe tener máximo 15 caracteres")
+	body("name")
+		.notEmpty().withMessage("Por favor complete el nombre del producto").bail()
+		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres").bail()
+		.isLength( {max: 100} ).withMessage("El Nombre debe tener máximo 100 caracteres")
     ,
 	
-	body("email")
-		.notEmpty().withMessage("Por favor complete con su email").bail()
-		.isEmail().withMessage("Por favor ingrese un email válido")
+	body("cartegory")
+		.notEmpty().withMessage("Por favor elija la categoria").bail()
+		
     ,
     
-    body("fecha_de_nacimiento")
+    body("price")
         .notEmpty().withMessage("Por favor complete con una fecha").bail()
         .isDate({min: 1920-01-01}).withMessage("Por favor ingrese una fecha mayor a 01/01/1920").bail()
         .isDate({max: 2003-06-27}).withMessage("Por favor ingrese una fecha menor a 27/06/2003")
     ,
 
-	body("pasword")
+	body("description")
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
-		.isLength( {min: 5} ).withMessage("La contraseña debe tener al menos 5 caracteres").bail()
-		.isLength( {max: 15} ).withMessage("La contraseña debe tener máximo 15 caracteres")
-        .isStrongPassword().withMessage("La contraseña debe contener un caracter especial").bail()
+	
     ,
 
-	body("comfirmPasword")
+	body("talle")
         .notEmpty().withMessage("Ingrese nuevamente la contraseña")
-        // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
         ,
         
-	
-    // body('avatar')
-	// 	.custom((value, {req}) => {
-	// 		let file = req.file;
-	// 		let acceptedExtensions = [ '..jpg', '.png', '.gif' ];
+	body("stock")
+        .notEmpty().withMessage("Ingrese nuevamente la contraseña")
 
-	// 		if ( !file ) {
-	// 			throw new Error ('tienes que subir una imagen');
-	// 		} else {
-	// 			let fileExtension = path.extname ( file.originalname );
-	// 			if ( !acceptedExtension.includes( fileExtension ) ) {
-	// 			    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
-	// 			}
-	// 		return true;
-    //         }
-	// 	})
+        ,
+
 ];
 
 module.exports = registerValidation;

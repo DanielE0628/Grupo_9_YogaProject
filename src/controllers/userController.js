@@ -39,6 +39,7 @@ const controlador = {
 
     create: (req, res) => {
         //crear nuevo usuario
+        console.log("este es el nuevo usuario ", req.body)
         const newUser = {
             id: null,
             nombre_y_apellido: req.body.nombre_y_apellido,
