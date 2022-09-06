@@ -6,8 +6,15 @@ header {
     justify-content: space-between;
     padding: 1rem;
     background-color: var(--header);
+    position:sticky;
+    top: 0;
+    z-index: 1000;
 }
-    header nav{
+header nav{
+    width: 25%;
+    
+}
+    header nav .listaMenu{
         display: none;
     }
     header .menuHamburguesa{
@@ -27,7 +34,7 @@ header {
                 font-size: 1.5rem;
             }
     header .logo{
-        width: 70%;
+        width: 50%;
     }
         header .logo a{
             width: 100%;
@@ -38,77 +45,98 @@ header {
             text-decoration: none;
             color: black;
         }
-        header .logo img{
-            width: 3rem;
+        header .logo .imgLogo{
+            padding-right: 0.5rem;
         }
-        header .logo i{
-            font-size: 2rem;
-            color: var(--blanco);
-            padding: 0.5rem;
-            border: solid 1px var(--logo);
-            background-color: var(--logo);
-            border-radius: 50%;
-        }
-        header .logo h1{
-            font-family: 'Mr De Haviland', cursive;
-            font-size: 2.5rem;
-            font-weight: bold;
-            padding-left: 0.5rem;
-            color: var(--logo);
-            margin: 0;
-        }
-    header .SearchBar input{
-        display: none;
-    }
-        header .SearchBar button{
-            border: none;
-            border-radius: 5px;
-            background-color: var(--button);
-            padding: 0.5rem;
-        }
-            header .SearchBar button i.fa-solid.fa-magnifying-glass{
-                color: var(--blanco);
-                font-size: 1.5rem;
+            header .logo .imgLogo img{
+                width: 2.5rem;
             }
+        header .logo .textLogo{
+            border-left: 3px solid var(--button);
+            color: var(--button);
+            padding-left: 0.5rem;
+            position: relative;
+        }
+            header .logo h1.nombreLogo{
+                font-family: 'Mr De Haviland', cursive;
+                font-size: 2.5rem;
+                font-weight: bold;
+                color: var(--logo);
+                margin: 0;
+                margin-bottom: 0.2rem;
+            }
+            header .logo h2.nombreLogo{
+                font-size: 1rem;
+                font-weight: bold;
+                position: absolute;
+                right: 0;
+                bottom: 0;
+            }
+
+    header .SearchBar{
+        width: 25%;
+        text-align: right;
+    }
+        header .SearchBar input{
+            display: none;
+        }
+            header .SearchBar button{
+                border: none;
+                border-radius: 5px;
+                background-color: var(--button);
+                padding: 0.5rem;
+            }
+                header .SearchBar button i.fa-solid.fa-magnifying-glass{
+                    color: var(--blanco);
+                    font-size: 1.5rem;
+                }
 
 @media (max-width: 43rem){/* Media Breakpoints para celus */
 }
-
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
-    header .logo{
-        width: 40%;
+    header nav .menuHamburguesa{
+        display: none;
     }
-        header .logo h1{
-            font-size: 3rem;
+    header nav .listaMenu{
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+    }
+        header nav .listaMenu a{
+            text-decoration: none;
+            color: var(--button);
         }
-        header .logo i{
-            font-size: 2.5rem;
-            padding: 1rem;
-        }   
-    
+ 
+        header nav .listaMenu .home, .login{
+            display: none;
+        }
+
     header .SearchBar{
         display: flex;
         flex-wrap: wrap;
-        width: auto;
+        
     }
         header .SearchBar input{
             display: block;
             border: none;
             outline: none;
             border: 1px solid var(--button);
-            width: 80%;
+            width: 70%;
             border-radius: 5px 0 0 5px;
             border-right: none;
             padding: 1rem;
         }
         header .SearchBar button{
+            width: 20%;
             border: none;
             outline: none;
             border: 1px solid var(--button);
             border-left: none;
             border-radius: 0 5px 5px 0;
             background-color: var(--button);
-            padding: 1rem;
         }
             header .SearchBar button i.fa-solid.fa-magnifying-glass{
                 color: var(--blanco);
@@ -117,33 +145,62 @@ header {
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
-    header .menuHamburguesa{
-        display: none;
-    }
-    header nav{
-        display: flex;
+    header .logo{
         width: 30%;
     }
-        header nav .listaMenu{
+    /* 
+    header .logo{
+        order:-10;
+        width: 100%;
+        padding-bottom: 0.5rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+    header .logo a {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: flex-end;
+    }
+        header .logo a .imgLogo img{
+            width: 2rem;
+        }
+
+        header .logo a .textLogo{
             display: flex;
             flex-wrap: wrap;
-            list-style-type: none;
             flex-direction: row;
-            width: 100%;
-            justify-content: space-between;
+            align-items: center;
         }
-            header nav .listaMenu a{
-                text-decoration: none;
-                color: var(--button);
+        header .logo a .textLogo .nombreLogo{
+            font-size: 2rem;
+        }
+        header .logo a .textLogo h2.nombreLogo{
+            position: relative;
+            padding-left: 1rem;
+            font-size: 1rem;
+        } */
+
+    header nav{
+        width: 30%;
+    }
+        header nav .listaMenu .menu{
+            display: none;
+        }    
+        header nav .listaMenu .home, .login{
+                display: block;
             }
-    
-    header .logo h1{
-        font-size: 4rem;
+
+    header .SearchBar{
+        width: 30%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
     }
-    header .logo i{
-        font-size: 3.5rem;
-        padding: 1rem;
-    }
+
+
 
     header .listaMenu a:hover{
         color: var(--botonActivo);

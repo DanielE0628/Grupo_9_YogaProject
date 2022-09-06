@@ -1,46 +1,46 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('partials/head', {title: '¿?'}) %>
+<%- include('../partials/head') %>
 <body>
 	<!-- Header -->
-	<%- include('partials/headerNavbar') %>
+	<%- include('../partials/header') %>
 	<!-- /Header -->
 
 	<!-- product detail -->
-	<% products.forfinder(products => { %>
-		<%  { %>
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Detalle del producto:<%= product.name%></h2>
+				<h2 class="products-title">Detalle del producto: <%= product.name %></h2>
 			</div>
 		</div>
 		<div class="product-detail">
 			<div class="row">
 				<div class="col-12 col-lg-8">
-					<img src="/images/products/<%= products.image>" alt="product image" class="product-detail-img">
+					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
 					<p class="product-detail-description">
-						<%= product.description%>
+						<%= product.description %>
 					</p>
 				</div>
 				<div class="col-12 col-lg-4">
 					<article class="product-detail-info">
-						<h2 class="product-detail-title"><%= product.name%></h2>
-						
-							<p class="product-detail-price small">
-								<span>$PRICE</span>
+						<h2 class="product-detail-title"><%= product.name %></h2>
+						<h3 class="product-detail-title"><%= product.category %></h3>
+						<h4 class="product-detail-title"><%= product.subCategory %></h4>
+						<h4 class="product-detail-title"><%= product.quality %></h4>
+							
+						<p class="product-detail-price small">
+								<span>$<%= product.price %></span>
 								/
-								<b>DISCOUNT% OFF</b>
+								<b><%= product.discount %>% OFF</b>
 							</p>
 							<p class="product-detail-price">
-								$FINAL PRICE
+								$<%= product.price %>
 							</p>
 							<p class="product-detail-price">
-								$PRICE
+								$<%= product.price %>
 							</p>
-							<% } %>
-							<% }) %>
+
 						<ul class="actions-list">
 							<li>
 								<i class="fas fa-credit-card"></i>
@@ -55,9 +55,15 @@
 						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
 						<hr>
 
-						<a href="/products/edit/¿?" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/¿¿" method="POST" style="display: inline-flex">
-							<button type="submit" class="action-button delete">ELIMINAR</button>
+						<a href="/products/edit/<%= product.id %>" class="action-button edit">EDITAR PRODUCTO</a>
+						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+							<button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
+						</form>
+
+						<!-- <hr> -->
+
+						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
+							<button type="submit" class="action-button delete">ELIMINAR IMAGEN</button>
 						</form>
 					</article>
 				</div>
@@ -67,7 +73,7 @@
 	<!-- /product detail -->
 
 	<!-- footer -->
-	<%- include('partials/footer') %>
+    <%- include('../partials/footer') %>
 	<!-- /footer -->
 
 </body>	

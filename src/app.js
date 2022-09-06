@@ -1,25 +1,34 @@
+//Requires
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const methodOverride = require("method-override");
+const logMiddleware = require('./middlewares/logMiddleware');
+const session = require("express-session");
 
+// ************ express() - (don't touch) ************
 const app = express(); 
 
-//MiddleWare
-//let logMiddleware = require('./middlewares/logMiddleware');
-
-// view engine setup
+// view engine setup NO TOCAR
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//app.use(logMiddleware);
-
+// ************ Middlewares - Importados (don't touch) ************
 app.use(logger('dev'));
 app.use(express.json());
+/*** Para que funcionen los form ***/
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(session({ secret: 'ClarkKentEsSuperman',  resave: false, saveUninitialized: false }));
 app.use(express.static(path.join(__dirname, '../public')));
+app.use(methodOverride("_method"));
+app.use(express.urlencoded({ extended: false }))//ver lo que viaja por post en req.body de un form 
+
+//MiddleWare Creados
+app.use(logMiddleware);
+
 
 //rutas
 const indexRouter = require('./routes/indexRoute');
@@ -27,7 +36,7 @@ const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
 const cartRouter = require('./routes/cartRoute')
 
-//link
+//linkS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
@@ -47,8 +56,12 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+  if(err.status == 404){
+    res.status(404).render("not-found")
+  }else{
+    res.status(err.status || 500);
+    res.render('error');
+  }
 });
 
 module.exports = app;

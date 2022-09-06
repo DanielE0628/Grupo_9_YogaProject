@@ -1,80 +1,83 @@
-*{
-    box-sizing: border-box;
-}
 root{
-    color:blue(color1)
+    color:blue;
 }
-.contenedor-header{
-    background-color: pink;
-    margin: auto;
-    padding: 5%;
-}
-.contenedor-main{
-    width: 90%;
-    margin: 5%;
-    margin-top: 2%;
 
-    font-size: 100%;
-    
+main{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.contenedor-main-productos{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 .contenedor-main-rutas{
     margin: 0;
-    text-align: left;
-    font-size: 0.5rem;
-    
-
-}
-.contenedor-main-productos{
-
-}
-.contenedor-main-productos-articulos{
-    margin-top: 2%;
-    max-width: 100%;
-    background-color: aliceblue;
-    box-shadow: 0px 0px 10px rgb(100, 100, 100);  
     display: flex;
-    justify-content:space-between;
-}
-
-.contenedor-main-productos-articulos img{
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100%;
 }
+
+.contenedor-main-productos-articulos{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    margin: 1rem 0;
+    width: 90%;
+    height: 20vh;
+    background-color: aliceblue;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);  
+}
+
 .contenedor-main-productos-articulos-imagen{
     width: 35%;
-    padding: 1%;
-    margin: auto;
+    height: 100%;
+}
+.contenedor-main-productos-articulos-imagen img{
+    height: 100%;
+    width: 100%;
 }
 .contenedor-main-productos-articulos-detalles{
     margin: auto;
     width: 65%;
 
-    padding: 1%;
+    padding: 0.5rem;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
  
     display: flex;
     flex-direction: column;
     justify-items: center;
 }
-.contenedor-main-productos-articulos-button{
-    background-color: palevioletred;
-    color: black;
-    border: violet;
+.contenedor-main-productos-articulos-detalles a{
+    color: var(--logo);
 }
+
 .contenedor-main-filtro{
     display: none;
 
 }
 .contenedor-main-filtro-button{
     color:white;
-    padding: 15px;
-    background-color: greenyellow;
+    padding: 0.5rem;
     border-radius: 0 25% 25% 0;
     position: fixed;
     left: 0;
     top: 50%;
     z-index: 100;
-
+    margin: 0;
+}
+.contenedor-main-filtro-button i{
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
 }
 .contenedor-main-filtro-lista{
     font-size: 100%;
@@ -82,97 +85,116 @@ root{
     flex-direction: column;
 }
 .contenedor-main-ofertas-titulo{
-    margin-top: 10%;
+    width: 100%;
     text-align: center;
+    color: var(--button);
+    text-shadow: 2px 2px 6px var(--blanco);
 }
 .contenedor-main-ofertas{
     width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
     justify-content: space-between;
     padding: 2%;
-
-    display: flex;
-    flex-direction: row;
 }
 .contenedor-main-ofertas-articulos{
-    width: 25%;
-    padding: 1%;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-   
+    width: 40%;
+    padding: 0.5rem;
 
-    font-size: 00.8rem;
-    padding: 2%;
-    background-color: aliceblue;
-    box-shadow: 0px 0px 10px rgb(100, 100, 100);  
+    display: flex;
+    flex-wrap: wrap ;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
+    
+    font-size: 1rem;
+    text-align: center;
+    
+    background-color: aliceblue;
+    box-shadow: 0px 0px 10px rgb(100, 100, 100);
+    margin: 1rem 0;
 }
-.contenedor-main-ofertas-articulos-button{
-    background-color: palevioletred;
-    color: black;
-    border: violet;
+
+.contenedor-main-ofertas p{
+    display: none;
 }
+
 .contenedor-main-ofertas img{
     width: 50%;
 }
 .contenedor-main-clases{
-    margin-top: 2%;
-    font-size: 00.8rem;
-    text-align: center;
-    background-color: black;
-    color: aliceblue;
     border: solid 2px aliceblue;
-    border-radius: 5%;
-}
-.contenedor-footer{
-    margin: auto;
-    padding: 5%;
-    background-color: pink;
+    border-radius: 1rem;
+    padding: 1rem;
 }
 
 @media (min-width:360px){
-    .contenedor-main-ofertas p{
-        display: none;
-    }
-
 }
 @media (min-width:768px){
     .contenedor-main-padre{
-        display: flex;   
-    }
-    .contenedor-main-productos{
+        display: flex;
         flex-wrap: wrap;
         align-items: stretch;
-        justify-content: space-around;
-    }
-    .contenedor-main-productos-articulos{
-        width: 48%;
-        height: 25%;
-        margin: 1%;
-        align-items: stretch;
-        padding: 0.5%;
-    }
-    .contenedor-main-productos-articulos img{
-        max-height: 100%;
-    }
-    .contenedor-main-filtro{
-        font-size: 100%;
-        border: dotted 2px violet;
-        width: 25%;
-        padding-left: 2%;
-        display: flex;
-        flex-direction: column;
-        order: -1;
-        
+        justify-content: center;
+        width: 100%;
+          
     }
     .contenedor-main-productos{
         display: flex;
-        flex-direction: row;
-        max-width: 100%;
-      justify-content: space-between;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 80%;
     }
+
+    .contenedor-main-productos-articulos{
+        width: 45%;
+        margin: 1rem 0;
+        height: 30vh;
+    }
+    
     .contenedor-main-filtro-button{
         display: none;       
+    }
+
+    .contenedor-main-filtro{
+        width: 20%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+        border: dotted 2px var(--logoMain);
+        background-color: var(--header);
+        order: -1;
+        margin: 1rem 0;
+    }
+    .contenedor-main-filtro-lista{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+    }
+    .contenedor-main-filtro-lista h2{
+        margin: 0;
+    }
+    .contenedor-main-filtro-lista div{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+    }
+    .contenedor-main-filtro-lista-boton-borrar{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+    .contenedor-main-ofertas-articulos{
+        width: 20%;
     }
 }
 

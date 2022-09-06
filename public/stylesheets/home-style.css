@@ -2,6 +2,10 @@ main {
     background-image: url(/images/main/mainBackgroun.jpg);
     background-size: cover;
     background-position: 50% 25%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 main .logo{
@@ -13,22 +17,41 @@ main .logo{
     padding-top: 1rem;
 }
 
-    main .logo img{
-        width: 30%;
-        text-align: center;
-    }
-
-    main .titulo{
+    main .logo .imgLogo{
         width: 100%;
         text-align: center;
-        font-family: 'Mr De Haviland', cursive;
-        font-size: 5rem;
-        font-weight: bold;
-        text-align: center;
-        margin: 0;
-        color: var(--logoMain);
-        text-shadow: 2px 2px 6px var(--blanco);
     }
+        main .logo .imgLogo img{
+            width: 30%;
+            
+        }
+
+    main .logo .textLogo{
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    }   
+        main .logo .textLogo h1.nombreLogo{
+            width: 100%;
+            text-align: center;
+            font-family: 'Mr De Haviland', cursive;
+            font-size: 5rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 0.5rem;
+            color: var(--logoMain);
+            text-shadow: 2px 2px 6px var(--blanco);
+        }
+        main .logo .textLogo h2.nombreLogo{
+            font-size: 2rem;
+            font-weight: bold;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            color: var(--button);
+            text-shadow: 2px 2px 6px var(--blanco);
+        }
 
 main section.links{
     display: flex;
@@ -59,10 +82,25 @@ main section.links{
 }
 
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
-    main .titulo{
+    main .logo .textLogo{
         position: absolute;
         bottom: 1rem;
+        display:flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        width: 100%;
     }
+        main .logo .textLogo h1.nombreLogo{
+            width: 40%;
+            text-align: right;
+            margin-right: 0.5rem;
+        }
+        main .logo .textLogo h2.nombreLogo{
+            position: relative;
+            margin-left: 0.5rem;
+            width: 40%;
+            text-align: left;
+        }
     main .links .nav{
         flex-direction: row;
         background-color: none;
@@ -83,7 +121,6 @@ main section.links{
         transition: 1s;
 
     }
-}
 }
 
 @media (min-width: 82rem){
