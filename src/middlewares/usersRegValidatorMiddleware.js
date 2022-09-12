@@ -1,3 +1,4 @@
+const path = require ('path');
 const { body } = require ( 'express-validator' );
 
 
@@ -24,30 +25,29 @@ const registerValidation = [
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
 		.isLength( {min: 5} ).withMessage("La contraseña debe tener al menos 5 caracteres").bail()
 		.isLength( {max: 15} ).withMessage("La contraseña debe tener máximo 15 caracteres")
-        .isStrongPassword().withMessage("La contraseña debe contener un caracter especial").bail()
+        // .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
     ,
 
-	body("comfirmPasword")
-        .notEmpty().withMessage("Ingrese nuevamente la contraseña")
-        // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
-        ,
+	// body("comfirmPasword")
+    //     .notEmpty().withMessage("Ingrese nuevamente la contraseña")
+    //     // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
+    // ,
         
 	
-    // body('avatar')
-	// 	.custom((value, {req}) => {
-	// 		let file = req.file;
-	// 		let acceptedExtensions = [ '..jpg', '.png', '.gif' ];
+    body('imagenUsuario')
+		.custom((value, {req}) => {
+			let file = req.file;
+			let acceptedExtensions = [ '..jpg', '.png', '.gif' ];
 
-	// 		if ( !file ) {
-	// 			throw new Error ('tienes que subir una imagen');
-	// 		} else {
-	// 			let fileExtension = path.extname ( file.originalname );
-	// 			if ( !acceptedExtension.includes( fileExtension ) ) {
-	// 			    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
-	// 			}
-	// 		return true;
-    //         }
-	// 	})
+			if ( file ) {
+				let fileExtension = path.extname ( file.originalname );
+				if ( !acceptedExtensions.includes( fileExtension ) ) {
+				    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
+				}
+			return true;
+            }
+		})
+	
 ];
 
 module.exports = registerValidation;

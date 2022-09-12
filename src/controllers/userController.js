@@ -1,13 +1,13 @@
-//const express = require ("express");
-const fs = require('fs');
 const path = require('path');
+const fs = require('fs');
+
 
 //Requerir Express-Validator
 const { validationResult } =  require ( 'express-validator' );
 
 //ubicación de DATA JSON todos los usuarios
-const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
-const User = require ('../models/User.js')
+const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase');
+const User = require ('../models/User.js');
 
 //llamar de DATA JSON todos los usuarios
 const users = JSON.parse(fs.readFileSync(usersDataBase, 'utf-8'));
@@ -32,28 +32,33 @@ const controlador = {
     vistaInstructors: (req, res) => {
         res.render('users/userInstructors');
     },
+
     vistaDetail: (req, res) => {
-        let idUser = req.params.idUser;
-        let user=users[idUser];
+        let id = req.params.id;
+        let user=users[id];
         res.render('users/userDetail', {user});
     },
 
     registro: (req, res) => {
+        let newUser ={
+            imagenUsuario: 'default-user.png'
+        };
         // agragar imagen
         if(req.file){
 			newUser.imagenUsuario = req.file.filename;
 		}else{
 			newUser.imagenUsuario = 'default-user.png';
 		};
+
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
-	
         if ( resultValidation.errors.length > 0){
             return res.render ( 'users/userRegister', {
                 errors: resultValidation.mapped(),
                 oldData: req.body
             })
         };
+
         //crear nuevo usuario
         User.create(req.body);
         
@@ -61,8 +66,8 @@ const controlador = {
     },
 
     edit: (req, res) =>{
-        let idUser = req.params.idUser;
-        let userToEdit=users[idUser];
+        let id = req.params.id;
+        let userToEdit=users[id];
         res.render("users/userEdit",{userToEdit});
     },
 

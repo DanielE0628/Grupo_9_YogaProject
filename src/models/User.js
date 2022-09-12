@@ -1,3 +1,4 @@
+const { timeStamp } = require('console');
 const fs = require('fs');
 const path = require('path');
 
@@ -46,6 +47,7 @@ const User = {
             //crear nuevo usuario
             let newUser = {
                 id: this.generateId(),
+                imagenUsuario: this.addAvatar(),
                 ...userData
             }
             //agregar nuevo usuario a DATA JSON
@@ -54,6 +56,17 @@ const User = {
             return newUser;
         }
     ,
+
+    addAvatar: 
+        function (userFile) {
+            if(userFile){
+                return userFile.filename;
+            }else{
+                return 'default-user.png';
+            }
+        }
+    ,
+
     delete:
         function (id){
             let allUsers = this.findAll();
