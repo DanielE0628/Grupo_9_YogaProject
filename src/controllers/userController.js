@@ -6,7 +6,7 @@ const fs = require('fs');
 const { validationResult } =  require ( 'express-validator' );
 
 //ubicación de DATA JSON todos los usuarios
-const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase');
+const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
 const User = require ('../models/User.js');
 
 //llamar de DATA JSON todos los usuarios
