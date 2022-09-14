@@ -1,16 +1,10 @@
-const path = require('path');
-const fs = require('fs');
-
-
 //Requerir Express-Validator
 const { validationResult } =  require ( 'express-validator' );
 
-//ubicación de DATA JSON todos los usuarios
-const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
 const User = require ('../models/User.js');
 
 //llamar de DATA JSON todos los usuarios
-const users = JSON.parse(fs.readFileSync(usersDataBase, 'utf-8'));
+const users = User.findAll();
 
 const controlador = { 
     vistaUser: (req, res) => {
@@ -26,6 +20,7 @@ const controlador = {
     },
 
     vistaLista: (req, res) => {
+        let users = User.findAll();
         res.render('users/userList', {users})
     },
 
@@ -35,21 +30,12 @@ const controlador = {
 
     vistaDetail: (req, res) => {
         let id = req.params.id;
-        let user=users[id];
+        let user = User.findByPk(id);
         res.render('users/userDetail', {user});
     },
 
     registro: (req, res) => {
-        let newUser ={
-            imagenUsuario: 'default-user.png'
-        };
-        // agragar imagen
-        if(req.file){
-			newUser.imagenUsuario = req.file.filename;
-		}else{
-			newUser.imagenUsuario = 'default-user.png';
-		};
-
+        
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
         if ( resultValidation.errors.length > 0){
@@ -58,11 +44,12 @@ const controlador = {
                 oldData: req.body
             })
         };
-
+        //agregar imagen
+        let imagen = User.addAvatar(req.file);
         //crear nuevo usuario
-        User.create(req.body);
+        User.create(req.body,imagen);
         
-        res.redirect("/users/list");
+        res.redirect("list");
     },
 
     edit: (req, res) =>{

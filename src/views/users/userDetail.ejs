@@ -10,7 +10,11 @@
 
                 <div class="foto">
                     <label for="imagenUsuario">
-                        <img class="img" src="/images/users/profileImages/<%= user.imagenUsuario%>" alt="imagenUsuario">
+                        <img 
+                            class="img" 
+                            src="/images/users/profileImages/<%= user.imagenUsuario%>" 
+                            alt="imagenUsuario"
+                        >
                     </label>
                 </div>
 
@@ -18,7 +22,15 @@
                     <label for="nombre-y-apellido">
                         <i class="fa-solid fa-user"></i>
                     </label>
-                    <input class="nombre_y_apellido" type="text" name="nombre_y_apellido" id="nombre-y-apellido" value= '<%= user.nombre_y_apellido %>' minlength="3"required>
+                    <input 
+                        class="nombre_y_apellido" 
+                        type="text" 
+                        name="nombre_y_apellido" 
+                        id="nombre-y-apellido" 
+                        value= '<%= user.nombre_y_apellido %>' 
+                        minlength="3"
+                        required
+                    >
                         <span class="feedback"></span>
                 </div>
                 
@@ -26,7 +38,13 @@
                     <label for="email">
                         <i class="fa-solid fa-at"></i>
                     </label>
-                    <input type="email" name="email" id="email" value= '<%= user.email %>' required>
+                    <input 
+                        type="email" 
+                        name="email" 
+                        id="email" 
+                        value= '<%= user.email %>' 
+                        required
+                    >
                     <span class="feedback"></span>
                 </div>
                 
@@ -34,7 +52,13 @@
                     <label for="fecha_de_nacimiento">
                         <i class="fa-solid fa-calendar-days"></i>
                     </label>
-                    <input type="date" name="fecha_de_nacimiento" id="fecha_de_nacimiento" value= '<%= user.fecha_de_nacimiento %>' required>
+                    <input 
+                        type="date" 
+                        name="fecha_de_nacimiento" 
+                        id="fecha_de_nacimiento" 
+                        value= '<%= user.fecha_de_nacimiento %>' 
+                        required
+                    >
                     <span class="feedback"></span>
                 </div>
             </form>

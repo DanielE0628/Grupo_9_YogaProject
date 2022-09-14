@@ -1,1 +1,47 @@
-[]
+[
+ {
+  "id": 1,
+  "imagenUsuario": "user-1663111669316.jpg",
+  "nombre_y_apellido": "numero18",
+  "email": "androide@numero18.com",
+  "fecha_de_nacimiento": "2022-09-13",
+  "pasword": "@numero18",
+  "comfirmPasword": "@numero18"
+ },
+ {
+  "id": 2,
+  "imagenUsuario": "user-1663112308737.jpg",
+  "nombre_y_apellido": "numero18",
+  "email": "androide@numero18.com",
+  "fecha_de_nacimiento": "2022-09-13",
+  "pasword": "@numero18",
+  "comfirmPasword": "@numero18"
+ },
+ {
+  "id": 3,
+  "imagenUsuario": "user-1663114061055.jpg",
+  "nombre_y_apellido": "Luffy",
+  "email": "Luffy@onepice.com",
+  "fecha_de_nacimiento": "2022-09-13",
+  "pasword": "Luffy@onepice",
+  "comfirmPasword": "Luffy@onepice"
+ },
+ {
+  "id": 4,
+  "imagenUsuario": "user-1663114328437.jfif",
+  "nombre_y_apellido": "Luffy",
+  "email": "Luffy@onepice.com",
+  "fecha_de_nacimiento": "2022-09-13",
+  "pasword": "onepice.com",
+  "comfirmPasword": "onepice.com"
+ },
+ {
+  "id": 5,
+  "imagenUsuario": "user-1663114535946.jpg",
+  "nombre_y_apellido": "Emma",
+  "email": "emma@correo.com",
+  "fecha_de_nacimiento": "2022-09-13",
+  "pasword": "emma@correo",
+  "comfirmPasword": "emma@correo"
+ }
+]

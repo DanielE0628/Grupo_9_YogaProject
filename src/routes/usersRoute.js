@@ -13,7 +13,7 @@ router.get('/', userController.vistaUser);
 router.get('/login', userController.vistaLogin); 
 router.get('/instructors', userController.vistaInstructors);
 router.get('/list', userController.vistaLista);
-router.get('/detail/:idUser',userController.vistaDetail);
+router.get('/detail/:id',userController.vistaDetail);
 
 /* Buscar Usuario */
 router.get('/search',userController.search);

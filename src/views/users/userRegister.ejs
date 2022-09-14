@@ -11,19 +11,21 @@
             <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
                 <div class="foto">
             
-                    <label for="imagenUsuario">
+                    <label for="avatar">
                         <i class="fa-solid fa-circle-user"></i>
                     </label>
 
-                    <button class="add" type="button" name="imagenUsuario">
+                    <button
+                        class="add" 
+                        type="button" 
+                        name="addAvatar"
+                    >
                         <label for="imagenUsuario"> +
                             <input 
                                 id="imagenUsuario" 
                                 type="file" 
                                 name="imagenUsuario" 
-                                accept="image/png, image/jpg, image/gif, image/jpeg"
                             >
-                            </i>
                         </label>
                     </button>
                 </div>
