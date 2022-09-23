@@ -1,10 +1,17 @@
 <header>
     <nav>
         <ul class="listaMenu Izq">
-            <li class="menu"><a href="/">Menú <i class="fa-solid fa-bars"></i></a></li>
-            <li class="home"><a href="/">Home <i class="fa-solid fa-house-chimney"></i></a></li>
-            <li class="products"><a href="/products">Productos <i class="fa-solid fa-basket-shopping"></i></a></li>
-            <li class="login"><a href="/users/login">Login <i class="fa-solid fa-right-to-bracket"></i></a></li>
+            <% if (locals.isLogged) { %>
+
+                <li class="menu"><a href="/">Menú <i class="fa-solid fa-bars"></i></a></li>
+                <li class="home"><a href="/">Home <i class="fa-solid fa-house-chimney"></i></a></li>
+                <li class="products"><a href="/products">Productos <i class="fa-solid fa-basket-shopping"></i></a></li>
+            
+            <% }else{ %>
+
+                <li class="login"><a href="/users/login">Login <i class="fa-solid fa-right-to-bracket"></i></a></li>
+            
+            <% } %>
         </ul>
         <div class="menuHamburguesa">
             <button><i class="fa-solid fa-bars"></i></button>

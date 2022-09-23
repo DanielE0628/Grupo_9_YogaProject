@@ -1,8 +1,7 @@
 //Requerir Express-Validator
 const { validationResult } =  require ( 'express-validator' );
-
 const User = require ('../models/User.js');
-
+const bcryptjs = require ('bcryptjs');
 //llamar de DATA JSON todos los usuarios
 const users = User.findAll();
 
@@ -28,10 +27,10 @@ const controlador = {
         res.render('users/userInstructors');
     },
 
-    vistaDetail: (req, res) => {
-        let id = req.params.id;
-        let user = User.findByPk(id);
-        res.render('users/userDetail', {user});
+    vistaProfile: (req, res) => {
+        let user = req.session.userLogged;
+        console.log(user);
+        res.render('users/userProfile', {user});
     },
 
     registro: (req, res) => {
@@ -44,12 +43,70 @@ const controlador = {
                 oldData: req.body
             })
         };
+        //buscar usuario por email en db
+        let userDb = User.findByField('email', req.body.email);
+        
+        //Validar usuario existente
+        if (userDb){
+            return res.render ( 'users/userRegister', {
+                errors: {
+                    email:{
+                        msg: 'Este email ya está registrado'
+                    }
+                },
+                oldData: req.body
+            })
+        };
+
+
         //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
+        
         //crear nuevo usuario
-        User.create(req.body,imagen);
+        let userToCreate = {
+            ...req.body,
+            password: bcryptjs.hashSync(req.body.password, 10),
+            imagenUsuario: imagen,
+        }
+
+        let userCreate = User.create(userToCreate);
         
         res.redirect("list");
+    },
+
+    login: (req, res) =>{
+        let userToLogin = User.findByField('email', req.body.email);
+        console.log(req.body);
+        
+        if(userToLogin){
+            let passComparePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
+            if (passComparePassword){
+                delete userToLogin.password;
+                req.session.userLogged = userToLogin;
+                res.redirect('/users/profile');
+
+            }
+            return res.render('users/userLogin',{
+                errors: {
+                    email: {
+                        msg: 'las credenciales son inválidas'
+                    }
+                }
+            });
+        }
+
+        return res.render('users/userLogin',{
+            errors: {
+                email: {
+                    msg: 'Usuario no registrado'
+                }
+            }
+        });
+    },
+
+    logout: (req, res) =>{
+        req.session.destroy();
+        return res.redirect('/');
     },
 
     edit: (req, res) =>{

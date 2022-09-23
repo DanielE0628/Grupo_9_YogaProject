@@ -21,10 +21,8 @@ const registerValidation = [
 		.isDate({ max: 2003 - 06 - 27 }).withMessage("Por favor ingrese una fecha menor a 27/06/2003")
 	,
 
-	body("pasword")
+	body("password")
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
-		.isLength({ min: 5 }).withMessage("La contraseña debe tener al menos 5 caracteres").bail()
-		.isLength({ max: 15 }).withMessage("La contraseña debe tener máximo 15 caracteres")
 	// .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
 	,
 

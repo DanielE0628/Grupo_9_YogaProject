@@ -91,7 +91,7 @@
                     </label>
                     <input 
                         type="password" 
-                        name="pasword" 
+                        name="password" 
                         id="password" 
                         placeholder="Contraseña"
                         class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>"  
@@ -109,11 +109,10 @@
                     </label>
                     <input 
                         type="password" 
-                        name="comfirmPasword" 
+                        name="comfirmPassword" 
                         id="comfirmPassword" 
                         placeholder= "Confirmar contraseña"
                         class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>" 
-                        value= "<%= locals.oldData ? oldData.comfirmPassword : null %>"
                     >
                 </div>
                 <% if ( locals.errors && errors.comfirmPassword) { %>

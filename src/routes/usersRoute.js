@@ -7,13 +7,20 @@ const userController = require('../controllers/userController');
 /* Middlewares */
 const uploadFile = require('../middlewares/userMulterMiddleware');
 const validations = require("../middlewares/usersRegValidatorMiddleware");
+const guestMiddleware = require('../middlewares/guestMiddleware');
+const authMiddleware = require('../middlewares/authMiddleware')
 
 /* Vistas Usuario */ 
 router.get('/', userController.vistaUser);
-router.get('/login', userController.vistaLogin); 
 router.get('/instructors', userController.vistaInstructors);
 router.get('/list', userController.vistaLista);
-router.get('/detail/:id',userController.vistaDetail);
+
+router.get('/profile', authMiddleware, userController.vistaProfile);
+
+/* Login*/
+router.get('/login', guestMiddleware, userController.vistaLogin);
+router.post('/login', userController.login);
+router.get('/logout', userController.logout);
 
 /* Buscar Usuario */
 router.get('/search',userController.search);
@@ -30,7 +37,7 @@ router.delete('/delete/:idUser',function(req, res){
 });
 
 /* Crear Usuario */
-router.get('/register', userController.vistaRegister); 
+router.get('/register', guestMiddleware, userController.vistaRegister); 
 router.post('/register', uploadFile.single('imagenUsuario'), validations, userController.registro);
 
 module.exports = router;
