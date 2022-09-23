@@ -44,7 +44,7 @@ const controlador = {
                 oldData: req.body
             })
         };
-        //agregar imagen
+        //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
         //crear nuevo usuario
         User.create(req.body,imagen);
@@ -60,7 +60,6 @@ const controlador = {
 
     search:function(req,res){
         let busquedaUsuario = req.query.search;
-
         let usersResults = [];
         for(let i=0; i<users.length; i++){
             if(users[i].nombre_y_apellido.includes(busquedaUsuario)){

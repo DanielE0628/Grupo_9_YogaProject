@@ -6,7 +6,7 @@ const userController = require('../controllers/userController');
 
 /* Middlewares */
 const uploadFile = require('../middlewares/userMulterMiddleware');
-const validatons = require("../middlewares/usersRegValidatorMiddleware");
+const validations = require("../middlewares/usersRegValidatorMiddleware");
 
 /* Vistas Usuario */ 
 router.get('/', userController.vistaUser);
@@ -31,6 +31,6 @@ router.delete('/delete/:idUser',function(req, res){
 
 /* Crear Usuario */
 router.get('/register', userController.vistaRegister); 
-router.post('/register', uploadFile.single('imagenUsuario'), validatons, userController.registro);
+router.post('/register', uploadFile.single('imagenUsuario'), validations, userController.registro);
 
 module.exports = router;
