@@ -39,7 +39,6 @@ app.use(express.urlencoded({
 }))//ver lo que viaja por post en req.body de un form 
 
 //MiddleWare Creados
-app.use(logMiddleware);
 app.use(userLoggedMiddleware);
 
 
