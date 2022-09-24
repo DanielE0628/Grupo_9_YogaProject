@@ -34,7 +34,7 @@ header nav{
                 font-size: 1.5rem;
             }
     header .logo{
-        width: 50%;
+        flex-grow: 50%;
     }
         header .logo a{
             width: 100%;
@@ -94,25 +94,7 @@ header nav{
 @media (max-width: 43rem){/* Media Breakpoints para celus */
 }
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
-    header nav .menuHamburguesa{
-        display: none;
-    }
-    header nav .listaMenu{
-        display: flex;
-        flex-wrap: wrap;
-        list-style-type: none;
-        flex-direction: row;
-        width: 100%;
-        justify-content: space-between;
-    }
-        header nav .listaMenu a{
-            text-decoration: none;
-            color: var(--button);
-        }
- 
-        header nav .listaMenu .home, .login{
-            display: none;
-        }
+    
 
     header .SearchBar{
         display: flex;
@@ -145,9 +127,46 @@ header nav{
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
-    header .logo{
-        width: 30%;
+    header nav .menuHamburguesa{
+        display: none;
     }
+    header nav .listaMenu{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        list-style-type: none;
+        flex-direction: row;
+        width: 100%;
+    }
+        header nav .listaMenu a{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            text-decoration: none;
+            color: var(--button);
+        }
+            header nav .listaMenu a p{
+                border-left: 3px solid var(--button);
+                padding-left: 0.2rem;
+            }
+            header nav .listaMenu a i{
+                padding-right: 0.2rem;
+            }
+            header nav .listaMenu a img{
+                margin-right: 0.2rem;
+            }
+        
+ 
+        header nav .listaMenu .home, .login{
+            display: none;
+        }
+
+
+    /* header .logo{
+        width: 30%;
+    } */
     /* 
     header .logo{
         order:-10;
@@ -184,7 +203,7 @@ header nav{
         } */
 
     header nav{
-        width: 30%;
+        width: 45%;
     }
         header nav .listaMenu .menu{
             display: none;
@@ -204,7 +223,8 @@ header nav{
 
     header .listaMenu a:hover{
         color: var(--botonActivo);
-        text-decoration: underline var(--botonActivo)
+        margin-bottom: 5%;
+        text-decoration: underline var(--botonActivo);
     }
     
     header .logo:hover h1{

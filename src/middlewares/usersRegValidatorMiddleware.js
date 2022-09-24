@@ -23,6 +23,8 @@ const registerValidation = [
 
 	body("password")
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
+		.isLength({ min: 3 }).withMessage("La contraseña debe tener al menos 3 caracteres").bail()
+		.isLength({ max: 15 }).withMessage("La contraseña debe tener máximo 15 caracteres")
 	// .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
 	,
 

@@ -103,7 +103,7 @@
                     </span>
                 <% } %>
 
-                <div class="campo">
+                <!-- <div class="campo">
                     <label for="comfirmPassword">
                         <i class="fa-solid fa-lock"></i>
                     </label>
@@ -114,7 +114,7 @@
                         placeholder= "Confirmar contraseña"
                         class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>" 
                     >
-                </div>
+                </div> -->
                 <% if ( locals.errors && errors.comfirmPassword) { %>
                     <span class="feedback text-danger">
                         <%= errors.comfirmPassword.msg %>
