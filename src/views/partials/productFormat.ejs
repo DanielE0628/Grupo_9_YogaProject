@@ -1,0 +1,27 @@
+<div class="contenedor-main-productos-articulos-imagen">
+    <img src="/images/productos/indumentaria/mujer-1.png" alt="ropa-mujer1">
+</div>
+<div class="contenedor-main-productos-articulos-detalles">
+    <% products.forEach(products => { %>
+        <%  { %>
+    <div>
+        <h2><%= products.name %></h2>
+    </div>
+    <div>
+        <p>
+            <%= products.description %>
+        </p>
+    </div>
+    <div>
+        <h2>
+            <%= products.price %>
+        </h2>
+    </div>
+    <div>
+        <button type="submit" name="comprar" class="contenedor-main-productos-articulos-button">
+            Comprar
+        </button>
+    </div>
+</div>    
+<% } %>
+			<% }) %>

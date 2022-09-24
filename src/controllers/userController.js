@@ -76,7 +76,6 @@ const controlador = {
 
     login: (req, res) =>{
         let userToLogin = User.findByField('email', req.body.email);
-        console.log(req.body);
         
         if(userToLogin){
             let passComparePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
@@ -86,6 +85,11 @@ const controlador = {
                 res.redirect('/users/profile');
 
             }
+            
+            if(req.body.recordar){
+                res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60 *60)})
+            }
+
             return res.render('users/userLogin',{
                 errors: {
                     email: {

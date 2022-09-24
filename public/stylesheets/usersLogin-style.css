@@ -20,13 +20,31 @@ main{
         justify-content: space-between;
         align-items: center;
         padding: 1%;
-        border: 1px solid black;
-        border-radius: 10px;
-        width: 90%;
         margin-top: 2%;
         margin-bottom: 2%;
     }
-        main form input{
+    main form div.campo{
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 90%;
+    }
+    main form div.recordar{
+        justify-content: flex-start;
+        width: 90%;
+    }
+    main form p{
+        width: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 3%;
+
+    }
+    main form p input{
+        width: auto;
+        
+    }
+        main form .campo input{
             width: 80%;
             outline: none;
             border: none;

@@ -7,5 +7,21 @@
   "fecha_de_nacimiento": "2022-09-23",
   "password": "$2a$10$TwrDQupWOFvjPD1eHXmdRO4qwg6JdhXak/7HzaCkXZqe0iESee3km",
   "comfirmPassword": "hola1234"
+ },
+ {
+  "id": 2,
+  "imagenUsuario": "user-1664051193905.jfif",
+  "nombre_y_apellido": "Gonzzo",
+  "email": "Gonzzo@Gonzzo.com",
+  "fecha_de_nacimiento": "2022-09-24",
+  "password": "$2a$10$V5jMbYnA/O0mYKOMtoHNfue3.9DAZ/TaRiDAKqoyULI2yhcWEXDqK"
+ },
+ {
+  "id": 3,
+  "imagenUsuario": "user-1664051626895.jfif",
+  "nombre_y_apellido": "Pablo",
+  "email": "Pablo@Pablo.com",
+  "fecha_de_nacimiento": "2022-09-24",
+  "password": "$2a$10$HNkofqnYhWGmuhPz1c7cQend0yuFgLYn6R6om9pwvILNpoClXieie"
  }
 ]

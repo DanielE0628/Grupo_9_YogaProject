@@ -2,7 +2,7 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+const cookies = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require("method-override");
 const logMiddleware = require('./middlewares/logMiddleware');
@@ -24,7 +24,7 @@ app.use(express.urlencoded({
   extended: false
 }));
 
-app.use(cookieParser());
+app.use(cookies());
 
 app.use(session({
   secret: 'ClarkKentEsSuperman',

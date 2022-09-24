@@ -15,30 +15,33 @@
                         <i class="fa-solid fa-circle-user"></i>
                     </div>
 
-                    <div clas="e-mail">
+                    <div class="campo">
                         <i class="fa-solid fa-at"></i>
-                        <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        placeholder="e-mail" 
-                        required>
+                        <input type="email" name="email" id="email" placeholder="e-mail" required>
+
                         <% if (locals.error && errors.email) { %>
-                            <p class="feedback text-danger">
+                            <span class="feedback text-danger">
+                                hola
                                 <%= errors.email.msg %>
-                            </p>
-                        <% } %>
+                            </span>
+                            <% } %>
+
 
                     </div>
 
-                    <div class="password">
+                    <div class="campo">
                         <i class="fa-solid fa-unlock"></i>
-                        <input 
-                        type="password" 
-                        name="password" 
-                        id="password" placeholder="Contraseña" minlength="8"
+                        <input type="password" name="password" id="password" placeholder="Contraseña" minlength="8"
                             required>
                         <span class="feedback"></span>
+                    </div>
+                    <div class="recordar">
+
+                        <input type="checkbox" name="recordar">
+                        <p>
+                            Recordar Usuario
+                        </p>
+
                     </div>
 
                     <div class="botones">
