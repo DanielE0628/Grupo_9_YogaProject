@@ -1,5 +1,6 @@
 [
  {
+<<<<<<< HEAD
   "id": 1,
   "imagenUsuario": "user-1663906986761.jpg",
   "nombre_y_apellido": "Prueba1",
@@ -23,5 +24,199 @@
   "email": "Pablo@Pablo.com",
   "fecha_de_nacimiento": "2022-09-24",
   "password": "$2a$10$HNkofqnYhWGmuhPz1c7cQend0yuFgLYn6R6om9pwvILNpoClXieie"
+=======
+  "id": 0,
+  "nombre_y_apellido": "Prueba0",
+  "email": "Prueba0@Prueba0",
+  "fecha_de_nacimiento": "2003-06-01",
+  "pasword": "Prueba0Prueba0",
+  "comfirmPasword": "Prueba0Prueba0",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 1,
+  "nombre_y_apellido": "Prueba01",
+  "email": "Prueba01@Prueba01",
+  "fecha_de_nacimiento": "2003-06-01",
+  "pasword": "Prueba01Prueba01",
+  "comfirmPasword": "Prueba01Prueba01",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 2,
+  "nombre_y_apellido": "Prueba2",
+  "email": "Prueba2@Prueba2",
+  "fecha_de_nacimiento": "2003-06-20",
+  "pasword": "Prueba2Prueba2",
+  "comfirmPasword": "Prueba2Prueba2",
+  "imagenUsuario": "user-1661471192183.PNG"
+ },
+ {
+  "id": 3,
+  "nombre_y_apellido": "Prueba3",
+  "email": "Prueba3@Prueba3",
+  "fecha_de_nacimiento": "2003-06-11",
+  "pasword": "Prueba3Prueba3",
+  "comfirmPasword": "Prueba3Prueba3",
+  "imagenUsuario": "user-1661472425525.jpeg"
+ },
+ {
+  "id": 4,
+  "nombre_y_apellido": "Prueba4",
+  "email": "Prueba4@Prueba4",
+  "fecha_de_nacimiento": "2003-06-04",
+  "pasword": "Prueba4Prueba4",
+  "comfirmPasword": "Prueba4Prueba4",
+  "imagenUsuario": "user-1661472615362.PNG"
+ },
+ {
+  "id": 5,
+  "nombre_y_apellido": "Prueba5",
+  "email": "Prueba5@Prueba5",
+  "fecha_de_nacimiento": "2003-06-05",
+  "pasword": "Prueba5Prueba5",
+  "comfirmPasword": "Prueba5Prueba5",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 6,
+  "nombre_y_apellido": "Prueba6",
+  "email": "Prueba6@Prueba6",
+  "fecha_de_nacimiento": "2003-06-06",
+  "pasword": "Prueba6Prueba6",
+  "comfirmPasword": "Prueba6Prueba6",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 7,
+  "nombre_y_apellido": "Prueba7",
+  "email": "Prueba7@Prueba7",
+  "fecha_de_nacimiento": "2003-06-07",
+  "pasword": "Prueba7Prueba7",
+  "comfirmPasword": "Prueba7Prueba7",
+  "imagenUsuario": "user-1661638948442.PNG"
+ },
+ {
+  "id": 8,
+  "nombre_y_apellido": "Prueba8",
+  "email": "Prueba8@Prueba8",
+  "fecha_de_nacimiento": "2003-06-08",
+  "pasword": "Prueba8Prueba8",
+  "comfirmPasword": "Prueba8Prueba8",
+  "imagenUsuario": "user-1661639484337.jfif"
+ },
+ {
+  "id": 9,
+  "nombre_y_apellido": "Prueba9",
+  "email": "Prueba9@Prueba9",
+  "fecha_de_nacimiento": "2003-06-09",
+  "pasword": "Prueba9Prueba9",
+  "comfirmPasword": "Prueba9Prueba9",
+  "imagenUsuario": "user-1661639864571.jfif"
+ },
+ {
+  "id": 10,
+  "nombre_y_apellido": "Prueba10",
+  "email": "Prueba10@Prueba10",
+  "fecha_de_nacimiento": "2003-06-10",
+  "pasword": "Prueba10Prueba10",
+  "comfirmPasword": "Prueba10Prueba10",
+  "imagenUsuario": "user-1661640045695.jpg"
+ },
+ {
+  "id": 11,
+  "nombre_y_apellido": "Prueba11",
+  "email": "Prueba11@Prueba11",
+  "fecha_de_nacimiento": "2003-06-11",
+  "pasword": "Prueba11Prueba11",
+  "comfirmPasword": "Prueba11Prueba11",
+  "imagenUsuario": "user-1661640227264.jfif"
+ },
+ {
+  "id": 12,
+  "nombre_y_apellido": "Prueba12",
+  "email": "Prueba12@Prueba12",
+  "fecha_de_nacimiento": "2003-06-12",
+  "pasword": "Prueba12Prueba12",
+  "comfirmPasword": "Prueba12Prueba12",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 13,
+  "nombre_y_apellido": "Prueba13",
+  "email": "Prueba13@Prueba13",
+  "fecha_de_nacimiento": "2003-06-13",
+  "pasword": "Prueba13Prueba13",
+  "comfirmPasword": "Prueba13Prueba13",
+  "imagenUsuario": "user-1661641134479.jpg"
+ },
+ {
+  "id": 14,
+  "nombre_y_apellido": "Prueba14",
+  "email": "Prueba14@Prueba14",
+  "fecha_de_nacimiento": "2003-06-14",
+  "pasword": "Prueba14Prueba14",
+  "comfirmPasword": "Prueba14Prueba14",
+  "imagenUsuario": "user-1661641327140.jfif"
+ },
+ {
+  "id": 15,
+  "nombre_y_apellido": "Prueba15",
+  "email": "Prueba15@Prueba15",
+  "fecha_de_nacimiento": "2003-06-14",
+  "pasword": "Prueba15Prueba15",
+  "comfirmPasword": "Prueba15Prueba15",
+  "imagenUsuario": "user-1661641535773.jfif"
+ },
+ {
+  "id": 16,
+  "nombre_y_apellido": "Prueba16",
+  "email": "Prueba16@Prueba16",
+  "fecha_de_nacimiento": "2003-06-16",
+  "pasword": "Prueba16Prueba16",
+  "comfirmPasword": "Prueba16Prueba16",
+  "imagenUsuario": "user-1661641652545.jfif"
+ },
+ {
+  "id": 17,
+  "nombre_y_apellido": "Prueba17",
+  "email": "Prueba17@Prueba17",
+  "fecha_de_nacimiento": "2003-06-17",
+  "pasword": "Prueba17Prueba17",
+  "comfirmPasword": "Prueba17Prueba17",
+  "imagenUsuario": "user-1661641790156.jpg"
+ },
+ {
+  "id": 18,
+  "nombre_y_apellido": "Prueba18",
+  "email": "Prueba18@Prueba18.com",
+  "fecha_de_nacimiento": "2022-08-18",
+  "pasword": "Prueba18$",
+  "comfirmPasword": "Prueba18$",
+  "imagenUsuario": "user-1661731882920.jpg"
+ },
+ {
+  "id": 19,
+  "nombre_y_apellido": "Prueba1",
+  "email": "Prueba1@Prueba1.com",
+  "fecha_de_nacimiento": "2022-08-01",
+  "pasword": "Prueba1$",
+  "comfirmPasword": "Prueba1$",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 20,
+  "nombre_y_apellido": "Prueba2",
+  "email": "Prueba2@Prueba2.com",
+  "fecha_de_nacimiento": "2022-08-02",
+  "pasword": "Prueba2$",
+  "comfirmPasword": "Prueba2$",
+  "imagenUsuario": "default-user.png"
+ },
+ {
+  "id": 22,
+  "nombre_y_apellido": "PruebaX",
+  "email": "PruebaXY@PruebaX"
+>>>>>>> ramaGonzzo
  }
 ]

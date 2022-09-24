@@ -1,10 +1,19 @@
+<<<<<<< HEAD
 const { timeStamp } = require('console');
+=======
+>>>>>>> ramaGonzzo
 const fs = require('fs');
 const path = require('path');
 
 const User = {
+<<<<<<< HEAD
     fileName: path.join(__dirname, '..', 'data', 'usersDataBase.json'),
     
+=======
+    fileName: 
+        path.join(__dirname, '..', 'data', 'usersDataBase.json')
+    ,
+>>>>>>> ramaGonzzo
     getData: 
         function (){
             return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
@@ -18,7 +27,11 @@ const User = {
     findByPk: 
         function(id){
             let allUsers = this.findAll();
+<<<<<<< HEAD
             let userFound = allUsers.find(oneUser => oneUser.id == id);
+=======
+            let userFound = allUsers.find(oneUser => oneUser.id === id);
+>>>>>>> ramaGonzzo
             return userFound
         }
     ,
@@ -41,6 +54,7 @@ const User = {
         }
     ,
     create: 
+<<<<<<< HEAD
         function (userData, image) {
             let allUsers = this.findAll();
             
@@ -48,6 +62,13 @@ const User = {
             let newUser = {
                 id: this.generateId(),
                 imagenUsuario: image,
+=======
+        function (userData) {
+            let allUsers = this.findAll();
+            //crear nuevo usuario
+            let newUser = {
+                id: this.generateId(),
+>>>>>>> ramaGonzzo
                 ...userData
             }
             //agregar nuevo usuario a DATA JSON
@@ -56,6 +77,7 @@ const User = {
             return newUser;
         }
     ,
+<<<<<<< HEAD
 
     addAvatar: 
         function (userFile) {
@@ -69,6 +91,8 @@ const User = {
         }
     ,
 
+=======
+>>>>>>> ramaGonzzo
     delete:
         function (id){
             let allUsers = this.findAll();

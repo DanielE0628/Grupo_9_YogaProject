@@ -37,7 +37,12 @@ router.delete('/delete/:idUser',function(req, res){
 });
 
 /* Crear Usuario */
+<<<<<<< HEAD
 router.get('/register', guestMiddleware, userController.vistaRegister); 
 router.post('/register', uploadFile.single('imagenUsuario'), validations, userController.registro);
+=======
+router.get('/register', userController.vistaRegister); 
+router.post('/register', upload.single('imagenUsuario'), usersRegValidatorMiddleware, userController.registro);
+>>>>>>> ramaGonzzo
 
 module.exports = router;

@@ -1,7 +1,15 @@
 //Requerir Express-Validator
 const { validationResult } =  require ( 'express-validator' );
+<<<<<<< HEAD
 const User = require ('../models/User.js');
 const bcryptjs = require ('bcryptjs');
+=======
+
+//ubicación de DATA JSON todos los usuarios
+const usersDataBase = path.join(__dirname, '..', 'data', 'usersDataBase.json');
+const User = require ('../models/User.js')
+
+>>>>>>> ramaGonzzo
 //llamar de DATA JSON todos los usuarios
 const users = User.findAll();
 
@@ -34,7 +42,16 @@ const controlador = {
     },
 
     registro: (req, res) => {
+<<<<<<< HEAD
         
+=======
+        // agragar imagen
+        if(req.file){
+			newUser.imagenUsuario = req.file.filename;
+		}else{
+			newUser.imagenUsuario = 'default-user.png';
+		};
+>>>>>>> ramaGonzzo
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
         if ( resultValidation.errors.length > 0){
@@ -43,6 +60,7 @@ const controlador = {
                 oldData: req.body
             })
         };
+<<<<<<< HEAD
         //buscar usuario por email en db
         let userDb = User.findByField('email', req.body.email);
         
@@ -61,6 +79,10 @@ const controlador = {
 
         //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
+=======
+        //crear nuevo usuario
+        User.create(req.body);
+>>>>>>> ramaGonzzo
         
         //crear nuevo usuario
         let userToCreate = {

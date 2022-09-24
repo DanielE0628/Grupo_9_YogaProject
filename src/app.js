@@ -20,6 +20,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(express.json());
 /*** Para que funcionen los form ***/
+<<<<<<< HEAD
 app.use(express.urlencoded({
   extended: false
 }));
@@ -32,6 +33,11 @@ app.use(session({
   saveUninitialized: false,
 }));
 
+=======
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(session({ secret: 'ClarkKentEsSuperman',  resave: false, saveUninitialized: false }));
+>>>>>>> ramaGonzzo
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
 app.use(express.urlencoded({ 
