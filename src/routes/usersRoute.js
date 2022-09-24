@@ -44,6 +44,6 @@ router.delete('/delete/:idUser',function(req, res){
 
 /* Crear Usuario */
 router.get('/register', userController.vistaRegister); 
-router.post('/register', upload.single('imagenUsuario'), usersRegValidatorMiddleware, userController.create);
+router.post('/register', upload.single('imagenUsuario'), usersRegValidatorMiddleware, userController.registro);
 
 module.exports = router;
