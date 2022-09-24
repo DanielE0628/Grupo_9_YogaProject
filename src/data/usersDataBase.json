@@ -1,0 +1,11 @@
+[
+ {
+  "id": 1,
+  "imagenUsuario": "user-1663906986761.jpg",
+  "nombre_y_apellido": "Prueba1",
+  "email": "Prueba1@Prueba1.com",
+  "fecha_de_nacimiento": "2022-09-23",
+  "password": "$2a$10$TwrDQupWOFvjPD1eHXmdRO4qwg6JdhXak/7HzaCkXZqe0iESee3km",
+  "comfirmPassword": "hola1234"
+ }
+]
