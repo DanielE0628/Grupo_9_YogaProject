@@ -56,14 +56,13 @@ module.exports = (sequelize, dataTypes) => {
 
     available:{
         type: dataTypes.TINYINT,
-    },
+    }
     };
 
     let config = {
-        timestamps: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at',
-        deletedAt: false
+        tabeName:"products",
+        timestamps: false,
+   
     }
 
     const Product = sequelize.define(alias, cols, config);
@@ -72,6 +71,14 @@ module.exports = (sequelize, dataTypes) => {
         Product.belongsTo(models.categorys, {
             as: "categorys",
             foreingKey: "category_id"
+        });
+        Product.belongsTo(models.marcas, {
+            as: "marcas",
+            foreingKey: "marca_id"
+        });
+        Product.belongsTo(models.talles, {
+            as: "talles",
+            foreingKey: "marca_id"
         });
     };
 

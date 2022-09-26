@@ -36,6 +36,13 @@ module.exports = (sequelize, dataTypes) => {
         deletedAt: false
     }
 
-    const talles = sequelize.define(alias, cols, config);
-    return talles;
+    const Talle = sequelize.define(alias, cols, config);
+         //las asociaciones
+    Talle.associate = (models)=>{
+            Talle.hasMany(models.products, {
+                as: "products",
+                foreingKey: "talle_id"
+            });
+        };
+    return Talle;
 }

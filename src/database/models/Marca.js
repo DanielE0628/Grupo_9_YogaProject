@@ -38,6 +38,13 @@ module.exports = (sequelize, dataTypes) => {
         deletedAt: false
     }
 
-    const marcas = sequelize.define(alias, cols, config);
-    return marcas;
+    const Marca = sequelize.define(alias, cols, config);
+         //las asociaciones
+         Marca.associate = (models)=>{
+            Marca.hasMany(models.products, {
+                as: "products",
+                foreingKey: "marca_id"
+            });
+        };
+    return Marca;
 }

@@ -40,7 +40,7 @@ function fileFilter (req, file, cb) {
     cb(null, false)
   }
 }
-
+var upload = multer({ storage: storage, fileFilter: fileFilter })
 
 //Vistas
 
@@ -52,7 +52,7 @@ router.get('/detail/:id/', productsController.detail);
 
 // //crear producto
 router.get('/create', productsController.create); 
-// router.post('/',upload.single('product-img'), productsController.store); 
+router.post('/', upload.single('product-img'), productsController.store); 
 
 // //editar producto
 // router.get('/edit/:id/', productsController.edit);

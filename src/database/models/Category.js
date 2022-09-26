@@ -28,6 +28,7 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
+        tabeName:"categorys",
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
@@ -35,7 +36,7 @@ module.exports = (sequelize, dataTypes) => {
     }
 
     const Category = sequelize.define(alias, cols, config);
-    //  las asociaciones
+    // las asociaciones
     Category.associate = (models)=>{
         Category.hasMany(models.products, {
             as: "products",
