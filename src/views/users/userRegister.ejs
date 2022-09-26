@@ -11,19 +11,25 @@
             <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
                 <div class="foto">
             
-                    <label for="imagenUsuario">
+                    <label for="avatar">
                         <i class="fa-solid fa-circle-user"></i>
                     </label>
 
-                    <button class="add" type="button" name="imagenUsuario">
+                    <button
+                        class="add" 
+                        type="button" 
+                        name="addAvatar"
+                    >
                         <label for="imagenUsuario"> +
                             <input 
                                 id="imagenUsuario" 
                                 type="file" 
                                 name="imagenUsuario" 
+<<<<<<< HEAD
                                
+=======
+>>>>>>> 72e7d5afcf43ce847bc645b7d667dbe93423c3a0
                             >
-                            </i>
                         </label>
                     </button>
                 </div>
@@ -89,7 +95,7 @@
                     </label>
                     <input 
                         type="password" 
-                        name="pasword" 
+                        name="password" 
                         id="password" 
                         placeholder="Contraseña"
                         class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>"  
@@ -101,19 +107,18 @@
                     </span>
                 <% } %>
 
-                <div class="campo">
+                <!-- <div class="campo">
                     <label for="comfirmPassword">
                         <i class="fa-solid fa-lock"></i>
                     </label>
                     <input 
                         type="password" 
-                        name="comfirmPasword" 
+                        name="comfirmPassword" 
                         id="comfirmPassword" 
                         placeholder= "Confirmar contraseña"
                         class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>" 
-                        value= "<%= locals.oldData ? oldData.comfirmPassword : null %>"
                     >
-                </div>
+                </div> -->
                 <% if ( locals.errors && errors.comfirmPassword) { %>
                     <span class="feedback text-danger">
                         <%= errors.comfirmPassword.msg %>

@@ -25,9 +25,16 @@ const registerValidation = [
 	
     ,
 
+<<<<<<< HEAD
 	body("talle")
         .notEmpty().withMessage("Ingrese nuevamente la contraseña")
         ,
+=======
+	// body("comfirmPasword")
+    //     .notEmpty().withMessage("Ingrese nuevamente la contraseña")
+    //     // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
+    //     ,
+>>>>>>> 72e7d5afcf43ce847bc645b7d667dbe93423c3a0
         
 	body("stock")
         .notEmpty().withMessage("Ingrese nuevamente la contraseña")
