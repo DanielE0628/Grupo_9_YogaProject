@@ -1,6 +1,6 @@
 //Requires
-const createError = require('http-errors');
 const express = require('express');
+const createError = require('http-errors');
 const path = require('path');
 const cookies = require('cookie-parser');
 const logger = require('morgan');
@@ -33,11 +33,12 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
-app.use(express.urlencoded({ 
-  extended: false 
+app.use(express.urlencoded({
+  extended: false
 }))//ver lo que viaja por post en req.body de un form 
 
 //MiddleWare Creados
+app.use(userLoggedMiddleware);
 
 
 
