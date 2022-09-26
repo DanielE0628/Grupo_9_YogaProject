@@ -23,5 +23,13 @@
   "email": "Pablo@Pablo.com",
   "fecha_de_nacimiento": "2022-09-24",
   "password": "$2a$10$HNkofqnYhWGmuhPz1c7cQend0yuFgLYn6R6om9pwvILNpoClXieie"
+ },
+ {
+  "id": 4,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Daniel Test",
+  "email": "danieltest@danitest.com",
+  "fecha_de_nacimiento": "2022-03-01",
+  "password": "$2a$10$JE3.Hzh9rjJFa7BViaDnb.nzqxUjCIFOb/nPaV5UF3PMqviPL.1lO"
  }
 ]
