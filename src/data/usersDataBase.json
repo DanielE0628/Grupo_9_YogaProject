@@ -23,5 +23,13 @@
   "email": "Pablo@Pablo.com",
   "fecha_de_nacimiento": "2022-09-24",
   "password": "$2a$10$HNkofqnYhWGmuhPz1c7cQend0yuFgLYn6R6om9pwvILNpoClXieie"
+ },
+ {
+  "id": 4,
+  "imagenUsuario": "user-1663906986761.jpg",
+  "nombre_y_apellido": "Androide 18",
+  "email": "numero18@patrullaRoja.com",
+  "fecha_de_nacimiento": "2022-09-27",
+  "password": "$2a$10$no4nkjXh2YfjvvnvE3Z2m.6lnT0hl1mKTS6RGyYmaoZs5I3VsUQVy"
  }
 ]
