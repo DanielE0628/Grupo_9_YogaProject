@@ -1,10 +1,10 @@
+const { timeStamp } = require('console');
 const fs = require('fs');
 const path = require('path');
 
 const User = {
-    fileName: 
-        path.join(__dirname, '..', 'data', 'usersDataBase.json')
-    ,
+    fileName: path.join(__dirname, '..', 'data', 'usersDataBase.json'),
+    
     getData: 
         function (){
             return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
@@ -18,7 +18,7 @@ const User = {
     findByPk: 
         function(id){
             let allUsers = this.findAll();
-            let userFound = allUsers.find(oneUser => oneUser.id === id);
+            let userFound = allUsers.find(oneUser => oneUser.id == id);
             return userFound
         }
     ,
@@ -41,11 +41,13 @@ const User = {
         }
     ,
     create: 
-        function (userData) {
+        function (userData, image) {
             let allUsers = this.findAll();
+            
             //crear nuevo usuario
             let newUser = {
                 id: this.generateId(),
+                imagenUsuario: image,
                 ...userData
             }
             //agregar nuevo usuario a DATA JSON
@@ -54,6 +56,19 @@ const User = {
             return newUser;
         }
     ,
+
+    addAvatar: 
+        function (userFile) {
+            let image = '';
+            if(userFile){
+                image = userFile.filename;
+            }else{
+                image = "default-user.png";
+            }
+            return image;
+        }
+    ,
+
     delete:
         function (id){
             let allUsers = this.findAll();

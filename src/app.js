@@ -1,12 +1,12 @@
 //Requires
-const createError = require('http-errors');
 const express = require('express');
+const createError = require('http-errors');
 const path = require('path');
-const cookieParser = require('cookie-parser');
+const cookies = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require("method-override");
-
 const session = require("express-session");
+const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
 // ************ express() - (don't touch) ************
 const app = express(); 
@@ -18,16 +18,26 @@ app.set('view engine', 'ejs');
 // ************ Middlewares - Importados (don't touch) ************
 app.use(logger('dev'));
 app.use(express.json());
+
 /*** Para que funcionen los form ***/
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(session({ secret: 'ClarkKentEsSuperman',  resave: false, saveUninitialized: false }));
+app.use(express.urlencoded({ 
+  extended: false 
+}));
+
+app.use(cookies());
+
+app.use(session({ 
+  secret: 'ClarkKentEsSuperman',  
+  resave: false, 
+  saveUninitialized: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
-app.use(express.urlencoded({ extended: false }))//ver lo que viaja por post en req.body de un form 
+app.use(express.urlencoded({ 
+  extended: false 
+}))//ver lo que viaja por post en req.body de un form 
 
 //MiddleWare Creados
-
+app.use(userLoggedMiddleware);
 
 
 //rutas
