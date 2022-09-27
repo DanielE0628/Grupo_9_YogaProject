@@ -1,11 +1,11 @@
 //Requerir Express-Validator
-const { validationResult } =  require ( 'express-validator' );
-const User = require ('../models/User.js');
-const bcryptjs = require ('bcryptjs');
+const { validationResult } = require('express-validator');
+const User = require('../models/User.js');
+const bcryptjs = require('bcryptjs');
 //llamar de DATA JSON todos los usuarios
 const users = User.findAll();
 
-const controlador = { 
+const controlador = {
     vistaUser: (req, res) => {
         res.render('users/user');
     },
@@ -20,7 +20,7 @@ const controlador = {
 
     vistaLista: (req, res) => {
         let users = User.findAll();
-        res.render('users/userList', {users})
+        res.render('users/userList', { users })
     },
 
     vistaInstructors: (req, res) => {
@@ -30,27 +30,27 @@ const controlador = {
     vistaProfile: (req, res) => {
         let user = req.session.userLogged;
         console.log(user);
-        res.render('users/userProfile', {user});
+        res.render('users/userProfile', { user });
     },
 
     registro: (req, res) => {
-        
+
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
-        if ( resultValidation.errors.length > 0){
-            return res.render ( 'users/userRegister', {
+        if (resultValidation.errors.length > 0) {
+            return res.render('users/userRegister', {
                 errors: resultValidation.mapped(),
                 oldData: req.body
             })
         };
         //buscar usuario por email en db
         let userDb = User.findByField('email', req.body.email);
-        
+
         //Validar usuario existente
-        if (userDb){
-            return res.render ( 'users/userRegister', {
+        if (userDb) {
+            return res.render('users/userRegister', {
                 errors: {
-                    email:{
+                    email: {
                         msg: 'Este email ya está registrado'
                     }
                 },
@@ -61,7 +61,7 @@ const controlador = {
 
         //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
-        
+
         //crear nuevo usuario
         let userToCreate = {
             ...req.body,
@@ -70,27 +70,27 @@ const controlador = {
         }
 
         let userCreate = User.create(userToCreate);
-        
-        res.redirect("list");
+
+        res.redirect("/users/login");
     },
 
-    login: (req, res) =>{
+    login: (req, res) => {
         let userToLogin = User.findByField('email', req.body.email);
-        
-        if(userToLogin){
+
+        if (userToLogin) {
             let passComparePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
-            if (passComparePassword){
+            if (passComparePassword) {
                 delete userToLogin.password;
                 req.session.userLogged = userToLogin;
-                res.redirect('/users/profile');
+                res.redirect('/');
 
             }
-            
-            if(req.body.recordar){
-                res.cookie('userEmail', req.body.email, {maxAge : (1000 * 60 *60)})
+
+            if (req.body.recordar) {
+                res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60 * 60) })
             }
 
-            return res.render('users/userLogin',{
+            return res.render('users/userLogin', {
                 errors: {
                     email: {
                         msg: 'las credenciales son inválidas'
@@ -99,7 +99,7 @@ const controlador = {
             });
         }
 
-        return res.render('users/userLogin',{
+        return res.render('users/userLogin', {
             errors: {
                 email: {
                     msg: 'Usuario no registrado'
@@ -108,26 +108,26 @@ const controlador = {
         });
     },
 
-    logout: (req, res) =>{
+    logout: (req, res) => {
         req.session.destroy();
         return res.redirect('/');
     },
 
-    edit: (req, res) =>{
+    edit: (req, res) => {
         let id = req.params.id;
-        let userToEdit=users[id];
-        res.render("users/userEdit",{userToEdit});
+        let userToEdit = users[id];
+        res.render("users/userEdit", { userToEdit });
     },
 
-    search:function(req,res){
+    search: function (req, res) {
         let busquedaUsuario = req.query.search;
         let usersResults = [];
-        for(let i=0; i<users.length; i++){
-            if(users[i].nombre_y_apellido.includes(busquedaUsuario)){
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].nombre_y_apellido.includes(busquedaUsuario)) {
                 usersResults.push(users[i]);
             }
         }
-        res.render('users/userResults', {users: usersResults})
+        res.render('users/userResults', { users: usersResults })
     }
 };
 

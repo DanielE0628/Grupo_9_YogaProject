@@ -10,7 +10,7 @@ const validations = require("../middlewares/usersRegValidatorMiddleware");
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware')
 
-/* Vistas Usuario */ 
+/* Vistas Usuario */
 router.get('/', userController.vistaUser);
 router.get('/instructors', userController.vistaInstructors);
 router.get('/list', userController.vistaLista);
@@ -23,21 +23,21 @@ router.post('/login', userController.login);
 router.get('/logout', userController.logout);
 
 /* Buscar Usuario */
-router.get('/search',userController.search);
+router.get('/search', userController.search);
 
 /* Editar Usuario */
-router.get('/edit/:idUser',userController.edit);
-router.put('/edit/:idUser', function(req, res){
+router.get('/edit/:idUser', userController.edit);
+router.put('/edit/:idUser', function (req, res) {
     res.send("fui por PUT");
 });
 
 /* Eliminar Usuario */
-router.delete('/delete/:idUser',function(req, res){
+router.delete('/delete/:idUser', function (req, res) {
     res.send("fui por DELETE");
 });
 
 /* Crear Usuario */
-router.get('/register', guestMiddleware, userController.vistaRegister); 
+router.get('/register', guestMiddleware, userController.vistaRegister);
 router.post('/register', uploadFile.single('imagenUsuario'), validations, userController.registro);
 
 module.exports = router;
