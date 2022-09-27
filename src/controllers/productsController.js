@@ -3,7 +3,7 @@ const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
 const {Product} = require('../database/models/Product');
-
+const { all } = require('../routes/productsRoute');
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
@@ -30,26 +30,22 @@ const talles = db.talles;
 const controller = {
         //todos los productos
         list: (req, res) => {
-            console.log(Product)
+            
             products.findAll({
-                include:[{association: "categorys"},{association: "marcas"},{association: "talles"}]
+                include:["categorys"]
             })
             
                 .then((productos)=>{
-                    console.log(productos)
                     res.render('products/products',{products:productos, title: 'Productos', estilo: estilos.productos });
                 })
                 .catch(error => res.send(error))
         },
         //detalle de un producto
         detail:(req, res) => {
-            products.findByPk(req.params.id, {
-                include: [{association: "categorys"}]
-            })
+            products.findByPk(req.params.id)
                 .then((product)=>{
-                    res.render("products/detail/:id", {product})
+                    res.render("products", {product})
                 })
-                .catch(error => res.send(error))       
         },
         //Buscar prodcutos
         //pendiente
@@ -59,16 +55,14 @@ const controller = {
         //crear Prodcuto
         create: (req, res) => {
             categorys.findAll()
-            // marcas.findAll()
-            // talles.findAll()
-            // .then(([allCategorys, allMarcas, allTalles])=>{
-            //      res.render('products/product-create', {allCategorys, allMarcas, allTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
-            // })
             .then((allCategorys)=>{
                 console.log(allCategorys)
                 res.render('products/product-create',{allCategorys, title: 'Productos', estilo: estilos.productos });
             })
-            .catch(error => res.send(error))
+            // Promise.all([promCategorys, promMarcas, promTalles])
+            //  .then(([allCategorys, allMarcas, AllTalles]))
+            //      res.render('products/product-create', {allCategorys, allMarcas, AllTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
+             .catch(error => res.send(error))
             
           },
         store:(req, res) => {
@@ -81,13 +75,11 @@ const controller = {
                 marca_id: req.body.marca_id,
                 stock: req.body.stock,
                 image: req.body.image,
-                
                 // create_at: req.body.created_at   
             }])  
             .then((products)=>{
-                res.redirect('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+                res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
             })
-            .catch(error => res.send(error))
                 },
 }
 
