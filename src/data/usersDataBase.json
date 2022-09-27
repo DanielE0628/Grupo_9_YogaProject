@@ -23,5 +23,13 @@
   "email": "Pablo@Pablo.com",
   "fecha_de_nacimiento": "2022-09-24",
   "password": "$2a$10$HNkofqnYhWGmuhPz1c7cQend0yuFgLYn6R6om9pwvILNpoClXieie"
+ },
+ {
+  "id": 4,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Pele",
+  "email": "pele@fdebutoconun.com",
+  "fecha_de_nacimiento": "1985-02-22",
+  "password": "$2a$10$wyXbihIk7r.sRy3.4.sEneWLpZ.gTt3bMBk2wmGaZsJ0YMNOWQ5N6"
  }
 ]
