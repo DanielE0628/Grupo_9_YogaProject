@@ -32,7 +32,7 @@ const controller = {
         list: (req, res) => {
             
             products.findAll({
-                include:["categorys"]
+                // include:["categorys"]
             })
             
                 .then((productos)=>{
@@ -54,6 +54,12 @@ const controller = {
 
         //crear Prodcuto
         create: (req, res) => {
+               categorys.findAll()
+               .then((category)=>{
+                console.log(category);
+                res.render('products/product-create',{category, title: 'Productos', estilo: estilos.productos });
+            })
+            .catch(error => res.send(error))
         //     Promise.all([promCategorys, promMarcas, promTalles])
         //     .then(([allCategorys, allMarcas, AllTalles]))
         //         res.render('products/product-create', {allCategorys, allMarcas, AllTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})

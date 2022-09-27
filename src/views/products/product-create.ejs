@@ -37,11 +37,11 @@
                     <select name="category_id" id="category_id" class="form-input">
                        
                         <option value="">Elegí</option>
-                        <% Categorys.forEach(category => { %>
+                        <% for (i=0; i < category.length;i++) { %>
                         
-                        <option value=><%= category.name %>></option>
+                        <option value="<%= category[i].id %>"><%= category[i].name %></option>
                         
-                        <% }) %>
+                        <% } %>
                     </select>
                 </div>
 
@@ -50,10 +50,7 @@
                     <label for="talle_id" class="form-label">Talle: </label>
                     <select name="talle_id" id="talle_id" class="form-input">
                         <option value="">Elegí</option>
-                        <% allTalles.forEach(talle => { %>
-                            <option value=><%= talle.name %></option>
-                        
-                            <% }) %>
+                       
                     </select>
                 </div>
 
@@ -61,10 +58,7 @@
                     <label for="marca_id" class="form-label">Talle: </label>
                     <select name="marca_id" id="marca_id" class="form-input">
                         <option value="">Elegí</option>
-                        <% allMarcas.forEach(marcas => { %>
-                            <option value=><%= marca.name %>></option>
-                            
-                            <% }) %>
+                  
                     </select>
                 </div>
 

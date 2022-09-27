@@ -36,11 +36,11 @@ module.exports = (sequelize, dataTypes) => {
 
     const Category = sequelize.define(alias, cols, config);
     //  las asociaciones
-    Category.associate = (models)=>{
-        Category.hasMany(models.products, {
-            as: "products",
-            foreingKey: "category_id"
-        });
-    };
+    // Category.associate = (models)=>{
+    //     Category.hasMany(models.products, {
+    //         as: "products",
+    //         foreingKey: "category_id"
+    //     });
+    // };
     return Category;
 }

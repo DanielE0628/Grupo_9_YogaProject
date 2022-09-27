@@ -68,12 +68,12 @@ module.exports = (sequelize, dataTypes) => {
 
     const Product = sequelize.define(alias, cols, config);
     //asociaciones
-    Product.associate = (models)=>{
-        Product.belongsTo(models.categorys, {
-            as: "categorys",
-            foreingKey: "category_id"
-        });
-    };
+    // Product.associate = (models)=>{
+    //     Product.belongsTo(models.categorys, {
+    //         as: "categorys",
+    //         foreingKey: "category_id"
+    //     });
+    // };
 
     return Product;
 }
