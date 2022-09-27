@@ -18,7 +18,7 @@ const productsController = require("../controllers/productsController");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'public/images/products')
+    cb(null, '/public/images/products')
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname)
@@ -27,7 +27,7 @@ const storage = multer.diskStorage({
 
 function fileFilter (req, file, cb) {
 
-  const validFormat = [ 'image/jpeg', 'image/jpg' ]
+  const validFormat = [ 'image/jpeg', 'image/jpg','image/.png' ]
 
   // La función debe llamar a `cb` usando una variable del tipo boolean
   // para indicar si el archivo debería ser aceptado o no
@@ -40,7 +40,7 @@ function fileFilter (req, file, cb) {
     cb(null, false)
   }
 }
-var upload = multer({ storage: storage, fileFilter: fileFilter })
+const upload = multer({ storage: storage, fileFilter: fileFilter })
 
 
 //Vistas
