@@ -5,7 +5,7 @@ const path = require('path');
 const cookies = require('cookie-parser');
 const logger = require('morgan');
 const methodOverride = require("method-override");
-const logMiddleware = require('./middlewares/logMiddleware');
+// const logMiddleware = require('./middlewares/logMiddleware');
 const session = require("express-session");
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
 
@@ -39,7 +39,7 @@ app.use(express.urlencoded({
 }))//ver lo que viaja por post en req.body de un form 
 
 //MiddleWare Creados
-app.use(logMiddleware);
+// app.use(logMiddleware);
 app.use(userLoggedMiddleware);
 
 
