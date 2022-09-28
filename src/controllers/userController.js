@@ -144,7 +144,13 @@ const controlador = {
         return res.redirect('/');
     },
 
-    
+    edit: (req, res) => {
+        let id = req.params.id;
+        console.log(id);
+        let userToEdit = users[id];
+        console.log(userToEdit);
+        res.render("users/userEdit", { userToEdit });
+    },
 
     search: function (req, res) {
         let busquedaUsuario = req.query.search;

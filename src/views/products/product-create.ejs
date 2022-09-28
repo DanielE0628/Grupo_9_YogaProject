@@ -2,74 +2,76 @@
 <!DOCTYPE html>
 <html lang="es">
     
-    <%- include('../partials/head') %>
+    <%- include('../partials/head', {title: 'Crear producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
 
     <body>
         
         <%- include('../partials/header') %>
 
         <main class="main-container">    
-            <form action="/products" method="post" enctype="multipart/form-data">
+            <form action="/products/create" method="post" enctype="multipart/form-data">
             <div>     
                 <h2 class="products-title"> Formulario de Creacion de Productos</i></h2> 
             </div>
                     <!-- name -->
-                <div class="casilla">
+                <div class="campo">
                     <label for="name" class="form-label">Nombre: </label>
                     <input class="nombre_y_apellido" type="text" name="name" id="name" placeholder="Ingrese el nombre del producto" minlength="8"required>
                     <span class="feedback"></span>
                 </div>
                 <!-- description -->
-                <div class="casilla">
+                <div class="campo">
                     <label for="description" class="form-label">Descripción: </label>
                     <textarea  name="description" id="description" > </textarea>
                     <span class="feedback"></span>
                 </div>
                  <!-- price -->
-                 <div class="casilla">
+                 <div class="campo">
                     <label for="price" class="form-label">Precio:</label>
                     <input type="text" name="price" id="price" placeholder="$00.00" required>
                     <span class="feedback"></span>
                 </div>
                 <!-- category -->
-                <div class="casilla">
-                    <label for="category" class="form-label">Categoría: </label>
+                <div class="campo">
+                    <label for="category_id" class="form-label">Categoría: </label>
                     <select name="category_id" id="category_id" class="form-input">
                        
                         <option value="">Elegí</option>
                         <% for (i=0; i < category.length;i++) { %>
+                            
                         
-                        <option value="<%= category[i].id %>"><%= category[i].name %></option>
+                        <option value="<% category[i].id %>"><%= category[i].name %></option>
                         
                         <% } %>
                     </select>
                 </div>
 
-
-                <div class="casilla">
+                
+                    
+                <div class="campo">
                     <label for="talle_id" class="form-label">Talle: </label>
                     <select name="talle_id" id="talle_id" class="form-input">
                         <option value="">Elegí</option>
                        
                     </select>
                 </div>
-
-                <div class="casilla">
-                    <label for="marca_id" class="form-label">Talle: </label>
+           
+                <div class="campo">
+                    <label for="marca_id" class="form-label">Marca: </label>
                     <select name="marca_id" id="marca_id" class="form-input">
                         <option value="">Elegí</option>
                   
                     </select>
                 </div>
 
-                <div class="casilla">
-                    <label for="stock" class="form-label">Nombre: </label>
-                    <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="Ingrese el nombre del producto" minlength="8"required>
+                <div class="campo">
+                    <label for="stock" class="form-label">Stock: </label>
+                    <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="Ingrese la cantidad de stock " >
                     <span class="feedback"></span>
                 </div>
 
                 <!-- image -->
-                <div class="casilla">
+                <div class="campo">
                     <label for="image" class="form-label">Imagen: </label>
                     <input  type="file" name="image" id="image" class="nombre_y_apellido" >
                     <span class="feedback"></span>

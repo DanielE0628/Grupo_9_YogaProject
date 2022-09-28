@@ -1,44 +1,45 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head') %>
+<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
 <body>
 	<!-- Header -->
 	<%- include('../partials/header') %>
 	<!-- /Header -->
 
 	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
+	<div class="center" >
+		<div >
+			<div >
 				<h2 class="products-title">Detalle del producto: <%= product.name %></h2>
 			</div>
 		</div>
 		<div class="product-detail">
-			<div class="row">
-				<div class="col-12 col-lg-8">
+			<div ">
+				<div class="foto">
 					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
-					<p class="product-detail-description">
+					<p class="campo">
 						<%= product.description %>
 					</p>
 				</div>
-				<div class="col-12 col-lg-4">
+				<div class="campo">
 					<article class="product-detail-info">
 						<h2 class="product-detail-title"><%= product.name %></h2>
-						<h3 class="product-detail-title"><%= product.category %></h3>
-						<h4 class="product-detail-title"><%= product.subCategory %></h4>
-						<h4 class="product-detail-title"><%= product.quality %></h4>
-							
+						<h3 class="product-detail-title">Categoria: <%= product.category_id %></h3>
+						<h4 class="product-detail-title">Marca: <%= product.marca_id %></h4>
+						<% if(product.category_id == 1){ %>
+						<h4 class="product-detail-title">Talle: <%= product.talle_id %></h4>
+						<% } %>
 						<p class="product-detail-price small">
 								<span>$<%= product.price %></span>
 								/
-								<b><%= product.discount %>% OFF</b>
+								
 							</p>
 							<p class="product-detail-price">
 								$<%= product.price %>
 							</p>
 							<p class="product-detail-price">
-								$<%= product.price %>
+								Stock: <%= product.stock %>
 							</p>
 
 						<ul class="actions-list">
@@ -52,10 +53,10 @@
 							</li>
 						</ul>
 
-						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
+						<a href="#" class="botones">COMPRAR AHORA</a>
 						<hr>
 
-						<a href="/products/edit/<%= product.id %>" class="action-button edit">EDITAR PRODUCTO</a>
+						<a href="/products/edit/<%= product.id %>" class="botones">EDITAR PRODUCTO</a>
 						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
 							<button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
 						</form>
@@ -63,7 +64,7 @@
 						<!-- <hr> -->
 
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
-							<button type="submit" class="action-button delete">ELIMINAR IMAGEN</button>
+							<button type="submit" class="botones">ELIMINAR IMAGEN</button>
 						</form>
 					</article>
 				</div>

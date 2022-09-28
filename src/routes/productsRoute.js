@@ -2,47 +2,16 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-
+//Multer
+const upload = require("../middlewares/productsMulterMiddleware")
+//Validaciones
+const validations = require("../middlewares/productsValidatorMiddleware");
 //Controller
 const productsController = require("../controllers/productsController");
+const cartController = require("../controllers/cartController");
 
 
-// ************  MULTER ************
-
-// {
-//   fieldname: 'product-img',
-//   originalname: 'motorola.jpg',
-//   encoding: '7bit',
-//   mimetype: 'image/jpeg'
-// }
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/images/products')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
-  }
-}) 
-
-function fileFilter (req, file, cb) {
-
-  const validFormat = [ 'image/jpeg', 'image/jpg' ]
-
-  // La función debe llamar a `cb` usando una variable del tipo boolean
-  // para indicar si el archivo debería ser aceptado o no
-
-  if(validFormat.includes(file.mimetype) ){
-    // Para aceptar el archivo es necesario pasar `true`, de la siguiente forma:
-    cb(null, true)
-  }else{
-    // Para rechazar el archivo es necesario pasar `false`, de la siguiente forma:
-    cb(null, false)
-  }
-}
-
-
-//Vistas
+//----------------Vistas-------------------------
 
 //todos los productos
 router.get('/', productsController.list);
@@ -50,16 +19,36 @@ router.get('/', productsController.list);
 //un producto 
 router.get('/detail/:id/', productsController.detail); 
 
+//carrito
+router.get('/cart', cartController.cartVista); 
+
+//-----------------Carrito----------------------
+
+//agregar
+//router.post('/cart/add', cartController.add); 
+
+//borrar un prodcuto
+// router.delete('/cart/delete/:id/', cartController.destroy);
+
+//vaciar carrito
+// router.delete('/cart/deleteAll/:id/', cartController.destroyAll);
+
+//comprar
+//pendiente
+
+//------------------CRUD------------------------
+
 // //crear producto
 router.get('/create', productsController.create); 
-// router.post('/',upload.single('product-img'), productsController.store); 
+router.post('/create',upload.single("product-img"), validations, productsController.store); 
 
 // //editar producto
-// router.get('/edit/:id/', productsController.edit);
-// router.put('/edit/:id',upload.single('product-img'), productsController.update); 
+ router.get('/edit/:id/', productsController.edit);
+ router.put('/edit/:id',upload.single('product-img'), productsController.update); 
 
 // //eliminar Producto
-// router.delete('/delete/:id/', productsController.destroy);
+router.get('/delete/:id', productsController.delete);
+ router.delete('/delete/:id/', productsController.destroy);
 // router.delete('/delete/img/:id', productsController.destroyImg); 
 
 //export

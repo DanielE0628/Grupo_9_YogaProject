@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html lang="es">
+    
+    <%- include('../partials/head', {title: 'Borrar producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+        //codigo aqui
+        <h1> =(</h1>
+        <h1> ¿Esta seguro que quiere borrar el producto <% product.name %> ?</h1>
+    <form action="productDelete">   
+        <div class="botones">
+            <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+                <button  type="submit" class="botones">ELIMINAR PRODUCTO</button>
+            </form>
+          
+            <a class="botones" href="/products/product-edit/:<%= product.id %>">No</a>
+        </div>
+    </form>
+
+
+
+
+    	<!-- footer -->
+        <%- include('../partials/footer') %>
+        <!-- /footer -->
+    
+    </body>	
+    </html>

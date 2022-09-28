@@ -47,5 +47,13 @@
   "email": "trafalgarLaw@heart.com",
   "fecha_de_nacimiento": "2022-09-07",
   "password": "$2a$10$qcpFaXktShZo4GDVleWwpeXp.GUQmxS4edgcBJgqgAceHke2AoAn2"
+ },
+ {
+  "id": 7,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Gonzalo Cortegoso",
+  "email": "gonzalocortegoso@gmail.com",
+  "fecha_de_nacimiento": "1985-11-22",
+  "password": "$2a$10$Ybl3C6knJqRRggLE9id2.uVMPYJthkmxVOMoKX.mNXuJgcgtoeG.C"
  }
 ]

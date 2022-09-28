@@ -7,7 +7,7 @@ const registerValidation = [
 	body("nombre_y_apellido")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
 		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 15 }).withMessage("El Nombre debe tener máximo 15 caracteres")
+		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
 	,
 
 	body("email")

@@ -116,7 +116,9 @@ main{
         color: var(--botonActivo);
 
     }
-
+    .center{
+        text-align: center;
+    }
     main form .botones button:hover{
         background-color: var(--botonActivo);
     }
