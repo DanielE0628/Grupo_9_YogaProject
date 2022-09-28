@@ -39,5 +39,21 @@
   "email": "luffy@mugiwara.com",
   "fecha_de_nacimiento": "2022-09-27",
   "password": "$2a$10$FJKt3vloOrr/pjq.2xCp4.ffh4knpzeBYa3bCyTj0iuJMuzTl2/fG"
+ },
+ {
+  "id": 6,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Gonzalo Cortegoso",
+  "email": "cortegosogonzalo@gmail.com",
+  "fecha_de_nacimiento": "1985-11-22",
+  "password": "$2a$10$PcfcbRHvDHOUULPcbrmTn.aN7RB2yEfm4ywQaRqFg9/7bKH1bbTH2"
+ },
+ {
+  "id": 7,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Gonzalo Cortegoso",
+  "email": "gonzalocortegoso@gmail.com",
+  "fecha_de_nacimiento": "1985-11-22",
+  "password": "$2a$10$Ybl3C6knJqRRggLE9id2.uVMPYJthkmxVOMoKX.mNXuJgcgtoeG.C"
  }
 ]

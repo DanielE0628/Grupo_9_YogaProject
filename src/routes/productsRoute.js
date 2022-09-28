@@ -18,13 +18,14 @@ router.get('/', productsController.list);
 
 //un producto 
 router.get('/detail/:id/', productsController.detail); 
+
 //carrito
-//router.get('/cart/:id/', cartController.cartVista); 
+router.get('/cart', cartController.cartVista); 
 
 //-----------------Carrito----------------------
 
 //agregar
-router.post('/cart/add', cartController.add); 
+//router.post('/cart/add', cartController.add); 
 
 //borrar un prodcuto
 // router.delete('/cart/delete/:id/', cartController.destroy);
@@ -47,7 +48,7 @@ router.post('/create',upload.single("product-img"), validations, productsControl
 
 // //eliminar Producto
 router.get('/delete/:id', productsController.delete);
-// router.delete('/delete/:id/', productsController.destroy);
+ router.delete('/delete/:id/', productsController.destroy);
 // router.delete('/delete/img/:id', productsController.destroyImg); 
 
 //export
