@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/style.css'}) %>
+<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
 <body>
 	<!-- Header -->
 	<%- include('../partials/header') %>
@@ -22,7 +22,7 @@
 						<%= product.description %>
 					</p>
 				</div>
-				<div class="col-12 col-lg-4">
+				<div class="campo">
 					<article class="product-detail-info">
 						<h2 class="product-detail-title"><%= product.name %></h2>
 						<h3 class="product-detail-title">Categoria: <%= product.category_id %></h3>

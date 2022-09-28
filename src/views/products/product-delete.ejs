@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
     
-    <%- include('../partials/head', {title: 'Eliminar producto', estilo:'/stylesheets/style.css'}) %>
+    <%- include('../partials/head', {title: 'Borrar producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
 
     <body>
         
@@ -13,10 +13,10 @@
     <form action="productDelete">   
         <div class="botones">
             <form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
+                <button  type="submit" class="botones">ELIMINAR PRODUCTO</button>
             </form>
           
-            <a href="/products/product-edit/:<%= product.id %>">No</a>
+            <a class="botones" href="/products/product-edit/:<%= product.id %>">No</a>
         </div>
     </form>
 

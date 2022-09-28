@@ -2,42 +2,44 @@
 
 <html lang="es">
     
-    <%- include('../partials/head', {title: 'Editar producto', estilo:'/stylesheets/style.css'}) %>
+    <%- include('../partials/head', {title: 'Editar producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
 
     <body>
         
         <%- include('../partials/header') %>
 
-        <main>         
+        <main>
+            <div>         
             <h2 class="products-title">Estás editando: <i><%= product.name %></i></h2> 
+            </div>
             <form action="/products/edit/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
                     <!-- name -->
-                <div class="casilla">
-                    <label for="name" class="form-label">Nombre: <%= product.name %></label>
-                    <input class="nombre_y_apellido" type="text" name="name" id="name" placeholder="<%= product.name %>" value="<%= product.name %>">
+                <div class="campo">
+                    <label for="name" class="form-label">Nombre:</label>
+                    <input class="nombre_y_apellido" type="text" name="name" id="name" value="<%= product.name %>">
                     <span class="feedback"></span>
                 </div>
                 <!-- description -->
-                <div class="casilla">
+                <div class="campo">
                     <label for="description" class="form-label">Descripción: </label>
                     <textarea  name="description" id="description" ><%= product.description %> </textarea>
                     <span class="feedback"></span>
                 </div>
                  <!-- price -->
-                 <div class="casilla">
+                 <div class="campo">
                     <label for="price" class="form-label">Precio:</label>
                     <input type="text" name="price" id="price" placeholder="<%= product.price %>" value="<%= product.price %>">
                     <span class="feedback"></span>
                 </div>
                 <!-- category -->
-                <div class="casilla">
+                <div class="campo">
                     <label for="category_id" class="form-label">Categoría: </label>
                     <select name="category_id" id="category_id" class="form-input">
                         <option value=""><%= product.category_id %></option>
                   
                     </select>
                 </div>
-                <div class="casilla">
+                <div class="campo">
                    <% if(product.category_id == 1){%>
 
                     <label for="talle_id" class="form-label">Talle: </label>
@@ -47,7 +49,7 @@
                     </select>
                 </div>
 
-                <div class="casilla">
+                <div class="campo">
                     <label for="marca_id" class="form-label">Marca: </label>
                     <select name="marca_id" id="marca_id" class="form-input">
                         <option value=""><%= product.marca_id %></option>
@@ -55,17 +57,17 @@
                     </select>
                 </div>
 
-                <div class="casilla">
+                <div class="campo">
                     <label for="stock" class="form-label">Stock: </label>
                     <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="<%= product.stock %>" >
                     <span class="feedback"></span>
                 </div>
 
                 <!-- image -->
-                <div>
+                <div class="foto add">
                     <img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
                 </div>
-                <div class="casilla">
+                <div class="campo">
                     <label for="product-img" class="form-label">Imagen: </label>
                     <input  type="file" name="product-img" id="product-img" class="nombre_y_apellido"  accept="image/*" >
                     <span class="feedback"></span>

@@ -54,7 +54,7 @@ const controller = {
                categorys.findAll()
                .then((category)=>{
                 console.log(category);
-                res.render('products/product-create',{category, title: 'Productos', estilo: estilos.productos });
+                res.render('products/product-create',{category });
             })
             .catch(error => res.send(error))
         //     Promise.all([promCategorys, promMarcas, promTalles])
