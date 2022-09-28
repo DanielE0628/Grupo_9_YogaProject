@@ -68,6 +68,24 @@ const User = {
             return image;
         }
     ,
+    edit:
+        function (userData) {
+            let allUsers = User.findAll();
+            console.log('findAll()')
+            console.log(allUser)
+            let userToEdit = allUsers.forEach((item) => {
+                if(item.id == userData.id){
+                    item.nombre_y_apellido= 'editado';
+                    item.fecha_de_nacimiento = userData.fecha_de_nacimiento;
+                }
+                console.log('userToEdit');
+                console.log(userToEdit);
+
+        });
+            fs.writeFileSync(this.fileName, JSON.stringify(userToEdit, null, ' '));
+            return res.redirect('/');
+        }
+    ,
 
     delete:
         function (id){

@@ -4,8 +4,8 @@
     <body>
         <%- include('../partials/header') %>
         <main>          
-            <form name="Detail" action="/users/edit/<%=user.id%>" method="post" enctype="multipart/form-data">
-                
+
+            <form name="Profile" method="POST" action="/users/profile" enctype="multipart/form-data">
                 <h2>¡Hola <%= user.nombre_y_apellido %>! </h2></br>
 
                 <div class="foto">
@@ -31,21 +31,20 @@
                         minlength="3"
                         required
                     >
-                        <span class="feedback"></span>
+                    <% if (locals.error && errors.nombre_y_apellido) { %>
+                        <span class="feedback text-danger">
+                            <%= errors.nombre_y_apellido.msg %>
+                        </span>
+                    <% } %>
                 </div>
                 
                 <div class="campo">
                     <label for="email">
                         <i class="fa-solid fa-at"></i>
                     </label>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        value= '<%= user.email %>' 
-                        required
-                    >
-                    <span class="feedback"></span>
+                    <p style="text-align: left;">
+                        <%= user.email %> 
+                    </p> 
                 </div>
                 
                 <div class="campo">
@@ -59,15 +58,19 @@
                         value= '<%= user.fecha_de_nacimiento %>' 
                         required
                     >
-                    <span class="feedback"></span>
+                    <% if (locals.error && errors.fecha_de_nacimiento) { %>
+                        <span class="feedback text-danger">
+                            <%= errors.fecha_de_nacimiento.msg %>
+                        </span>
+                    <% } %>
                 </div>
-            </form>
                 
                 <div class="botones">
-                    <form method="GET" action="/users/edit/<%= user.id %>">
-                        <button type="submit">Editar</button>
-                    </form>
+                    
+                    <button type="submit">Editar</button>
+                    
                 </div>
+            </form>
         </main>
         <%- include('../partials/footer') %>
     </body>

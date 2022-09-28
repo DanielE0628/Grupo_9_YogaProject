@@ -39,5 +39,13 @@
   "email": "luffy@mugiwara.com",
   "fecha_de_nacimiento": "2022-09-27",
   "password": "$2a$10$FJKt3vloOrr/pjq.2xCp4.ffh4knpzeBYa3bCyTj0iuJMuzTl2/fG"
+ },
+ {
+  "id": 6,
+  "imagenUsuario": "user-1664405314252.jpg",
+  "nombre_y_apellido": "Trafalgar",
+  "email": "trafalgarLaw@heart.com",
+  "fecha_de_nacimiento": "2022-09-07",
+  "password": "$2a$10$qcpFaXktShZo4GDVleWwpeXp.GUQmxS4edgcBJgqgAceHke2AoAn2"
  }
 ]

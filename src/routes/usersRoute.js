@@ -15,7 +15,7 @@ router.get('/', userController.vistaUser);
 router.get('/instructors', userController.vistaInstructors);
 router.get('/list', userController.vistaLista);
 
-router.get('/profile', authMiddleware, userController.vistaProfile);
+
 
 /* Login*/
 router.get('/login', guestMiddleware, userController.vistaLogin);
@@ -26,10 +26,8 @@ router.get('/logout', userController.logout);
 router.get('/search', userController.search);
 
 /* Editar Usuario */
-router.get('/edit/:idUser', userController.edit);
-router.put('/edit/:idUser', function (req, res) {
-    res.send("fui por PUT");
-});
+router.get('/profile', authMiddleware, userController.vistaProfile);
+router.post('/profile', authMiddleware, userController.edit);
 
 /* Eliminar Usuario */
 router.delete('/delete/:idUser', function (req, res) {

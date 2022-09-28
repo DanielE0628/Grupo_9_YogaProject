@@ -10,13 +10,7 @@ const controlador = {
         res.render('users/user');
     },
 
-    vistaLogin: (req, res) => {
-        res.render('users/userLogin');
-    },
-
-    vistaRegister: (req, res) => {
-        res.render('users/userRegister');
-    },
+    
 
     vistaLista: (req, res) => {
         let users = User.findAll();
@@ -28,12 +22,43 @@ const controlador = {
     },
 
     vistaProfile: (req, res) => {
+        console.log(req.session.userLogged)
         let user = req.session.userLogged;
-        console.log(user);
         res.render('users/userProfile', { user });
     },
 
+    edit: (req, res) => {
+        console.log('req.body');
+        console.log(req.body.id);
+
+        //Validar datos usuario
+        const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            return res.render('users/userProfile', {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            })
+        };
+
+        let user = req.session.userLogged;
+        let a =  req.session.body;
+        
+        console.log('user');
+        console.log(user);
+
+        console.log('a');
+        console.log(a);
+
+        User.edit({user});
+        res.redirect('/');
+    },
+
+    vistaRegister: (req, res) => {
+        res.render('users/userRegister');
+    },
+
     registro: (req, res) => {
+        
 
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
@@ -72,6 +97,12 @@ const controlador = {
         let userCreate = User.create(userToCreate);
 
         res.redirect("/users/login");
+        console.log('req.body');
+        console.log(req.body);
+    },
+
+    vistaLogin: (req, res) => {
+        res.render('users/userLogin');
     },
 
     login: (req, res) => {
@@ -113,11 +144,7 @@ const controlador = {
         return res.redirect('/');
     },
 
-    edit: (req, res) => {
-        let id = req.params.id;
-        let userToEdit = users[id];
-        res.render("users/userEdit", { userToEdit });
-    },
+    
 
     search: function (req, res) {
         let busquedaUsuario = req.query.search;
