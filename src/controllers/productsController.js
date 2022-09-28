@@ -8,11 +8,8 @@ const { all } = require('../routes/productsRoute');
 const estilos = {
     productos: '/stylesheets/productos-style.css',
     detalleProducto:'/stylesheets/detail-style.css',
-    crearProducto:'/stylesheets/product-create-style.css'
-    
+    crearProducto:'/stylesheets/product-create-style.css'  
 };
-
-
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Category, Product, etc} = require('../database/models');
@@ -44,7 +41,7 @@ const controller = {
         detail:(req, res) => {
             products.findByPk(req.params.id)
                 .then((product)=>{
-                    res.render("products", {product})
+                    res.render("products/detail", {product})
                 })
         },
         //Buscar prodcutos
@@ -82,6 +79,50 @@ const controller = {
                 res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
             })
                 },
+            //editar productos
+            edit: (req, res) => {
+                products.findByPk(req.params.id)
+                .then((product)=>{
+                    console.log(product);
+                    res.render('products/product-edit',{product});
+                })
+            .catch(error => res.send(error))
+            },
+
+            update:(req, res) => {
+                products.update([{
+                    name: req.body.name,
+                    category_id: req.body.category_id,
+                    price: req.body.price, 
+                    description: req.body.description,
+                    talle_id: req.body.talle_id,
+                    marca_id: req.body.marca_id,
+                    stock: req.body.stock,
+                    image: req.body.image,
+                    // create_at: req.body.created_at   
+                }])  
+                .then((products)=>{
+                    res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+                })
+            },
+            
+            //borrar productos
+            delete: (req, res) => {
+                products.findByPk(req.params.id)
+                .then((product)=>{
+                    console.log(product);
+                    res.render('products/product-delete',{product});
+                })
+            .catch(error => res.send(error))
+            },
+            destroy: (req, res) => {
+                products.destroy({
+                    where: { id: req.params.id }
+                });
+                res.redirect('/products');
+            },
+      
 }
+
 
 module.exports = controller;

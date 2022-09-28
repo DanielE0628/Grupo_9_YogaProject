@@ -1,69 +1,70 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
+
 <html lang="es">
     
-    <%- include('../partials/head')%>
+    <%- include('../partials/head', {title: 'Editar producto', estilo:'/stylesheets/style.css'}) %>
 
     <body>
         
         <%- include('../partials/header') %>
 
         <main>         
-            <h2 class="products-title">Estás editando: <i><%= productEdit.name %></i></h2> 
-            <form action="/products/edit/<%= productEdit.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+            <h2 class="products-title">Estás editando: <i><%= product.name %></i></h2> 
+            <form action="/products/edit/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
                     <!-- name -->
                 <div class="casilla">
-                    <label for="name" class="form-label">Nombre: </label>
-                    <input class="nombre_y_apellido" type="text" name="name" id="name" placeholder="Ingrese el nombre del producto" value="<%= productEdit.name %>">
+                    <label for="name" class="form-label">Nombre: <%= product.name %></label>
+                    <input class="nombre_y_apellido" type="text" name="name" id="name" placeholder="<%= product.name %>" value="<%= product.name %>">
                     <span class="feedback"></span>
                 </div>
                 <!-- description -->
                 <div class="casilla">
                     <label for="description" class="form-label">Descripción: </label>
-                    <textarea  name="description" id="description" ><%= productEdit.description %> </textarea>
+                    <textarea  name="description" id="description" ><%= product.description %> </textarea>
                     <span class="feedback"></span>
                 </div>
                  <!-- price -->
                  <div class="casilla">
                     <label for="price" class="form-label">Precio:</label>
-                    <input type="text" name="price" id="price" placeholder="$00.00" value="<%= productEdit.price %>">
+                    <input type="text" name="price" id="price" placeholder="<%= product.price %>" value="<%= product.price %>">
                     <span class="feedback"></span>
                 </div>
                 <!-- category -->
                 <div class="casilla">
-                    <label for="category" class="form-label">Categoría: </label>
-                    <select name="category" id="category" class="form-input">
-                        <option value="">Elegí</option>
-                        <option value="Indumentaria" <%= ( productEdit.category == "Indumentaria" )? "selected" : "" %> >Indumentaria</option>
-                        <option value="Accesorios" <%= ( productEdit.category == "Accesorios" )? "selected" : "" %> >Accesorios</option>
-                        <option value="Decorativos" <%= ( productEdit.category == "Decorativos" )? "selected" : "" %> >Decorativos</option>
-                        <option value="Clase-cursos" <%= ( productEdit.category == "Clase-cursos" )? "selected" : "" %> >Clases y/o cursos</option>
+                    <label for="category_id" class="form-label">Categoría: </label>
+                    <select name="category_id" id="category_id" class="form-input">
+                        <option value=""><%= product.category_id %></option>
+                  
                     </select>
                 </div>
-                <!-- subcategory -->
-                <!-- <div class="casilla">
-                    <label for="subcategory" class="form-label">Categoría:</label>
-                    <select name="subcategory" id="subcategory" class="form-input">
-                        <option value="">Elegí</option>
-                        <option value="indumentaria">Indumentaria</option>
-                        <option value="accesorios">Accesorios</option>
-                        <option value="decorativos">Decorativos</option>
-                        <option value="clase-cursos">Clases y/o cursos</option>
-                    </select>
-                </div> -->
-                <!-- quality -->
                 <div class="casilla">
-                    <label for="quality" class="form-label">Talle: </label>
-                    <select name="quality" id="quality" class="form-input">
-                        <option value="">Elegí</option>
-                        <option value="T-S" <%= ( productEdit.category == "T-S" )? "selected" : "" %>>Talle S</option>
-                        <option value="T-M" <%= ( productEdit.category == "T-M" )? "selected" : "" %>>Talle M</option>
-                        <option value="T-L" <%= ( productEdit.category == "T-L" )? "selected" : "" %>>Talle L</option>
-                        <option value="T-XL" <%= ( productEdit.category == "T-XL" )? "selected" : "" %>>Talle XL</option>
-                        <option value="T-XXL" <%= ( productEdit.category == "T-XXL" )? "selected" : "" %>>Talle XXL</option>
+                   <% if(product.category_id == 1){%>
+
+                    <label for="talle_id" class="form-label">Talle: </label>
+                    <select name="talle_id" id="talle_id" class="form-input">
+                        <option value=""><%= product.talle_id %></option>
+                        <% } %>
                     </select>
                 </div>
+
+                <div class="casilla">
+                    <label for="marca_id" class="form-label">Marca: </label>
+                    <select name="marca_id" id="marca_id" class="form-input">
+                        <option value=""><%= product.marca_id %></option>
+                  
+                    </select>
+                </div>
+
+                <div class="casilla">
+                    <label for="stock" class="form-label">Stock: </label>
+                    <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="<%= product.stock %>" >
+                    <span class="feedback"></span>
+                </div>
+
                 <!-- image -->
+                <div>
+                    <img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
+                </div>
                 <div class="casilla">
                     <label for="product-img" class="form-label">Imagen: </label>
                     <input  type="file" name="product-img" id="product-img" class="nombre_y_apellido"  accept="image/*" >
@@ -75,6 +76,7 @@
                     <button type="submit">Guardar</button>
                     <button type="reset" >Borrar</button>
                 </div>
+                <a href="/products/delete/<%= product.id %>" class="action-button edit">ELIMINAR PRODUCTO</a>
             </form>
         </main>
 

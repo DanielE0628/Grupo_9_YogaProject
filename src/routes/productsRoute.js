@@ -2,44 +2,13 @@
 const express = require('express');
 const multer = require('multer');
 const router = express.Router();
-
+//Multer
+const upload = require("../middlewares/productsMulterMiddleware")
+//Validaciones
+const validations = require("../middlewares/productsValidatorMiddleware");
 //Controller
 const productsController = require("../controllers/productsController");
 
-
-// ************  MULTER ************
-
-// {
-//   fieldname: 'product-img',
-//   originalname: 'motorola.jpg',
-//   encoding: '7bit',
-//   mimetype: 'image/jpeg'
-// }
-
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/images/products')
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + '-' + file.originalname)
-  }
-}) 
-
-function fileFilter (req, file, cb) {
-
-  const validFormat = [ 'image/jpeg', 'image/jpg' ]
-
-  // La función debe llamar a `cb` usando una variable del tipo boolean
-  // para indicar si el archivo debería ser aceptado o no
-
-  if(validFormat.includes(file.mimetype) ){
-    // Para aceptar el archivo es necesario pasar `true`, de la siguiente forma:
-    cb(null, true)
-  }else{
-    // Para rechazar el archivo es necesario pasar `false`, de la siguiente forma:
-    cb(null, false)
-  }
-}
 
 
 //Vistas
@@ -52,13 +21,14 @@ router.get('/detail/:id/', productsController.detail);
 
 // //crear producto
 router.get('/create', productsController.create); 
-// router.post('/',upload.single('product-img'), productsController.store); 
+router.post('/create',upload.single("product-img"), validations, productsController.store); 
 
 // //editar producto
-// router.get('/edit/:id/', productsController.edit);
-// router.put('/edit/:id',upload.single('product-img'), productsController.update); 
+ router.get('/edit/:id/', productsController.edit);
+ router.put('/edit/:id',upload.single('product-img'), productsController.update); 
 
 // //eliminar Producto
+router.get('/delete/:id', productsController.delete);
 // router.delete('/delete/:id/', productsController.destroy);
 // router.delete('/delete/img/:id', productsController.destroyImg); 
 
