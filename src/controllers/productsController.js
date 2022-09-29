@@ -64,7 +64,11 @@ const controller = {
             
           },
         store:(req, res) => {
-            products.create([{
+            let imagen = req.file.filename;
+            console.log(imagen)
+            console.log('imagen')
+
+            products.create({
                 name: req.body.name,
                 category_id: req.body.category_id,
                 price: req.body.price, 
@@ -72,9 +76,9 @@ const controller = {
                 talle_id: req.body.talle_id,
                 marca_id: req.body.marca_id,
                 stock: req.body.stock,
-                image: req.body.image,
+                image: imagen,
                 // create_at: req.body.created_at   
-            }])  
+            })  
             .then((products)=>{
                 res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
             })

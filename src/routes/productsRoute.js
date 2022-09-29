@@ -1,6 +1,5 @@
 //Require
 const express = require('express');
-const multer = require('multer');
 const router = express.Router();
 //Multer
 const upload = require("../middlewares/productsMulterMiddleware")
@@ -40,7 +39,7 @@ router.get('/cart', cartController.cartVista);
 
 // //crear producto
 router.get('/create', productsController.create); 
-router.post('/create',upload.single("product-img"), validations, productsController.store); 
+router.post('/create',upload.single("image"), productsController.store); 
 
 // //editar producto
  router.get('/edit/:id/', productsController.edit);

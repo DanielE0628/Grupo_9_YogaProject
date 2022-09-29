@@ -49,7 +49,7 @@ const controlador = {
         console.log('a');
         console.log(a);
 
-        User.edit({user});
+        User.edit(user);
         res.redirect('/');
     },
 
