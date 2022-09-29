@@ -2,23 +2,22 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
-const {Product} = require('../database/models/Product');
-const { all } = require('../routes/productsRoute');
+// const {Product} = require('../database/models/Product');
+// const { all } = require('../routes/productsRoute');
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
-    detalleProducto:'/stylesheets/detail-style.css',
-    crearProducto:'/stylesheets/product-create-style.css'  
+
 };
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Category, Product, etc} = require('../database/models');
 
 //Aquí tienen otra forma de llamar a los modelos creados
-const products = db.products;
-const categorys = db.categorys;
-const marcas = db.marcas;
-const talles = db.talles;
+const products = db.Products;
+const categorys = db.Categorys;
+const marcas = db.Marcas;
+const talles = db.Talles;
 
 // .Promesas
 
@@ -29,10 +28,11 @@ const controller = {
         list: (req, res) => {
             
             products.findAll({
-                // include:["categorys"]
+                include:[{association:"categorys"}]
             })
             
                 .then((productos)=>{
+                    console.log(productos)
                     res.render('products/products',{products:productos, title: 'Productos', estilo: estilos.productos });
                 })
                 .catch(error => res.send(error))
@@ -51,16 +51,19 @@ const controller = {
 
         //crear Prodcuto
         create: (req, res) => {
-               categorys.findAll()
-               .then((category)=>{
-                console.log(category);
-                res.render('products/product-create',{category });
-            })
-            .catch(error => res.send(error))
-        //     Promise.all([promCategorys, promMarcas, promTalles])
-        //     .then(([allCategorys, allMarcas, AllTalles]))
-        //         res.render('products/product-create', {allCategorys, allMarcas, AllTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
-        //     .catch(error => res.send(error))
+            //    categorys.findAll()
+            //    .then((category)=>{
+            //     console.log(category);
+            //     res.render('products/product-create',{category });
+            // })
+            // .catch(error => res.send(error))
+            let promCategorys = categorys.findAll()
+            let promMarcas = marcas.findAll()
+            let promTalles = talles.findAll()
+            Promise.all([promCategorys, promMarcas, promTalles])
+            .then(([allCategorys, allMarcas, allTalles])=>{
+                res.render('products/product-create', {allCategorys, allMarcas, allTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
+            }) .catch(error => res.send(error))
             
           },
         store:(req, res) => {

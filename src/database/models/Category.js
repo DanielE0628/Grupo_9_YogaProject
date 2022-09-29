@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "categorys";
+    let alias = "Categorys";
     let cols ={
 
     id: {
@@ -13,34 +13,35 @@ module.exports = (sequelize, dataTypes) => {
         allowNull: false
     },
 
-    created_at:{
-        type: dataTypes.DATE,
-    },
+    // created_at:{
+    //     type: dataTypes.DATE,
+    // },
 
-    updated_at:{
-        type: dataTypes.DATE,
-    },
+    // updated_at:{
+    //     type: dataTypes.DATE,
+    // },
 
     available:{
         type: dataTypes.TINYINT,
-    },
+    }
 
     };
 
     let config = {
-        timestamps: true,
-        createdAt: 'created_at',
-        updatedAt: 'updated_at',
+        tableName : "categorys",
+        timestamps: false,
+        // createdAt: 'created_at',
+        // updatedAt: 'updated_at',
         deletedAt: false
     }
 
     const Category = sequelize.define(alias, cols, config);
     //  las asociaciones
-    // Category.associate = (models)=>{
-    //     Category.hasMany(models.products, {
-    //         as: "products",
-    //         foreingKey: "category_id"
-    //     });
-    // };
+    Category.associate = function (models){
+        Category.hasMany(models.Products, {
+            as: "products",
+            foreignKey: "category_id"
+        });
+    };
     return Category;
 }
