@@ -48,7 +48,7 @@ router.post('/create',upload.single("image"), productsController.store);
 // //eliminar Producto
 router.get('/delete/:id', productsController.delete);
  router.delete('/delete/:id/', productsController.destroy);
-// router.delete('/delete/img/:id', productsController.destroyImg); 
+ //router.delete('/delete/img/:id', productsController.destroyImg); 
 
 //export
 module.exports = router;

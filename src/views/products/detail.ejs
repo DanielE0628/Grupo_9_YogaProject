@@ -15,29 +15,43 @@
 			</div>
 		</div>
 		<div class="product-detail">
-			<div ">
+			<div >
+				<!-- imagen -->
 				<div class="foto product-detail-img ">
 					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
+					<!-- Descripción -->
 					<p class="campo">
 						<%= product.description %>
 					</p>
 				</div>
 				<div class="campo">
 					<article class="product-detail-info">
+						<!-- Nombre -->
 						<h2 class="product-detail-title"><%= product.name %></h2>
+						<!-- Categoria -->
 						<h3 class="product-detail-title">Categoria: <%= product.categorys.nombre %></h3>
+						<!-- Marca -->
 						<h4 class="product-detail-title">Marca: <%= product.marcas.nombre %></h4>
+						<!-- Talle -->
 						<% if(product.category_id == 1){ %>
 						<h4 class="product-detail-title">Talle: <%= product.talles.nombre %></h4>
 						<% } %>
+						
 						<p class="product-detail-price small">
-								<span>$ <%= product.price %></span>
-								/
-								
+							<!-- Precio -->
+							<span>$ <%= product.price %></span>
+						
+							<% if(product.discount > 0){ %>	
+							</p>
+							<!-- Descuento -->
+							<p class="product-detail-price">
+								Descuento <%= product.discount %> % OFF
 							</p>
 							<p class="product-detail-price">
-								$ <%= product.price %>
+								Costo Final: $ <%= (product.price -(product.price*(product.discount/100))) %> 
 							</p>
+							<% } %>
+							<!-- Stock -->
 							<p class="product-detail-price">
 								Stock: <%= product.stock %>
 							</p>

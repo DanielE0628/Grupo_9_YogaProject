@@ -22,7 +22,10 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.DECIMAL(10, 2),
         allowNull: false
     },
-
+    discount:{
+        type: dataTypes.DECIMAL(2),
+        allowNull: false
+    },
     description:{
         type: dataTypes.TEXT,
     },

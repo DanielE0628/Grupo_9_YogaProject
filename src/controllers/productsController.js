@@ -111,10 +111,10 @@ const controller = {
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
                     image: req.body.image,
-                    // create_at: req.body.created_at   
+                    // updated_at: req.body.updated_at   
                 }])  
                 .then((products)=>{
-                    res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+                    res.render('products/products-edit')
                 })
             },
             
