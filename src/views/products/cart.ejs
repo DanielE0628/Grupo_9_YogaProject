@@ -9,39 +9,46 @@
 
         <main>
         <section class="list_of_products">
-            <article> 
-                <img src="#" alt="#">
-                <div>
-                    <p class="product_name">Shirt</p>
-                    <p class="color">Blue</p>
-                    <p class="size">Large</p>
-                </div>
-            </article>
-            <article> 
-                <img src="#" alt="#">
-                <div>
-                    <p class="product_name">Leggin</p>
-                    <p class="color">Red</p>
-                    <p class="size">Small</p>
-                </div>
-            </article>
-            <article> 
-                <img src="#" alt="#">
-                <div>
-                    <p class="product_name">Short</p>
-                    <p class="color">Green</p>
-                    <p class="size">XSmall</p>
-                </div>
-            </article>
-            <!-- FALTA CODIGO EJS PARA REPETIR PRODUCTOS -->
-        </section>  
-        <div>   
-            <div class="button">Button</div>
-            <!-- <button> BOTON DE "Seguir comprando" </button> -->
-        </div>
-        <section class="order_details">
+            <article>
+            <div>
+                <img src="/images/products/<%= product.image %>" alt="product image" class="product-img">
+            </div>
+            <div>
+                    <p class="campo" value="<%= product.id %>" ><%= product.name %></p>
+            </div>       
+            <div>        
+                    <p class="campo precio" value="<%= product.id %>">$ <%= product.price %></p>
+            </div>      
+            <div>       //buscar la manera de crear let cant = "numero de cantidad"
+                    <p class="campo cantidad" value="cant"> cantidad </p>
+            </div>
+            <div>                                                         // si se crea la variable "cant" calcula el total
+                    <p class="campo total" value="totalPrice"> Total: <%= product.price * cant %> </p>
+            </div>
+            <div>
+                <form>
+                    <button class="borrarProducto">
+                        <i> "icocono de tachito de basira" <i>
+                    </button>
+                </form>
+            </div>
         </section>
-        <section class="recommended_products">
+        <section>
+            <div>                  //crear la variable total que sea la suma de todos los "totalPrice"
+                <p> TOTAL A ABONAR: $ <%= total %> </p>
+            </div>
+            <div>
+                <form>
+                    <button class="botones">VACIAR</button>
+                </form>
+            </div>
+            <div>
+               <div>
+                <form>
+                    <button class="botones">PAGAR</button>
+                </form>
+            </div>
+            <div>
         </section>
     </main>
 
