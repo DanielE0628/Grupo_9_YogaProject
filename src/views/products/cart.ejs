@@ -9,7 +9,10 @@
 
         <main>
         <section class="list_of_products">
-            <article>
+        <% if (cart.length >0) { %>
+            <article> // editar la formula
+            <% products.forEach(products=> { %>
+                            <% { %>
             <div>
                 <img src="/images/products/<%= product.image %>" alt="product image" class="product-img">
             </div>
@@ -32,7 +35,12 @@
                     </button>
                 </form>
             </div>
+            <% } %>
+           <% }) %>
+         <% } %>  
         </section>
+        
+        
         <section>
             <div>                  //crear la variable total que sea la suma de todos los "totalPrice"
                 <p> TOTAL A ABONAR: $ <%= total %> </p>
