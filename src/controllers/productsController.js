@@ -2,23 +2,22 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
-const {Product} = require('../database/models/Product');
-const { all } = require('../routes/productsRoute');
+// const {Product} = require('../database/models/Product');
+// const { all } = require('../routes/productsRoute');
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
-    detalleProducto:'/stylesheets/detail-style.css',
-    crearProducto:'/stylesheets/product-create-style.css'  
+
 };
 
 //Aqui tienen una forma de llamar a cada uno de los modelos
 // const {Category, Product, etc} = require('../database/models');
 
 //Aquí tienen otra forma de llamar a los modelos creados
-const products = db.products;
-const categorys = db.categorys;
-const marcas = db.marcas;
-const talles = db.talles;
+const products = db.Products;
+const categorys = db.Categorys;
+const marcas = db.Marcas;
+const talles = db.Talles;
 
 // .Promesas
 
@@ -29,17 +28,20 @@ const controller = {
         list: (req, res) => {
             
             products.findAll({
-                // include:["categorys"]
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
             
                 .then((productos)=>{
+                    
                     res.render('products/products',{products:productos, title: 'Productos', estilo: estilos.productos });
                 })
                 .catch(error => res.send(error))
         },
         //detalle de un producto
         detail:(req, res) => {
-            products.findByPk(req.params.id)
+            products.findByPk(req.params.id,{
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            })
                 .then((product)=>{
                     res.render("products/detail", {product})
                 })
@@ -51,16 +53,22 @@ const controller = {
 
         //crear Prodcuto
         create: (req, res) => {
-               categorys.findAll()
-               .then((category)=>{
-                console.log(category);
-                res.render('products/product-create',{category });
-            })
-            .catch(error => res.send(error))
-        //     Promise.all([promCategorys, promMarcas, promTalles])
-        //     .then(([allCategorys, allMarcas, AllTalles]))
-        //         res.render('products/product-create', {allCategorys, allMarcas, AllTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
-        //     .catch(error => res.send(error))
+            // products.findAll({
+            //     include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            // })
+            //    .then((products)=>{
+            //    console.log(products.categorys)
+            //     res.render('products/product-create',{products});
+            // })
+            // .catch(error => res.send(error))
+           
+            let promCategorys = categorys.findAll()
+            let promMarcas = marcas.findAll()
+            let promTalles = talles.findAll()
+            Promise.all([promCategorys, promMarcas, promTalles])
+            .then(([allCategorys, allMarcas, allTalles, products])=>{
+                res.render('products/product-create', {allCategorys, allMarcas, allTalles, title: 'CrearProducto', estilo: estilos.crearProducto})
+            }) .catch(error => res.send(error))
             
           },
         store:(req, res) => {
@@ -72,6 +80,7 @@ const controller = {
                 name: req.body.name,
                 category_id: req.body.category_id,
                 price: req.body.price, 
+                discount: req.body.discount, 
                 description: req.body.description,
                 talle_id: req.body.talle_id,
                 marca_id: req.body.marca_id,
@@ -79,34 +88,39 @@ const controller = {
                 image: imagen,
                 // create_at: req.body.created_at   
             })  
-            .then((products)=>{
-                res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+            .then((product)=>{
+                res.redirect("/");
             })
                 },
             //editar productos
             edit: (req, res) => {
-                products.findByPk(req.params.id)
-                .then((product)=>{
-                    console.log(product);
-                    res.render('products/product-edit',{product});
+                let promProduct = products.findByPk(req.params.id,{include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]})
+                let promCategorys = categorys.findAll()
+                let promMarcas = marcas.findAll()
+                // let promTalles = talles.findAll()
+                Promise.all([promProduct,promCategorys, promMarcas])
+                .then(([ product, allCategorys, allMarcas])=>{
+                    res.render('products/product-edit', { product, allCategorys, allMarcas});
                 })
             .catch(error => res.send(error))
             },
 
             update:(req, res) => {
+                let imagen = req.file.filename;
                 products.update([{
                     name: req.body.name,
                     category_id: req.body.category_id,
                     price: req.body.price, 
+                    discount: req.body.discount,
                     description: req.body.description,
                     talle_id: req.body.talle_id,
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
-                    image: req.body.image,
-                    // create_at: req.body.created_at   
+                    image: imagen,
+                    // updated_at: req.body.updated_at   
                 }])  
-                .then((products)=>{
-                    res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+                .then((product)=>{
+                    res.render('products/products-detail')
                 })
             },
             

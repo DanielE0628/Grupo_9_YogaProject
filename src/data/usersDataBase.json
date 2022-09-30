@@ -55,5 +55,21 @@
   "email": "gonzalocortegoso@gmail.com",
   "fecha_de_nacimiento": "1985-11-22",
   "password": "$2a$10$Ybl3C6knJqRRggLE9id2.uVMPYJthkmxVOMoKX.mNXuJgcgtoeG.C"
+ },
+ {
+  "id": 8,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "carlos saul",
+  "email": "carlos@saul.com",
+  "fecha_de_nacimiento": "2222-11-11",
+  "password": "$2a$10$ldo8yR7S3eGxR.4e7uNvc.xWFA1nds3hyxc0CWaNXkewxlJU4JgTK"
+ },
+ {
+  "id": 9,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Gonzalo Cortegoso",
+  "email": "cortegosogonzalo@gmail1.com",
+  "fecha_de_nacimiento": "1985-11-22",
+  "password": "$2a$10$9VHnoMLcU18CLntQZMKCbOciGJdbm.MS2I2dfXt.FqdemcUhRJgHe"
  }
 ]

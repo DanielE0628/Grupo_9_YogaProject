@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "talles";
+    let alias = "Talles";
     let cols ={
 
     id: {
@@ -30,12 +30,20 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
+        tableName : "talles",
         timestamps: true,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
         deletedAt: false
     }
 
-    const talles = sequelize.define(alias, cols, config);
-    return talles;
+    const Talle = sequelize.define(alias, cols, config);
+       //  las asociaciones
+       Talle.associate = function (models){
+        Talle.hasMany(models.Products, {
+            as: "products",
+            foreignKey: "talle_id"
+        });
+    };
+    return Talle;
 }

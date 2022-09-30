@@ -4,10 +4,11 @@
 <%- include('../partials/head') %>
 
     <body>
-
+        <% let precioConDescuento =(products.price -(products.price*(products.discount/100))) %> 
         <%- include('../partials/header') %>
 
             <main class="contenedor-main">
+                
                 <div class="contenedor-main-rutas">
                     <a href="/">inicio</a>
                     <a href="/products/create">Crear Productos</a>
@@ -31,14 +32,28 @@
                                         <div>
 
                                         </div>
+                                        <% if(products.discount == 0){ %>
                                         <div>
                                             <h2>
-                                                $ <%= products.price %>
+                                             $ <%= products.price %> 
                                             </h2>
                                         </div>
+                                        <% } else { %>
+                                        <div>
+                                            <h2>
+                                            ¡Oferta! $ <%= (products.price -(products.price*(products.discount/100))) %> 
+                                            </h2>
+                                        </div>
+                                        	
+                                        <div>
+                                            <h2>
+                                                 <%= products.discount %> % OFF
+                                            </h2>
+                                        </div>
+                                        <% } %>
                                         <div>
                                             <h3>
-                                                 Categoria: 
+                                                 Categoria: <%= products.categorys.nombre %>
                                             </h3>
                                         </div>
                                         <div class="action-button edit">
@@ -62,33 +77,33 @@
 
                     <section class="contenedor-main-filtro">
                         <form action="" class="contenedor-main-filtro-lista">
-                            <h2>CATEGORIAS</h2>
-                            <div>
-                                <h3>Indumentaria</h3>
-                                <label><input type="radio" name="Mujer">Mujer</label>
-                                <label><input type="radio" name="Hombre">Hombre</label>
-                                <label><input type="radio" name="Pantalones">Pantalones</label>
-                                <label><input type="radio" name="Remeras">Remeras</label>
-                                <label><input type="radio" name="Calzado">Calzado</label>
-                            </div>
-                            <div>
-                                <h3>Accesorios</h3>
-                                <label><input type="radio" name="Bolsos">Bolsos</label>
-                                <label><input type="radio" name="Colchonetas">Colchonetas</label>
-                            </div>
-                            <div>
-                                <h3>Decorativos</h3>
-                                <label><input type="radio" name="Mantas">Mantas</label>
-                                <label><input type="radio" name="Cuadros">Cuadros</label>
-                                <label><input type="radio" name="Aromatisantes">Aromatisantes</label>
-                            </div>
-        
+                            
                             <h2>Filtrar por</h2>
+                            <div>
+                              
+                                <h3>CATEGORIAS</h3>
+                                <label><input type="radio" name="Indumentaria">Indumentaria</label>
+                                <label><input type="radio" name="Clases">Clases</label>
+                                <label><input type="radio" name="Accesorios">Accesorios</label>
+                                <label><input type="radio" name="Decorativos">Decorativos</label>
+                            </div>
+  
+        
+                            
                             <div>
                                 <h3>MARCA</h3>
                                 <label><input type="radio" name="Marca1">Marca 1</label>
                                 <label><input type="radio" name="Marca2">Marca 2</label>
                                 <label><input type="radio" name="Marca3">Marca 3</label>
+                            </div>
+                            <div>
+                                <h3>Talle</h3>
+                                <label><input type="radio" name="XS">XS</label>
+                                <label><input type="radio" name="S">S</label>
+                                <label><input type="radio" name="M">M</label>
+                                <label><input type="radio" name="L">L</label>
+                                <label><input type="radio" name="XL">XL</label>
+                                <label><input type="radio" name="XXL">XXL</label>
                             </div>
                             <div>
                                 <h3>ORDEN</h3>
@@ -106,127 +121,60 @@
                     </section>
 
                     <!-- section ofertas -->
-                    <section class="contenedor-main-ofertas">
-                        <div class="contenedor-main-ofertas-titulo">
-                            <h1>
-                                OFERTAS
-                            </h1>
-                        </div>
-                        <article class="contenedor-main-ofertas-articulos">
-                            <img src="/images/products/mujer-2.png" alt="ropa-mujer1">
-                            <div>
-                                <h3>
-                                    Conjunto yoga mujer 1
-                                </h3>
-                            </div>
-                            <div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Unde adipisci quam maiores eum
-                                </p>
-                            </div>
-                            <div>
-                                <h3>
-                                    $5000.00
-                                </h3>
-                            </div>
-                            <div>
-                                <h2>
-                                    $3500.00
-                                </h2>
-                            </div>
-                            <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
-                                Comprar
-                            </button>
-                        </article>
-                        <article class="contenedor-main-ofertas-articulos">
-                            <img src="/images/products/remera-hombre-2.jpg" alt="ropa-mujer1">
-                            <div>
-                                <h3>
-                                    Remera yoga hombre 2
-                                </h3>
-                            </div>
-                            <div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Unde adipisci quam maiores eum
-                                </p>
-                            </div>
-                            <div>
-                                <h3>
-                                    $5000.00
-                                </h3>
-                            </div>
-                            <div>
-                                <h2>
-                                    $3500.00
-                                </h2>
-                            </div>
-                            <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
-                                Comprar
-                            </button>
-                        </article>
-                        <article class="contenedor-main-ofertas-articulos">
-                            <img src="/images/products/mujer-pantalon-2.jpg" alt="ropa-mujer1">
-                            <div>
-                                <h3>
-                                    Pantalon yoga mujer 2
-                                </h3>
-                            </div>
-                            <div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Unde adipisci quam maiores eum
-                                </p>
-                            </div>
-                            <div>
-                                <h3>
-                                    $5000.00
-                                </h3>
-                            </div>
-                            <div>
-                                <h2>
-                                    $3500.00
-                                </h2>
-                            </div>
-                            <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
-                                Comprar
-                            </button>
-                        </article>
-                        <article class="contenedor-main-ofertas-articulos">
-                            <img src="/images/products/medias-2.jpg" alt="ropa-mujer1">
-                            <div>
-                                <h3>
-                                    Medias yoga mujer 2
-                                </h3>
-                            </div>
-                            <div>
-                                <p>
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                    Unde adipisci quam maiores eum
-                                </p>
-                            </div>
-                            <div>
-                                <h3>
-                                    $5000.00
-                                </h3>
-                            </div>
-                            <div>
-                                <h2>
-                                    $3500.00
-                                </h2>
-                            </div>
-                            <button type="submit" name="comprar" class="contenedor-main-ofertas-articulos-button">
-                                Comprar
-                            </button>
-                        </article>
-                    </section>
-                    <section class="contenedor-main-clases">
-                        <div>
-                            <a href="/clases">
-                                <h1>VER TODAS LAS CLASES</h1>
-                            </a>
-                        </div>
+                    <div>
+                        <h1>OFERTAS</h1>
+                    </div>
+                    <section class="contenedor-main-productos">
+                        <% products.forEach(products=> { %>
+                            <% { %>
+                                <% if(products.discount > 0){ %>
+                                <article class="contenedor-main-productos-articulos">
+
+                                    <div class="contenedor-main-productos-articulos-imagen">
+                                        <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
+                                    </div>
+                                    <div class="contenedor-main-productos-articulos-detalles">
+                                        <div>
+                                            <h2>
+                                                <%= products.name %>
+                                            </h2>
+                                        </div>
+                                        <div>
+
+                                        </div>
+                                        
+                                 
+                                        
+                                        <div>
+                                            <h2>
+                                            ¡Oferta! $ <%= (products.price -(products.price*(products.discount/100))) %> 
+                                            </h2>
+                                        </div>
+                                        	
+                                        <div>
+                                            <h2>
+                                                 <%= products.discount %> % OFF
+                                            </h2>
+                                        </div>
+                                        
+                                        <div>
+                                            <h3>
+                                                 Categoria: <%= products.categorys.nombre %>
+                                            </h3>
+                                        </div>
+                                        <div class="action-button edit">
+                                            <a href="/products/detail/<%= products.id %>">Detalles</a>
+                                        </div>
+                                        <div class="contenedor-main-productos-articulos-button">
+                                            <button type="submit" name="comprar">
+                                                Comprar
+                                            </button>
+                                        </div>
+                                    </div>
+                                </article>
+                                <% } %>
+                                <% } %>
+                                    <% }) %>
                     </section>
                 </div>
             </main>

@@ -4,8 +4,8 @@
     <body>
         <%- include('../partials/header') %>
         <main>          
-
-            <form name="Profile" method="POST" action="/users/edit/<%= user.id %>">
+                                                                //agarrar por query.params
+            <form name="Profile" method="POST" action="/users/edit/?_method=PUT" enctype="multipart/form-data">
                 <h2>¡Hola <%= user.nombre_y_apellido %>! </h2></br>
 
                 <div class="foto">
