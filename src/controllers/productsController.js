@@ -80,6 +80,7 @@ const controller = {
                 name: req.body.name,
                 category_id: req.body.category_id,
                 price: req.body.price, 
+                discount: req.body.discount, 
                 description: req.body.description,
                 talle_id: req.body.talle_id,
                 marca_id: req.body.marca_id,
@@ -87,34 +88,39 @@ const controller = {
                 image: imagen,
                 // create_at: req.body.created_at   
             })  
-            .then((products)=>{
+            .then((product)=>{
                 res.redirect("/");
             })
                 },
             //editar productos
             edit: (req, res) => {
-                products.findByPk(req.params.id)
-                .then((product)=>{
-                    console.log(product);
-                    res.render('products/product-edit',{product});
+                let promProduct = products.findByPk(req.params.id,{include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]})
+                let promCategorys = categorys.findAll()
+                let promMarcas = marcas.findAll()
+                // let promTalles = talles.findAll()
+                Promise.all([promProduct,promCategorys, promMarcas])
+                .then(([ product, allCategorys, allMarcas])=>{
+                    res.render('products/product-edit', { product, allCategorys, allMarcas});
                 })
             .catch(error => res.send(error))
             },
 
             update:(req, res) => {
+                let imagen = req.file.filename;
                 products.update([{
                     name: req.body.name,
                     category_id: req.body.category_id,
                     price: req.body.price, 
+                    discount: req.body.discount,
                     description: req.body.description,
                     talle_id: req.body.talle_id,
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
-                    image: req.body.image,
+                    image: imagen,
                     // updated_at: req.body.updated_at   
                 }])  
-                .then((products)=>{
-                    res.render('products/products-edit')
+                .then((product)=>{
+                    res.render('products/products-detail')
                 })
             },
             

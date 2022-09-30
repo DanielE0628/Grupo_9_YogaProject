@@ -31,32 +31,53 @@
                     <input type="text" name="price" id="price" placeholder="<%= product.price %>" value="<%= product.price %>">
                     <span class="feedback"></span>
                 </div>
+                <!-- discount -->
+                <div class="campo">
+                    <label for="price" class="form-label">Descuento:</label>
+                    <input type="text" name="discount" id="discount" placeholder="<%= product.discount %>" value="<%= product.discount %>">
+                    <span class="feedback"></span>
+                </div>
                 <!-- category -->
                 <div class="campo">
                     <label for="category_id" class="form-label">Categoría: </label>
                     <select name="category_id" id="category_id" class="form-input">
-                        <option value=""><%= product.category_id %></option>
-                  
+                       
+                        <option value="product.id"><%= product.categorys.nombre %></option>
+                       
+                        <% for (i=0; i < allCategorys.length;i++) { %>
+                        <option value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %></option>
+                        <% } %>
+
                     </select>
                 </div>
+                   
+                </div>
+                 <!-- Talle -->
                 <div class="campo">
-                   <% if(product.category_id == 1){%>
-
+                   
+                    <% if(product.category_id == 1){%>
                     <label for="talle_id" class="form-label">Talle: </label>
                     <select name="talle_id" id="talle_id" class="form-input">
-                        <option value=""><%= product.talle_id %></option>
-                        <% } %>
+                        <option value="product.id"><%= product.talles.nombre %></option>
+                
+                        <!-- cuando se arrgler poder llmar una 4 db poner la funcion -->
+                    <% } %>
+
                     </select>
                 </div>
-
+                    <!-- marca -->
                 <div class="campo">
                     <label for="marca_id" class="form-label">Marca: </label>
                     <select name="marca_id" id="marca_id" class="form-input">
-                        <option value=""><%= product.marca_id %></option>
-                  
+                        <option value="product.id"><%= product.marcas.nombre %></option>
+                       
+                        <% for (i=0; i < allMarcas.length;i++) { %>
+                            <option value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %></option>
+                         <% } %>
+
                     </select>
                 </div>
-
+                <!-- stock -->
                 <div class="campo">
                     <label for="stock" class="form-label">Stock: </label>
                     <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="<%= product.stock %>" >
@@ -68,11 +89,10 @@
                     <img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
                 </div>
                 <div class="campo">
-                    <label for="product-img" class="form-label">Imagen: </label>
-                    <input  type="file" name="product-img" id="product-img" class="nombre_y_apellido"  accept="image/*" >
+                    <label for="image" class="form-label">Imagen: </label>
+                    <input  type="file" name="image" id="image"  >
                     <span class="feedback"></span>
                 </div>
-
 
                 <div class="botones">
                     <button type="submit">Guardar</button>

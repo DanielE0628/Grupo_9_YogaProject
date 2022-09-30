@@ -43,12 +43,11 @@
                     <select name="category_id" id="category_id" class="form-input">
                        
                         <option value="">Elegí</option>
-                        <% for (i=0; i < allCategorys.length;i++) { %>
-                            
-                        
+                       
+                        <% for (i=0; i < allCategorys.length;i++) { %>    
                         <option value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %></option>
-                        
                         <% } %>
+
                     </select>
                 </div>
 
@@ -57,26 +56,26 @@
                 <div class="campo">
                     <label for="talle_id" class="form-label">Talle: </label>
                     <select name="talle_id" id="talle_id" class="form-input">
-                        <option value="0">Elegí</option>
-                        <% for (i=0; i < allTalles.length;i++) { %>
-                            
                         
+                        <option value="0">Elegí</option>
+
+                        <% for (i=0; i < allTalles.length;i++) { %>
                             <option value="<%= allTalles[i].id %>"><%= allTalles[i].nombre %></option>
-                            
-                            <% } %>
+                        <% } %>
+
                     </select>
                 </div>
            
                 <div class="campo">
                     <label for="marca_id" class="form-label">Marca: </label>
                     <select name="marca_id" id="marca_id" class="form-input">
+                       
                         <option value="null">Elegí</option>
+                       
                         <% for (i=0; i < allMarcas.length;i++) { %>
-                            
-                        
                             <option value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %></option>
-                            
-                            <% } %>
+                         <% } %>
+
                     </select>
                 </div>
 
