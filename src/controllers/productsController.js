@@ -28,18 +28,20 @@ const controller = {
         list: (req, res) => {
             
             products.findAll({
-                include:[{association:"categorys"}]
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
             
                 .then((productos)=>{
-                    console.log(productos)
+                    
                     res.render('products/products',{products:productos, title: 'Productos', estilo: estilos.productos });
                 })
                 .catch(error => res.send(error))
         },
         //detalle de un producto
         detail:(req, res) => {
-            products.findByPk(req.params.id)
+            products.findByPk(req.params.id,{
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            })
                 .then((product)=>{
                     res.render("products/detail", {product})
                 })
@@ -51,18 +53,21 @@ const controller = {
 
         //crear Prodcuto
         create: (req, res) => {
-            //    categorys.findAll()
-            //    .then((category)=>{
-            //     console.log(category);
-            //     res.render('products/product-create',{category });
+            // products.findAll({
+            //     include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            // })
+            //    .then((products)=>{
+            //    console.log(products.categorys)
+            //     res.render('products/product-create',{products});
             // })
             // .catch(error => res.send(error))
+           
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promTalles = talles.findAll()
             Promise.all([promCategorys, promMarcas, promTalles])
-            .then(([allCategorys, allMarcas, allTalles])=>{
-                res.render('products/product-create', {allCategorys, allMarcas, allTalles ,title: 'CrearProducto', estilo: estilos.crearProducto})
+            .then(([allCategorys, allMarcas, allTalles, products])=>{
+                res.render('products/product-create', {allCategorys, allMarcas, allTalles, title: 'CrearProducto', estilo: estilos.crearProducto})
             }) .catch(error => res.send(error))
             
           },
@@ -83,7 +88,7 @@ const controller = {
                 // create_at: req.body.created_at   
             })  
             .then((products)=>{
-                res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+                res.redirect("/");
             })
                 },
             //editar productos

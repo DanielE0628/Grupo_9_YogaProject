@@ -16,7 +16,7 @@
 		</div>
 		<div class="product-detail">
 			<div ">
-				<div class="foto">
+				<div class="foto product-detail-img ">
 					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
 					<p class="campo">
 						<%= product.description %>
@@ -25,18 +25,18 @@
 				<div class="campo">
 					<article class="product-detail-info">
 						<h2 class="product-detail-title"><%= product.name %></h2>
-						<h3 class="product-detail-title">Categoria: <%= product.category_id %></h3>
-						<h4 class="product-detail-title">Marca: <%= product.marca_id %></h4>
+						<h3 class="product-detail-title">Categoria: <%= product.categorys.nombre %></h3>
+						<h4 class="product-detail-title">Marca: <%= product.marcas.nombre %></h4>
 						<% if(product.category_id == 1){ %>
-						<h4 class="product-detail-title">Talle: <%= product.talle_id %></h4>
+						<h4 class="product-detail-title">Talle: <%= product.talles.nombre %></h4>
 						<% } %>
 						<p class="product-detail-price small">
-								<span>$<%= product.price %></span>
+								<span>$ <%= product.price %></span>
 								/
 								
 							</p>
 							<p class="product-detail-price">
-								$<%= product.price %>
+								$ <%= product.price %>
 							</p>
 							<p class="product-detail-price">
 								Stock: <%= product.stock %>
