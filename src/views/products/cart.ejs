@@ -1,66 +1,61 @@
 <!DOCTYPE html>
 <html lang="es">
     
-    <%- include('../partials/head', {title: 'Changuito', estilo:'/stylesheets/carrito-style.css'}) %>
+    <%- include('../partials/head', {title: 'Carrito de compras', estilo:'/stylesheets/carrito-style.css'}) %>
 
-    <body>
-        
-        <%- include('../partials/header') %>
-
-        <main>
-        <section class="list_of_products">
-        <% if (cart.length >0) { %>
-            <article> // editar la formula
-            <% products.forEach(products=> { %>
-                            <% { %>
-            <div>
-                <img src="/images/products/<%= product.image %>" alt="product image" class="product-img">
+    
+<body>
+    <%- include('../partials/header') %>
+    <main>
+        <section class="cart_products">
+            <p class="purchase_warning"> Los productos en el carrito no serán reservados hasta completar la compra</p>
+            <div class="added_product">
+                <h3 id= "product_name"> product[i].name</h3> 
+                <img src="#" alt="product image" id="product_image">
+            <div class="product_info">
+                <p id= "product_ref">REF: product[i].ref </p>
+                <p id="product_quantity"> ##</p>
+                <p id= "product_size"> product[i].size </p>
+                <p id= "product_price"> product[i].price</p>
+            </div> 
+               
+            <!-- <div class= "product_info">
+                    <p id= "product_size"> product[i].size </p>
+                </div>
+                 CANTIDAD CON SELECT O CON INPUT? ES UN FORM??  
+                <div class= "product_info">
+                    <p id= "product_price"> product[i].price</p>
+                </div> -->
+                <!-- BOTON PARA QUITAR UN PRODUCTO DEL CARRITO ES UN FORM??  -->
             </div>
-            <div>
-                    <p class="campo" value="<%= product.id %>" ><%= product.name %></p>
-            </div>       
-            <div>        
-                    <p class="campo precio" value="<%= product.id %>">$ <%= product.price %></p>
-            </div>      
-            <div>       //buscar la manera de crear let cant = "numero de cantidad"
-                    <p class="campo cantidad" value="cant"> cantidad </p>
-            </div>
-            <div>                                                         // si se crea la variable "cant" calcula el total
-                    <p class="campo total" value="totalPrice"> Total: <%= product.price * cant %> </p>
-            </div>
-            <div>
-                <form>
-                    <button class="borrarProducto">
-                        <i> "icocono de tachito de basira" <i>
-                    </button>
-                </form>
-            </div>
-            <% } %>
-           <% }) %>
-         <% } %>  
         </section>
-        
-        
-        <section>
-            <div>                  //crear la variable total que sea la suma de todos los "totalPrice"
-                <p> TOTAL A ABONAR: $ <%= total %> </p>
+        <section class="checkout"> <!-- QUIZÁ SEA MEJOR DEJAR EL RESUMEN DE LA COMPRA EN OTRA VISTA -->
+           <button href="#products_list_view" class="button" id="keep_buying">
+                <a id="button_link">Seguir Comprando</a>
+           </button>
+            <div class="purchase_summary">
+                <h3 id="checkout_title">Resumen de la compra</h3>
+                <strong id="total_items">Cantidad de artículos</strong>
+                <!-- <span id="value"></span> CAMPO PARA VALOR  -->
+                <strong id="total_price">Precio Total</strong>
+                <!-- <span id="value"></span> CAMPO PARA VALOR  -->
             </div>
-            <div>
-                <form>
-                    <button class="botones">VACIAR</button>
-                </form>
+            <!-- BOTON PARA IR A "PAGAR" (RESUMEN DE COMPRA) ES UN FORM??  -->
+        </section>
+        <section class="recommended_items">
+            <!-- <h3 id="recommended_items_title">Artículos recomendados</h3> -->
+            <!-- El For de los recomendados aquí -->
+            <div class="recommended_product">
+                <img src="product[i].image" alt="product image" id="item_image">
+                <p> product[i].name</p>
             </div>
-            <div>
-               <div>
-                <form>
-                    <button class="botones">PAGAR</button>
-                </form>
+            <div class="recommended_product">
+                <img src="product[i].image" alt="product image" id="item_image">
+                <p> product[i].name</p>
             </div>
-            <div>
+            
         </section>
     </main>
-
     <%- include('../partials/footer') %>
-    
 </body>
 </html>

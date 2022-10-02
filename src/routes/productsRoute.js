@@ -19,7 +19,7 @@ router.get('/', productsController.list);
 router.get('/detail/:id/', productsController.detail); 
 
 //carrito
-router.get('/cart', cartController.cartVista); 
+// router.get('/cart', cartController.cartVista); 
 
 //-----------------Carrito----------------------
 

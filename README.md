@@ -39,3 +39,63 @@ RETROSPECTIVA:
     
     Retro del Sprint 2:
 
+<!-- <body>
+        
+        <%- include('../partials/header') %>
+
+        <main>
+        <section class="list_of_products">
+        <% if (cart.length >0) { %>
+            <article> // editar la formula
+            <% products.forEach(products=> { %>
+                            <% { %>
+            <div>
+                <img src="/images/products/<%= product.image %>" alt="product image" class="product-img">
+            </div>
+            <div>
+                    <p class="campo" value="<%= product.id %>" ><%= product.name %></p>
+            </div>       
+            <div>        
+                    <p class="campo precio" value="<%= product.id %>">$ <%= product.price %></p>
+            </div>      
+            <div>       //buscar la manera de crear let cant = "numero de cantidad"
+                    <p class="campo cantidad" value="cant"> cantidad </p>
+            </div>
+            <div>                                                         // si se crea la variable "cant" calcula el total
+                    <p class="campo total" value="totalPrice"> Total: <%= product.price * cant %> </p>
+            </div>
+            <div>
+                <form>
+                    <button class="borrarProducto">
+                        <i> "icocono de tachito de basira" <i>
+                    </button>
+                </form>
+            </div>
+            <% } %>
+           <% }) %>
+         <% } %>  
+        </section>
+        
+        
+        <section>
+            <div>                  //crear la variable total que sea la suma de todos los "totalPrice"
+                <p> TOTAL A ABONAR: $ <%= total %> </p>
+            </div>
+            <div>
+                <form>
+                    <button class="botones">VACIAR</button>
+                </form>
+            </div>
+            <div>
+               <div>
+                <form>
+                    <button class="botones">PAGAR</button>
+                </form>
+            </div>
+            <div>
+        </section>
+    </main>
+
+    <%- include('../partials/footer') %>
+    
+</body> -->
