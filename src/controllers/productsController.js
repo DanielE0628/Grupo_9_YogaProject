@@ -126,18 +126,26 @@ const controller = {
           },
 
         store:(req, res) => {
+            //---Precio Final -----
+            let price = req.body.price;
+            let discount = req.body.discount;
+            let finalPrice = price;
+            if(discount != 0){ finalPrice = (price-(price*discount/100))}
+            //----- imagen------
             let imagen = req.file.filename;
+            // promesas
             products.create({
                 name: req.body.name,
                 category_id: req.body.category_id,
                 price: req.body.price, 
                 discount: req.body.discount, 
+                finalPrice: finalPrice ,
                 description: req.body.description,
                 talle_id: req.body.talle_id,
                 marca_id: req.body.marca_id,
                 stock: req.body.stock,
                 image: imagen,
-                // create_at: req.body.created_at   
+                //create_at: now Date
             })  
             .then((product)=>{
                 res.redirect("/");

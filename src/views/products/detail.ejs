@@ -48,7 +48,7 @@
 								Descuento <%= product.discount %> % OFF
 							</p>
 							<p class="product-detail-price">
-								Costo Final: $ <%= (product.price -(product.price*(product.discount/100))) %> 
+								Costo Final: $ <%= product.finalPrice %> 
 							</p>
 							<% } %>
 							<!-- Stock -->
