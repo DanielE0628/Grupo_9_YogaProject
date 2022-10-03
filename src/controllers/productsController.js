@@ -24,16 +24,18 @@ const talles = db.Talles;
 
 
 const controller = {
-        //todos los productos
-        list: (req, res) => {
-            
-            products.findAll({
+    //---------------------------------GUESTS-------------------------------------
+         //todos los productos
+         list: (req, res) => {
+            let promCategorys = categorys.findAll()
+            let promMarcas = marcas.findAll()
+            let promProducts =products.findAll({
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
-            
-                .then((productos)=>{
+            Promise.all([promProducts, promCategorys, promMarcas])
+                .then(([products, allCategorys, allMarcas])=>{
                     
-                    res.render('products/products',{products:productos, title: 'Productos', estilo: estilos.productos });
+                    res.render('products/products',{ products, allCategorys, allMarcas});
                 })
                 .catch(error => res.send(error))
         },
@@ -47,21 +49,73 @@ const controller = {
                 })
         },
         //Buscar prodcutos
-        //pendiente
-        // dale GIT
+        search: (req, res) => {    
+            let promCategorys = categorys.findAll()
+            let promMarcas = marcas.findAll()
+            let promProducts =products.findAll({
+                where:{ name: { [Op.like]: '%' + req.query.search + '%' }},
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            })
+            Promise.all([promProducts, promCategorys, promMarcas])
+            .then(([products, allCategorys, allMarcas])=>{
+                res.render('products/products',{ products, allCategorys, allMarcas});
+            })
+            .catch(error => res.send(error))
+            
+         
+        },
+        //---------------------------- Menu----------------------------------
+        // menuCategory: (req, res)=>{   
+        //     let promCategorys = categorys.findAll()
+        //     let promMarcas = marcas.findAll()
+        //     let promProducts = products.findAll({
+        //         where:{ category_id:{  [Op.eq] : req.body.category} },
+        //         include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+        //     })
+        //     Promise.all([promProducts, promCategorys, promMarcas])
+        //     .then(([products, allCategorys, allMarcas])=>{
+        //         res.render('products/products',{ products, allCategorys, allMarcas});
+        //     })
+        //     .catch(error => res.send(error))
+        // },
+ //---------------------------- Filro----------------------------------
+        filter: (req, res)=>{   
+             //--------orden------------
+            let orderPrice = req.body.orderPrice;
+            if(orderPrice == 1){ orderPrice = ["price"] } else {orderPrice = ["price", "DESC"]};
+            let orderAlfa = req.body.orderAlfa;
+            if(orderAlfa == 1){ orderAlfa = ["name"] } else {orderPrice = ["name", "DESC"]}; 
+            let orderDate = req.body.orderDate;
+            //-----------promesas---------------
+            let promCategorys = categorys.findAll()
+            let promMarcas = marcas.findAll()
+            let promProducts = products.findAll({
+                where :{
+                    [Op.or]: [
+                        {category_id: req.body.category},
+                        { marca_id:  req.body.marca}
+                    ]
+                },
+                //where:{  category_id:{  [Op.eq] : req.body.category} },
+                //where:{ marca_id:{  [Op.eq] : req.body.marca} },
+                // order:[orderPrice],
+                // order:[ orderAlfa],
+                // order:[orderDate],
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            })
+            Promise.all([promProducts, promCategorys, promMarcas])
+            .then(([products, allCategorys, allMarcas])=>{
+                res.render('products/products',{ products, allCategorys, allMarcas});
+            })
+            .catch(error => res.send(error))
+        
 
+        },
+
+    //---------------------------------ADMINS / CRUD-----------------------------------------------
 
         //crear Prodcuto
         create: (req, res) => {
-            // products.findAll({
-            //     include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
-            // })
-            //    .then((products)=>{
-            //    console.log(products.categorys)
-            //     res.render('products/product-create',{products});
-            // })
-            // .catch(error => res.send(error))
-           
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promTalles = talles.findAll()
@@ -69,13 +123,10 @@ const controller = {
             .then(([allCategorys, allMarcas, allTalles, products])=>{
                 res.render('products/product-create', {allCategorys, allMarcas, allTalles, title: 'CrearProducto', estilo: estilos.crearProducto})
             }) .catch(error => res.send(error))
-            
           },
+
         store:(req, res) => {
             let imagen = req.file.filename;
-            console.log(imagen)
-            console.log('imagen')
-
             products.create({
                 name: req.body.name,
                 category_id: req.body.category_id,

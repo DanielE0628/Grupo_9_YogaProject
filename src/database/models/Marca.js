@@ -13,10 +13,7 @@ module.exports = (sequelize, dataTypes) => {
         allowNull: false
     },
 
-    category_id: {
-        type: dataTypes.STRING(100),
-        allowNull: false
-        },
+
         created_at:{
             type: dataTypes.DATE,
         },
@@ -25,7 +22,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
         },
     
-        available:{
+        logicDelete:{
             type: dataTypes.TINYINT,
         },
 

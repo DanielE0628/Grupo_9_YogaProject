@@ -21,19 +21,16 @@ router.get('/detail/:id/', productsController.detail);
 //carrito
 router.get('/cart', cartController.cartVista); 
 
-//-----------------Carrito----------------------
+//----------------Search Bar-------------------------
+router.get("/search/:id", productsController.search)
 
-//agregar
-//router.post('/cart/add', cartController.add); 
+//---------------- Filtros -------------------------
+router.post("/filter/", productsController.filter)
 
-//borrar un prodcuto
-// router.delete('/cart/delete/:id/', cartController.destroy);
+//---------------- Category menu -------------------------
+// router.post("/category/", productsController.menuCategory)
 
-//vaciar carrito
-// router.delete('/cart/deleteAll/:id/', cartController.destroyAll);
 
-//comprar
-//pendiente
 
 //------------------CRUD------------------------
 
@@ -49,6 +46,21 @@ router.post('/create',upload.single("image"), productsController.store);
 router.get('/delete/:id', productsController.delete);
  router.delete('/delete/:id/', productsController.destroy);
  //router.delete('/delete/img/:id', productsController.destroyImg); 
+
+
+ //-----------------Carrito----------------------
+
+//agregar
+//router.post('/cart/add', cartController.add); 
+
+//borrar un prodcuto
+// router.delete('/cart/delete/:id/', cartController.destroy);
+
+//vaciar carrito
+// router.delete('/cart/deleteAll/:id/', cartController.destroyAll);
+
+//comprar
+//pendiente
 
 //export
 module.exports = router;

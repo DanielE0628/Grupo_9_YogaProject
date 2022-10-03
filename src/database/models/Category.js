@@ -21,7 +21,7 @@ module.exports = (sequelize, dataTypes) => {
     //     type: dataTypes.DATE,
     // },
 
-    available:{
+    logicDelete:{
         type: dataTypes.TINYINT,
     }
 
