@@ -26,6 +26,9 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.DECIMAL(2),
         allowNull: false
     },
+    finalPrice:{
+        type: dataTypes.DECIMAL(10, 2),
+    },
     description:{
         type: dataTypes.TEXT,
     },
@@ -49,15 +52,15 @@ module.exports = (sequelize, dataTypes) => {
         allowNull: false
     },
 
-    // created_at:{
-    //     type: dataTypes.DATE,
-    // },
+    created_at:{
+        type: dataTypes.DATE,
+    },
 
-    // updated_at:{
-    //     type: dataTypes.DATE,
-    // },
+    updated_at:{
+        type: dataTypes.DATE,
+    },
 
-    available:{
+    logicDelete:{
         type: dataTypes.TINYINT,
     }
  

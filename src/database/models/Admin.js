@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "Categorys";
+    let alias = "Admins";
     let cols ={
 
     id: {
@@ -28,20 +28,15 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
-        tableName : "categorys",
+        tableName : "admins",
         timestamps: false,
         // createdAt: 'created_at',
         // updatedAt: 'updated_at',
         deletedAt: false
     }
 
-    const Category = sequelize.define(alias, cols, config);
+    const Admin = sequelize.define(alias, cols, config);
     //  las asociaciones
-    Category.associate = function (models){
-        Category.hasMany(models.Products, {
-            as: "products",
-            foreignKey: "category_id"
-        });
-    };
-    return Category;
+ 
+    return Admin;
 }

@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('../partials/head') %>
+    <%- include('../partials/head', { title: 'Productos', estilo: '/stylesheets/productos-style.css' }) %>
 
     <body>
-        <% let precioConDescuento =(products.price -(products.price*(products.discount/100))) %> 
+       
         <%- include('../partials/header') %>
 
             <main class="contenedor-main">
-                
+               
                 <div class="contenedor-main-rutas">
                     <a href="/">inicio</a>
                     <a href="/products/create">Crear Productos</a>
@@ -76,27 +76,32 @@
                     </button>
 
                     <section class="contenedor-main-filtro">
-                        <form action="" class="contenedor-main-filtro-lista">
+                        <form action="/products/filter/" method="post" class="contenedor-main-filtro-lista" value="filter">
                             
-                            <h2>Filtrar por</h2>
+                        
                             <div>
-                              
+                                <!-- //menu categoryas -->
+                                
                                 <h3>CATEGORIAS</h3>
-                                <label><input type="radio" name="Indumentaria">Indumentaria</label>
-                                <label><input type="radio" name="Clases">Clases</label>
-                                <label><input type="radio" name="Accesorios">Accesorios</label>
-                                <label><input type="radio" name="Decorativos">Decorativos</label>
+                        <% for (i=0; i < allCategorys.length;i++) { %>  
+                            <ul>  
+                                <li>
+                                <label><input type="radio" name="category"  value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
+                                </li>
+                            </ul>  
+                            <% } %>
                             </div>
-  
-        
-                            
                             <div>
                                 <h3>MARCA</h3>
-                                <label><input type="radio" name="Marca1">Marca 1</label>
-                                <label><input type="radio" name="Marca2">Marca 2</label>
-                                <label><input type="radio" name="Marca3">Marca 3</label>
+                                <% for (i=0; i < allMarcas.length;i++) { %>  
+                                <ul>  
+                                    <li>
+                                    <label><input type="radio" name="marca"  value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %>
+                                    </li>
+                                </ul>  
+                                <% } %>
                             </div>
-                            <div>
+                            <!-- <div>
                                 <h3>Talle</h3>
                                 <label><input type="radio" name="XS">XS</label>
                                 <label><input type="radio" name="S">S</label>
@@ -104,19 +109,31 @@
                                 <label><input type="radio" name="L">L</label>
                                 <label><input type="radio" name="XL">XL</label>
                                 <label><input type="radio" name="XXL">XXL</label>
-                            </div>
+                            </div> -->
                             <div>
                                 <h3>ORDEN</h3>
-                                <label><input type="radio" name="Menor-precio">Menor precio</label>
-                                <label><input type="radio" name="Mayor-precio">Mayor precio</label>
-                                <label><input type="radio" name="Aromatisantes">Mas vendido</label>
-                                <label><input type="radio" name="a-z">A-Z</label>
-                                <label><input type="radio" name="z-a">Z-A</label>
-                                <label><input type="radio" name="fecha-lanzamiento">Fecha de lanzamiento</label>
+                                <ul>
+                                    <li></li><label><input type="radio" name="orderPrice" value="1">Menor precio</label>
+                                    <li></li><label><input type="radio" name="orderPrice" value="2" >Mayor precio</label>
+                                </ul>
+                                    <p>------------</p>
+                                <ul>
+                                    <li></li><label><input type="radio" name="orderAlfa" value="1">A-Z</label>
+                                    <li></li><label><input type="radio" name="orderAlfa" value="2">Z-A</label>
+                                    
+                                </ul>
+                                <p>------------</p>
+                                <ul>    
+                                    <li></li><label><input type="radio" name="orderDate" value="created_at">Fecha de lanzamiento</label>
+                                </ul>
                             </div>
-                            <label class="contenedor-main-filtro-lista-boton-borrar">
+                            <!-- <label class="contenedor-main-filtro-lista-boton-borrar">
                                 <button type="reset" name="resetear">Borrar</button>
-                            </label>
+                            </label> --> 
+                            <div class="botones">
+                                <button type="submit">Filtrar</button>
+                                <button type="reset" >Restablecer</button>
+                            </div>
                         </form>
                     </section>
 
