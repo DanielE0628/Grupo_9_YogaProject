@@ -1,7 +1,7 @@
 const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 // const {Product} = require('../database/models/Product');
 // const { all } = require('../routes/productsRoute');
 
@@ -165,8 +165,13 @@ const controller = {
             },
 
             update:(req, res) => {
-                let imagen = req.file.filename;
-                products.update([{
+                //---Precio Final -----
+                let price = req.body.price;
+                let discount = req.body.discount;
+                let finalPrice = price;
+                if(discount != 0){ finalPrice = (price-(price*discount/100))}
+                // -----Imagen----
+                let editProduct =  {
                     name: req.body.name,
                     category_id: req.body.category_id,
                     price: req.body.price, 
@@ -175,11 +180,19 @@ const controller = {
                     talle_id: req.body.talle_id,
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
-                    image: imagen,
+                    finalPrice: finalPrice
                     // updated_at: req.body.updated_at   
-                }])  
+                }
+                if (req.file){editProduct.image = req.file.filename}
+                  // promesas
+                products.update(
+                   editProduct
+                ,{
+                where:{
+                    id: req.params.id
+                }})  
                 .then((product)=>{
-                    res.render('products/products-detail')
+                    res.redirect('../../products/detail/'+ req.params.id)
                 })
             },
             
