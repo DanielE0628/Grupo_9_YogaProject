@@ -26,8 +26,8 @@ router.get('/logout', userController.logout);
 router.get('/search', userController.search);
 
 /* Editar Usuario */
-router.get('/profile', authMiddleware, userController.vistaProfile);
-router.put('/edit', authMiddleware, userController.edit);
+router.get('/profile/', authMiddleware, userController.vistaProfile);
+router.post('/edit/:id', authMiddleware, userController.edit);
 
 /* Eliminar Usuario */
 router.delete('/delete/:idUser', function (req, res) {

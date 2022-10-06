@@ -22,35 +22,34 @@ const controlador = {
     },
 
     vistaProfile: (req, res) => {
-        console.log(req.session.userLogged)
         let user = req.session.userLogged;
         res.render('users/userProfile', { user });
     },
 
     edit: (req, res) => {
-        console.log('req.body');
-        console.log(req.body.id);
+        console.log('req.params.id');
+        console.log(req.params.id);
 
-        //Validar datos usuario
-        const resultValidation = validationResult(req);
-        if (resultValidation.errors.length > 0) {
-            return res.render('users/userProfile', {
-                errors: resultValidation.mapped(),
-                oldData: req.body
-            })
-        };
+        // //Validar datos usuario
+        // const resultValidation = validationResult(req);
+        // if (resultValidation.errors.length > 0) {
+        //     return res.render('users/userProfile', {
+        //         errors: resultValidation.mapped(),
+        //         oldData: req.body
+        //     })
+        // };
 
-        let user = req.session.userLogged;
-        let a =  req.session.body;
+        // let user = req.session.userLogged;
+        // let a =  req.session.body;
         
-        console.log('user');
-        console.log(user);
+        // console.log('user');
+        // console.log(user);
 
-        console.log('a');
-        console.log(a);
+        // console.log('a');
+        // console.log(a);
 
-        User.edit(user);
-        res.redirect('/');
+        // User.edit(user);
+        // res.redirect('/');
     },
 
     vistaRegister: (req, res) => {
@@ -63,6 +62,8 @@ const controlador = {
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
+                //comparar contraseñas 
+
             return res.render('users/userRegister', {
                 errors: resultValidation.mapped(),
                 oldData: req.body
@@ -142,14 +143,6 @@ const controlador = {
     logout: (req, res) => {
         req.session.destroy();
         return res.redirect('/');
-    },
-
-    edit: (req, res) => {
-        let id = req.params.id;
-        console.log(id);
-        let userToEdit = users[id];
-        console.log(userToEdit);
-        res.render("users/userEdit", { userToEdit });
     },
 
     search: function (req, res) {
