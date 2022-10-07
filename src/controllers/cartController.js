@@ -2,13 +2,13 @@ const path = require('path');
 const db = require('../database/models');
 const sequelize = db.sequelize;
 const { Op } = require("sequelize");
-const {Product} = require('../database/models/Product');
-const { all } = require('../routes/productsRoute');
+
+
 
 const controlador ={
     // cartVista:(req,res)=>{
     //     res.render('products/cart');
-    //     // db.Product.findAll()
+    //     // db.Products.findAll()
     //     // .then((userCart)=>{
     //     //     res.render('products/cart',{userCart});//en la vista userCart.cart
     //     //     })
