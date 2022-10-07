@@ -1,9 +1,10 @@
 const path = require('path');
-const db = require('../database/models');
-const sequelize = db.sequelize;
-const { Op } = require("sequelize");
-const {Product} = require('../database/models/Product');
-const { all } = require('../routes/productsRoute');
+const data = require('../data/productsDataBase.json');
+// const sequelize = db.sequelize;
+// const { Op, where } = require("sequelize");
+// const {Product} = require('../database/models/Product');
+// const { all } = require('../routes/productsRoute');
+
 
 const controlador ={
     // cartVista:(req,res)=>{
@@ -43,7 +44,8 @@ const controlador ={
     //         })
     // },
     cartView:(req,res)=>{
-        res.render('products/cart')
+        res.render('products/cart', {product:data})
     }
 }
+
 module.exports = controlador;

@@ -18,7 +18,9 @@ const products = db.Products;
 const categorys = db.Categorys;
 const marcas = db.Marcas;
 const talles = db.Talles;
-
+console.log(products.findAll({
+    include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+}))
 // .Promesas
 
 
