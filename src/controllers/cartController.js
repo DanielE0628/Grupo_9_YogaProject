@@ -6,13 +6,6 @@ const { Op } = require("sequelize");
 
 
 const controlador ={
-    // cartVista:(req,res)=>{
-    //     res.render('products/cart');
-    //     // db.Products.findAll()
-    //     // .then((userCart)=>{
-    //     //     res.render('products/cart',{userCart});//en la vista userCart.cart
-    //     //     })
-    // },
     // cartAdd:(req, res)=>{
     //     db.user.update(req.params.id)
     //     .then((addProduct)=>{
@@ -43,7 +36,13 @@ const controlador ={
     //         })
     // },
     cartView:(req,res)=>{
-        res.render('products/cart')
-    }
+        db.Users
+        db.Products.findAll({
+            include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+        })
+        .then((product)=>{
+        res.render('products/cart', {product})
+    })
+},
 }
 module.exports = controlador;

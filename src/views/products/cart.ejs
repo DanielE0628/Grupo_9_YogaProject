@@ -9,14 +9,19 @@
     <main class="main_container">
         <section class="cart_products">
             <p class="purchase_warning"> Los productos en el carrito no serán reservados hasta completar la compra</p>
+            <% let carrito= [1,2,3,4] %>
+            <% for(i=0; i < carrito.length; i++) { %> 
+         
             <div class="added_product">
-                <h3 id= "product_name"> product[i].name</h3> 
-                <img src="#" alt="product image" id="product_image">
+              
+                <h3 id= "product_name"> <%=product[i].name %> </h3> 
+                <img src="/images/products/<%=product[i].image %>" alt="product image" id="product_image">
             <div class="product_info">
-                <p id= "product_ref">REF: product[i].ref </p>
-                <p id="product_quantity"> ##</p>
-                <p id= "product_size"> product[i].size </p>
-                <p id= "product_price"> product[i].price</p>
+                <!-- <p id="product_quantity"> </p> -->
+                <% if(product.category_id == 1){ %>
+                    <p id= "product_size"> <%= product[i].talles.nombre %></p> 
+                   <% } %>
+                <p id= "product_price"> <%= product[i].finalPrice%></p> 
             </div>
 
             <!-- <div class= "product_info">
@@ -28,6 +33,7 @@
                 </div> -->
                 <!-- BOTON PARA QUITAR UN PRODUCTO DEL CARRITO ES UN FORM??  -->
             </div>
+            <% } %>
         </section>
         <section class="checkout"> <!-- QUIZÁ SEA MEJOR DEJAR EL RESUMEN DE LA COMPRA EN OTRA VISTA -->
             <div class="purchase_summary">
@@ -42,9 +48,67 @@
                 <a id="button_link">Ir a pagar</a>
            </button>
         </section>
-        <section class="recommended_items">
-            <!-- <h3 id="recommended_items_title">Artículos recomendados</h3> -->
-            <!-- El For de los recomendados aquí -->
+    </section>
+
+    <!-- section ofertas -->
+    <div>
+        <h1>OFERTAS</h1>
+    </div>
+    <section class="contenedor-main-productos">
+        <% product.forEach(products=> { %>
+            <% { %>
+                <% if(products.discount > 0){ %>
+                <article class="contenedor-main-productos-articulos">
+
+                    <div class="contenedor-main-productos-articulos-imagen">
+                        <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
+                    </div>
+                    <div class="contenedor-main-productos-articulos-detalles">
+                        <div>
+                            <h2>
+                                <%= products.name %>
+                            </h2>
+                        </div>
+                        <div>
+
+                        </div>
+                        
+                 
+                        
+                        <div>
+                            <h2>
+                            ¡Precio! $ <%= products.finalPrice %> 
+                            </h2>
+                        </div>
+                            
+                        <div>
+                            <h2>
+                                 <%= products.discount %> % OFF
+                            </h2>
+                        </div>
+                        
+                        <div>
+                            <h3>
+                                 Categoria: <%= products.categorys.nombre %>
+                            </h3>
+                        </div>
+                        <div class="action-button edit">
+                            <a href="/products/detail/<%= products.id %>">Detalles</a>
+                        </div>
+                        <div class="contenedor-main-productos-articulos-button">
+                            <button type="submit" name="comprar">
+                                Comprar
+                            </button>
+                        </div>
+                    </div>
+                </article>
+                <% } %>
+                <% } %>
+                    <% }) %>
+    </section>
+        <!-- <section class="recommended_items">
+            <h3 id="recommended_items_title">Artículos recomendados</h3> --> 
+            <!-- El For de los recomendados aquí
             <div class="recommended_product">
                 <img src="product[i].image" alt="product image" id="item_image">
                 <p> product[i].name</p>
@@ -54,7 +118,7 @@
                 <p> product[i].name</p>
             </div>
             
-        </section>
+        </section>-->
     </main>
     <%- include('../partials/footer') %>
 </body>
