@@ -213,131 +213,131 @@ const controller = {
             },
       //---------------------------- Category----------------------------------
         
-    createCategory: (req, res) => {
-            categorys.findAll()
-            .then(allCategorys)=>{
-                res.render('products/product-category-create', {allCategorys})
-            }) .catch(error => res.send(error))
-          },
+    // createCategory: (req, res) => {
+    //         categorys.findAll()
+    //         .then(allCategorys)=>{
+    //             res.render('products/product-category-create', {allCategorys})
+    //         }) .catch(error => res.send(error))
+    //       },
 
-        storeCategory:(req, res) => {
+    //     storeCategory:(req, res) => {
 
-            products.create({
-                nombre: req.body.nombre,
-               //create_at: now Date
-            })  
-            .then((product)=>{
-                res.redirect("/");
-            })
-                },
+    //         products.create({
+    //             nombre: req.body.nombre,
+    //            //create_at: now Date
+    //         })  
+    //         .then((product)=>{
+    //             res.redirect("/");
+    //         })
+    //             },
             
-    //editar categoria
-            editCategory: (req, res) => {
-            categorys.findAll()
-            .then(allCategorys)=>{
-                    res.render('products/product-category-edit', { allCategorys});
-                })
-            .catch(error => res.send(error))
-            },
+    // //editar categoria
+    //         editCategory: (req, res) => {
+    //         categorys.findAll()
+    //         .then(allCategorys)=>{
+    //                 res.render('products/product-category-edit', { allCategorys});
+    //             })
+    //         .catch(error => res.send(error))
+    //         },
 
-            updateCategory:(req, res) => {
+    //         updateCategory:(req, res) => {
              
-                let editCategory =  {
-                    nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at   
-                }
-                  // promesas
-                categorys.update(
-                   editCategory
-                ,{
-                where:{
-                    id: req.params.id
-                }})  
-                .then((category)=>{
-                    res.redirect('../../products/categorys")
-                })
-            },
+    //             let editCategory =  {
+    //                 nombre: req.body.nombre,
+    //                // updated_at: req.body.updated_at   
+    //             }
+    //               // promesas
+    //             categorys.update(
+    //                editCategory
+    //             ,{
+    //             where:{
+    //                 id: req.params.id
+    //             }})  
+    //             .then((category)=>{
+    //                 res.redirect('../../products/categorys")
+    //             })
+    //         },
             
-            //borrar productos
-            deleteCategory: (req, res) => {
-                categorys.findByPk(req.params.id)
-                .then((category)=>{
+    //         //borrar productos
+    //         deleteCategory: (req, res) => {
+    //             categorys.findByPk(req.params.id)
+    //             .then((category)=>{
                     
-                    res.render('products/product-categorys-delete',{category});
-                })
-            .catch(error => res.send(error))
-            },
-            destroyCategory: (req, res) => {
-                categorys.destroy({
-                    where: { id: req.params.id }
-                });
-                res.redirect('/products/categorys');
-            },
+    //                 res.render('products/product-categorys-delete',{category});
+    //             })
+    //         .catch(error => res.send(error))
+    //         },
+    //         destroyCategory: (req, res) => {
+    //             categorys.destroy({
+    //                 where: { id: req.params.id }
+    //             });
+    //             res.redirect('/products/categorys');
+    //         },
                 
-                //---------------------------- Marcas----------------------------------
+    //             //---------------------------- Marcas----------------------------------
                  
-                createMarca: (req, res) => {
-            marcass.findAll()
-            .then(allMarcas)=>{
-                res.render('products/product-marca-create', {allMarcas})
-            }) .catch(error => res.send(error))
-          },
+    //             createMarca: (req, res) => {
+    //         marcass.findAll()
+    //         .then(allMarcas)=>{
+    //             res.render('products/product-marca-create', {allMarcas})
+    //         }) .catch(error => res.send(error))
+    //       },
 
-        storeMarca:(req, res) => {
+    //     storeMarca:(req, res) => {
 
-            marcas.create({
-                nombre: req.body.nombre,
-               //create_at: now Date
-            })  
-            .then((product)=>{
-                res.redirect("/");
-            })
-                },
+    //         marcas.create({
+    //             nombre: req.body.nombre,
+    //            //create_at: now Date
+    //         })  
+    //         .then((product)=>{
+    //             res.redirect("/");
+    //         })
+    //             },
             
-    //editar marcas
-            editMarca: (req, res) => {       
-            marcas.findAll()
-            .then(allMarcas)=>{
-                    res.render('products/product-category-edit', { allMarcas});
-                })
-            .catch(error => res.send(error))
-            },
+    // //editar marcas
+    //         editMarca: (req, res) => {       
+    //         marcas.findAll()
+    //         .then(allMarcas)=>{
+    //                 res.render('products/product-category-edit', { allMarcas});
+    //             })
+    //         .catch(error => res.send(error))
+    //         },
 
-            updateMarca:(req, res) => {
+    //         updateMarca:(req, res) => {
              
-                let editMarca =  {
-                    nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at   
-                }
+    //             let editMarca =  {
+    //                 nombre: req.body.nombre,
+    //                // updated_at: req.body.updated_at   
+    //             }
                 
-                  // promesas
-                marcas.update(
-                   editMarca
-                ,{
-                where:{
-                    id: req.params.id
-                }})  
-                .then((marca)=>{
-                    res.redirect('../../products/marcas")
-                })
-            },
+    //               // promesas
+    //             marcas.update(
+    //                editMarca
+    //             ,{
+    //             where:{
+    //                 id: req.params.id
+    //             }})  
+    //             .then((marca)=>{
+    //                 res.redirect('../../products/marcas")
+    //             })
+    //         },
             
-            //borrar marcas
-            deleteMarca: (req, res) => {
-                marcas.findByPk(req.params.id)
-                .then((marca)=>{
+    //         //borrar marcas
+    //         deleteMarca: (req, res) => {
+    //             marcas.findByPk(req.params.id)
+    //             .then((marca)=>{
                     
-                    res.render('products/product-marcas-delete',{marca});
-                })
-            .catch(error => res.send(error))
-            },
+    //                 res.render('products/product-marcas-delete',{marca});
+    //             })
+    //         .catch(error => res.send(error))
+    //         },
                 
-            destroyMarca: (req, res) => {
-              marcas.destroy({
-                    where: { id: req.params.id }
-                });
-                res.redirect('/products/marcas');
-            },
+    //         destroyMarca: (req, res) => {
+    //           marcas.destroy({
+    //                 where: { id: req.params.id }
+    //             });
+    //             res.redirect('/products/marcas');
+    //         },
 }
 
 
