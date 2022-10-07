@@ -15,7 +15,7 @@
              <% allCategorys.forEach(category=> { %>
                             <% { %>
 
-            <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+            <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post" >
                     <!-- name -->
                 <div class="campo">
                     <label for="nombre" class="form-label"></label>
@@ -27,19 +27,19 @@
                     <button type="submit">Guardar</button>
                 </div>
 
-                <form action="" method="post" enctype="multipart/form-data">
-                    <!-- name -->
-               
-               <div class="botones">
-                    <button type="submit">Borrar</button>
-                </div>
-            
-    
-            </form>
+             
 
 
             </form>
+            <form action="" method="post" >
+                <!-- name -->
            
+           <div class="botones">
+                <button type="submit">Borrar</button>
+            </div>
+        
+
+        </form>
             
              <% } %>
              <% }) %>

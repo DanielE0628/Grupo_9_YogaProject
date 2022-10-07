@@ -48,10 +48,11 @@ const controller = {
         },
         //Buscar prodcutos
         search: (req, res) => {    
+            let search = req.query.search 
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promProducts =products.findAll({
-                where:{ name: { [Op.like]: '%' + req.query.search + '%' }},
+                where:{ name: { [Op.like]: '%' + `${search}`  + '%' }},
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
             Promise.all([promProducts, promCategorys, promMarcas])
@@ -89,7 +90,7 @@ const controller = {
             let promMarcas = marcas.findAll()
             let promProducts = products.findAll({
                 where :{
-                    [Op.or]: [
+                    [Op.in]: [
                         {category_id: req.body.category},
                         { marca_id:  req.body.marca}
                     ]
@@ -210,36 +211,26 @@ const controller = {
                 res.redirect('/products');
             },
       //---------------------------- Category----------------------------------
-        
-    createCategory: (req, res) => {
-            categorys.findAll()
-            .then((allCategorys)=>{
-                res.render('products/product-category-create', {allCategorys})
-            }) .catch(error => res.send(error))
-          },
+     //lista
+      listCategory: (req, res) => {
+        categorys.findAll()
+        .then((allCategorys)=>{
+                res.render('products/categorys/list', { allCategorys});
+            })
+        .catch(error => res.send(error))
+        },
 
         storeCategory:(req, res) => {
-
-            products.create({
+            categorys.create({
                 nombre: req.body.nombre,
                //create_at: now Date
             })  
             .then((product)=>{
-                res.redirect("/");
+                res.redirect('/categorys');
             })
-                },
-            
-    //editar categoria
-            listCategory: (req, res) => {
-            categorys.findAll()
-            .then((allCategorys)=>{
-                    res.render('products/categorys/list', { allCategorys});
-                })
-            .catch(error => res.send(error))
-            },
 
-            updateCategory:(req, res) => {
-             
+                },
+              updateCategory:(req, res) => {
                 let editCategory =  {
                     nombre: req.body.nombre,
                    // updated_at: req.body.updated_at   
@@ -249,10 +240,10 @@ const controller = {
                    editCategory
                 ,{
                 where:{
-                    id: req.params.id
+                    nombre: req.body.nombre
                 }})  
                 .then((category)=>{
-                    res.redirect("../../products/categorys")
+                    res.redirect("/categorys")
                 })
             },
             
@@ -269,7 +260,7 @@ const controller = {
                 categorys.destroy({
                     where: { id: req.params.id }
                 });
-                res.redirect('/products/categorys');
+                res.redirect('/categorys');
             },
                 
                 //---------------------------- Marcas----------------------------------
