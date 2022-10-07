@@ -1,1 +1,38 @@
-[]
+[
+ {
+  "id": 1,
+  "imagenUsuario": "user-1665178370617.jpg",
+  "nombre_y_apellido": "Luffy",
+  "email": "luffy@mugiwara.com",
+  "fecha_de_nacimiento": "2022-10-07",
+  "password": "$2a$10$lTOaVi7ZflzLWhyacFx3x.qI3WBHFUQ3jXc7.k2bs9OTBkqqdGR5e",
+  "comfirmPassword": "$2a$10$3WZVQc0xHdeJv.klJ0zwwueMVgEwe917i.RQr1X.iXyYnnxhLJ1wG",
+  "cart": [
+   {}
+  ]
+ },
+ {
+  "id": 2,
+  "imagenUsuario": "user-1665181790620.jpg",
+  "nombre_y_apellido": "Numero18",
+  "email": "androide18@redRibbon.com",
+  "fecha_de_nacimiento": "2022-10-07",
+  "password": "$2a$10$au.as7UEeGGN2iOxVwZ9Jekf4QkC.XCUxDc1YvZSp8GoRSkb.dCBW",
+  "comfirmPassword": "$2a$10$kjAHJqE19i9u34nFV/bpDey4wfWsw9FKKFHmT7RWiy3DmRNLAun..",
+  "cart": [
+   {}
+  ]
+ },
+ {
+  "id": 3,
+  "imagenUsuario": "default-user.png",
+  "nombre_y_apellido": "Trafalgar Law",
+  "email": "law@heart.com",
+  "fecha_de_nacimiento": "2022-10-07",
+  "password": "$2a$10$AgEjustyhuPhHfCaqOceo.WwRanBmaQTBkNvpw1wzA.F1istw3hT.",
+  "comfirmPassword": "$2a$10$05eyu7mcyNJPItmuPspYcO.P.5aIspl0NYcQ8aVZ4DqIyraatkOaa",
+  "cart": [
+   {}
+  ]
+ }
+]

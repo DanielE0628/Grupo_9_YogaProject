@@ -57,12 +57,11 @@ const controlador = {
     },
 
     registro: (req, res) => {
+
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
-        if (resultValidation.errors.length > 0) {
-                //comparar contraseñas 
-                
 
+        if (resultValidation.errors.length > 0) {
             return res.render('users/userRegister', {
                 errors: resultValidation.mapped(),
                 oldData: req.body
@@ -88,7 +87,6 @@ const controlador = {
 
         //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
-
 
         //crear nuevo usuario
         let userToCreate = {

@@ -10,7 +10,6 @@
         <main>          
             <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
                 <div class="foto">
-            
                     <label for="avatar">
                         <i class="fa-solid fa-circle-user"></i>
                     </label>
@@ -28,6 +27,8 @@
                             >
                         </label>
                     </button>
+                    <%console.log('locals')%>
+                    <%console.log(locals)%>
                 </div>
 
                 <div class="campo">
@@ -123,7 +124,7 @@
 
                 <div class="botones">
                     <button type="submit">Enviar</button>
-                    <button action="/" type="button">Borrar</button>
+                    <button action="/" type="reset">Borrar</button>
                 </div>
             </form>
         </main>
