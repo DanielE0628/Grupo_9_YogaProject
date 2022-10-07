@@ -1,1 +1,35 @@
+<!DOCTYPE html>
 
+<html lang="es">
+    
+    <%- include('../partials/head', {title: 'Editar producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
+
+    <body>
+        
+        <%- include('../partials/header') %>
+
+        <main>
+            <div>         
+            <h2 class="products-title">Estás editando: <i><%= category.nombre %></i></h2> 
+            </div>
+            <form action="/products/categorys/edit/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+                    <!-- name -->
+                <div class="campo">
+                    <label for="nombre" class="form-label">Nombre:</label>
+                    <input class="nombre_y_apellido" type="text" name="nombre" id="nombre" value="<%= category.nombre %>">
+                    <span class="feedback"></span>
+                </div>
+
+
+                <div class="botones">
+                    <button type="submit">Guardar</button>
+                    <button type="reset" >Cancelar</button>
+                </div>
+                <a href="/products/categorys/delete/<%= category.id %>" class="action-button edit">ELIMINAR PRODUCTO</a>
+            </form>
+        </main>
+
+        <%- include('../partials/footer') %>
+        
+    </body>
+</html>
