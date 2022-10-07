@@ -28,10 +28,9 @@ const registerValidation = [
 	// .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
 	,
 
-	// body("comfirmPasword")
-	//     .notEmpty().withMessage("Ingrese nuevamente la contraseña")
-	//     // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
-	// ,
+	body("comfirmPassword")
+	    .notEmpty().withMessage("Ingrese nuevamente la contraseña")
+	,
 
 
 	body('imagenUsuario')

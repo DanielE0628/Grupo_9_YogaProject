@@ -48,11 +48,14 @@ const User = {
             let newUser = {
                 id: this.generateId(),
                 imagenUsuario: image,
-                ...userData
+                ...userData,
+                cart: [{}]
             }
+
             //agregar nuevo usuario a DATA JSON
             allUsers.push(newUser);
             fs.writeFileSync(this.fileName, JSON.stringify(allUsers, null, ' '))
+            
             return newUser;
         }
     ,
