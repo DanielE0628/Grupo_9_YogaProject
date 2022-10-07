@@ -31,8 +31,11 @@ router.post("/filter/", productsController.filter)
 // router.post("/category/", productsController.menuCategory)
 
 
-
+//----------------------------------------------
 //------------------CRUD------------------------
+//----------------------------------------------
+
+//------------------productos------------------------
 
 // //crear producto
 router.get('/create', productsController.create); 
@@ -46,6 +49,10 @@ router.post('/create',upload.single("image"), productsController.store);
 router.get('/delete/:id', productsController.delete);
  router.delete('/delete/:id/', productsController.destroy);
  //router.delete('/delete/img/:id', productsController.destroyImg); 
+
+//------------------categorias------------------------
+
+//------------------marcas------------------------
 
 
  //-----------------Carrito----------------------
