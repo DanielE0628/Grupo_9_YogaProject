@@ -52,17 +52,12 @@ router.get('/delete/:id', productsController.delete);
 
 //------------------categorias------------------------
 
-// //crear categoria
-//router.get('/category/create', productsController.createCategory); 
-//router.post('/category/create', productsController.storeCategory); 
+// // crear/editar categoria
 
-// //editar categoria
- //router.get('/category/edit/:id/', productsController.editCategory);
- //router.put('/category/edit/:id', productsController.updateCategory); 
-
-// //eliminar categoria
-//router.get('/category/delete/:id', productsController.deleteCategory);
-// router.delete('/category/delete/:id/', productsController.destroyCategory);
+router.get('/categorys', productsController.listCategory); 
+router.post('/category/create', productsController.storeCategory); 
+router.put('/category/edit/:id', productsController.updateCategory); 
+//router.delete('/category/delete/:id/', productsController.destroyCategory);
   
 //------------------marcas------------------------
 

@@ -232,10 +232,10 @@ const controller = {
                 },
             
     //editar categoria
-            editCategory: (req, res) => {
+            listCategory: (req, res) => {
             categorys.findAll()
             .then((allCategorys)=>{
-                    res.render('products/product-category-edit', { allCategorys});
+                    res.render('products/categorys/list', { allCategorys});
                 })
             .catch(error => res.send(error))
             },
@@ -276,10 +276,10 @@ const controller = {
                 
                 //---------------------------- Marcas----------------------------------
                  
-                createMarca: (req, res) => {
+                listMarcas: (req, res) => {
             marcas.findAll()
             .then((allMarcas)=>{
-                res.render('products/product-marca-create', {allMarcas})
+                res.render('products/marcas/list', {allMarcas})
             }) .catch(error => res.send(error))
           },
 
@@ -312,7 +312,7 @@ const controller = {
                 
                   // promesas
                 marcas.update(
-                   editMarca
+                    editMarca
                 ,{
                 where:{
                     id: req.params.id
@@ -333,7 +333,7 @@ const controller = {
             },
                 
             destroyMarca: (req, res) => {
-              marcas.destroy({
+                marcas.destroy({
                     where: { id: req.params.id }
                 });
                 res.redirect('/products/marcas');

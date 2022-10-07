@@ -6,4 +6,8 @@ const router = express.Router();
 /* GET home page. */
 router.get('/', mainController.vistaHome);
 
+
+//admins
+router.get('/admins', mainController.vistaAdmins);
+
 module.exports = router;
