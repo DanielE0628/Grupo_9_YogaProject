@@ -12,7 +12,10 @@
             <div>         
             <h2 class="products-title">Estás editando: <i><%= category.nombre %></i></h2> 
             </div>
-            <form action="/products/categorys/edit/<%= product.id %>?_method=PUT" method="post" enctype="multipart/form-data">
+             <% allCategorys.forEach(category=> { %>
+                            <% { %>
+
+            <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post" enctype="multipart/form-data">
                     <!-- name -->
                 <div class="campo">
                     <label for="nombre" class="form-label">Nombre:</label>
@@ -20,13 +23,13 @@
                     <span class="feedback"></span>
                 </div>
 
-
                 <div class="botones">
                     <button type="submit">Guardar</button>
-                    <button type="reset" >Cancelar</button>
                 </div>
-                <a href="/products/categorys/delete/<%= category.id %>" class="action-button edit">ELIMINAR PRODUCTO</a>
+    
             </form>
+             <% } %>
+             <% }) %>
         </main>
 
         <%- include('../partials/footer') %>
