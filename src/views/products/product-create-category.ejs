@@ -15,82 +15,10 @@
             </div>
                     <!-- name -->
                 <div class="campo">
-                    <label for="name" class="form-label">Nombre: </label>
-                    <input class="nombre_y_apellido" type="text" name="name" id="name" placeholder="Ingrese el nombre del producto" minlength="8"required>
+                    <label for="nombre" class="form-label">Nombre: </label>
+                    <input class="nombre_y_apellido" type="text" name="nombre" id="nombre" placeholder="Ingrese el nombre de la nueva cayrgoria" minlength="8"required>
                     <span class="feedback"></span>
-                </div>
-                <!-- description -->
-                <div class="campo">
-                    <label for="description" class="form-label">Descripción: </label>
-                    <textarea  name="description" id="description" > </textarea>
-                    <span class="feedback"></span>
-                </div>
-                 <!-- price -->
-                 <div class="campo">
-                    <label for="price" class="form-label">Precio:</label>
-                    <input type="text" name="price" id="price" placeholder="$00.00" required>
-                    <span class="feedback"></span>
-                </div>
-                      <!-- discount -->
-                      <div class="campo">
-                        <label for="price" class="form-label">Descuento:</label>
-                        <input type="text" name="discount" id="discount"  >
-                        <span class="feedback"></span>
-                    </div>
-                <!-- category -->
-                <div class="campo">
-                    <label for="category_id" class="form-label">Categoría: </label>
-                    <select name="category_id" id="category_id" class="form-input">
-                       
-                        <option value="">Elegí</option>
-                       
-                        <% for (i=0; i < allCategorys.length;i++) { %>    
-                        <option value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %></option>
-                        <% } %>
-
-                    </select>
-                </div>
-
-                
-                    
-                <div class="campo">
-                    <label for="talle_id" class="form-label">Talle: </label>
-                    <select name="talle_id" id="talle_id" class="form-input">
-                        
-                        <option value="0">Elegí</option>
-
-                        <% for (i=0; i < allTalles.length;i++) { %>
-                            <option value="<%= allTalles[i].id %>"><%= allTalles[i].nombre %></option>
-                        <% } %>
-
-                    </select>
-                </div>
-           
-                <div class="campo">
-                    <label for="marca_id" class="form-label">Marca: </label>
-                    <select name="marca_id" id="marca_id" class="form-input">
-                       
-                        <option value="null">Elegí</option>
-                       
-                        <% for (i=0; i < allMarcas.length;i++) { %>
-                            <option value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %></option>
-                         <% } %>
-
-                    </select>
-                </div>
-
-                <div class="campo">
-                    <label for="stock" class="form-label">Stock: </label>
-                    <input class="nombre_y_apellido" type="text" name="stock" id="stock" placeholder="Ingrese la cantidad de stock " >
-                    <span class="feedback"></span>
-                </div>
-
-                <!-- image -->
-                <div class="campo">
-                    <label for="image" class="form-label">Imagen: </label>
-                    <input  type="file" name="image" id="image" class="nombre_y_apellido" >
-                    <span class="feedback"></span>
-                </div>
+       
 
 
                 <div class="botones">
