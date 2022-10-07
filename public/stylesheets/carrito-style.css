@@ -98,7 +98,7 @@ color: azure;
 text-shadow: none;
 }
 
-.recommended_items {
+.on_sale {
     display: flex;
     flex-wrap: wrap;
     align-content: center;
@@ -114,10 +114,41 @@ text-shadow: none;
 .recommended_products{
     width: 48%;
 }
-.recommended_products img{
-    height: 80%;
+.on_sale_product{
+    margin: 2% auto;
 }
-.recommended_items p {
+.on_sale_product_details{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+}
+.on_sale img{
+    max-height: 90%;
+    max-width: 90%;
+}
+#on_sale_product_name  {
+    width: 95%;
+    margin: 3%;
+    text-align: center;
+}
+#on_sale_product_price{
+    width: 55%;
+    margin: 2.5%
+}
+#on_sale_product_discount{
+    width: 25%;
+    margin: 2.5%
+}
+
+.on_sale p {
     color: rgb(0, 132, 160);
     font-size: small;
+}
+.on_sale_btn  {
+    height: 30%;
+}
+.on_sale_btn a {
+    color: azure;
+    text-shadow: none;
 }

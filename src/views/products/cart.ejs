@@ -54,52 +54,23 @@
     <div>
         <h1>OFERTAS</h1>
     </div>
-    <section class="contenedor-main-productos">
+    <section class="on_sale">
         <% product.forEach(products=> { %>
             <% { %>
                 <% if(products.discount > 0){ %>
-                <article class="contenedor-main-productos-articulos">
-
-                    <div class="contenedor-main-productos-articulos-imagen">
+                <article class="on_sale_product">
+                    <div class="on_sale_product_details">
                         <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
-                    </div>
-                    <div class="contenedor-main-productos-articulos-detalles">
-                        <div>
-                            <h2>
-                                <%= products.name %>
-                            </h2>
-                        </div>
-                        <div>
-
-                        </div>
-                        
-                 
-                        
-                        <div>
-                            <h2>
-                            ¡Precio! $ <%= products.finalPrice %> 
-                            </h2>
-                        </div>
-                            
-                        <div>
-                            <h2>
-                                 <%= products.discount %> % OFF
-                            </h2>
-                        </div>
-                        
-                        <div>
-                            <h3>
-                                 Categoria: <%= products.categorys.nombre %>
-                            </h3>
-                        </div>
-                        <div class="action-button edit">
-                            <a href="/products/detail/<%= products.id %>">Detalles</a>
-                        </div>
-                        <div class="contenedor-main-productos-articulos-button">
-                            <button type="submit" name="comprar">
-                                Comprar
-                            </button>
-                        </div>
+                        <h3 id="on_sale_product_name">  <%= products.name %> </h3>
+                        <p id="on_sale_product_price">¡Precio! $ <%= products.finalPrice %> </p>
+                        <p id="on_sale_product_discount"> <%= products.discount %> % OFF</p>
+                        <!-- <p>Categoria: <%= products.categorys.nombre %></p> -->
+                        <button type="submit" name="comprar" class="on_sale_btn">
+                            <a class="on_sale_btn_detail" href="/products/detail/<%= products.id %>">Detalles</a>
+                        </button>
+                        <button type="submit" name="comprar" class="on_sale_btn">
+                            Comprar
+                        </button>
                     </div>
                 </article>
                 <% } %>
