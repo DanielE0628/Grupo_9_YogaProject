@@ -52,6 +52,18 @@ router.get('/delete/:id', productsController.delete);
 
 //------------------categorias------------------------
 
+// //crear categoria
+//router.get('/create', productsController.createCategory); 
+//router.post('/create', productsController.storeCategory); 
+
+// //editar categoria
+ //router.get('/edit/:id/', productsController.editCategory);
+ //router.put('/edit/:id', productsController.updateCategory); 
+
+// //eliminar categoria
+//router.get('/delete/:id', productsController.deleteCategory);
+// router.delete('/delete/:id/', productsController.destroyCategory);
+  
 //------------------marcas------------------------
 
 
