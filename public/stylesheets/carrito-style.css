@@ -3,7 +3,7 @@
 }
 body{
     width: 100vw;
-    height: 100vh;
+    height: max-content;
     background-color: rgb(0, 132, 160);
 }
 
@@ -26,13 +26,19 @@ body{
     font-weight:lighter;
 }
 
+.cart_products{
+    border-bottom: solid 3px rgb(0, 132, 160);
+    margin-bottom: 2%;
+    overflow: scroll;
+}
+
 .added_product {
     color: rgb(0, 132, 160);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    border-bottom: solid 3px rgb(0, 132, 160);
-    margin: 1% 1% 3% ;
+    margin: 1% 1% 1.5% ;
+    position: relative;
 }
 #product_name{
     width: 99%;
@@ -41,9 +47,10 @@ body{
 } 
 #product_image{
     width: 48%;
-    height: 100%;
+    height: auto;
     margin: 1%;
     padding: 2%;
+
 }
 .product_info  {
     display: flex;
