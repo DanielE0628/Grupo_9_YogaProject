@@ -43,7 +43,7 @@
                     >
                 </div>
                 <% if ( locals.errors && errors.nombre_y_apellido) { %>
-                    <span class="feedback text-danger">
+                    <span class="text-danger">
                         <%= errors.nombre_y_apellido.msg %>
                     </span>
                 <% } %>
@@ -62,7 +62,7 @@
                     >
                 </div>
                 <% if ( locals.errors && errors.email) { %>
-                    <span class="feedback text-danger">
+                    <span class="text-danger">
                         <%= errors.email.msg %>
                     </span>
                 <% } %>
@@ -80,7 +80,7 @@
                     >
                 </div>
                 <% if ( locals.errors && errors.fecha_de_nacimiento) { %>
-                    <span class="feedback text-danger">
+                    <span class="text-danger">
                         <%= errors.fecha_de_nacimiento.msg %>
                     </span>
                 <% } %>
@@ -97,13 +97,13 @@
                         class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>"  
                     >
                 </div>
-                <% if ( locals.errors && errors.pasword) { %>
-                    <span class="feedback text-danger">
-                        <%= errors.pasword.msg %>
+                <% if ( locals.errors && errors.password) { %>
+                    <span class="text-danger">
+                        <%= errors.password.msg %>
                     </span>
                 <% } %>
 
-                <!-- <div class="campo">
+                <div class="campo">
                     <label for="comfirmPassword">
                         <i class="fa-solid fa-lock"></i>
                     </label>
@@ -114,9 +114,9 @@
                         placeholder= "Confirmar contraseña"
                         class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>" 
                     >
-                </div> -->
+                </div>
                 <% if ( locals.errors && errors.comfirmPassword) { %>
-                    <span class="feedback text-danger">
+                    <span class="text-danger">
                         <%= errors.comfirmPassword.msg %>
                     </span>
                 <% } %>

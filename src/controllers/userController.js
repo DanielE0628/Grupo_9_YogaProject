@@ -57,12 +57,11 @@ const controlador = {
     },
 
     registro: (req, res) => {
-        
-
         //Validar nuevo usuario
         const resultValidation = validationResult(req);
         if (resultValidation.errors.length > 0) {
                 //comparar contraseñas 
+                
 
             return res.render('users/userRegister', {
                 errors: resultValidation.mapped(),
@@ -84,22 +83,39 @@ const controlador = {
             })
         };
 
+        
+
 
         //agregar imagen o imagen default
         let imagen = User.addAvatar(req.file);
+
 
         //crear nuevo usuario
         let userToCreate = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
-            imagenUsuario: imagen,
+            comfirmPassword: bcryptjs.hashSync(req.body.comfirmPassword, 10),
+            imagenUsuario: imagen
         }
 
-        let userCreate = User.create(userToCreate);
+        //comparar contraseñas 
+        let comparePass = bcryptjs.compareSync(req.body.comfirmPassword, userToCreate.password);
 
-        res.redirect("/users/login");
-        console.log('req.body');
-        console.log(req.body);
+        if (!comparePass) {
+            return res.render('users/userRegister', {
+                errors: {
+                    comfirmPassword: {
+                        msg: 'Las contraseñas no coinciden'
+                    }
+                },
+                oldData: req.body
+            })
+        }else{
+            let userCreate = User.create(userToCreate);
+            res.redirect("/users/login");
+        };
+
+
     },
 
     vistaLogin: (req, res) => {

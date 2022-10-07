@@ -6,7 +6,8 @@
   "category": "Indumentaria",
   "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.  ",
   "image": "mujer-1.png",
-  "quality": "T-M"
+  "quality": "T-M",
+  "quantity": "5"
  },
  {
   "id": 2,
@@ -16,7 +17,8 @@
   "category": "indumentaria",
   "subCategory": "mujer",
   "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-  "image": "mujer-2.png"
+  "image": "mujer-2.png",
+  "quantity": "5"
  },
  {
   "id": 3,
@@ -26,7 +28,8 @@
   "category": "indumentaria",
   "subCategory": "hombre",
   "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-  "image": "remera-hombre-1.jpg"
+  "image": "remera-hombre-1.jpg",
+  "quantity": "5"
  },
  {
   "id": 4,
@@ -36,7 +39,8 @@
   "category": "indumentaria",
   "subCategory": "hombre",
   "description": "ropa comoda para practicar yoga, incrementar tu chakra y poder alcanzar la ilumincaión.",
-  "image": "remera-hombre-2.jpg"
+  "image": "remera-hombre-2.jpg",
+  "quantity": "5"
  },
  {
   "id": 6,
@@ -45,7 +49,8 @@
   "category": "Decorativos",
   "quality": "",
   "description": " El tankman dota al cuerpo de Luffy de una increíble dureza gracias al haki: al contrario que su forma de boundman, a la que Cracker, a pesar de estar recubierta con haki, casi fue capaz de cortarla con su espada,[5] en esta forma Cracker no fue capaz de clavar la misma espada en el estómago de Luffy.[6] Además, esta forma incrementa la magnitud y el poder de la ofensiva basada en la compresión de la goma de la forma boundman usando el enorme estómago de Luffy como lanzadera, lo que le permitió derrotar a Cracker disparándole contra sus increíblemente duros soldados de galleta con el gomu gomu no cannonball.[7]  ",
-  "image": "1659740665015-lseven-luffy-tankman-resin-statue.jpg"
+  "image": "1659740665015-lseven-luffy-tankman-resin-statue.jpg",
+  "quantity": "5"
  },
  {
   "name": "Figura Luffy 4th Gear",
@@ -54,7 +59,8 @@
   "category": "Decorativos",
   "quality": "T-L",
   "id": 7,
-  "image": "1659653521940-14177-logo_OP-MONKEY.D.LUFFY-GEAR4-WANOKUNI_1.jpg"
+  "image": "1659653521940-14177-logo_OP-MONKEY.D.LUFFY-GEAR4-WANOKUNI_1.jpg",
+  "quantity": "5"
  },
  {
   "name": "Figura Luffy 4th Gear \"Snake Man\"",
@@ -63,7 +69,8 @@
   "category": "Decorativos",
   "quality": "",
   "id": 8,
-  "image": "1659658901856-one-piece-luffy-gear-4-snakeman.jpg"
+  "image": "1659658901856-one-piece-luffy-gear-4-snakeman.jpg",
+  "quantity": "5"
  },
  {
   "name": "Figura Sanji",
@@ -72,6 +79,7 @@
   "category": "Indumentaria",
   "quality": "",
   "id": 10,
-  "image": "1661983031567-sanji 1.jpg"
+  "image": "1661983031567-sanji 1.jpg",
+  "quantity": "5"
  }
 ]
