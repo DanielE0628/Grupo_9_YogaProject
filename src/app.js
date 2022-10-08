@@ -29,12 +29,15 @@ app.use(cookies());
 app.use(session({ 
   secret: 'ClarkKentEsSuperman',  
   resave: false, 
-  saveUninitialized: false }));
+  saveUninitialized: false 
+}));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(methodOverride("_method"));
+
+//ver lo que viaja por post en req.body de un form 
 app.use(express.urlencoded({ 
   extended: false 
-}))//ver lo que viaja por post en req.body de un form 
+}))
 
 //MiddleWare Creados
 app.use(userLoggedMiddleware);

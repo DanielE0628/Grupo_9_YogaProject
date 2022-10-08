@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+    <%- include('../partials/head', {title: 'userDetail', estilo:'/stylesheets/usersLogin-style.css'}) %>
+    <body>
+        <%- include('../partials/header') %>
+        <main>          
+            <form name="Detail" action="/users/list" method="GET">
+                <h2>¡Hola <%= user.nombre %>! </h2></br>
+
+                <div class="foto">
+                    <label for="imagenUsuario">
+                        <img 
+                            class="img" 
+                            src="/images/users/profileImages/<%= user.imagenUsuario%>" 
+                            alt="imagenUsuario"
+                        >
+                    </label>
+                </div>
+
+                <div class="campo">
+                    <label for="id">
+                        <i class="fa-solid fa-user"></i>
+                         ID:
+                    </label>
+                    <p style="text-align: center">
+                        <%= user.id%>
+                    </p>
+                </div>
+
+                <div class="campo">
+                    <label for="nombre">
+                        <i class="fa-solid fa-user"></i>
+                         Nombre:
+                    </label>
+                    <p style="text-align: center">
+                        <%= user.nombre%>
+                    </p>
+                </div>
+
+                <div class="campo">
+                    <label for="apellido">
+                        <i class="fa-solid fa-user"></i>
+                         Apellido:
+                    </label>
+                    <p style="text-align: center">
+                        <%= user.apellido %>
+                    </p>
+                </div>
+                
+                <div class="campo">
+                    <label for="email">
+                        <i class="fa-solid fa-at"></i>
+                         Email:
+                    </label>
+                    <p style="text-align: center">
+                        <%= user.email %> 
+                    </p> 
+                </div>
+                
+                <div class="campo">
+                    <label for="fecha_de_nacimiento">
+                        <i class="fa-solid fa-calendar-days"></i>
+                         Fecha de Nacimiento:
+                    </label>
+                    <p style="text-align: center">
+                        <%= user.fecha_de_nacimiento %>
+                    </p>
+                </div>
+                
+                <div class="botones">
+                    <button type="submit">Volver</button>
+                </div>
+                <div class="forgot">
+                    <a class="text-left" href="/users/list">¡Activar usuario!</a>
+                    <a class="text-right" href="/users/list">Eliminar Usuario</a>
+                </div>
+            </form>
+        </main>
+        <%- include('../partials/footer') %>
+    </body>
+</html>

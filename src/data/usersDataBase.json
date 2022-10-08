@@ -1,26 +1,14 @@
 [
  {
-  "id": 1,
-  "imagenUsuario": "user-1665189989586.jpg",
-  "nombre": "Monkey D Luffy",
+  "id": "1",
+  "imagenUsuario": "user-1665259511203.jpg",
+  "nombre": "Luffy",
   "email": "luffy@mugiwara.com",
-  "fecha_de_nacimiento": "1900-01-01",
-  "password": "$2a$10$buYkVufYCga.lLAbiEGrM.9gyJW.UJGsl9shCriKG2hOxJkJf1oYy",
-  "comfirmPassword": "$2a$10$RFQH/qv8Tf7KFgm6PRtjqup1FjcYtVn/5L2JCAiu/HUEVb0rzNfEK",
-  "cart": [
-   {}
-  ]
- },
- {
-  "id": 2,
-  "imagenUsuario": "user-1665191268982.jpg",
-  "nombre": "Trafalgar D. Water Law",
-  "email": "law@heart.com",
   "fecha_de_nacimiento": "2004-01-01",
-  "password": "$2a$10$7afa4qBFdvLfQjXiJ8LnM.9UiJ05G3xMeB9nwO4YH0VqOnE20NIDG",
-  "comfirmPassword": "$2a$10$NeB5xR3iGE1hn2.f/X8imu6YbLZ.aNlXZLuZTc00zRXYMPMvIcjhW",
+  "password": "$2a$10$L6/5MDYiu3ye5NgdpugGxupQ.nr.CFHHD3jFoYBHB1mchq4sJTsF6",
   "cart": [
    {}
-  ]
+  ],
+  "apellido": "Monkey D."
  }
 ]

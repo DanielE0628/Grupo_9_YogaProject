@@ -72,21 +72,33 @@ const User = {
         }
     ,
     edit:
-        function (userData, image) {
-            let allUsers = User.findAll();
-            let userToEdit = allUsers.forEach((item) => {
-                if(item.id == userData.id){
-                    item.name = userData.name;
-                    item.apellido = userData.apellido;
-                    item.fecha_de_nacimiento = userData.fecha_de_nacimiento;
+    function (dataToEdit) {
+        let allUsers = this.findAll();
+        let usersEdit = [];
 
-                    return item;
-                }
-                console.log(userToEdit)
+        allUsers.forEach(user => {
+            if(dataToEdit.id == user.id){
+                user.id = dataToEdit.id;
+                user.imagenUsuario = dataToEdit.imagenUsuario;
+                user.nombre = dataToEdit.nombre;
+                user.apellido = dataToEdit.apellido;
+                user.email = dataToEdit.email;
+                user.fecha_de_nacimiento = dataToEdit.fecha_de_nacimiento;
+                user.password = dataToEdit.password;
+                user.cart = dataToEdit.cart;
+                
+                usersEdit.push(user)
+            } else{
+                usersEdit.push(user)
+            }
         });
-            fs.writeFileSync(this.fileName, JSON.stringify(userToEdit, null, ' '));
-            return res.redirect('/');
-        }
+        
+
+        //Editar usuario en DATA JSON
+        fs.writeFileSync(this.fileName, JSON.stringify(usersEdit, null, ' '));
+        
+        return;
+    }
     ,
 
     delete:

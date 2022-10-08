@@ -4,8 +4,8 @@
     <body>
         <%- include('../partials/header') %>
         <main>          
-            <form name="Profile" action="/users/profile/<%= user.id %>" method="POST" enctype="multipart/form-data">
-                <h2>¡Hola <%= user.nombre %>! </h2></br>
+            <form name="Profile" action="/users/profile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <h2>¡Hola <%= user.apellido %>, <%= user.nombre %>! </h2></br>
 
                 <div class="foto">
                     <label for="imagenUsuario">
@@ -16,21 +16,13 @@
                         >
                     </label>
                 </div>
-                <div class="campo">
-                    <input 
-                        id="id" 
-                        type="id" 
-                        name="id"
-                        value="<%=user.id%>"
-                    >
-                </div>
 
                 <div class="campo">
                     <input 
                         id="imagenUsuario" 
                         type="file" 
                         name="imagenUsuario"
-                        accept="image/"
+                        accept="image/png, image/jpeg , image/jpg"
                     >
                 </div>
 
@@ -82,15 +74,6 @@
                 <% } %>
                 
                 <div class="campo">
-                    <label for="email">
-                        <i class="fa-solid fa-at"></i>
-                    </label>
-                    <p style="text-align: left;">
-                        <%= user.email %> 
-                    </p> 
-                </div>
-                
-                <div class="campo">
                     <label for="fecha_de_nacimiento">
                         <i class="fa-solid fa-calendar-days"></i>
                     </label>
@@ -109,6 +92,15 @@
                         <%= errors.fecha_de_nacimiento.msg %>
                     </span>
                 <% } %>
+
+                <div class="campo">
+                    <label for="email">
+                        <i class="fa-solid fa-at"></i>
+                    </label>
+                    <p style="text-align: left;">
+                        <%= user.email %> 
+                    </p> 
+                </div>
                 
                 <div class="botones">
                     

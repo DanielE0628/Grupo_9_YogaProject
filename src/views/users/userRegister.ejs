@@ -39,7 +39,7 @@
                         id="imagenUsuario" 
                         type="file" 
                         name="imagenUsuario"
-                        accept="image/"
+                        accept="image/png, image/jpeg , image/jpg"
                     >
                 </div>
                 <% if ( locals.errors && errors.imagenUsuario) { %>
@@ -62,9 +62,9 @@
                         required
                     >
                 </div>
-                <% if ( locals.errors && errors.nombre_y_apellido) { %>
+                <% if ( locals.errors && errors.nombre) { %>
                     <span class="text-danger">
-                        <%= errors.nombre_y_apellido.msg %>
+                        <%= errors.nombre.msg %>
                     </span>
                 <% } %>
 

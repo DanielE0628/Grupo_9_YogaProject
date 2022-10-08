@@ -6,6 +6,7 @@ const { body } = require('express-validator');
 const registerValidation = [
 	body("nombre")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
+		.isAlpha().withMessage("Por favor complete solo con letras").bail()
 		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
 		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
 	,
@@ -37,7 +38,7 @@ const registerValidation = [
 		.custom((value, { req }) => {
 			let file = req.file;
 			console.log(file);
-			let acceptedExtensions = ['.jpg', '.png', '.gif'];
+			let acceptedExtensions = ['.jpg', '.png', '.jpeg'];
 
 			if (!file) {
 				return true

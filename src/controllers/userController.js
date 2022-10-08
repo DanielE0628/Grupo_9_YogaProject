@@ -2,8 +2,7 @@
 const { validationResult } = require('express-validator');
 const User = require('../models/User.js');
 const bcryptjs = require('bcryptjs');
-//llamar de DATA JSON todos los usuarios
-const users = User.findAll();
+
 
 const controlador = {
     vistaUser: (req, res) => {
@@ -15,6 +14,11 @@ const controlador = {
     vistaLista: (req, res) => {
         let users = User.findAll();
         res.render('users/userList', { users })
+    },
+
+    vistaDetalle: (req, res) => {
+        let user = User.findByPk(req.params.id);
+        res.render('users/userDetail', { user })
     },
 
     vistaInstructors: (req, res) => {
@@ -53,9 +57,11 @@ const controlador = {
 
         //crear nuevo usuario
         let userToCreate = {
-            ...req.body,
+            nombre: req.body.nombre,
+            email: req.body.email,
+            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
             password: bcryptjs.hashSync(req.body.password, 10),
-            comfirmPassword: bcryptjs.hashSync(req.body.comfirmPassword, 10),
+        
         }
 
         //comparar contraseñas 
@@ -89,18 +95,12 @@ const controlador = {
         let userToLogin = User.findByField('email', req.body.email);
 
         if (userToLogin) {
-            let passComparePassword = bcryptjs.compareSync(req.body.password, userToLogin.password);
-            if (passComparePassword) {
+            let passCompared = bcryptjs.compareSync(req.body.password, userToLogin.password);
+            if (passCompared) {
                 delete userToLogin.password;
                 req.session.userLogged = userToLogin;
                 res.redirect('/');
-
             }
-
-            if (req.body.recordar) {
-                res.cookie('userEmail', req.body.email, { maxAge: (1000 * 60 * 60) })
-            }
-
             return res.render('users/userLogin', {
                 errors: {
                     email: {
@@ -110,10 +110,18 @@ const controlador = {
             });
         }
 
+        if (req.body.recordar) {
+            res.cookie(
+                'userEmail', 
+                req.body.email, 
+                { maxAge: (1000 * 60 * 60) }
+                )
+            }  
+        
         return res.render('users/userLogin', {
             errors: {
                 email: {
-                    msg: 'Usuario no registrado'
+                    msg: 'Email no registrado'
                 }
             }
         });
@@ -125,18 +133,27 @@ const controlador = {
     },
 
     vistaProfile: (req, res) => {
-        let id = req.session.userLogged.id;
-        //buscar usuario por email en db
+        let id ="";
+        if (req.session.userLogged){
+            id = req.session.userLogged.id
+        }else{
+            id= req.params.id
+        };
+
+        //buscar usuario en db
         let userDb = User.findByPk(id);
         let user = userDb;
-        console.log('user');
-        console.log(user);
 
         res.render('users/userProfile', { user });
     },
 
     edit: (req, res) => {
 
+        let id = req.params.id;
+
+        //buscar usuario por ID en db
+        let userDb = User.findByPk(id);
+        
         // //Validar datos usuario
         // const resultValidation = validationResult(req);
         // if (resultValidation.errors.length > 0) {
@@ -145,16 +162,30 @@ const controlador = {
         //         oldData: req.body
         //     })
         // };
+        
+        //agregar imagen
+        let imagen = userDb.imagenUsuario;
 
+        if(req.file){
+            imagen = req.file.filename
+        }
+
+        //editar usuario
         let userToEdit = {
             id: req.params.id,
-            name: req.body.name,
+            imagenUsuario: imagen,
+            nombre: req.body.nombre,
             apellido: req.body.apellido,
-        }  
-        
-        console.log('userToEdit');
-        console.log(req.body);
-        res.redirect("/")
+            email: userDb.email,
+            fecha_de_nacimiento: req.body.fecha_de_nacimiento,
+            password: userDb.password,
+            cart: userDb.cart,
+        }
+
+        User.edit(userToEdit);
+
+        res.redirect(`/users/profile/${id}`);
+
     },
 
     search: function (req, res) {

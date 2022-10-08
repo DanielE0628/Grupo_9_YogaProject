@@ -14,7 +14,10 @@ const authMiddleware = require('../middlewares/authMiddleware')
 /* Vistas Usuario */
 router.get('/', userController.vistaUser);
 router.get('/instructors', userController.vistaInstructors);
+
+/* Login*/
 router.get('/list', userController.vistaLista);
+router.get('/detail/:id', userController.vistaDetalle)
 
 
 
@@ -28,7 +31,7 @@ router.get('/search', userController.search);
 
 /* Editar Usuario */
 router.get('/profile/:id', authMiddleware, userController.vistaProfile);
-router.post('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userController.edit);
+router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userController.edit);
 
 /* Eliminar Usuario */
 router.delete('/delete/:idUser', function (req, res) {

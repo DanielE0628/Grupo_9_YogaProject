@@ -15,7 +15,7 @@ const storage = multer.diskStorage({
 });
 
 function fileFilter(req, file, cb) {
-  const validFormat = ['image/jpeg', 'image/jpg','image/.jpg', 'image/.png', 'image/.gif']
+  const validFormat = ['image/jpeg', 'image/jpg', 'image/.png']
   // La función debe llamar a `cb` usando una variable del tipo boolean
   // para indicar si el archivo debería ser aceptado o no
   if (validFormat.includes(file.mimetype)) {
