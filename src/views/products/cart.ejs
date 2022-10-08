@@ -21,7 +21,7 @@
                 <% if(product.category_id == 1){ %>
                     <p id= "product_size"> <%= product[i].talles.nombre %></p> 
                    <% } %>
-                <p id= "product_price"> <%= product[i].finalPrice%></p> 
+                <p id= "product_price">$ <%= product[i].finalPrice%></p> 
             </div>
 
             <!-- <div class= "product_info">
@@ -38,9 +38,14 @@
         <section class="checkout"> <!-- QUIZÁ SEA MEJOR DEJAR EL RESUMEN DE LA COMPRA EN OTRA VISTA -->
             <div class="purchase_summary">
                 <h3 id="checkout_title">Resumen de la compra</h3>
-                <strong id="total_items">Cantidad de artículos  ----------------  </strong>
-                <!-- <span id="value"></span> CAMPO PARA VALOR  -->
-                <strong id="total_price">Precio Total  ---------------- $ </strong>
+                <strong id="total_items">Cantidad de artículos  ----------------   </strong>
+                <!-- <span id="value"></span> CAMPO PARA VALOR  --> 
+                <%  let totalPrice=0 %>
+                <% for(i=0; i < carrito.length; i++) { %> 
+                    <% totalPrice = totalPrice + product[i].finalPrice %> 
+                    <p> <%= console.log(totalPrice) %></p>
+                    <%  } %>
+                <strong id="total_price">Precio Total  ---------------- $ <%= totalPrice %>  </strong>
                 <!-- <span id="value"></span> CAMPO PARA VALOR  -->
             </div>
             <!-- BOTON PARA IR A "PAGAR" (RESUMEN DE COMPRA) ES UN FORM??  -->

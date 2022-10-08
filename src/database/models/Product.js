@@ -49,7 +49,7 @@ module.exports = (sequelize, dataTypes) => {
 
     image:{
         type: dataTypes.STRING(500),
-        allowNull: false
+        
     },
 
     created_at:{

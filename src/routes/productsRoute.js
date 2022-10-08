@@ -22,7 +22,7 @@ router.get('/detail/:id/', productsController.detail);
 // router.get('/cart', cartController.cartVista); 
 
 //----------------Search Bar-------------------------
-router.get("/search/:id", productsController.search)
+router.get("/search/", productsController.search)
 
 //---------------- Filtros -------------------------
 router.post("/filter/", productsController.filter)

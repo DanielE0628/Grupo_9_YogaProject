@@ -13,3 +13,9 @@ db.Products
     //      console.log (user.id, user.category_id, user.categorys.n)
     //   }
     )
+
+
+    for(i=0; i < carrito.length; i++) { 
+         acumulador = 0 
+         acumulador + product[i].finalPrice 
+        return acumulador }
