@@ -150,6 +150,7 @@ const controlador = {
     edit: (req, res) => {
 
         let id = req.params.id;
+        let user = req.session.userLogged
 
         //buscar usuario por ID en db
         let userDb = User.findByPk(id);
@@ -157,7 +158,7 @@ const controlador = {
         // //Validar datos usuario
         // const resultValidation = validationResult(req);
         // if (resultValidation.errors.length > 0) {
-        //     return res.render('users/userProfile', {
+        //     return res.render('users/userProfile', { user },{
         //         errors: resultValidation.mapped(),
         //         oldData: req.body
         //     })
@@ -172,7 +173,7 @@ const controlador = {
 
         //editar usuario
         let userToEdit = {
-            id: req.params.id,
+            id: userDb.id,
             imagenUsuario: imagen,
             nombre: req.body.nombre,
             apellido: req.body.apellido,
