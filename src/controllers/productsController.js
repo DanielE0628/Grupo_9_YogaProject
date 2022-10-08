@@ -125,13 +125,18 @@ const controller = {
           },
 
         store:(req, res) => {
+            // -----------descuento--------
+            let discount = req.body.discount;
             //---Precio Final -----
             let price = req.body.price;
-            let discount = req.body.discount;
             let finalPrice = price;
             if(discount != 0){ finalPrice = (price-(price*discount/100))}
             //----- imagen------
-            let imagen = req.file.filename;
+            let imagen = "";
+            if(!req.file){imagen = "default.jpg"}
+            else{
+                imagen = req.file.filename
+            }
             // promesas
             products.create({
                 name: req.body.name,
