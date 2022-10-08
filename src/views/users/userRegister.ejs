@@ -49,15 +49,16 @@
                 <% } %>
 
                 <div class="campo">
-                    <label for="nombre-y-apellido">
+                    <label for="nombre">
                         <i class="fa-solid fa-user"></i>
                     </label>
                     <input 
                         type="text" 
-                        name="nombre_y_apellido" 
+                        name="nombre" 
                         placeholder="Nombre y Apellido" 
                         class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
                         value= "<%= locals.oldData ? oldData.nombre_y_apellido : null %>"
+                        minlength="3"
                         required
                     >
                 </div>

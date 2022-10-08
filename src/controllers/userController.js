@@ -21,37 +21,6 @@ const controlador = {
         res.render('users/userInstructors');
     },
 
-    vistaProfile: (req, res) => {
-        let user = req.session.userLogged;
-        res.render('users/userProfile', { user });
-    },
-
-    edit: (req, res) => {
-        console.log('req.params.id');
-        console.log(req.params.id);
-
-        // //Validar datos usuario
-        // const resultValidation = validationResult(req);
-        // if (resultValidation.errors.length > 0) {
-        //     return res.render('users/userProfile', {
-        //         errors: resultValidation.mapped(),
-        //         oldData: req.body
-        //     })
-        // };
-
-        // let user = req.session.userLogged;
-        // let a =  req.session.body;
-        
-        // console.log('user');
-        // console.log(user);
-
-        // console.log('a');
-        // console.log(a);
-
-        // User.edit(user);
-        // res.redirect('/');
-    },
-
     vistaRegister: (req, res) => {
         res.render('users/userRegister');
     },
@@ -153,6 +122,39 @@ const controlador = {
     logout: (req, res) => {
         req.session.destroy();
         return res.redirect('/');
+    },
+
+    vistaProfile: (req, res) => {
+        let id = req.session.userLogged.id;
+        //buscar usuario por email en db
+        let userDb = User.findByPk(id);
+        let user = userDb;
+        console.log('user');
+        console.log(user);
+
+        res.render('users/userProfile', { user });
+    },
+
+    edit: (req, res) => {
+
+        // //Validar datos usuario
+        // const resultValidation = validationResult(req);
+        // if (resultValidation.errors.length > 0) {
+        //     return res.render('users/userProfile', {
+        //         errors: resultValidation.mapped(),
+        //         oldData: req.body
+        //     })
+        // };
+
+        let userToEdit = {
+            id: req.params.id,
+            name: req.body.name,
+            apellido: req.body.apellido,
+        }  
+        
+        console.log('userToEdit');
+        console.log(req.body);
+        res.redirect("/")
     },
 
     search: function (req, res) {

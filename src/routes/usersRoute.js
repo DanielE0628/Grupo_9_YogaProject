@@ -7,6 +7,7 @@ const userController = require('../controllers/userController');
 /* Middlewares */
 const uploadFile = require('../middlewares/userMulterMiddleware');
 const validations = require("../middlewares/usersRegValidatorMiddleware");
+const validationsEdit = require("../middlewares/usersEditValidatorMiddleware");
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware')
 
@@ -26,8 +27,8 @@ router.get('/logout', userController.logout);
 router.get('/search', userController.search);
 
 /* Editar Usuario */
-router.get('/profile/', authMiddleware, userController.vistaProfile);
-router.post('/edit/:id', authMiddleware, userController.edit);
+router.get('/profile/:id', authMiddleware, userController.vistaProfile);
+router.post('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userController.edit);
 
 /* Eliminar Usuario */
 router.delete('/delete/:idUser', function (req, res) {

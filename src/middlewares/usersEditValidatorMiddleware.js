@@ -3,8 +3,14 @@ const { body } = require('express-validator');
 
 
 //Validaciones
-const registerValidation = [
+const editValidation = [
 	body("nombre")
+		.notEmpty().withMessage("Por favor complete con su nombre").bail()
+		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
+		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
+	,
+
+	body("apellido")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
 		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
 		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
@@ -23,7 +29,7 @@ const registerValidation = [
 
 	body("password")
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
-		.isLength({ min: 3 }).withMessage("La contraseña debe tener al menos 3 caracteres").bail()
+		.isLength({ min: 3 }).withMessage("La contraseña debe tener al menos 7 caracteres").bail()
 		.isLength({ max: 15 }).withMessage("La contraseña debe tener máximo 15 caracteres")
 	// .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
 	,
@@ -51,4 +57,4 @@ const registerValidation = [
 		})
 ];
 
-module.exports = registerValidation;
+module.exports = editValidation;

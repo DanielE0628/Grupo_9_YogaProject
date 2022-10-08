@@ -72,18 +72,17 @@ const User = {
         }
     ,
     edit:
-        function (userData) {
+        function (userData, image) {
             let allUsers = User.findAll();
-            console.log('findAll()')
-            console.log(allUser)
             let userToEdit = allUsers.forEach((item) => {
                 if(item.id == userData.id){
-                    item.nombre_y_apellido= 'editado';
+                    item.name = userData.name;
+                    item.apellido = userData.apellido;
                     item.fecha_de_nacimiento = userData.fecha_de_nacimiento;
-                }
-                console.log('userToEdit');
-                console.log(userToEdit);
 
+                    return item;
+                }
+                console.log(userToEdit)
         });
             fs.writeFileSync(this.fileName, JSON.stringify(userToEdit, null, ' '));
             return res.redirect('/');
