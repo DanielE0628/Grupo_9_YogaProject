@@ -82,18 +82,11 @@ const controlador = {
             })
         };
 
-        
-
-
-        //agregar imagen o imagen default
-        let imagen = User.addAvatar(req.file);
-
         //crear nuevo usuario
         let userToCreate = {
             ...req.body,
             password: bcryptjs.hashSync(req.body.password, 10),
             comfirmPassword: bcryptjs.hashSync(req.body.comfirmPassword, 10),
-            imagenUsuario: imagen
         }
 
         //comparar contraseñas 
@@ -109,6 +102,9 @@ const controlador = {
                 oldData: req.body
             })
         }else{
+            //agregar imagen o imagen default
+            let imagen = User.addAvatar(req.file);
+            userToCreate.imagenUsuario = imagen;
             let userCreate = User.create(userToCreate);
             res.redirect("/users/login");
         };

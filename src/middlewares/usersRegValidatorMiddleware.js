@@ -37,19 +37,18 @@ const registerValidation = [
 		.custom((value, { req }) => {
 			let file = req.file;
 			console.log(file);
-			let acceptedExtensions = ['.jpg', '.png', '.gif', '.jfif'];
+			let acceptedExtensions = ['.jpg', '.png', '.gif'];
 
 			if (!file) {
 				return true
 			} else {
 				let fileExtension = path.extname(file.originalname);
 				if (!acceptedExtensions.includes(fileExtension)) {
-					throw new Error('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }');
+					throw new Error('Las extensiones de archivos permitidas son: ' + `${ acceptedExtensions.join( ', ' ) }`);
 				}
 				return true;
 			}
 		})
-
 ];
 
 module.exports = registerValidation;

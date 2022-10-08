@@ -9,27 +9,44 @@
 
         <main>          
             <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
+                <!-- <div class="foto">
+                        <label for="avatar">
+                            <i class="fa-solid fa-circle-user"></i>
+                        </label>
+    
+                        <button
+                            class="add" 
+                            type="button" 
+                            name="addAvatar"
+                            >
+                        </button>
+                            <label for="imagenUsuario"> +
+                                <input 
+                                    id="imagenUsuario" 
+                                    type="file" 
+                                    name="imagenUsuario" 
+                                >
+                            </label>
+                   
+                </div> -->
                 <div class="foto">
                     <label for="avatar">
                         <i class="fa-solid fa-circle-user"></i>
                     </label>
-
-                    <button
-                        class="add" 
-                        type="button" 
-                        name="addAvatar"
-                    >
-                        <label for="imagenUsuario"> +
-                            <input 
-                                id="imagenUsuario" 
-                                type="file" 
-                                name="imagenUsuario" 
-                            >
-                        </label>
-                    </button>
-                    <%console.log('locals')%>
-                    <%console.log(locals)%>
                 </div>
+                <div class="campo">
+                    <input 
+                        id="imagenUsuario" 
+                        type="file" 
+                        name="imagenUsuario"
+                        accept="image/"
+                    >
+                </div>
+                <% if ( locals.errors && errors.imagenUsuario) { %>
+                    <span class="text-danger">
+                        <%= errors.imagenUsuario.msg %>
+                    </span>
+                <% } %>
 
                 <div class="campo">
                     <label for="nombre-y-apellido">
@@ -41,6 +58,7 @@
                         placeholder="Nombre y Apellido" 
                         class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
                         value= "<%= locals.oldData ? oldData.nombre_y_apellido : null %>"
+                        required
                     >
                 </div>
                 <% if ( locals.errors && errors.nombre_y_apellido) { %>
@@ -59,7 +77,8 @@
                         id="email" 
                         placeholder="e-mail"
                         class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" 
-                        value= "<%= locals.oldData ? oldData.email : null %>" 
+                        value= "<%= locals.oldData ? oldData.email : null %>"
+                        required 
                     >
                 </div>
                 <% if ( locals.errors && errors.email) { %>
@@ -78,6 +97,9 @@
                         id="fecha_de_nacimiento" 
                         class="form-control <%= locals.errors && errors.fecha_de_nacimiento ? 'is-invalid' : null %>" 
                         value= "<%= locals.oldData ? oldData.fecha_de_nacimiento : null %>"
+                        max="2004-01-01"
+                        min="1900-01-01"
+                        required
                     >
                 </div>
                 <% if ( locals.errors && errors.fecha_de_nacimiento) { %>
@@ -95,7 +117,8 @@
                         name="password" 
                         id="password" 
                         placeholder="Contraseña"
-                        class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>"  
+                        class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>" 
+                        required
                     >
                 </div>
                 <% if ( locals.errors && errors.password) { %>
@@ -113,7 +136,8 @@
                         name="comfirmPassword" 
                         id="comfirmPassword" 
                         placeholder= "Confirmar contraseña"
-                        class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>" 
+                        class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>"
+                        required 
                     >
                 </div>
                 <% if ( locals.errors && errors.comfirmPassword) { %>

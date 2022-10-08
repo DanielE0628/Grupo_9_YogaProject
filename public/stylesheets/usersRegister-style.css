@@ -60,9 +60,9 @@ main{
                     font-weight: bold;
 
                 }
-                    main form .foto  label input{
+                    /* main form .foto  label input{
                         display: none;
-                    }
+                    } */
             
             main form i.fa-solid.fa-circle-plus{
                 color: var(--button);
