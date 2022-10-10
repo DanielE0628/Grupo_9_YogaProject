@@ -10,9 +10,6 @@ const productsController = require("../controllers/productsController");
 const cartController = require("../controllers/cartController");
 
 
-//----------------Vistas-------------------------
-
-//todos los productos
 router.get('/', productsController.list);
 
 //un producto 

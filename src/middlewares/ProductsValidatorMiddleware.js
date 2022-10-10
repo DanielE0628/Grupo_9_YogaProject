@@ -22,8 +22,8 @@ const createProductValidation = [
 		.isLength( {max: 500} ).withMessage("La descripcion debe tener un maximo 500 caracteres")
         
     ,
-	body("talle_id")
-	.notEmpty().withMessage("Por favor elija un talle")
+	// body("talle_id")
+	// .notEmpty().withMessage("Por favor elija un talle")
     ,
 	body("marca_id")
 	.notEmpty().withMessage("Por favor elija una marca")

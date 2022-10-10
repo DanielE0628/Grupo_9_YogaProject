@@ -2,13 +2,9 @@ const path = require('path');
 //-----------Validator--------------
 const { validationResult } = require('express-validator');
 //--------Sequelize----------
-const db = require('../database/models');
+const db = require('../../database/models');
 const sequelize = db.sequelize;
 const { Op, where } = require("sequelize");
-
-
-
-
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
@@ -24,14 +20,17 @@ const categorys = db.Categorys;
 const marcas = db.Marcas;
 const talles = db.Talles;
 
-// .Promesas
 
 
 
 const controller = {
+    hola: (req, res) => {
+        return res.json("hola")
+    },
+
     //---------------------------------GUESTS-------------------------------------
          //todos los productos
-         list: (req, res) => {
+         "list": (req, res) => {
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promProducts =products.findAll({
@@ -39,10 +38,19 @@ const controller = {
             })
             Promise.all([promProducts, promCategorys, promMarcas])
                 .then(([products, allCategorys, allMarcas])=>{
-                    
-                    res.render('products/products',{ products, allCategorys, allMarcas});
-                })
-                .catch(error => res.send(error))
+                    return res.status(200).json({
+                        meta: {
+                            status: 200,
+                            total: products.length,
+                            url: 'api/v1/products'
+                        },
+                        products
+                    })
+                })            
+                .catch(error => {
+                    console.log(error)
+                    res.status(500).json({mensaje: 'Error de conexion'})
+                });
         },
         //detalle de un producto
         detail:(req, res) => {
@@ -50,7 +58,7 @@ const controller = {
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
                 .then((product)=>{
-                    res.render("products/detail", {product})
+                    return res.json("products/detail", {product})
                 })
         },
         //Buscar prodcutos

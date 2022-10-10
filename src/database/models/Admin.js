@@ -12,7 +12,14 @@ module.exports = (sequelize, dataTypes) => {
         type: dataTypes.STRING(100),
         allowNull: false
     },
-
+    email: {
+        type: dataTypes.STRING(100),
+        allowNull: false
+    },
+    password: {
+        type: dataTypes.STRING(100),
+        allowNull: false
+    },
     // created_at:{
     //     type: dataTypes.DATE,
     // },

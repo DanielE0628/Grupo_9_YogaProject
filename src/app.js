@@ -49,13 +49,17 @@ const productsRouter = require('./routes/productsRoute');
 const usersRouter = require('./routes/usersRoute');
 const cartRouter = require('./routes/cartRoute')
 
+//rutas API
+const apiProductsRouter = require('./routes/api/apiProductsRoute');
+
 //linkS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use("/products", productsRouter);
 app.use("/cart", cartRouter);
 
-
+// links apis
+app.use("/api/v1/products", apiProductsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
