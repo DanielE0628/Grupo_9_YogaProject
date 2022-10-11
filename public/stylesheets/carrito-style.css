@@ -48,6 +48,7 @@ body{
 #product_image{
     width: 48%;
     height: auto;
+    max-height: 130px ;
     margin: 1%;
     padding: 2%;
 
@@ -91,7 +92,8 @@ section .checkout {
 }
 
 #go_to_pay{
-    margin: 2% 36%;
+    margin: 2% 24%;
+    width: 50%;
 }
 #go_to_pay a {
 color: azure;
