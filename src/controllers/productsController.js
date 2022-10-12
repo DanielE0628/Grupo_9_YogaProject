@@ -39,7 +39,7 @@ const controller = {
             })
             Promise.all([promProducts, promCategorys, promMarcas])
                 .then(([products, allCategorys, allMarcas])=>{
-                    
+
                     res.render('products/products',{ products, allCategorys, allMarcas});
                 })
                 .catch(error => res.send(error))
@@ -54,8 +54,8 @@ const controller = {
                 })
         },
         //Buscar prodcutos
-        search: (req, res) => {    
-            let search = req.query.search 
+        search: (req, res) => {
+            let search = req.query.search
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promProducts =products.findAll({
@@ -67,11 +67,11 @@ const controller = {
                 res.render('products/products',{ products, allCategorys, allMarcas});
             })
             .catch(error => res.send(error))
-            
-         
+
+
         },
         //---------------------------- Menu----------------------------------
-        // menuCategory: (req, res)=>{   
+        // menuCategory: (req, res)=>{
         //     let promCategorys = categorys.findAll()
         //     let promMarcas = marcas.findAll()
         //     let promProducts = products.findAll({
@@ -85,43 +85,54 @@ const controller = {
         //     .catch(error => res.send(error))
         // },
  //---------------------------- Filro----------------------------------
-        filter: (req, res)=>{   
-             //--------orden------------
+        filter: (req, res)=>{
+            
+             //---------categoria-------------
+            let categoria = req.body.category;
+             //---------marca-------------
+             let marca = req.body.marca;
+            //-----------------------condicional where------------------
+            let whereIf = "";
+            if(categoria && !marca  ){ whereIf = {category_id: categoria }}
+            else if (!categoria && marca){ whereIf = {  marca_id: marca }}
+            else if (categoria && marca){ whereIf = [{category_id: categoria},{marca_id: marca}]}
+            //-----------------------------orden------------
+            //-------precio------------
             let orderPrice = req.body.orderPrice;
             if(orderPrice == 1){ orderPrice = ["price"] } else {orderPrice = ["price", "DESC"]};
+            //----------nombre---------
             let orderAlfa = req.body.orderAlfa;
-            if(orderAlfa == 1){ orderAlfa = ["name"] } else {orderPrice = ["name", "DESC"]}; 
+            if(orderAlfa == 1){ orderAlfa = ["name"] } else {orderPrice = ["name", "DESC"]};
+            ///-------fecha------
+            let ordeDateIf = "";
             let orderDate = req.body.orderDate;
+            if (orderDate){ordeDateIf =["created_at"]};
             //-----------promesas---------------
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promProducts = products.findAll({
-                where :{
-                    [Op.in]: [
-                        {category_id: req.body.category},
-                        { marca_id:  req.body.marca}
-                    ]
-                },
-                //where:{  category_id:{  [Op.eq] : req.body.category} },
-                //where:{ marca_id:{  [Op.eq] : req.body.marca} },
-                // order:[orderPrice],
-                // order:[ orderAlfa],
-                // order:[orderDate],
+                where: whereIf,
+                //order:orderPrice,
+                order: orderAlfa,
+                //order: ordeDateIf,
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
             Promise.all([promProducts, promCategorys, promMarcas])
             .then(([products, allCategorys, allMarcas])=>{
+                console.log(whereIf)
+                
+
                 res.render('products/products',{ products, allCategorys, allMarcas});
             })
             .catch(error => res.send(error))
-        
+
 
         },
 
     //---------------------------------ADMINS / CRUD-----------------------------------------------
 //---------------------------- Products----------------------------------
         //crear Prodcuto
-        
+
         create: (req, res) => {
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
@@ -133,7 +144,7 @@ const controller = {
           },
 
         store:(req, res) => {
-            
+
             // -----------descuento--------
             let discount = req.body.discount;
             //---Precio Final -----
@@ -150,8 +161,8 @@ const controller = {
             products.create({
                 name: req.body.name,
                 category_id: req.body.category_id,
-                price: req.body.price, 
-                discount: req.body.discount, 
+                price: req.body.price,
+                discount: req.body.discount,
                 finalPrice: finalPrice ,
                 description: req.body.description,
                 talle_id: req.body.talle_id,
@@ -159,7 +170,7 @@ const controller = {
                 stock: req.body.stock,
                 image: imagen,
                 //create_at: now Date
-            })  
+            })
             .then((product)=>{
                 res.redirect("/");
             })
@@ -187,14 +198,14 @@ const controller = {
                 let editProduct =  {
                     name: req.body.name,
                     category_id: req.body.category_id,
-                    price: req.body.price, 
+                    price: req.body.price,
                     discount: req.body.discount,
                     description: req.body.description,
                     talle_id: req.body.talle_id,
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
                     finalPrice: finalPrice
-                    // updated_at: req.body.updated_at   
+                    // updated_at: req.body.updated_at
                 }
                 if (req.file){editProduct.image = req.file.filename}
                   // promesas
@@ -203,12 +214,12 @@ const controller = {
                 ,{
                 where:{
                     id: req.params.id
-                }})  
+                }})
                 .then((product)=>{
                     res.redirect('../../products/detail/'+ req.params.id)
                 })
             },
-            
+
             //borrar productos
             delete: (req, res) => {
                 products.findByPk(req.params.id)
@@ -238,7 +249,7 @@ const controller = {
             categorys.create({
                 nombre: req.body.nombre,
                //create_at: now Date
-            })  
+            })
             .then((product)=>{
                 res.redirect('/categorys');
             })
@@ -247,7 +258,7 @@ const controller = {
               updateCategory:(req, res) => {
                 let editCategory =  {
                     nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at   
+                   // updated_at: req.body.updated_at
                 }
                   // promesas
                 categorys.update(
@@ -255,17 +266,17 @@ const controller = {
                 ,{
                 where:{
                     nombre: req.body.nombre
-                }})  
+                }})
                 .then((category)=>{
                     res.redirect("/categorys")
                 })
             },
-            
+
             //borrar productos
             deleteCategory: (req, res) => {
                 categorys.findByPk(req.params.id)
                 .then((category)=>{
-                    
+
                     res.render('products/product-categorys-delete',{category});
                 })
             .catch(error => res.send(error))
@@ -276,9 +287,9 @@ const controller = {
                 });
                 res.redirect('/categorys');
             },
-                
+
                 //---------------------------- Marcas----------------------------------
-                 
+
                 listMarcas: (req, res) => {
             marcas.findAll()
             .then((allMarcas)=>{
@@ -291,14 +302,14 @@ const controller = {
             marcas.create({
                 nombre: req.body.nombre,
                //create_at: now Date
-            })  
+            })
             .then((product)=>{
                 res.redirect("/");
             })
                 },
-            
+
     //editar marcas
-            editMarca: (req, res) => {       
+            editMarca: (req, res) => {
             marcas.findAll()
             .then((allMarcas)=>{
                     res.render('products/product-category-edit', { allMarcas});
@@ -307,34 +318,34 @@ const controller = {
             },
 
             updateMarca:(req, res) => {
-             
+
                 let editMarca =  {
                     nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at   
+                   // updated_at: req.body.updated_at
                 }
-                
+
                   // promesas
                 marcas.update(
                     editMarca
                 ,{
                 where:{
                     id: req.params.id
-                }})  
+                }})
                 .then((marca)=>{
                     res.redirect("../../products/marcas")
                 })
             },
-            
+
             //borrar marcas
             deleteMarca: (req, res) => {
                 marcas.findByPk(req.params.id)
                 .then((marca)=>{
-                    
+
                     res.render('products/product-marcas-delete',{marca});
                 })
             .catch(error => res.send(error))
             },
-                
+
             destroyMarca: (req, res) => {
                 marcas.destroy({
                     where: { id: req.params.id }

@@ -86,7 +86,7 @@
                         <% for (i=0; i < allCategorys.length;i++) { %>  
                             <ul>  
                                 <li>
-                                <label><input type="radio" name="category"  value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
+                                <label><input type="checkbox" name="category" autofocus value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
                                 </li>
                             </ul>  
                             <% } %>
@@ -96,7 +96,7 @@
                                 <% for (i=0; i < allMarcas.length;i++) { %>  
                                 <ul>  
                                     <li>
-                                    <label><input type="radio" name="marca"  value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %>
+                                    <label><input type="checkbox" name="marca" value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %>
                                     </li>
                                 </ul>  
                                 <% } %>
