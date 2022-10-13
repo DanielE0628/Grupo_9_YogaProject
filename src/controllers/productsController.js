@@ -86,11 +86,10 @@ const controller = {
         // },
  //---------------------------- Filro----------------------------------
         filter: (req, res)=>{
-            
              //---------categoria-------------
             let categoria = req.body.category;
              //---------marca-------------
-             let marca = req.body.marca;
+            let marca = req.body.marca;
             //-----------------------condicional where------------------
             let whereIf = "";
             if(categoria && !marca  ){ whereIf = {category_id: categoria }}
@@ -99,27 +98,34 @@ const controller = {
             //-----------------------------orden------------
             //-------precio------------
             let orderPrice = req.body.orderPrice;
-            if(orderPrice == 1){ orderPrice = ["price"] } else {orderPrice = ["price", "DESC"]};
+            let price = "";
+            if(orderPrice == 1){ price = ["finalPrice"] } else {price = ["finalPrice", "DESC"]};
             //----------nombre---------
             let orderAlfa = req.body.orderAlfa;
-            if(orderAlfa == 1){ orderAlfa = ["name"] } else {orderPrice = ["name", "DESC"]};
-            ///-------fecha------
-            let ordeDateIf = "";
+            let alfa = "";
+            if(orderAlfa == 1){ alfa = ["name"] } else {alfa = ["name", "DESC"]};
+            //-------fecha------
             let orderDate = req.body.orderDate;
             if (orderDate){ordeDateIf =["created_at"]};
+            // condicional Order
+            let orderIf ="";
+            if (orderPrice && !orderAlfa && !orderDate){orderIf =[price]}
+            else if (orderPrice && orderAlfa && !orderDate){orderIf =[price, alfa]}
+            else if (orderPrice && orderAlfa && orderDate){orderIf =[price, alfa, "created_at"]}
+            else if (!orderPrice && orderAlfa && !orderDate){orderIf =[alfa]}
+            else if (!orderPrice && orderAlfa && orderDate){orderIf =[alfa,"created_at"]}
+            else if (!orderPrice && !orderAlfa && orderDate){orderIf =["created_at"]};
             //-----------promesas---------------
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promProducts = products.findAll({
                 where: whereIf,
-                //order:orderPrice,
-                order: orderAlfa,
-                //order: ordeDateIf,
+                order:orderIf,
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
             Promise.all([promProducts, promCategorys, promMarcas])
             .then(([products, allCategorys, allMarcas])=>{
-                console.log(whereIf)
+                console.log(orderIf)
                 
 
                 res.render('products/products',{ products, allCategorys, allMarcas});
