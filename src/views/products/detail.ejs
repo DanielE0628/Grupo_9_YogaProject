@@ -5,87 +5,106 @@
 <body>
 	<!-- Header -->
 	<%- include('../partials/header') %>
-	<!-- /Header -->
 
-	<!-- product detail -->
+
+	<!-- main -->
 	<div class="center" >
-		<div >
-			<div >
-				<h2 class="products-title">Detalle del producto: <%= product.name %></h2>
-			</div>
+		<!-- titulo -->
+		<div class="title" >
+			
+				<h1 >Detalle del producto: <%= product.name %></h1>
+			
 		</div>
-		<div class="product-detail">
+		<div class="main">
 			<div >
 				<!-- imagen -->
-				<div class="foto product-detail-img ">
+				<div class="imagen ">
 					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
-					<!-- Descripción -->
-					<p class="campo">
-						<%= product.description %>
-					</p>
-				</div>
+				</div>	
+					
+				<hr>
 				<div class="campo">
 					<article class="product-detail-info">
+						<!-- Descripción -->
+						<div class="description">
+						<p >
+							<%= product.description %>
+						</p>
+						</div>
+						<hr>
+						<!-- detalles -->
+						<div class="details">
 						<!-- Nombre -->
-						<h2 class="product-detail-title"><%= product.name %></h2>
+						<h2 class="details-font"><%= product.name %></h2>
 						<!-- Categoria -->
-						<h3 class="product-detail-title">Categoria: <%= product.categorys.nombre %></h3>
+						<h3 class="details-font">Categoria: <%= product.categorys.nombre %></h3>
 						<!-- Marca -->
-						<h4 class="product-detail-title">Marca: <%= product.marcas.nombre %></h4>
+						<h4 class="details-font">Marca: <%= product.marcas.nombre %></h4>
 						<!-- Talle -->
 						<% if(product.category_id == 1){ %>
-						<h4 class="product-detail-title">Talle: <%= product.talles.nombre %></h4>
+						<h4 class="details-font">Talle: <%= product.talles.nombre %></h4>
 						<% } %>
-						
-						<p class="product-detail-price small">
-							<!-- Precio -->
-							<span>$ <%= product.price %></span>
-						
+						<!-- Precio -->
+					
 							<% if(product.discount > 0){ %>	
-							</p>
+							
 							<!-- Descuento -->
-							<p class="product-detail-price">
+							<h2 class="details-font price">
 								Descuento <%= product.discount %> % OFF
-							</p>
-							<p class="product-detail-price">
-								Costo Final: $ <%= product.finalPrice %> 
-							</p>
-							<% } %>
+							</h2>
+							
+							<h3 class="details-font price">
+								Costo Final:<% } %> $ <%= product.finalPrice %> 
+							</h3>
+							
 							<!-- Stock -->
 							
-							<p class="product-detail-price">
+							
 								<% if ( product.stock > 0) { %> 
+									<p class="details-font"></p>
 								Stock: <%= product.stock %>
+								</p>
 								<%} else{%>
-								Sin stock por el momento 
+								<h2>
+									Sin stock por el momento
+								</h2> 
 								<%}%>	
-							</p>
-
-
+							
+						</div>
+						<hr>
+						<!-- cuotas y envio -->
+						<div class="pago-envio">
 						<ul class="actions-list">
 							<li>
-								<i class="fas fa-credit-card"></i>
-								<p>Pagá en 12 cuotas sin interes</p>
+								<i class="fas fa-credit-card"><p>Pagá en 12 cuotas sin interes</p></i>
+								
 							</li>
 							<li>
-								<i class="fas fa-store"></i>
-								<p>Retiro gratis en locales del vendedor</p>
+								<i class="fas fa-store"><p>Retiro gratis en locales del vendedor</p></i>
+								
 							</li>
 						</ul>
-
-						<a href="#" class="botones">COMPRAR AHORA</a>
 						<hr>
-
-						<a href="/products/edit/<%= product.id %>" class="botones">EDITAR PRODUCTO</a>
+					</div class="buttons">
+					    <!-- botones -->
+						<div>
+						<button><i class="fa-solid fa-cart-plus"></i></button>
+						<button>COMPRAR</button>
+						</div>
+						<hr> 
+						<h3>Admisnistradores</h3>
+						<div>
+						<button>
+						<a href="/products/edit/<%= product.id %>" >EDITAR PRODUCTO</a>
+						</button>
 						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
 							<button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
 						</form>
 
-						<!-- <hr> -->
-
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
 							<button type="submit" class="botones">ELIMINAR IMAGEN</button>
 						</form>
+					</div>
 					</article>
 				</div>
 			</div>
