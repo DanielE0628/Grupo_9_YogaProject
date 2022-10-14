@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
+<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/detail-style.css'}) %>
 <body>
 	<!-- Header -->
 	<%- include('../partials/header') %>
@@ -18,8 +18,8 @@
 		<div class="main">
 			<div >
 				<!-- imagen -->
-				<div class="imagen ">
-					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
+				<div class="imagen">
+					<img class="imagen" src="/images/products/<%= product.image %>" alt="product image"  >
 				</div>	
 					
 				<hr>
@@ -35,7 +35,7 @@
 						<!-- detalles -->
 						<div class="details">
 						<!-- Nombre -->
-						<h2 class="details-font"><%= product.name %></h2>
+						<!-- <h2 class="details-font"><%= product.name %></h2> -->
 						<!-- Categoria -->
 						<h3 class="details-font">Categoria: <%= product.categorys.nombre %></h3>
 						<!-- Marca -->
@@ -49,23 +49,22 @@
 							<% if(product.discount > 0){ %>	
 							
 							<!-- Descuento -->
-							<h2 class="details-font price">
-								Descuento <%= product.discount %> % OFF
-							</h2>
-							
 							<h3 class="details-font price">
-								Costo Final:<% } %> $ <%= product.finalPrice %> 
+								Descuento <%= product.discount %> % OFF
 							</h3>
 							
+							<h5 class="details-font price">
+								Costo Final:<% } %> $ <%= product.finalPrice %> 
+							</h5>
+							
 							<!-- Stock -->
-							
-							
+
 								<% if ( product.stock > 0) { %> 
-									<p class="details-font"></p>
+									<h4 class="details-font"></p>
 								Stock: <%= product.stock %>
-								</p>
+									</h4>
 								<%} else{%>
-								<h2>
+								<h2 class="details-font">
 									Sin stock por el momento
 								</h2> 
 								<%}%>	
@@ -76,33 +75,34 @@
 						<div class="pago-envio">
 						<ul class="actions-list">
 							<li>
-								<i class="fas fa-credit-card"><p>Pagá en 12 cuotas sin interes</p></i>
-								
+								<i class="fas fa-credit-card"></i>
+								<p>Pagá en 12 cuotas sin interes</p>
 							</li>
 							<li>
-								<i class="fas fa-store"><p>Retiro gratis en locales del vendedor</p></i>
-								
+								<i class="fas fa-store"></i>
+								<p>Retiro gratis en locales del vendedor</p>
 							</li>
 						</ul>
 						<hr>
 					</div class="buttons">
 					    <!-- botones -->
-						<div>
+						<div class="buttons compra">
 						<button><i class="fa-solid fa-cart-plus"></i></button>
 						<button>COMPRAR</button>
 						</div>
 						<hr> 
-						<h3>Admisnistradores</h3>
+						<!-- Admisnistradores -->
+						<h3 class="title">Admisnistradores</h3>
 						<div>
-						<button>
+						<button class="admins">
 						<a href="/products/edit/<%= product.id %>" >EDITAR PRODUCTO</a>
 						</button>
 						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
-							<button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
+							<button type="submit" class="admins">ELIMINAR PRODUCTO</button>
 						</form>
 
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
-							<button type="submit" class="botones">ELIMINAR IMAGEN</button>
+							<button type="submit" class="admins">ELIMINAR IMAGEN</button>
 						</form>
 					</div>
 					</article>
