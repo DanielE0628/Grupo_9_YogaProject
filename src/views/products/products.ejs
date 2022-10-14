@@ -71,27 +71,27 @@
                     </section>
 
                     <!-- section FILTRO -->
-                    <button class="contenedor-main-filtro-button">
+                    <button class="filtro-button">
                         <i class="fa-solid fa-bars"></i>
                     </button>
 
-                    <section class="contenedor-main-filtro">
-                        <form action="/products/filter/" method="post" class="contenedor-main-filtro-lista" value="filter">
+                    <section class="filtro">
+                        <form action="/products/filter/" method="post" class="filtro-form" value="filter">
                             
                         
-                            <div>
+                            <div class="filtro-checkbox"  >
                                 <!-- //menu categoryas -->
                                 
                                 <h3>CATEGORIAS</h3>
                         <% for (i=0; i < allCategorys.length;i++) { %>  
                             <ul>  
                                 <li>
-                                <label><input type="checkbox" name="category" autofocus value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
+                                <label><input type="checkbox" name="category"  value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
                                 </li>
                             </ul>  
                             <% } %>
                             </div>
-                            <div>
+                            <div class="filtro-checkbox">
                                 <h3>MARCA</h3>
                                 <% for (i=0; i < allMarcas.length;i++) { %>  
                                 <ul>  
@@ -101,7 +101,7 @@
                                 </ul>  
                                 <% } %>
                             </div>
-                            <!-- <div>
+                            <!-- <div class="filtro-talles">
                                 <h3>Talle</h3>
                                 <label><input type="radio" name="XS">XS</label>
                                 <label><input type="radio" name="S">S</label>
@@ -110,29 +110,23 @@
                                 <label><input type="radio" name="XL">XL</label>
                                 <label><input type="radio" name="XXL">XXL</label>
                             </div> -->
-                            <div>
+                            <div class="filtro-order">
                                 <h3>ORDEN</h3>
-                                <ul>
-                                    <li></li><label><input type="radio" name="orderPrice" value="1">Menor precio</label>
-                                    <li></li><label><input type="radio" name="orderPrice" value="2" >Mayor precio</label>
-                                </ul>
-                                    <p>------------</p>
-                                <ul>
-                                    <li></li><label><input type="radio" name="orderAlfa" value="1">A-Z</label>
-                                    <li></li><label><input type="radio" name="orderAlfa" value="2">Z-A</label>
-                                    
-                                </ul>
-                                <p>------------</p>
-                                <ul>    
-                                    <li></li><label><input type="radio" name="orderDate" value="created_at">Fecha de lanzamiento</label>
-                                </ul>
+                                
+                                <label><input type="radio" name="orderPrice" value="1">Menor precio</label>
+                                <label><input type="radio" name="orderPrice" value="2" >Mayor precio</label>
+                             
+                                <label><input type="radio" name="orderAlfa" value="1">A-Z</label>
+                                <label><input type="radio" name="orderAlfa" value="2">Z-A</label>
+                                
+                                <label><input type="radio" name="orderDate" value="created_at">Fecha de lanzamiento</label>
                             </div>
                             <!-- <label class="contenedor-main-filtro-lista-boton-borrar">
                                 <button type="reset" name="resetear">Borrar</button>
                             </label> --> 
-                            <div class="botones">
-                                <button type="submit">Filtrar</button>
-                                <button type="reset" >Restablecer</button>
+                            <div >
+                                <button type="submit" class="filtro-buttons">Filtrar</button>
+                                <button type="reset" class="filtro-buttons">Restablecer</button>
                             </div>
                         </form>
                     </section>
@@ -159,9 +153,6 @@
                                         <div>
 
                                         </div>
-                                        
-                                 
-                                        
                                         <div>
                                             <h2>
                                             ¡Oferta! $ <%= (products.price -(products.price*(products.discount/100))) %> 

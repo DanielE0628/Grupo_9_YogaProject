@@ -134,7 +134,26 @@ const controller = {
 
 
         },
-
+    //---------------------------------USERS--------------------------------------
+    // comprar ---------- en construccion
+    buy:(req, res)=>{
+        // cantidades
+        let cant = 1;
+        //arrays de ids o de id de prodcutos
+        let productsIdCart= [];
+        //ver si es un All o un ByPk
+        products.findByPk({
+            where: productsIdCart,
+        })
+        .then(product => {
+            return product.decrement('stock', {by: cant})
+        }).then(product=> {
+            res.redirect("/")
+            // Postgres will return the updated user by default (unless disabled by setting { returning: false })
+            // In other dialects, you'll want to call user.reload() to get the updated instance...
+        })
+        .catch(error => res.send(error))
+    },
     //---------------------------------ADMINS / CRUD-----------------------------------------------
 //---------------------------- Products----------------------------------
         //crear Prodcuto
@@ -150,7 +169,6 @@ const controller = {
           },
 
         store:(req, res) => {
-
             // -----------descuento--------
             let discount = req.body.discount;
             //---Precio Final -----

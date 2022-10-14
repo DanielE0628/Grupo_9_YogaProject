@@ -52,9 +52,15 @@
 							</p>
 							<% } %>
 							<!-- Stock -->
+							
 							<p class="product-detail-price">
+								<% if ( product.stock > 0) { %> 
 								Stock: <%= product.stock %>
+								<%} else{%>
+								Sin stock por el momento 
+								<%}%>	
 							</p>
+
 
 						<ul class="actions-list">
 							<li>
