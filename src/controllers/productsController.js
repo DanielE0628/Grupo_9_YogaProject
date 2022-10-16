@@ -266,7 +266,7 @@ const controller = {
             },
       //---------------------------- Category----------------------------------
      //lista
-      listCategory: (req, res) => {
+      listCategorys: (req, res) => {
         categorys.findAll()
         .then((allCategorys)=>{
                 res.render('products/categorys/list', { allCategorys});
@@ -280,7 +280,7 @@ const controller = {
                  nombre: req.body.nombre,
                  created_at: date
             })
-            .then((product)=>{
+            .then((category)=>{
                 res.redirect("/products/categorys");
             })
                 },
@@ -291,7 +291,6 @@ const controller = {
                     nombre: req.body.nombre,
                     updated_at: date
                 }
-                  // promesas
                 categorys.update(
                 editCategory
                 ,{
@@ -304,7 +303,7 @@ const controller = {
                 })
             },
 
-            //borrar productos
+            //borrar 
 
             destroyCategory: (req, res) => {
                 categorys.destroy({
@@ -315,67 +314,51 @@ const controller = {
 
                 //---------------------------- Marcas----------------------------------
 
-                listMarcas: (req, res) => {
-            marcas.findAll()
-            .then((allMarcas)=>{
-                res.render('products/marcas/list', {allMarcas})
-            }) .catch(error => res.send(error))
-          },
-
+     //lista
+     listMarcas: (req, res) => {
+       marcas.findAll()
+        .then((allMarcas)=>{
+                res.render('products/marcas/list', { allMarcas});
+            })
+        .catch(error => res.send(error))
+        },
+        // crear
         storeMarca:(req, res) => {
             let date = new Date();
             marcas.create({
-                nombre: req.body.nombre,
-                created_at: date
+                 nombre: req.body.nombre,
+                 created_at: date
             })
-            .then((product)=>{
-                res.redirect("/");
+            .then((marca)=>{
+                res.redirect("/products/marcas");
             })
                 },
-
-    //editar marcas
-            editMarca: (req, res) => {
-            marcas.findAll()
-            .then((allMarcas)=>{
-                    res.render('products/product-category-edit', { allMarcas});
-                })
-            .catch(error => res.send(error))
-            },
-
-            updateMarca:(req, res) => {
+            // editar
+              updateMarca:(req, res) => {
                 let date = new Date();
                 let editMarca =  {
                     nombre: req.body.nombre,
                     updated_at: date
                 }
-
-                  // promesas
                 marcas.update(
-                    editMarca
+                editMarca
                 ,{
                 where:{
                     id: req.params.id
                 }})
                 .then((marca)=>{
-                    res.redirect("../../products/marcas")
+                 
+                    res.redirect("/products/marcas")
                 })
             },
 
-            //borrar marcas
-            deleteMarca: (req, res) => {
-                marcas.findByPk(req.params.id)
-                .then((marca)=>{
-
-                    res.render('products/product-marcas-delete',{marca});
-                })
-            .catch(error => res.send(error))
-            },
+            //borrar 
 
             destroyMarca: (req, res) => {
                 marcas.destroy({
                     where: { id: req.params.id }
                 });
-                res.redirect('/products/marcas');
+                res.redirect("/products/marcas");
             },
 }
 

@@ -51,7 +51,7 @@ router.get('/delete/:id', productsController.delete);
 
 // // crear/editar categoria
 
-router.get('/categorys', productsController.listCategory); 
+router.get('/categorys', productsController.listCategorys); 
 router.post('/categorys/create', productsController.storeCategory); 
 router.put('/categorys/edit/:id', productsController.updateCategory); 
 router.delete('/categorys/delete/:id/', productsController.destroyCategory);
@@ -59,10 +59,10 @@ router.delete('/categorys/delete/:id/', productsController.destroyCategory);
 //------------------marcas------------------------
 
 // //crear editar eliminar marca
-//router.get('/marcas/', productsController.createMarca); 
-//router.post('/marcas/create', productsController.storeMarca); 
- //router.put('/marca/edit/:id', productsController.updateMarca); 
-// router.delete('/marca/delete/:id/', productsController.destroyMarca);
+router.get('/marcas/', productsController.listMarcas); 
+router.post('/marcas/create', productsController.storeMarca); 
+ router.put('/marcas/edit/:id', productsController.updateMarca); 
+router.delete('/marcas/delete/:id/', productsController.destroyMarca);
 
 //----------------------------------------------
 //------------------CRUD FIN------------------------
