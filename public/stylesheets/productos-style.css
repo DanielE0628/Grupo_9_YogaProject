@@ -5,6 +5,7 @@ root{
     box-sizing: border-box;
  }
 main{
+    font-size: 14px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
