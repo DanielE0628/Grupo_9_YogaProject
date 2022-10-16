@@ -13,13 +13,13 @@ module.exports = (sequelize, dataTypes) => {
         allowNull: false
     },
 
-    // created_at:{
-    //     type: dataTypes.DATE,
-    // },
+    created_at:{
+        type: dataTypes.DATE,
+    },
 
-    // updated_at:{
-    //     type: dataTypes.DATE,
-    // },
+    updated_at:{
+        type: dataTypes.DATE,
+    },
 
     logicDelete:{
         type: dataTypes.TINYINT,
@@ -30,8 +30,8 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         tableName : "users",
         timestamps: false,
-        // createdAt: 'created_at',
-        // updatedAt: 'updated_at',
+         createdAt: 'created_at',
+         updatedAt: 'updated_at',
         deletedAt: false
     }
 

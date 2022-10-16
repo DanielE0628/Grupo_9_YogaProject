@@ -10,17 +10,17 @@
 
             <main>
                 <div class="title">
-                    <h2 class="products-title">Listado de Categorias: <i></i></h2>
+                    <h2 >Listado de Categorias: <i></i></h2>
                 </div>
                 <div class="list">
-                    <% allCategorys.forEach(category=> { %>
+                    <% allMarcas.forEach(marca=> { %>
                         <% { %>
                             <div class="list-field">
-                                <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post">
+                                <form action="/products/marcas/edit/<%= marca.id %>?_method=PUT" method="post">
                                     <!-- name -->
                                     <div class="list-field-name">
                                         <label for="nombre" class="form-label"></label>
-                                        <input type="text" name="nombre" id="nombre" value="<%= category.nombre %>">
+                                        <input type="text" name="nombre" id="nombre" value="<%= marca.nombre %>">
 
                                     </div>
 
@@ -30,7 +30,7 @@
                                 </form>
                             </div>
                             <div class="button">
-                                <form action="/products/categorys/delete/<%= category.id %>?_method=DELETE" method="post">
+                                <form action="/products/marcas/delete/<%= marca.id %>?_method=DELETE" method="post">
                                     <button type="submit">Borrar</button>
                                 </form>
                             </div>
@@ -41,7 +41,7 @@
                 <% } %>
                     <% }) %>
                         </div>
-                        <form action="/products/categorys/create" method="post" >
+                        <form action="/products/marcas/create" method="post" >
                             <div>
                                 <h2 class="products-title"> Formulario de Creacion de Productos</i></h2>
                             </div>

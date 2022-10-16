@@ -2,21 +2,24 @@
 
 <html lang="es">
     
-    <%- include('./partials/head', {title: 'Editar producto', estilo:'/stylesheets/usersRegister-style.css'}) %>
+    <%- include('./partials/head', {title: 'Editar producto', estilo:'/stylesheets/list-style.css'}) %>
 
     <body>
         
         <%- include('./partials/header') %>
 
         <main>
-        <h1>SOLO PARA ADMINS</h1>
-      
+        <div class="title">
+            <h1>SOLO PARA ADMINS</h1>
+        </div>
+       
+        <div class="list">
         <ul>
             <li><a href="./products/create">Crear Productos</a></li>
             <li><a href="./products/categorys">Crear/Editar Categorias</a></li>
             <li><a href="./products/marcas/">Crear/Editar Marcas</a></li>
-
         </ul>
+    </div>
         </main>
 
         <%- include('./partials/footer') %>

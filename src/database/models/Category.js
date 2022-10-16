@@ -4,22 +4,22 @@ module.exports = (sequelize, dataTypes) => {
 
     id: {
     autoIncrement: true,
-    primaryKey: true, 
+    primaryKey: true,
     type:dataTypes.INTEGER
     },
-    
+
     nombre: {
         type: dataTypes.STRING(100),
         allowNull: false
     },
 
-    // created_at:{
-    //     type: dataTypes.DATE,
-    // },
+    created_at:{
+        type: dataTypes.DATE,
+    },
 
-    // updated_at:{
-    //     type: dataTypes.DATE,
-    // },
+    updated_at:{
+        type: dataTypes.DATE,
+    },
 
     logicDelete:{
         type: dataTypes.TINYINT,
@@ -30,8 +30,8 @@ module.exports = (sequelize, dataTypes) => {
     let config = {
         tableName : "categorys",
         timestamps: false,
-        // createdAt: 'created_at',
-        // updatedAt: 'updated_at',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         deletedAt: false
     }
 

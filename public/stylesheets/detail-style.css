@@ -1,17 +1,32 @@
-
-.product-detail {
+*{
+  box-sizing: border-box;
+}
+.title{
+  font-size: 100%;
+  font-weight: 400;
+  
+}
+.main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
+  margin: 1px;
 }
-img{
-  width: 70%;
-}
-.product-detail-img {
-  width: 70%;
+.imagen{
+ width: 70%;
   display: block;
   margin: auto;
 }
+
+img .imagen {
+    max-width: 320px;
+    width: 100%;
+    border-style: solid;
+}
+
 
 .product-detail-info {
   border-left: 1px solid var(--light-gray);
@@ -19,22 +34,29 @@ img{
   height: 100%;
 }
 
-.product-detail-title {
-  font-weight: 400;
-  font-size: 2.8em;
-}
-
-.product-detail-description {
+.description{
   padding: 15px;
   font-size: 1.8em;
   line-height: 1.5;
+  text-align: left;
 }
 
-.product-detail-price {
-  font-size: 5.5em;
-  margin: 10px 0;
+.details{
+  text-align: left;
 }
+.details-font{
+  border-left: 1px solid var(--light-gray);
+  padding: 15px;
+}
+.price {
+  font-size: 100%;
+  text-align: left;
 
+}
+.pago-envio{
+  font-size: 50%;
+  text-align: center;
+}
 .small {
   font-size: 1.8em;
   color: var(--green);
@@ -67,7 +89,7 @@ img{
   margin: 0;
 }
 
-.buy-now-button {
+.compra {
   background-color: var(--light-blue);
   font-size: 1.6em;
   color: #ffffff;
@@ -80,7 +102,7 @@ img{
   margin-bottom: 15px;
 }
 
-.action-button {
+.admins {
   border: none;
   border-radius: 8px;
   font-size: 1.2em;
@@ -99,4 +121,16 @@ img{
 }
 .action-button.delete {
   background-color: rgb(248, 69, 37);
+}
+@media (min-width:768px){
+  img .imagen {
+    max-width: 768px;
+    width: 100%;
+    border-style: solid;
+}
+
+}
+
+@media (min-width:1000px){
+
 }

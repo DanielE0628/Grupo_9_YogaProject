@@ -159,6 +159,7 @@ const controller = {
         //crear Prodcuto
 
         create: (req, res) => {
+             //-------------promesas-----------
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
             let promTalles = talles.findAll()
@@ -169,6 +170,8 @@ const controller = {
           },
 
         store:(req, res) => {
+            //--------------fecha----------------
+            let date = new Date();
             // -----------descuento--------
             let discount = req.body.discount;
             //---Precio Final -----
@@ -193,7 +196,7 @@ const controller = {
                 marca_id: req.body.marca_id,
                 stock: req.body.stock,
                 image: imagen,
-                //create_at: now Date
+                created_at: date
             })
             .then((product)=>{
                 res.redirect("/");
@@ -213,6 +216,8 @@ const controller = {
             },
 
             update:(req, res) => {
+                 //--------------fecha----------------
+                let date = new Date();
                 //---Precio Final -----
                 let price = req.body.price;
                 let discount = req.body.discount;
@@ -228,8 +233,8 @@ const controller = {
                     talle_id: req.body.talle_id,
                     marca_id: req.body.marca_id,
                     stock: req.body.stock,
-                    finalPrice: finalPrice
-                    // updated_at: req.body.updated_at
+                    finalPrice: finalPrice,
+                    updated_at: date
                 }
                 if (req.file){editProduct.image = req.file.filename}
                   // promesas
@@ -268,48 +273,44 @@ const controller = {
             })
         .catch(error => res.send(error))
         },
-
+        // crear
         storeCategory:(req, res) => {
+            let date = new Date();
             categorys.create({
-                nombre: req.body.nombre,
-               //create_at: now Date
+                 nombre: req.body.nombre,
+                 created_at: date
             })
             .then((product)=>{
-                res.redirect('/categorys');
+                res.redirect("/products/categorys");
             })
-
                 },
+            // editar
               updateCategory:(req, res) => {
+                let date = new Date();
                 let editCategory =  {
                     nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at
+                    updated_at: date
                 }
                   // promesas
                 categorys.update(
-                   editCategory
+                editCategory
                 ,{
                 where:{
-                    nombre: req.body.nombre
+                    id: req.params.id
                 }})
                 .then((category)=>{
-                    res.redirect("/categorys")
+                 
+                    res.redirect("/products/categorys")
                 })
             },
 
             //borrar productos
-            deleteCategory: (req, res) => {
-                categorys.findByPk(req.params.id)
-                .then((category)=>{
 
-                    res.render('products/product-categorys-delete',{category});
-                })
-            .catch(error => res.send(error))
-            },
             destroyCategory: (req, res) => {
                 categorys.destroy({
                     where: { id: req.params.id }
                 });
-                res.redirect('/categorys');
+                res.redirect("/products/categorys");
             },
 
                 //---------------------------- Marcas----------------------------------
@@ -322,10 +323,10 @@ const controller = {
           },
 
         storeMarca:(req, res) => {
-
+            let date = new Date();
             marcas.create({
                 nombre: req.body.nombre,
-               //create_at: now Date
+                created_at: date
             })
             .then((product)=>{
                 res.redirect("/");
@@ -342,10 +343,10 @@ const controller = {
             },
 
             updateMarca:(req, res) => {
-
+                let date = new Date();
                 let editMarca =  {
                     nombre: req.body.nombre,
-                   // updated_at: req.body.updated_at
+                    updated_at: date
                 }
 
                   // promesas
