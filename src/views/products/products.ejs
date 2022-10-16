@@ -56,10 +56,16 @@
                                                  Categoria: <%= products.categorys.nombre %>
                                             </h3>
                                         </div>
+                                        <div>
+                                            <h4>
+                                                 Lanzamiento: <%= products.created_at %>
+                                            </h4>
+                                        </div>
                                         <div class="action-button edit">
                                             <a href="/products/detail/<%= products.id %>">Detalles</a>
                                         </div>
                                         <div class="contenedor-main-productos-articulos-button ">
+                                            <button><i class="fa-solid fa-cart-plus"></i></button>
                                             <button type="submit" class="add-to-cart" name="comprar" id="<%=products.id%>">
                                                 Comprar
                                             </button>
@@ -174,6 +180,7 @@
                                             <a href="/products/detail/<%= products.id %>">Detalles</a>
                                         </div>
                                         <div class="contenedor-main-productos-articulos-button">
+                                            <button><i class="fa-solid fa-cart-plus"></i></button>
                                             <button type="submit" name="comprar">
                                                 Comprar
                                             </button>
