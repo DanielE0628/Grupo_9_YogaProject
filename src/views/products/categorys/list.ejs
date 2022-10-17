@@ -16,7 +16,7 @@
                     <% allCategorys.forEach(category=> { %>
                         <% { %>
                             <div class="list-field">
-                                <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post">
+                                <form action="/products/categorys/edit/<%= category.id %>?_method=PUT" method="post" class="list-form">
                                     <!-- name -->
                                     <div class="list-field-name">
                                         <label for="nombre" class="form-label"></label>
@@ -29,12 +29,19 @@
 
                                 </form>
                             </div>
-                            <div class="button">
-                                <form action="/products/categorys/delete/<%= category.id %>?_method=DELETE" method="post">
-                                    <button type="submit">Borrar</button>
-                                </form>
-                            </div>
-                            
+                            <% if(category.logicDelete === 1){ %> 
+                                <div class="button">
+                                    <form action="/products/categorys/delete/<%= category.id %>?_method=put" method="post">
+                                        <button type="submit">Borrar</button>
+                                    </form>
+                                </div>
+                                <% } else {%>
+                                <div class="button">
+                                    <form action="/products/categorys/restore/<%= category.id %>?_method=put" method="post">
+                                        <button type="submit">Restaurar</button>
+                                    </form>
+                                </div>
+                                <% } %>
                 </div>
 
 

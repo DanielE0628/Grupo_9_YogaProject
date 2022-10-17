@@ -33,7 +33,8 @@ router.post("/filter/", productsController.filter)
 //----------------------------------------------
 
 //------------------productos------------------------
-
+// lista
+router.get('/list', productsController.productsList); 
 // //crear producto
 router.get('/create', productsController.create); 
 router.post('/create',upload.single("image"), productsController.store); 
@@ -44,8 +45,14 @@ router.post('/create',upload.single("image"), productsController.store);
 
 // //eliminar Producto
 router.get('/delete/:id', productsController.delete);
- router.delete('/delete/:id/', productsController.destroy);
+router.put('/delete/:id/', productsController.LogicDelete);
+
+// restaurar porducto
+router.put('/restore/:id/', productsController.restoreProduct);
+// destruir porducto
+ router.delete('/destroy/:id/', productsController.destroy);
  //router.delete('/delete/img/:id', productsController.destroyImg); 
+
 
 //------------------categorias------------------------
 
@@ -54,15 +61,16 @@ router.get('/delete/:id', productsController.delete);
 router.get('/categorys', productsController.listCategorys); 
 router.post('/categorys/create', productsController.storeCategory); 
 router.put('/categorys/edit/:id', productsController.updateCategory); 
-router.delete('/categorys/delete/:id/', productsController.destroyCategory);
-  
+router.put('/categorys/delete/:id/', productsController.LogicCategoryDelete);
+router.put('/categorys/restore/:id/', productsController.restoreCategory);  
 //------------------marcas------------------------
 
 // //crear editar eliminar marca
 router.get('/marcas/', productsController.listMarcas); 
 router.post('/marcas/create', productsController.storeMarca); 
  router.put('/marcas/edit/:id', productsController.updateMarca); 
-router.delete('/marcas/delete/:id/', productsController.destroyMarca);
+router.put('/marcas/delete/:id/', productsController.LogicCategoryDelete);
+router.put('/marcas/restore/:id/', productsController.LogicCategoryDelete);
 
 //----------------------------------------------
 //------------------CRUD FIN------------------------

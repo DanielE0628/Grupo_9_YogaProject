@@ -10,13 +10,13 @@
 
             <main>
                 <div class="title">
-                    <h2 class="products-title">Listado de Categorias: <i></i></h2>
+                    <h2 class="products-title">Listado de Marcas: <i></i></h2>
                 </div>
                 <div class="list">
                     <% allMarcas.forEach(marca=> { %>
                         <% { %>
                             <div class="list-field">
-                                <form action="/products/marcas/edit/<%= marca.id %>?_method=PUT" method="post">
+                                <form action="/products/marcas/edit/<%= marca.id %>?_method=PUT" method="post" class="list-form">
                                     <!-- name -->
                                     <div class="list-field-name">
                                         <label for="nombre" class="form-label"></label>
@@ -29,12 +29,19 @@
 
                                 </form>
                             </div>
+                            <% if(marca.logicDelete === 1){ %> 
                             <div class="button">
-                                <form action="/products/marcas/delete/<%= marca.id %>?_method=DELETE" method="post">
+                                <form action="/products/marcas/delete/<%= marca.id %>?_method=put" method="post">
                                     <button type="submit">Borrar</button>
                                 </form>
                             </div>
-                            
+                            <% } else {%>
+                            <div class="button">
+                                <form action="/products/marcas/restore/<%= marca.id %>?_method=put" method="post">
+                                    <button type="submit">Restaurar</button>
+                                </form>
+                            </div>
+                            <% } %>
                 </div>
 
 

@@ -84,26 +84,38 @@
 							</li>
 						</ul>
 						<hr>
+						<!-- botones comprar y carrito -->
+
 					</div class="buttons">
-					    <!-- botones -->
+					    <% if(product.logicDelete === 1){ %> 
 						<div class="buttons compra">
 						<button><i class="fa-solid fa-cart-plus"></i></button>
 						<button>COMPRAR</button>
 						</div>
+						<% }else {%>
+							<p>Lo sentimos, este producto no se encuentra disponible en estos momentos</p>
 						<hr> 
+						<% } %>
 						<!-- Admisnistradores -->
 						<h3 class="title">Admisnistradores</h3>
 						<div>
 						<button class="admins">
 						<a href="/products/edit/<%= product.id %>" >EDITAR PRODUCTO</a>
 						</button>
-						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
+						<% if(product.logicDelete === 1){ %> 
+						<form action="/products/delete/<%= product.id %>?_method=PUT" method="POST">
 							<button type="submit" class="admins">ELIMINAR PRODUCTO</button>
 						</form>
-
+						<% }else {%>
+						<form action="/products/restore/<%= product.id %>?_method=PUT" method="POST">
+							<button type="submit" class="admins">RESTAURAR PRODUCTO</button>
+						</form>
+						<% } %>
+						<% if(product.image != "default.jpg"){ %> 
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
 							<button type="submit" class="admins">ELIMINAR IMAGEN</button>
 						</form>
+						<% } %>
 					</div>
 					</article>
 				</div>
