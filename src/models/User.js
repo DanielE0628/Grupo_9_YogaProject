@@ -2,6 +2,10 @@ const { timeStamp } = require('console');
 const fs = require('fs');
 const path = require('path');
 
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const { Op, where } = require("sequelize");
+
 const User = {
     fileName: path.join(__dirname, '..', 'data', 'usersDataBase.json'),
     
@@ -77,27 +81,29 @@ const User = {
         let usersEdit = [];
 
         allUsers.forEach(user => {
-            if(dataToEdit.id == user.id){
-                user.id = dataToEdit.id;
-                user.imagenUsuario = dataToEdit.imagenUsuario;
-                user.nombre = dataToEdit.nombre;
-                user.apellido = dataToEdit.apellido;
-                user.email = dataToEdit.email;
-                user.fecha_de_nacimiento = dataToEdit.fecha_de_nacimiento;
-                user.password = dataToEdit.password;
-                user.cart = dataToEdit.cart;
-                
-                usersEdit.push(user)
-            } else{
-                usersEdit.push(user)
-            }
+                if(dataToEdit.id == user.id){
+                    user.id = dataToEdit.id;
+                    user.imagenUsuario = dataToEdit.imagenUsuario;
+                    user.nombre = dataToEdit.nombre;
+                    user.apellido = dataToEdit.apellido;
+                    user.email = dataToEdit.email;
+                    user.fecha_de_nacimiento = dataToEdit.fecha_de_nacimiento;
+                    user.password = dataToEdit.password;
+                    user.cart = dataToEdit.cart;
+                    
+                    usersEdit.push(user)
+                } else{
+                    usersEdit.push(user)
+                }
         });
         
 
         //Editar usuario en DATA JSON
         fs.writeFileSync(this.fileName, JSON.stringify(usersEdit, null, ' '));
+
+        let userEdit = this.findByPk(dataToEdit.id)
         
-        return;
+        return userEdit;
     }
     ,
 

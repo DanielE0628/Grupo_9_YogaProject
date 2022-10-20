@@ -3,6 +3,9 @@ const { validationResult } = require('express-validator');
 const User = require('../models/User.js');
 const bcryptjs = require('bcryptjs');
 
+const sequelize = db.sequelize;
+const { Op, where } = require("sequelize");  
+
 
 const controlador = {
     vistaUser: (req, res) => {
@@ -150,8 +153,6 @@ const controlador = {
     edit: (req, res) => {
 
         let id = req.params.id;
-        let user = req.session.userLogged
-
         //buscar usuario por ID en db
         let userDb = User.findByPk(id);
         
@@ -183,9 +184,10 @@ const controlador = {
             cart: userDb.cart,
         }
 
-        User.edit(userToEdit);
+        let userEdit = User.edit(userToEdit);
+        req.session.userLogged = userEdit
 
-        res.redirect(`/users/profile/${id}`);
+        res.redirect(`/`);
 
     },
 
