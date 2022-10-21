@@ -1,38 +1,38 @@
 module.exports = (sequelize, dataTypes) => {
     let alias = "Carts";
-    let cols ={
+    let cols = {
 
-    id: {
-    autoIncrement: true,
-    primaryKey: true, 
-    type:dataTypes.INTEGER
-    },
+        id: {
+            autoIncrement: true,
+            primaryKey: true,
+            type: dataTypes.INTEGER
+        },
 
-    // email: {
-    //     type: dataTypes.STRING(100),
-    //     allowNull: false
-    //     },
-    
-    user_id: {
-        type: dataTypes.STRING(100),
-        allowNull: false
-    },
+        // email: {
+        //     type: dataTypes.STRING(100),
+        //     allowNull: false
+        //     },
 
-    product_id: {
-        type: dataTypes.STRING(100),
-        allowNull: false
+        user_id: {
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
+
+        product_id: {
+            type: dataTypes.STRING(100),
+            allowNull: false
         },
 
 
-        created_at:{
+        created_at: {
             type: dataTypes.DATE,
         },
-    
-        edited_at:{
+
+        edited_at: {
             type: dataTypes.DATE,
         },
-    
-        available:{
+
+        available: {
             type: dataTypes.TINYINT,
         },
     };
@@ -47,7 +47,7 @@ module.exports = (sequelize, dataTypes) => {
 
     const Cart = sequelize.define(alias, cols, config);
     Cart.associate = (models) => {
-        Cart.hasMany(models.Users,{
+        Cart.hasMany(models.Users, {
             as: "users",
             foreignKey: "user_id"
         });
