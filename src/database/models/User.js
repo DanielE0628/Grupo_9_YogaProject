@@ -1,42 +1,72 @@
 module.exports = (sequelize, dataTypes) => {
     let alias = "Users";
-    let cols ={
+    let cols = {
 
-    id: {
-    autoIncrement: true,
-    primaryKey: true, 
-    type:dataTypes.INTEGER
-    },
-    
-    nombre: {
-        type: dataTypes.STRING(100),
-        allowNull: false
-    },
+        id: {
+            type: dataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
+        },
+        cart: {
+            type: dataTypes.STRING(),
+        },
 
-    created_at:{
-        type: dataTypes.DATE,
-    },
+        avatar: {
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
 
-    updated_at:{
-        type: dataTypes.DATE,
-    },
+        Email: {
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
 
-    logicDelete:{
-        type: dataTypes.TINYINT,
-    }
+        password: {
+            type: dataTypes.STRING(60),
+            allowNull: false
+        },
+
+        nombre: {
+            type: dataTypes.STRING(100),
+            allowNull: false
+        },
+
+        birthdate: {
+            type: dataTypes.STRING(10),
+            allowNull: false
+        },
+
+        created_at: {
+            type: dataTypes.DATE,
+        },
+
+        updated_at: {
+            type: dataTypes.DATE,
+        },
+
+        logicDelete: {
+            type: dataTypes.TINYINT,
+        }
 
     };
 
     let config = {
-        tableName : "users",
+        tableName: "users",
         timestamps: false,
-         createdAt: 'created_at',
-         updatedAt: 'updated_at',
+        createdAt: 'created_at',
+        updatedAt: 'updated_at',
         deletedAt: false
     }
 
     const User = sequelize.define(alias, cols, config);
     //  las asociaciones
- 
+
+    User.associate = (models) => {
+        User.belongsTo(models.Carts, {
+            as: "carts",
+            foreignKey: "user_id"
+        });
+    }
+
     return User;
 }

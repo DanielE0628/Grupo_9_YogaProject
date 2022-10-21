@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    let alias = "carts";
+    let alias = "Carts";
     let cols ={
 
     id: {
@@ -8,17 +8,17 @@ module.exports = (sequelize, dataTypes) => {
     type:dataTypes.INTEGER
     },
 
-    email: {
-        type: dataTypes.STRING(100),
-        allowNull: false
-        },
+    // email: {
+    //     type: dataTypes.STRING(100),
+    //     allowNull: false
+    //     },
     
-    users_id: {
+    user_id: {
         type: dataTypes.STRING(100),
         allowNull: false
     },
 
-    products_id: {
+    product_id: {
         type: dataTypes.STRING(100),
         allowNull: false
         },
@@ -28,7 +28,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DATE,
         },
     
-        updated_at:{
+        edited_at:{
             type: dataTypes.DATE,
         },
     
@@ -38,12 +38,19 @@ module.exports = (sequelize, dataTypes) => {
     };
 
     let config = {
-        timestamps: true,
+        tableName: "carts",
+        timestamps: false,
         createdAt: 'created_at',
         updatedAt: 'updated_at',
         deletedAt: false
     }
 
-    const carts = sequelize.define(alias, cols, config);
-    return carts;
+    const Cart = sequelize.define(alias, cols, config);
+    Cart.associate = (models) => {
+        Cart.hasMany(models.Users,{
+            as: "users",
+            foreignKey: "user_id"
+        });
+    }
+    return Cart;
 }
