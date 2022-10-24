@@ -2,44 +2,33 @@ const express = require('express');
 const router = express.Router();
 
 /* Controlador*/
-const userController = require('../controllers/userController');
+const userControllerSql = require('../controllers/UserControllerSql');
 
 /* Middlewares */
 const uploadFile = require('../middlewares/userMulterMiddleware');
 const validations = require("../middlewares/usersRegValidatorMiddleware");
 const validationsEdit = require("../middlewares/usersEditValidatorMiddleware");
 const guestMiddleware = require('../middlewares/guestMiddleware');
-const authMiddleware = require('../middlewares/authMiddleware')
-
-/* Vistas Usuario */
-router.get('/', userController.vistaUser);
-router.get('/instructors', userController.vistaInstructors);
-
-/* Login*/
-router.get('/list', userController.vistaLista);
-router.get('/detail/:id', userController.vistaDetalle)
-
-
-
-/* Login*/
-router.get('/login', guestMiddleware, userController.vistaLogin);
-router.post('/login', userController.login);
-router.get('/logout', userController.logout);
-
-/* Buscar Usuario */
-router.get('/search', userController.search);
-
-/* Editar Usuario */
-router.get('/profile/:id', authMiddleware, userController.vistaProfile);
-router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userController.edit);
-
-/* Eliminar Usuario */
-router.delete('/delete/:idUser', function (req, res) {
-    res.send("fui por DELETE");
-});
+const authMiddleware = require('../middlewares/authMiddleware');
 
 /* Crear Usuario */
-router.get('/register', guestMiddleware, userController.vistaRegister);
-router.post('/register', uploadFile.single('imagenUsuario'), validations, userController.registro);
+router.get('/register', guestMiddleware, userControllerSql.vistaRegister); 
+router.post('/register', uploadFile.single('imagenUsuario'), validations, userControllerSql.registro);
+/* Lista Usuarios*/
+router.get('/list', userControllerSql.vistaLista);
+router.get('/detail/:id', userControllerSql.vistaDetalle);
+/* Editar Usuario */
+router.get('/profile/:id', authMiddleware, userControllerSql.vistaProfile);
+router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
+/* Eliminar Usuario */
+router.delete('/delete/:idUser', userControllerSql.eliminar);
+
+/* Login*/
+router.get('/login', guestMiddleware, userControllerSql.vistaLogin);
+router.post('/login', userControllerSql.login);
+router.get('/logout', userControllerSql.logout);
+/* Vistas Usuario */
+router.get('/', userControllerSql.vistaUser);
+router.get('/instructors', userControllerSql.vistaInstructors);
 
 module.exports = router;

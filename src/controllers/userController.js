@@ -9,8 +9,6 @@ const controlador = {
         res.render('users/user');
     },
 
-    
-
     vistaLista: (req, res) => {
         let users = User.findAll();
         res.render('users/userList', { users })
@@ -57,11 +55,11 @@ const controlador = {
 
         //crear nuevo usuario
         let userToCreate = {
-            nombre: req.body.nombre,
             email: req.body.email,
+            nombre: req.body.nombre,
             fecha_de_nacimiento: req.body.fecha_de_nacimiento,
             password: bcryptjs.hashSync(req.body.password, 10),
-        
+            cart: [{}],
         }
 
         //comparar contraseñas 
@@ -79,7 +77,7 @@ const controlador = {
         }else{
             //agregar imagen o imagen default
             let imagen = User.addAvatar(req.file);
-            userToCreate.imagenUsuario = imagen;
+            userToCreate.avatar = imagen;
             let userCreate = User.create(userToCreate);
             res.redirect("/users/login");
         };
@@ -150,8 +148,6 @@ const controlador = {
     edit: (req, res) => {
 
         let id = req.params.id;
-        let user = req.session.userLogged
-
         //buscar usuario por ID en db
         let userDb = User.findByPk(id);
         
@@ -183,9 +179,10 @@ const controlador = {
             cart: userDb.cart,
         }
 
-        User.edit(userToEdit);
+        let userEdit = User.edit(userToEdit);
+        req.session.userLogged = userEdit
 
-        res.redirect(`/users/profile/${id}`);
+        res.redirect(`/`);
 
     },
 
