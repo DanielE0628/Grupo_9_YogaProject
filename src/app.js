@@ -7,7 +7,7 @@ const logger = require('morgan');
 const methodOverride = require("method-override");
 const session = require("express-session");
 const userLoggedMiddleware = require('./middlewares/userLoggedMiddleware');
-
+const cors = require("cors")
 // ************ express() - (don't touch) ************
 const app = express(); 
 
@@ -41,6 +41,10 @@ app.use(express.urlencoded({
 
 //MiddleWare Creados
 app.use(userLoggedMiddleware);
+
+
+//para poder usar las apis
+app.use(cors())
 
 
 //rutas

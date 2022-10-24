@@ -85,7 +85,7 @@ const controller = {
         //---------marca-------------
         let marca = req.body.marca;
         //-----------------------condicional where------------------
-        let whereIf = "";
+        let whereIf = {};
         if (categoria && !marca) { whereIf = { category_id: categoria } }
         else if (!categoria && marca) { whereIf = { marca_id: marca } }
         else if (categoria && marca) { whereIf = [{ category_id: categoria }, { marca_id: marca }] }
