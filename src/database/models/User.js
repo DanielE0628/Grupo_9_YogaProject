@@ -9,14 +9,15 @@ module.exports = (sequelize, dataTypes) => {
         },
         cart: {
             type: dataTypes.STRING(),
+            defaultValue:'[{}]'
         },
 
         avatar: {
             type: dataTypes.STRING(100),
-            allowNull: false
+            defaultValue: "default-user.png"
         },
 
-        Email: {
+        email: {
             type: dataTypes.STRING(100),
             allowNull: false
         },
@@ -26,9 +27,13 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
 
-        nombre: {
+        name: {
             type: dataTypes.STRING(100),
             allowNull: false
+        },
+
+        lastName: {
+            type: dataTypes.STRING(100),
         },
 
         birthdate: {
@@ -38,14 +43,17 @@ module.exports = (sequelize, dataTypes) => {
 
         created_at: {
             type: dataTypes.DATE,
+            allowNull: true
         },
 
         updated_at: {
             type: dataTypes.DATE,
+            allowNull: true
         },
 
-        logicDelete: {
-            type: dataTypes.TINYINT,
+        isActive: {
+            type: dataTypes.BOOLEAN,
+            defaultValue: 1,
         }
 
     };
@@ -61,12 +69,12 @@ module.exports = (sequelize, dataTypes) => {
     const User = sequelize.define(alias, cols, config);
     //  las asociaciones
 
-    User.associate = (models) => {
-        User.belongsTo(models.Carts, {
-            as: "carts",
-            foreignKey: "user_id"
-        });
-    }
+    // User.associate = (models) => {
+    //     User.belongsTo(models.Carts, {
+    //         as: "carts",
+    //         foreignKey: "user_id"
+    //     });
+    // }
 
     return User;
 }

@@ -2,10 +2,6 @@ const { timeStamp } = require('console');
 const fs = require('fs');
 const path = require('path');
 
-const db = require('../database/models');
-const sequelize = db.sequelize;
-const { Op, where } = require("sequelize");
-
 const User = {
     fileName: path.join(__dirname, '..', 'data', 'usersDataBase.json'),
     
@@ -69,12 +65,11 @@ const User = {
             let image = '';
             if(userFile){
                 image = userFile.filename;
-            }else{
-                image = "default-user.png";
             }
             return image;
         }
     ,
+
     edit:
     function (dataToEdit) {
         let allUsers = this.findAll();

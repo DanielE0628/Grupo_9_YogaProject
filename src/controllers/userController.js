@@ -3,17 +3,11 @@ const { validationResult } = require('express-validator');
 const User = require('../models/User.js');
 const bcryptjs = require('bcryptjs');
 
-const db = require('../database/models');
-const sequelize = db.sequelize;
-const { Op, where } = require("sequelize");
-
 
 const controlador = {
     vistaUser: (req, res) => {
         res.render('users/user');
     },
-
-    
 
     vistaLista: (req, res) => {
         let users = User.findAll();
@@ -61,11 +55,11 @@ const controlador = {
 
         //crear nuevo usuario
         let userToCreate = {
-            nombre: req.body.nombre,
             email: req.body.email,
+            nombre: req.body.nombre,
             fecha_de_nacimiento: req.body.fecha_de_nacimiento,
             password: bcryptjs.hashSync(req.body.password, 10),
-        
+            cart: [{}],
         }
 
         //comparar contraseñas 
@@ -83,7 +77,7 @@ const controlador = {
         }else{
             //agregar imagen o imagen default
             let imagen = User.addAvatar(req.file);
-            userToCreate.imagenUsuario = imagen;
+            userToCreate.avatar = imagen;
             let userCreate = User.create(userToCreate);
             res.redirect("/users/login");
         };

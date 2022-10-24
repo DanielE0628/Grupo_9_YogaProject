@@ -40,6 +40,7 @@
                         type="file" 
                         name="imagenUsuario"
                         accept="image/png, image/jpeg , image/jpg"
+                        value= "<%= locals.oldData ? oldData.imagenUsuario : null %>"
                     >
                 </div>
                 <% if ( locals.errors && errors.imagenUsuario) { %>
@@ -57,7 +58,7 @@
                         name="nombre" 
                         placeholder="Nombre y Apellido" 
                         class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
-                        value= "<%= locals.oldData ? oldData.nombre_y_apellido : null %>"
+                        value= "<%= locals.oldData ? oldData.nombre : null %>"
                         minlength="3"
                         required
                     >

@@ -5,13 +5,13 @@
         <%- include('../partials/header') %>
         <main>          
             <form name="Profile" action="/users/profile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
-                <h2>¡Hola <%= user.apellido %>, <%= user.nombre %>! </h2></br>
+                <h2>¡Hola <%= user.name %>! </h2></br>
 
                 <div class="foto">
                     <label for="imagenUsuario">
                         <img 
                             class="img" 
-                            src="/images/users/profileImages/<%= user.imagenUsuario%>" 
+                            src="/images/users/profileImages/<%= user.avatar%>" 
                             alt="imagenUsuario"
                         >
                     </label>
@@ -41,7 +41,7 @@
                         type="text" 
                         name="nombre" 
                         id="nombre" 
-                        value= '<%= user.nombre%>' 
+                        value= '<%= user.name%>' 
                         minlength="3"
                         required
                     >
@@ -62,7 +62,7 @@
                         name="apellido" 
                         id="apellido" 
                         placeholder="agrega tu apellido"
-                        value= '<%= user.apellido %>' 
+                        value= '<%= user.lastName %>' 
                         minlength="3"
                         required
                     >
@@ -81,7 +81,7 @@
                         type="date" 
                         name="fecha_de_nacimiento" 
                         id="fecha_de_nacimiento" 
-                        value= '<%= user.fecha_de_nacimiento %>'
+                        value= '<%= user.birthdate %>'
                         max="2004-01-01"
                         min="1900-01-01" 
                         required

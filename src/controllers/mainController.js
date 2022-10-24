@@ -5,7 +5,7 @@ const estilos = {
 };
 const controlador = { 
     vistaHome: (req, res) => {
-        res.render('home',{title: 'Inicio', estilo: estilos.home});
+        res.render('home');
     },
     vistaAdmins: (req, res) => {
         res.render('admins',{title: 'Inicio', estilo: estilos.home});

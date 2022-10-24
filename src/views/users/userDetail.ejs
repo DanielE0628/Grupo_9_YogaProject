@@ -5,13 +5,13 @@
         <%- include('../partials/header') %>
         <main>          
             <form name="Detail" action="/users/list" method="GET">
-                <h2>¡Hola <%= user.nombre %>! </h2></br>
+                <h2>¡Hola <%= user.name %>! </h2></br>
 
                 <div class="foto">
                     <label for="imagenUsuario">
                         <img 
                             class="img" 
-                            src="/images/users/profileImages/<%= user.imagenUsuario%>" 
+                            src="/images/users/profileImages/<%= user.avatar%>" 
                             alt="imagenUsuario"
                         >
                     </label>
@@ -33,7 +33,7 @@
                          Nombre:
                     </label>
                     <p style="text-align: center">
-                        <%= user.nombre%>
+                        <%= user.name%>
                     </p>
                 </div>
 
@@ -43,7 +43,7 @@
                          Apellido:
                     </label>
                     <p style="text-align: center">
-                        <%= user.apellido %>
+                        <%= user.lastName %>
                     </p>
                 </div>
                 
@@ -63,7 +63,7 @@
                          Fecha de Nacimiento:
                     </label>
                     <p style="text-align: center">
-                        <%= user.fecha_de_nacimiento %>
+                        <%= user.birthdate %>
                     </p>
                 </div>
                 
