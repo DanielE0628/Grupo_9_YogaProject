@@ -1,0 +1,56 @@
+:root {
+    --header: #FED1DC;
+    --main: #B6DAEE;
+    --footer: #FED1DC;
+    --button: #0084A0;
+    --sombra: rgb(100, 100, 100);
+    --transparente: #FED1DC80;
+    --blanco: #FFFFFF;
+    --botonActivo: #0022AA;
+    --logo: #DD6C8E;
+    --logoMain: rgb(98, 2, 128);
+    --link:#0084A0;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    background-color: var(--main);
+    padding: 3%;
+}
+
+button{
+    border: none;
+    outline: none;
+    background-color: var(--button);
+    color: var(--blanco);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+}
+
+a{
+    margin: 0;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    color: var(--button);
+    text-shadow: 2px 2px 6px var(--blanco);
+}
+.img{
+    width: 5rem;
+    height: 5rem;
+
+}
+
+@media (min-width: 62rem){/* Media Breakpoints para Monitor */
+    button:hover{
+        background-color: var(--botonActivo);
+    }
+}

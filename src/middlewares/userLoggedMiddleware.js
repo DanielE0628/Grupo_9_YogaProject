@@ -5,7 +5,7 @@ const { Op, where } = require("sequelize");
 function userLoggedMiddleware(req, res, next) {
     
     req.cookies.email? () =>{
-        res.locals.isLogged = false
+     
         db.Users.findOne({
             where: {
                 email: req.cookies.email
@@ -24,6 +24,7 @@ function userLoggedMiddleware(req, res, next) {
             
             next();
         });
-    } : next();
+    } :   res.locals.isLogged = false;
+    next();
 }
 module.exports = userLoggedMiddleware;
