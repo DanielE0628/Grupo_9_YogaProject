@@ -180,10 +180,12 @@
                                             <a href="/products/detail/<%= products.id %>">Detalles</a>
                                         </div>
                                         <div class="contenedor-main-productos-articulos-button">
-                                            <button><i class="fa-solid fa-cart-plus"></i></button>
-                                            <button type="submit" name="comprar">
-                                                Comprar
-                                            </button>
+                                                <form id="product">
+                                                <!-- <button><i class="fa-solid fa-cart-plus"></i></button> -->
+                                                <button type="submit" name="comprar" id ="comprar">
+                                                    Comprar
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </article>
@@ -196,6 +198,7 @@
 
             <%- include('../partials/footer') %>
 
+        <script src="/js/products.js"></script>
     </body>
 
 </html>
