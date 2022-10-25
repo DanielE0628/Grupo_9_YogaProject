@@ -15,7 +15,7 @@ window.onload = function(){
 
 
 const filterButton = document.querySelector("#filterButton");
-console.log("hola estoy dentro del carrito");
+console.log("hola estoy dentro del front ");
 
 filterButton.addEventListener('click', (e) => {
  
