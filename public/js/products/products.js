@@ -8,19 +8,19 @@ window.onload = function(){
         console.log('Estoy comprando')
     })
 
-    const filterButton = document.querySelector("#filterButton");
-    console.log("hola estoy dentro del carrito");
-    
-    filterButton.addEventListener('click', (e) => {
-     
-    console.log("funciono")
-    })
-
 
 
 
 //filter button
 
+
+const filterButton = document.querySelector("#filterButton");
+console.log("hola estoy dentro del carrito");
+
+filterButton.addEventListener('click', (e) => {
+ 
+console.log("funciono")
+})
 
 
 }
