@@ -13,13 +13,22 @@ window.onload = function(){
 
 //filter button
 
-
-const filterButton = document.querySelector("#filterButton");
-console.log("hola estoy dentro del front ");
-
+const filter = document.querySelector("#filter");
 filterButton.addEventListener('click', (e) => {
- 
-console.log("funciono")
+const button = document.querySelector("filtro-button")
+const filterButton = document.querySelector("#filterButton");
+console.log("hola estoy dentro del boton Filtro ");
+if(filter.style.display ==="none"){
+filter.style.display = "flex";
+filter.style.position = "fixed"
+filterButton.style.left = "70%"
+
+console.log("funciono")}
+else{
+    filter.style.display = "none";
+    filterButton.style.left = "0"
+}
+
 })
 
 
