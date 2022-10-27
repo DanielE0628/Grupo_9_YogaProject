@@ -8,9 +8,6 @@ const { Op, where } = require("sequelize")
 
 
 const controlador = {
-    vistaUser: (req, res) => {
-        res.render('users/user');
-    },
 
     vistaLista: (req, res) => {
         db.Users.findAll()
@@ -24,10 +21,6 @@ const controlador = {
             .then((user) => {
                 res.render('users/userDetail', { user })
             })
-    },
-
-    vistaInstructors: (req, res) => {
-        res.render('users/userInstructors');
     },
 
     vistaRegister: (req, res) => {
@@ -123,6 +116,7 @@ const controlador = {
                     name: userToLogin.name,
                     lastName: userToLogin.lastName,
                     birthdate: userToLogin.birthdate,
+                    isAdmin: userToLogin.isAdmin,
                     created_at: userToLogin.created_at,
                     updated_at: userToLogin.updated_at,
                     isActive: userToLogin.isActive

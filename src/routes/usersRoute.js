@@ -18,8 +18,8 @@ router.post('/register', uploadFile.single('imagenUsuario'), validations, userCo
 router.get('/list', userControllerSql.vistaLista);
 router.get('/detail/:id', userControllerSql.vistaDetalle);
 /* Editar Usuario */
-router.get('/profile/:id', authMiddleware, userControllerSql.vistaProfile);
-router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
+router.get('/profile/', authMiddleware, userControllerSql.vistaProfile);
+router.put('/profile/', uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
 /* Eliminar Usuario */
 router.delete('/delete/:idUser', userControllerSql.eliminar);
 
@@ -27,8 +27,5 @@ router.delete('/delete/:idUser', userControllerSql.eliminar);
 router.get('/login', guestMiddleware, userControllerSql.vistaLogin);
 router.post('/login', userControllerSql.login);
 router.get('/logout', userControllerSql.logout);
-/* Vistas Usuario */
-router.get('/', userControllerSql.vistaUser);
-router.get('/instructors', userControllerSql.vistaInstructors);
 
 module.exports = router;
