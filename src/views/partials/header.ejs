@@ -1,6 +1,6 @@
 <header>
     <nav>
-        <ul class="listaMenu Izq">
+        <ul class="listaMenu Izq" id="menuHeader">
             <% if (locals.isLogged) { %>
 
                 <li>
@@ -77,8 +77,8 @@
 
                     <% } %>
         </ul>
-        <div class="menuHamburguesa">
-            <button><i class="fa-solid fa-bars"></i></button>
+        <div class="menuHamburguesa" >
+            <button id="menuHeaderButton"><i class="fa-solid fa-bars" ></i></button>
         </div>
     </nav>
     <div class="logo">
@@ -97,4 +97,5 @@
         <input type="text" name="search" placeholder="Buscar productos, marcas">
         <button><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
+    <script src="/js/partials/header.js"></script>
 </header>
