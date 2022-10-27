@@ -107,53 +107,72 @@ const controlador = {
     },
 
     login: (req, res) => {
+        let userLogged = "";
+
         db.Users.findOne({
             where: {
                 email: req.body.email
             }
         })
             .then((userToLogin) => {
+                userLogged = {
+                    id: userToLogin.id,
+                    cart: userToLogin.cart,
+                    avatar: userToLogin.avatar,
+                    email: userToLogin.email,
+                    name: userToLogin.name,
+                    lastName: userToLogin.lastName,
+                    birthdate: userToLogin.birthdate,
+                    created_at: userToLogin.created_at,
+                    updated_at: userToLogin.updated_at,
+                    isActive: userToLogin.isActive
+                }
+
+                if (req.body.recordar) {
+                    res.cookie(
+                        'userEmail',
+                        req.body.email,
+                        { maxAge: ((1000 * 60) * 60) }
+                    )
+                }
+
                 if (userToLogin) {
                     let passCompared = bcryptjs.compareSync(req.body.password, userToLogin.password);
                     if (passCompared) {
-                        delete userToLogin.password;
-                        req.session.userLogged = userToLogin;
-                        res.render('home');
-                    } else {
-                        return res.render('users/userLogin', {
-                            errors: {
-                                email: {
-                                    msg: 'las credenciales son inválidas'
-                                }
-                            }
-                        });
-                    }
-
-                    if (req.body.recordar) {
-                        res.cookie(
-                            'userEmail',
-                            req.body.email,
-                            { maxAge: (1000 * 60 * 60) }
-                        )
+                        req.session.userLogged = userLogged;
+                        console.log('userLogged in login');
+                        console.log(userLogged);
+                        res.redirect('/');
                     }
 
                     return res.render('users/userLogin', {
                         errors: {
                             email: {
-                                msg: 'Email no registrado'
+                                msg: 'las credenciales son inválidas'
                             }
                         }
-                    });
+                    })
                 }
+
+                return res.render('users/userLogin', {
+                    errors: {
+                        email: {
+                            msg: 'Email no registrado'
+                        }
+                    }
+                });
             })
     },
 
     logout: (req, res) => {
+        res.clearCookie('userEmail');
         req.session.destroy();
         return res.redirect('/');
     },
 
     vistaProfile: (req, res) => {
+        console.log('req.cookies.userEmail in profile')
+        console.log(req.cookies.userEmail)
         //buscar usuario en db
         db.Users.findByPk(req.session.userLogged.id)
             .then((userDb) => {

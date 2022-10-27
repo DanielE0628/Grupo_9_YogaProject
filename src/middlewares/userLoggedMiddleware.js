@@ -1,29 +1,87 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
-const { Op, where } = require("sequelize");
+const { Op, where } = require("sequelize")
 
-function userLoggedMiddleware(req, res, next) {
+async function userLoggedMiddleware(req, res, next) {
+    res.locals.isLogged = false;
+
+    // console.log('in middleware')
     
-    req.cookies.email? () =>{
-        res.locals.isLogged = false
-        db.Users.findOne({
-            where: {
-                email: req.cookies.email
-            }
-        })
-        .then((userFromCookie) => {
+    // if (req.cookies.userEmail){
+
+    //     db.Users.findOne({
+    //         where: {
+    //             email: req.cookies.userEmail,
+    //         }
+    //     })
+    //     .then((userToCookie) => {
+    //         if (!req.session.userLogged) {
+    //             res.locals.isLogged = true;
+    //             res.locals.userLogged = userToCookie
+    //         }
             
-            if (userFromCookie) {
-                req.session.userLogged = userFromCookie;
-            }
+    //         next();
             
-            if (req.session.userLogged) {
+    //     })
+
+    //     .catch((error)=>{
+    //         console.log('error in middleware')
+    //         console.log(error)
+    //         next();
+    //     })
+        
+    // } else if(req.session.userLogged){
+    //     res.locals.isLogged = true;
+    //     res.locals.userLogged = req.session.userLogged
+    //     next();
+    // }else{
+    //     next();
+    // }
+
+
+    // --------------------------------------------------------------
+    try {
+        if (req.cookies.userEmail){
+            const userToCookie = await db.Users.findOne({
+                where: {
+                    email: req.cookies.userEmail,
+                }
+            })
+            if (!req.session.userLogged) {
                 res.locals.isLogged = true;
-                res.locals.userLogged = req.session.userLogged;
+                res.locals.userLogged = userToCookie
             }
-            
+        }
+        if(req.session.userLogged){
+            res.locals.isLogged = true;
+            res.locals.userLogged = req.session.userLogged
+        }
+    
+        next();
+        
+    } catch (error) {
+        console.log('error in middleware')
+            console.log(error)
             next();
-        });
-    } : next();
+    }
+
+    
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
 module.exports = userLoggedMiddleware;
+
+

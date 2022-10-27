@@ -6,6 +6,8 @@ const estilos = {
 const controlador = { 
     vistaHome: (req, res) => {
         res.render('home');
+        console.log('req.cookies.userEmail')
+        console.log(req.cookies.userEmail)
     },
     vistaAdmins: (req, res) => {
         res.render('admins',{title: 'Inicio', estilo: estilos.home});
