@@ -20,7 +20,7 @@
 
                                 <article class="contenedor-main-productos-articulos">
 
-                                    <div class="contenedor-main-productos-articulos-imagen">
+                                    <div class="contenedor-main-productos-articulos-imagen" >
                                         <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
                                     </div>
                                     <div class="contenedor-main-productos-articulos-detalles">
@@ -142,43 +142,44 @@
                     <div class="title">
                         <h1>¡¡¡OFERTAS!!!</h1>
                     </div>
-                    <section class="contenedor-main-productos">
-                        <% products.forEach(products=> { %>
-                            <% { %>
-                                <% if(products.discount > 0){ %>
-                                <article class="contenedor-main-productos-articulos">
-
-                                    <div class="contenedor-main-productos-articulos-imagen">
-                                        <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
+                    <section class="contenedor-main-productos" id="ofertas">
+                        <button id="retroceder"> < </button>
+                        
+                         
+                                    
+                                <article class="contenedor-main-productos-articulos" id="stop" >
+                                    
+                                    <div class="contenedor-main-productos-articulos-imagen" id="divImg">
+                                        <img  alt="imagen-de-producto" id="image">
                                     </div>
                                     <div class="contenedor-main-productos-articulos-detalles">
-                                        <div>
-                                            <h2>
-                                                <%= products.name %>
+                                        <div >
+                                            <h2 id="name">
+                                              nombre
                                             </h2>
                                         </div>
                                         <div>
 
                                         </div>
-                                        <div>
-                                            <h2>
-                                            ¡Oferta! $ <%= (products.price -(products.price*(products.discount/100))) %> 
+                                        <div >
+                                            <h2 id="finalPrice">
+                                            ¡Oferta! $ 
                                             </h2>
                                         </div>
                                         	
-                                        <div>
-                                            <h2>
-                                                 <%= products.discount %> % OFF
+                                        <div >
+                                            <h2 id="discount">
+                                                  % OFF
                                             </h2>
                                         </div>
                                         
-                                        <div>
-                                            <h3>
-                                                 Categoria: <%= products.categorys.nombre %>
+                                        <div >
+                                            <h3 id="category">
+                                                 Categoria: 
                                             </h3>
                                         </div>
                                         <div class="action-button edit">
-                                            <a href="/products/detail/<%= products.id %>">Detalles</a>
+                                            <a id="edit">Detalles</a>
                                         </div>
                                         <div class="contenedor-main-productos-articulos-button">
                                                 <form id="product">
@@ -190,9 +191,8 @@
                                         </div>
                                     </div>
                                 </article>
-                                <% } %>
-                                <% } %>
-                                    <% }) %>
+                               
+                                    <button id="avanzar"> > </button>
                     </section>
                 </div>
             </main>
