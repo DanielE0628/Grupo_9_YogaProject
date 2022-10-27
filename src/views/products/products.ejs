@@ -77,11 +77,12 @@
                     </section>
 
                     <!-- section FILTRO -->
-                    <button class="filtro-button">
+                    <div id="root" class="root">
+                    <button class="filtro-button" id="filterButton">
                         <i class="fa-solid fa-bars"></i>
                     </button>
-
-                    <section class="filtro">
+                </div>
+                    <section class="filtro" id="filter">
                         <form action="/products/filter/" method="post" class="filtro-form" value="filter">
                             
                         
@@ -180,10 +181,12 @@
                                             <a href="/products/detail/<%= products.id %>">Detalles</a>
                                         </div>
                                         <div class="contenedor-main-productos-articulos-button">
-                                            <button><i class="fa-solid fa-cart-plus"></i></button>
-                                            <button type="submit" name="comprar">
-                                                Comprar
-                                            </button>
+                                                <form id="product">
+                                                <!-- <button><i class="fa-solid fa-cart-plus"></i></button> -->
+                                                <button type="submit" name="comprar" id ="comprar">
+                                                    Comprar
+                                                </button>
+                                            </form>
                                         </div>
                                     </div>
                                 </article>
@@ -193,9 +196,10 @@
                     </section>
                 </div>
             </main>
-
+          
             <%- include('../partials/footer') %>
 
+        <script src="/js/products/products.js"></script>
     </body>
 
 </html>

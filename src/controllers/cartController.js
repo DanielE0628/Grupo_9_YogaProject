@@ -42,7 +42,7 @@ const controlador ={
         })
         .then((product)=>{
         res.render('products/cart', {product})
-    })
-},
+        })
+    },
 }
 module.exports = controlador;
