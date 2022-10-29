@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
     
-    <%- include('../partials/head', {title: 'Registro', estilo:'/stylesheets/usersRegister-style.css'}) %>
+    <%- include('../partials/head', {title: 'Registro', estilo:'/stylesheets/form-style.css'}) %>
     
     <body>
         
         <%- include('../partials/header') %>
 
         <main>          
-            <% if (locals.isLogged && locals.userLogged.isAdmin===true) { %>
+            
             <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
                 <!-- <div class="foto">
                         <label for="avatar">
@@ -35,8 +35,8 @@
                         <i class="fa-solid fa-circle-user"></i>
                     </label>
                 </div>
-                <div class="campo">
-                    <input 
+                <div class="campo file">
+                    <input
                         id="imagenUsuario" 
                         type="file" 
                         name="imagenUsuario"
@@ -52,12 +52,13 @@
 
                 <div class="campo">
                     <label for="nombre">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user">
+                        </i> Nombre: 
                     </label>
                     <input 
                         type="text" 
                         name="nombre" 
-                        placeholder="Nombre y Apellido" 
+                        placeholder="Nombre" 
                         class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
                         value= "<%= locals.oldData ? oldData.nombre : null %>"
                         minlength="3"
@@ -72,7 +73,8 @@
 
                 <div class="campo">
                     <label for="email">
-                        <i class="fa-solid fa-at"></i>
+                        <i class="fa-solid fa-at">
+                        </i> e-mail: 
                     </label>
                     <input 
                         type="email" 
@@ -92,7 +94,8 @@
                 
                 <div class="campo">
                     <label for="fecha_de_nacimiento">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-calendar-days">
+                        </i> Fecha de nacimiento: 
                     </label>
                     <input 
                         type="date" 
@@ -113,7 +116,8 @@
 
                 <div class="campo">
                     <label for="password">
-                        <i class="fa-solid fa-unlock"></i>
+                        <i class="fa-solid fa-unlock">
+                        </i> Contraseña: 
                     </label>
                     <input 
                         type="password" 
@@ -132,7 +136,8 @@
 
                 <div class="campo">
                     <label for="comfirmPassword">
-                        <i class="fa-solid fa-lock"></i>
+                        <i class="fa-solid fa-lock">
+                        </i> Confirmar contraseña: 
                     </label>
                     <input 
                         type="password" 
@@ -149,138 +154,25 @@
                     </span>
                 <% } %>
 
+                <% if (locals.isLogged && locals.userLogged.isAdmin===true) { %>
+                    <div class="checkbox">
+                        <input 
+                            type="checkbox" 
+                            name="serAdmin"
+                            id="serAdmin"
+                            class="form-control <%= locals.errors && errors.fecha_de_nacimiento ? 'is-invalid' : null %>" 
+                            value= "<%= locals.oldData ? oldData.serAdmin : null %>"
+                        >
+                        <label> Hacer Admin</label>
+                    </div>
+                <% } %>
+                    
+                
                 <div class="botones">
                     <button type="submit">Enviar</button>
                     <button action="/" type="reset">Borrar</button>
                 </div>
             </form>
-            <% } else { %>
-                <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
-                    <div class="foto">
-                        <label for="avatar">
-                            <i class="fa-solid fa-circle-user"></i>
-                        </label>
-                    </div>
-                    <div class="campo">
-                        <input 
-                            id="imagenUsuario" 
-                            type="file" 
-                            name="imagenUsuario"
-                            accept="image/png, image/jpeg , image/jpg"
-                            value= "<%= locals.oldData ? oldData.imagenUsuario : null %>"
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.imagenUsuario) { %>
-                        <span class="text-danger">
-                            <%= errors.imagenUsuario.msg %>
-                        </span>
-                    <% } %>
-    
-                    <div class="campo">
-                        <label for="nombre">
-                            <i class="fa-solid fa-user"></i>
-                        </label>
-                        <input 
-                            type="text" 
-                            name="nombre" 
-                            placeholder="Nombre y Apellido" 
-                            class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
-                            value= "<%= locals.oldData ? oldData.nombre : null %>"
-                            minlength="3"
-                            required
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.nombre) { %>
-                        <span class="text-danger">
-                            <%= errors.nombre.msg %>
-                        </span>
-                    <% } %>
-    
-                    <div class="campo">
-                        <label for="email">
-                            <i class="fa-solid fa-at"></i>
-                        </label>
-                        <input 
-                            type="email" 
-                            name="email" 
-                            id="email" 
-                            placeholder="e-mail"
-                            class="form-control <%= locals.errors && errors.email ? 'is-invalid' : null %>" 
-                            value= "<%= locals.oldData ? oldData.email : null %>"
-                            required 
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.email) { %>
-                        <span class="text-danger">
-                            <%= errors.email.msg %>
-                        </span>
-                    <% } %>
-                    
-                    <div class="campo">
-                        <label for="fecha_de_nacimiento">
-                            <i class="fa-solid fa-calendar-days"></i>
-                        </label>
-                        <input 
-                            type="date" 
-                            name="fecha_de_nacimiento" 
-                            id="fecha_de_nacimiento" 
-                            class="form-control <%= locals.errors && errors.fecha_de_nacimiento ? 'is-invalid' : null %>" 
-                            value= "<%= locals.oldData ? oldData.fecha_de_nacimiento : null %>"
-                            max="2004-01-01"
-                            min="1900-01-01"
-                            required
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.fecha_de_nacimiento) { %>
-                        <span class="text-danger">
-                            <%= errors.fecha_de_nacimiento.msg %>
-                        </span>
-                    <% } %>
-    
-                    <div class="campo">
-                        <label for="password">
-                            <i class="fa-solid fa-unlock"></i>
-                        </label>
-                        <input 
-                            type="password" 
-                            name="password" 
-                            id="password" 
-                            placeholder="Contraseña"
-                            class="form-control <%= locals.errors && errors.pasword ? 'is-invalid' : null %>" 
-                            required
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.password) { %>
-                        <span class="text-danger">
-                            <%= errors.password.msg %>
-                        </span>
-                    <% } %>
-    
-                    <div class="campo">
-                        <label for="comfirmPassword">
-                            <i class="fa-solid fa-lock"></i>
-                        </label>
-                        <input 
-                            type="password" 
-                            name="comfirmPassword" 
-                            id="comfirmPassword" 
-                            placeholder= "Confirmar contraseña"
-                            class="form-control <%= locals.errors && errors.comfirmPassword ? 'is-invalid' : null %>"
-                            required 
-                        >
-                    </div>
-                    <% if ( locals.errors && errors.comfirmPassword) { %>
-                        <span class="text-danger">
-                            <%= errors.comfirmPassword.msg %>
-                        </span>
-                    <% } %>
-    
-                    <div class="botones">
-                        <button type="submit">Enviar</button>
-                        <button action="/" type="reset">Borrar</button>
-                    </div>
-                </form>
-                <% } %>
         </main>
 
         <%- include('../partials/footer') %>

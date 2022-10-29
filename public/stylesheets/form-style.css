@@ -49,13 +49,17 @@ main{
         padding: 0 3%;
 
     }
+
+    main form .campo{
+        padding: 2%;
+    }
+
     main form p input{
         width: auto;
         
     }
         main form .campo input{
            width: 65%;
-           padding: 2%;
             outline: none;
             border: none;
         }

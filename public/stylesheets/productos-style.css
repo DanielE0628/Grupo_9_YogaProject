@@ -1,10 +1,6 @@
-root{
-    color:blue;
-}
-*{
-    box-sizing: border-box;
- }
-main{
+ .contenedor-main{
+    width: 100%;
+    display: flex;
     font-size: 14px;
     width: 100%;
     display: flex;
@@ -13,14 +9,12 @@ main{
     justify-content: center;
 }
 .contenedor-main-productos{
-    width: 100%;
-    display: flex;
+    
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 .contenedor-main-rutas{
-    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -65,23 +59,22 @@ main{
 }
 
 .filtro{
-    display: none;
-    
-       
-        left: 0;
-        top: 10%;
-        z-index: 100;
-        margin: 0;
-        width: 70%;
-        height: 50%;
-        max-height: 100%;
-        flex-wrap: wrap;
-        justify-content: center;
-        padding: 1rem;
-        border: solid 2px var(--logoMain);
-        background-color: var(--header);
-        order: -1;
-        margin: 1rem 0;
+    position:sticky;
+    display: flex;
+    left: 0;
+    top: 10%;
+    z-index: 100;
+    margin: 0;
+    width: 70%;
+    height: 50%;
+    max-height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    border: solid 2px var(--logoMain);
+    background-color: var(--header);
+    order: -100;
+    margin: 1rem 0;
     
 }
 .filtro-order{
@@ -106,14 +99,20 @@ main{
 }
 .filto{
     font-size: 100%;
-    display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
 }
 .title{
-    display: block;
+    width: 100%;
     text-align: center;
 }
-.contenedor-main-ofertas-titulo{
+
+.ofertas{
+    border-top: 1px black solid;
+    margin-top: 5%;
+    width: 100%;
+}
+/* .contenedor-main-ofertas-titulo{
     width: 100%;
     text-align: center;
     color: var(--button);
@@ -121,17 +120,14 @@ main{
 }
 .contenedor-main-ofertas{
     width: 100%;
-    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: 2%;
 }
 .contenedor-main-ofertas-articulos{
-    width: 40%;
+    width: 100%;
     padding: 0.5rem;
 
-    display: flex;
     flex-wrap: wrap ;
     flex-direction: column;
     justify-content: space-between;
@@ -156,7 +152,7 @@ main{
     border: solid 2px aliceblue;
     border-radius: 1rem;
     padding: 1rem;
-}
+} */
 
 @media (min-width:360px){
 }

@@ -1,6 +1,6 @@
 //Requerir Express-Validator
 const { validationResult } = require('express-validator');
-const User = require('../models/User.js');
+const User = require('../../models/User.js');
 const bcryptjs = require('bcryptjs');
 
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include('../partials/head', {title: 'userDetail', estilo:'/stylesheets/usersRegister-style.css'}) %>
+    <%- include('../partials/head', {title: 'userDetail', estilo:'/stylesheets/form-style.css'}) %>
     <body>
         <%- include('../partials/header') %>
         <main>          
@@ -17,7 +17,7 @@
                     </label>
                 </div>
 
-                <div class="campo">
+                <div class="campo file">
                     <input 
                         id="imagenUsuario" 
                         type="file" 
@@ -34,7 +34,8 @@
 
                 <div class="campo">
                     <label for="nombre">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user">
+                        </i> Nombre: 
                     </label>
                     <input 
                         class="nombre" 
@@ -54,7 +55,8 @@
 
                 <div class="campo">
                     <label for="apellido">
-                        <i class="fa-solid fa-user"></i>
+                        <i class="fa-solid fa-user">
+                        </i> Apellido: 
                     </label>
                     <input 
                         class="apellido" 
@@ -75,7 +77,8 @@
                 
                 <div class="campo">
                     <label for="fecha_de_nacimiento">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-calendar-days">
+                        </i> Fecha de Nacimiento: 
                     </label>
                     <input 
                         type="date" 
@@ -95,11 +98,12 @@
 
                 <div class="campo">
                     <label for="email">
-                        <i class="fa-solid fa-at"></i>
+                        <i class="fa-solid fa-at">
+                        </i> Correo: 
                     </label>
-                    <p style="text-align: left;">
+                    <span style="text-align: left;">
                         <%= user.email %> 
-                    </p> 
+                    </span> 
                 </div>
                 
                 <div class="botones">

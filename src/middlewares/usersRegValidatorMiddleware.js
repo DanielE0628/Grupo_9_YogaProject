@@ -5,10 +5,10 @@ const { body } = require('express-validator');
 //Validaciones
 const registerValidation = [
 	body("nombre")
-		.notEmpty().withMessage("Por favor complete con su nombre").bail()
-		.isAlpha().withMessage("Por favor complete solo con letras").bail()
+		.notEmpty().withMessage("Por favor complete solo con su primer nombre").bail()
+		.isAlpha().withMessage("Por favor complete solo con letras, sin espacios o caracteres especiales").bail()
 		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
+		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 30 caracteres, sino use un disminutuvo de su nombre")
 	,
 
 	body("email")

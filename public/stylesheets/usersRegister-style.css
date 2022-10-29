@@ -72,6 +72,7 @@ main{
 
         main form .campo{
             display: flex;
+            flex-wrap: nowrap;
             justify-content: space-between;
             align-items: center;
             padding: 3%;
@@ -82,9 +83,18 @@ main{
             margin-bottom: 2%;
         }
             main form input{
-                width: 80%;
+                max-width: 50%;
                 outline: none;
                 border: none;
+            }
+                main form label{
+                    width: 80%;
+                    outline: none;
+                    border: none;
+                }
+            main form div.checkbox{
+                justify-content: flex-start;
+                width: 90%;
             }
 
         main form .botones{

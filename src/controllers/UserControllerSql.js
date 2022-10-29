@@ -176,7 +176,11 @@ const controlador = {
 
     editar: (req, res) => {
         //buscar usuario por ID en db
-        db.Users.findByPk(req.params.id)
+        db.Users.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
             .then((userDb) => {
                 //agregar imagen 
                 let imagen = userDb.avatar;

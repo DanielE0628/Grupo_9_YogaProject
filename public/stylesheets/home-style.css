@@ -1,4 +1,4 @@
-main {
+.homePage {
     background-image: url(/images/main/mainBackgroun.jpg);
     background-size: cover;
     background-position: 50% 25%;
@@ -8,7 +8,7 @@ main {
     justify-content: center;
 }
 
-main .logo{
+.homePage .logo{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -17,21 +17,21 @@ main .logo{
     padding-top: 1rem;
 }
 
-    main .logo .imgLogo{
+    .homePage .logo .imgLogo{
         width: 100%;
         text-align: center;
     }
-        main .logo .imgLogo img{
+        .homePage .logo .imgLogo img{
             width: 30%;
             
         }
 
-    main .logo .textLogo{
+    .homePage .logo .textLogo{
     position: relative;
     align-items: center;
     justify-content: center;
     }   
-        main .logo .textLogo h1.nombreLogo{
+        .homePage .logo .textLogo h1.nombreLogo{
             width: 100%;
             text-align: center;
             font-family: 'Mr De Haviland', cursive;
@@ -43,7 +43,7 @@ main .logo{
             color: var(--logoMain);
             text-shadow: 2px 2px 6px var(--blanco);
         }
-        main .logo .textLogo h2.nombreLogo{
+        .homePage .logo .textLogo h2.nombreLogo{
             font-size: 2rem;
             font-weight: bold;
             position: absolute;
@@ -53,14 +53,14 @@ main .logo{
             text-shadow: 2px 2px 6px var(--blanco);
         }
 
-main section.links{
+.homePage section.links{
     display: flex;
     width: 100%;
     align-items:center;
     justify-content: center;
         
 }
-    main .links .nav{
+    .homePage .links .nav{
         display: flex;
         flex-direction: column;
         width: 50%;
@@ -69,7 +69,7 @@ main section.links{
         justify-content: center;
         background-color: rgba(255, 235, 205, 0.137);
     }
-        main .links .nav a{
+        .homePage .links .nav a{
             padding-top: 1rem;
             padding-bottom: 1rem;
             color: var(--logoMain);
@@ -82,7 +82,7 @@ main section.links{
 }
 
 @media (min-width: 43rem){/* Media Breakpoints para tablet */
-    main .logo .textLogo{
+    .homePage .logo .textLogo{
         position: absolute;
         bottom: 1rem;
         display:flex;
@@ -90,30 +90,30 @@ main section.links{
         flex-direction: row;
         width: 100%;
     }
-        main .logo .textLogo h1.nombreLogo{
+        .homePage .logo .textLogo h1.nombreLogo{
             width: 40%;
             text-align: right;
             margin-right: 0.5rem;
         }
-        main .logo .textLogo h2.nombreLogo{
+        .homePage .logo .textLogo h2.nombreLogo{
             position: relative;
             margin-left: 0.5rem;
             width: 40%;
             text-align: left;
         }
-    main .links .nav{
+    .homePage .links .nav{
         flex-direction: row;
         background-color: none;
         width: 100%;
     }
-        main .links .nav a{
+        .homePage .links .nav a{
             padding: 1rem;
             color: var(--logoMain);
         }
 }
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
-    main .links .nav a:hover{
+    .homePage .links .nav a:hover{
         color: var(--botonActivo);
         text-decoration: wavy;
         text-decoration: underline;

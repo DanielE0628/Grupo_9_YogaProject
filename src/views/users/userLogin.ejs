@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 
-<%- include('../partials/head', {title: 'Ingresar' , estilo:'/stylesheets/usersLogin-style.css'}) %>
+<%- include('../partials/head', {title: 'Ingresar' , estilo:'/stylesheets/form-style.css'}) %>
 
 
     <body>
@@ -16,19 +16,31 @@
                     </div>
 
                     <div class="campo">
-                        <i class="fa-solid fa-at"></i>
-                        <input type="email" name="email" id="email" placeholder="e-mail" required>
+                        <label for="">
+                            <i class="fa-solid fa-at">
+                            </i> e-mail: 
+                        </label>
+                        <input 
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="e-mail" 
+                            required
+                        >
                     </div>
 
                     <% if ( locals.errors && errors.email) { %>
-                        <p class="text-danger">
+                        <span class="text-danger">
                             <%= errors.email.msg %>
-                        </p>
+                        </span>
                     <% } %>
 
 
                     <div class="campo">
-                        <i class="fa-solid fa-unlock"></i>
+                        <label for="">
+                            <i class="fa-solid fa-unlock">
+                            </i> Contraseña: 
+                        </label>
                         <input 
                             type="password" 
                             name="password" 
@@ -38,7 +50,7 @@
                             required>
                     </div>
 
-                    <div class="recordar">
+                    <div class="checkbox">
                         <input type="checkbox" name="recordar">
                         <label>
                             Recordar Usuario

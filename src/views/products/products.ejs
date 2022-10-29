@@ -1,205 +1,199 @@
 <!DOCTYPE html>
 <html lang="es">
 
-    <%- include('../partials/head', { title: 'Productos', estilo: '/stylesheets/productos-style.css' }) %>
+<%- include('../partials/head', { title: 'Productos' , estilo: '/stylesheets/productos-style.css' }) %>
 
     <body>
-       
+
         <%- include('../partials/header') %>
 
             <main class="contenedor-main">
-               
-                <div class="contenedor-main-rutas">
-                    <a href="/">inicio</a>
-                    <a href="/products/create">Crear Productos</a>
-                </div>
                 <div class="contenedor-main-padre">
-                    <section class="contenedor-main-productos">
-                        <% products.forEach(products=> { %>
-                            <% { %>
 
-                                <article class="contenedor-main-productos-articulos">
+                        <section class="contenedor-main-productos">
+                            <h1 class="title">Nuestros Productos</h1>
+                            <% products.forEach(products=> { %>
+                                <% { %>
 
-                                    <div class="contenedor-main-productos-articulos-imagen" >
-                                        <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
-                                    </div>
-                                    <div class="contenedor-main-productos-articulos-detalles">
-                                        <div>
-                                            <h2>
-                                                <%= products.name %>
-                                            </h2>
-                                        </div>
-                                        <div>
+                                    <article class="contenedor-main-productos-articulos">
 
+                                        <div class="contenedor-main-productos-articulos-imagen">
+                                            <img src="/images/products/<%= products.image %>" alt="imagen-de-producto">
                                         </div>
-                                        <% if(products.discount == 0){ %>
-                                        <div>
-                                            <h2>
-                                             $ <%= products.price %> 
-                                            </h2>
+                                        <div class="contenedor-main-productos-articulos-detalles">
+                                            <div>
+                                                <h2>
+                                                    <%= products.name %>
+                                                </h2>
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                            <% if(products.discount==0){ %>
+                                                <div>
+                                                    <h2>
+                                                        $ <%= products.price %>
+                                                    </h2>
+                                                </div>
+                                                <% } else { %>
+                                                    <div>
+                                                        <h2>
+                                                            ¡Oferta! $ <%= (products.price
+                                                                -(products.price*(products.discount/100))) %>
+                                                        </h2>
+                                                    </div>
+
+                                                    <div>
+                                                        <h2>
+                                                            <%= products.discount %> % OFF
+                                                        </h2>
+                                                    </div>
+                                                    <% } %>
+                                                        <div>
+                                                            <h3>
+                                                                Categoria: <%= products.categorys.nombre %>
+                                                            </h3>
+                                                        </div>
+                                                        <div>
+                                                            <h4>
+                                                                Lanzamiento: <%= products.created_at %>
+                                                            </h4>
+                                                        </div>
+                                                        <div class="action-button edit">
+                                                            <a href="/products/detail/<%= products.id %>">Detalles</a>
+                                                        </div>
+                                                        <div class="contenedor-main-productos-articulos-button ">
+                                                            <button><i class="fa-solid fa-cart-plus"></i></button>
+                                                            <button type="submit" class="add-to-cart" name="comprar"
+                                                                id="<%=products.id%>">
+                                                                Comprar
+                                                            </button>
+                                                        </div>
                                         </div>
-                                        <% } else { %>
-                                        <div>
-                                            <h2>
-                                            ¡Oferta! $ <%= (products.price -(products.price*(products.discount/100))) %> 
-                                            </h2>
+                                    </article>
+                                    <% } %>
+                                        <% }) %>
+
+                        <!-- section ofertas -->
+                        <section class="contenedor-main-productos ofertas" id="ofertas">
+                            <h1 class="title">¡¡¡OFERTAS!!!</h1>
+                            <button id="retroceder">
+                                < </button>
+
+
+
+                                    <article class="contenedor-main-productos-articulos" id="stop">
+
+                                        <div class="contenedor-main-productos-articulos-imagen" id="divImg">
+                                            <img alt="imagen-de-producto" id="image">
                                         </div>
-                                        	
-                                        <div>
-                                            <h2>
-                                                 <%= products.discount %> % OFF
-                                            </h2>
+                                        <div class="contenedor-main-productos-articulos-detalles">
+                                            <div>
+                                                <h2 id="name">
+                                                    nombre
+                                                </h2>
+                                            </div>
+                                            <div>
+
+                                            </div>
+                                            <div>
+                                                <h2 id="finalPrice">
+                                                    ¡Oferta! $
+                                                </h2>
+                                            </div>
+
+                                            <div>
+                                                <h2 id="discount">
+                                                    % OFF
+                                                </h2>
+                                            </div>
+
+                                            <div>
+                                                <h3 id="category">
+                                                    Categoria:
+                                                </h3>
+                                            </div>
+                                            <div class="action-button edit">
+                                                <a id="edit">Detalles</a>
+                                            </div>
+                                            <div class="contenedor-main-productos-articulos-button">
+                                                <form id="product">
+                                                    <!-- <button><i class="fa-solid fa-cart-plus"></i></button> -->
+                                                    <button type="submit" name="comprar" id="comprar">
+                                                        Comprar
+                                                    </button>
+                                                </form>
+                                            </div>
                                         </div>
-                                        <% } %>
-                                        <div>
-                                            <h3>
-                                                 Categoria: <%= products.categorys.nombre %>
-                                            </h3>
-                                        </div>
-                                        <div>
-                                            <h4>
-                                                 Lanzamiento: <%= products.created_at %>
-                                            </h4>
-                                        </div>
-                                        <div class="action-button edit">
-                                            <a href="/products/detail/<%= products.id %>">Detalles</a>
-                                        </div>
-                                        <div class="contenedor-main-productos-articulos-button ">
-                                            <button><i class="fa-solid fa-cart-plus"></i></button>
-                                            <button type="submit" class="add-to-cart" name="comprar" id="<%=products.id%>">
-                                                Comprar
-                                            </button>
-                                        </div>
-                                    </div>
-                                </article>
-                                <% } %>
-                                    <% }) %>
+                                    </article>
+
+                                    <button id="avanzar"> > </button>
+                        </section>7
                     </section>
+
+
 
                     <!-- section FILTRO -->
                     <div id="root" class="root">
-                    <button class="filtro-button" id="filterButton">
-                        <i class="fa-solid fa-bars"></i>
-                    </button>
-                </div>
+                        <button class="filtro-button" id="filterButton">
+                            <i class="fa-solid fa-bars"></i>
+                        </button>
+                    </div>
                     <section class="filtro" id="filter">
                         <form action="/products/filter/" method="post" class="filtro-form" value="filter">
-                            
-                        
-                            <div class="filtro-checkbox"  >
+
+
+                            <div class="filtro-checkbox">
                                 <!-- //menu categoryas -->
-                                
+
                                 <h3>CATEGORIAS</h3>
-                        <% for (i=0; i < allCategorys.length;i++) { %>  
-                            <ul>  
-                                <li>
-                                <label><input type="checkbox" name="category"  value="<%= allCategorys[i].id %>"><%= allCategorys[i].nombre %>
-                                </li>
-                            </ul>  
-                            <% } %>
+                                <% for (i=0; i < allCategorys.length;i++) { %>
+                                    <ul>
+                                        <li>
+                                            <label><input type="checkbox" name="category"
+                                                    value="<%= allCategorys[i].id %>">
+                                                <%= allCategorys[i].nombre %>
+                                        </li>
+                                    </ul>
+                                    <% } %>
                             </div>
                             <div class="filtro-checkbox">
                                 <h3>MARCA</h3>
-                                <% for (i=0; i < allMarcas.length;i++) { %>  
-                                <ul>  
-                                    <li>
-                                    <label><input type="checkbox" name="marca" value="<%= allMarcas[i].id %>"><%= allMarcas[i].nombre %>
-                                    </li>
-                                </ul>  
-                                <% } %>
+                                <% for (i=0; i < allMarcas.length;i++) { %>
+                                    <ul>
+                                        <li>
+                                            <label><input type="checkbox" name="marca" value="<%= allMarcas[i].id %>">
+                                                <%= allMarcas[i].nombre %>
+                                        </li>
+                                    </ul>
+                                    <% } %>
                             </div>
-                            <!-- <div class="filtro-talles">
-                                <h3>Talle</h3>
-                                <label><input type="radio" name="XS">XS</label>
-                                <label><input type="radio" name="S">S</label>
-                                <label><input type="radio" name="M">M</label>
-                                <label><input type="radio" name="L">L</label>
-                                <label><input type="radio" name="XL">XL</label>
-                                <label><input type="radio" name="XXL">XXL</label>
-                            </div> -->
                             <div class="filtro-order">
                                 <h3>ORDEN</h3>
-                                
+
                                 <label><input type="radio" name="orderPrice" value="1">Menor precio</label>
-                                <label><input type="radio" name="orderPrice" value="2" >Mayor precio</label>
-                             
+                                <label><input type="radio" name="orderPrice" value="2">Mayor precio</label>
+
                                 <label><input type="radio" name="orderAlfa" value="1">A-Z</label>
                                 <label><input type="radio" name="orderAlfa" value="2">Z-A</label>
-                                
-                                <label><input type="radio" name="orderDate" value="created_at">Fecha de lanzamiento</label>
+
+                                <label><input type="radio" name="orderDate" value="created_at">Fecha de
+                                    lanzamiento</label>
                             </div>
-                            <!-- <label class="contenedor-main-filtro-lista-boton-borrar">
-                                <button type="reset" name="resetear">Borrar</button>
-                            </label> --> 
-                            <div >
+                            <div>
                                 <button type="submit" class="filtro-buttons">Filtrar</button>
                                 <button type="reset" class="filtro-buttons">Restablecer</button>
                             </div>
                         </form>
                     </section>
 
-                    <!-- section ofertas -->
-                    <div class="title">
-                        <h1>¡¡¡OFERTAS!!!</h1>
-                    </div>
-                    <section class="contenedor-main-productos" id="ofertas">
-                        <button id="retroceder"> < </button>
-                        
-                         
-                                    
-                                <article class="contenedor-main-productos-articulos" id="stop" >
-                                    
-                                    <div class="contenedor-main-productos-articulos-imagen" id="divImg">
-                                        <img  alt="imagen-de-producto" id="image">
-                                    </div>
-                                    <div class="contenedor-main-productos-articulos-detalles">
-                                        <div >
-                                            <h2 id="name">
-                                              nombre
-                                            </h2>
-                                        </div>
-                                        <div>
 
-                                        </div>
-                                        <div >
-                                            <h2 id="finalPrice">
-                                            ¡Oferta! $ 
-                                            </h2>
-                                        </div>
-                                        	
-                                        <div >
-                                            <h2 id="discount">
-                                                  % OFF
-                                            </h2>
-                                        </div>
-                                        
-                                        <div >
-                                            <h3 id="category">
-                                                 Categoria: 
-                                            </h3>
-                                        </div>
-                                        <div class="action-button edit">
-                                            <a id="edit">Detalles</a>
-                                        </div>
-                                        <div class="contenedor-main-productos-articulos-button">
-                                                <form id="product">
-                                                <!-- <button><i class="fa-solid fa-cart-plus"></i></button> -->
-                                                <button type="submit" name="comprar" id ="comprar">
-                                                    Comprar
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                </article>
-                               
-                                    <button id="avanzar"> > </button>
-                    </section>
                 </div>
             </main>
-          
+
             <%- include('../partials/footer') %>
 
-        <script src="/js/products/products.js"></script>
+                <script src="/js/products/products.js"></script>
     </body>
 
 </html>
