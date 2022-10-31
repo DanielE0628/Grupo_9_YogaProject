@@ -28,9 +28,18 @@ main{
         border-radius: 10px;
         width: 90%;
     }
-    main form div.recordar{
+    main form .file{
+        justify-content: space-around;
+    }
+    main form div.checkbox{
         justify-content: flex-start;
         width: 90%;
+    }
+
+    main form .checkbox label{
+        padding-left: 2%;
+        text-transform: uppercase;
+        
     }
     main form p{
         width: auto;
@@ -45,10 +54,18 @@ main{
         
     }
         main form .campo input{
-            width: 80%;
+           width: 65%;
+           padding: 2%;
             outline: none;
             border: none;
         }
+
+        main form .campo label{
+            width: 35%;
+             outline: none;
+             border: none;
+         }
+
         main form i{
             justify-content: space-between;
             align-items: flex-start;
@@ -101,12 +118,19 @@ main{
         flex-wrap: wrap;
         padding-top: 20px;
         justify-content:center;
+        width: 100%;
     }
-        main form .forgot a{
+        main form .forgot .text-left{
             text-decoration: none;
-            color: var(--link);
+            color: green;
             width: 50%;
-            text-align: center;
+            justify-content: flex-start;
+        }
+        main form .forgot .text-right{
+            text-decoration: none;
+            color: red;
+            width: 50%;
+           justify-content: flex-end;
         }
 
 footer div{
@@ -141,12 +165,20 @@ footer div{
     main form .botones button:hover{
         background-color: var(--botonActivo);
     }
-    main form .forgot .text-forgot:hover{
+
+    main form .forgot .text-right{
+        color: var(--button);
+    }
+    main form .forgot .text-left{
+        color: var(--button);
+    }
+
+    main form .forgot .text-right:hover{
         color: red;
         text-decoration: underline;
     }
-    main form .forgot .text-register:hover{
-        color: var(--botonActivo);
+    main form .forgot .text-left:hover{
+        color: green;
         text-decoration: underline;
     }
 }

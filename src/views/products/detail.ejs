@@ -1,46 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head') %>
+<%- include('../partials/head', {title: 'Detalle producto', estilo:'/stylesheets/detail-style.css'}) %>
 <body>
 	<!-- Header -->
 	<%- include('../partials/header') %>
-	<!-- /Header -->
 
-	<!-- product detail -->
-	<div class="container products-wrapper">
-		<div class="row">
-			<div class="col-12">
-				<h2 class="products-title">Detalle del producto: <%= product.name %></h2>
-			</div>
+
+	<!-- main -->
+	<div class="center" >
+		<!-- titulo -->
+		<div class="title" >
+			
+				<h1 >Detalle del producto: <%= product.name %></h1>
+			
 		</div>
-		<div class="product-detail">
-			<div class="row">
-				<div class="col-12 col-lg-8">
-					<img src="/images/products/<%= product.image %>" alt="product image" class="product-detail-img">
-					<p class="product-detail-description">
-						<%= product.description %>
-					</p>
-				</div>
-				<div class="col-12 col-lg-4">
+		<div class="main">
+			<div >
+				<!-- imagen -->
+				<div class="imagen">
+					<img class="imagen" src="/images/products/<%= product.image %>" alt="product image"  >
+				</div>	
+					
+				<hr>
+				<div class="campo">
 					<article class="product-detail-info">
-						<h2 class="product-detail-title"><%= product.name %></h2>
-						<h3 class="product-detail-title"><%= product.category %></h3>
-						<h4 class="product-detail-title"><%= product.subCategory %></h4>
-						<h4 class="product-detail-title"><%= product.quality %></h4>
+						<!-- Descripción -->
+						<div class="description">
+						<p >
+							<%= product.description %>
+						</p>
+						</div>
+						<hr>
+						<!-- detalles -->
+						<div class="details">
+						<!-- Nombre -->
+						<!-- <h2 class="details-font"><%= product.name %></h2> -->
+						<!-- Categoria -->
+						<h3 class="details-font">Categoria: <%= product.categorys.nombre %></h3>
+						<!-- Marca -->
+						<h4 class="details-font">Marca: <%= product.marcas.nombre %></h4>
+						<!-- Talle -->
+						<% if(product.category_id == 1){ %>
+						<h4 class="details-font">Talle: <%= product.talles.nombre %></h4>
+						<% } %>
+						<!-- Precio -->
+					
+							<% if(product.discount > 0){ %>	
 							
-						<p class="product-detail-price small">
-								<span>$<%= product.price %></span>
-								/
-								<b><%= product.discount %>% OFF</b>
-							</p>
-							<p class="product-detail-price">
-								$<%= product.price %>
-							</p>
-							<p class="product-detail-price">
-								$<%= product.price %>
-							</p>
+							<!-- Descuento -->
+							<h3 class="details-font price">
+								Descuento <%= product.discount %> % OFF
+							</h3>
+							
+							<h5 class="details-font price">
+								Costo Final:<% } %> $ <%= product.finalPrice %> 
+							</h5>
+							
+							<!-- Stock -->
 
+								<% if ( product.stock > 0) { %> 
+									<h4 class="details-font"></p>
+								Stock: <%= product.stock %>
+									</h4>
+								<%} else{%>
+								<h2 class="details-font">
+									Sin stock por el momento
+								</h2> 
+								<%}%>	
+							
+						</div>
+						<hr>
+						<!-- cuotas y envio -->
+						<div class="pago-envio">
 						<ul class="actions-list">
 							<li>
 								<i class="fas fa-credit-card"></i>
@@ -51,20 +83,40 @@
 								<p>Retiro gratis en locales del vendedor</p>
 							</li>
 						</ul>
-
-						<a href="#" class="buy-now-button">COMPRAR AHORA</a>
 						<hr>
+						<!-- botones comprar y carrito -->
 
-						<a href="/products/edit/<%= product.id %>" class="action-button edit">EDITAR PRODUCTO</a>
-						<form action="/products/delete/<%= product.id %>?_method=DELETE" method="POST">
-							<button type="submit" class="action-button delete">ELIMINAR PRODUCTO</button>
+					</div class="buttons">
+					    <% if(product.logicDelete === 1){ %> 
+						<div class="buttons compra">
+						<button><i class="fa-solid fa-cart-plus"></i></button>
+						<button>COMPRAR</button>
+						</div>
+						<% }else {%>
+							<p>Lo sentimos, este producto no se encuentra disponible en estos momentos</p>
+						<hr> 
+						<% } %>
+						<!-- Admisnistradores -->
+						<h3 class="title">Admisnistradores</h3>
+						<div>
+						<button class="admins">
+						<a href="/products/edit/<%= product.id %>" >EDITAR PRODUCTO</a>
+						</button>
+						<% if(product.logicDelete === 1){ %> 
+						<form action="/products/delete/<%= product.id %>?_method=PUT" method="POST">
+							<button type="submit" class="admins">ELIMINAR PRODUCTO</button>
 						</form>
-
-						<!-- <hr> -->
-
+						<% }else {%>
+						<form action="/products/restore/<%= product.id %>?_method=PUT" method="POST">
+							<button type="submit" class="admins">RESTAURAR PRODUCTO</button>
+						</form>
+						<% } %>
+						<% if(product.image != "default.jpg"){ %> 
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
-							<button type="submit" class="action-button delete">ELIMINAR IMAGEN</button>
+							<button type="submit" class="admins">ELIMINAR IMAGEN</button>
 						</form>
+						<% } %>
+					</div>
 					</article>
 				</div>
 			</div>
@@ -75,6 +127,6 @@
 	<!-- footer -->
     <%- include('../partials/footer') %>
 	<!-- /footer -->
-
+	<script src="/js/products/detail.js"></script>
 </body>	
 </html>

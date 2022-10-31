@@ -35,7 +35,7 @@ const User = {
             let allUsers = this.findAll();
             let lastUser = allUsers.pop()
             if (lastUser){
-                return lastUser.id + 1;
+                return (lastUser.id + 1);
             }
             return 1;
         }
@@ -48,11 +48,14 @@ const User = {
             let newUser = {
                 id: this.generateId(),
                 imagenUsuario: image,
-                ...userData
+                ...userData,
+                cart: [{}]
             }
+
             //agregar nuevo usuario a DATA JSON
             allUsers.push(newUser);
             fs.writeFileSync(this.fileName, JSON.stringify(allUsers, null, ' '))
+            
             return newUser;
         }
     ,
@@ -62,11 +65,41 @@ const User = {
             let image = '';
             if(userFile){
                 image = userFile.filename;
-            }else{
-                image = "default-user.png";
             }
             return image;
         }
+    ,
+
+    edit:
+    function (dataToEdit) {
+        let allUsers = this.findAll();
+        let usersEdit = [];
+
+        allUsers.forEach(user => {
+                if(dataToEdit.id == user.id){
+                    user.id = dataToEdit.id;
+                    user.imagenUsuario = dataToEdit.imagenUsuario;
+                    user.nombre = dataToEdit.nombre;
+                    user.apellido = dataToEdit.apellido;
+                    user.email = dataToEdit.email;
+                    user.fecha_de_nacimiento = dataToEdit.fecha_de_nacimiento;
+                    user.password = dataToEdit.password;
+                    user.cart = dataToEdit.cart;
+                    
+                    usersEdit.push(user)
+                } else{
+                    usersEdit.push(user)
+                }
+        });
+        
+
+        //Editar usuario en DATA JSON
+        fs.writeFileSync(this.fileName, JSON.stringify(usersEdit, null, ' '));
+
+        let userEdit = this.findByPk(dataToEdit.id)
+        
+        return userEdit;
+    }
     ,
 
     delete:

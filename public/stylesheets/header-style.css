@@ -14,6 +14,14 @@ header nav{
     width: 25%;
     
 }
+.menuDesplegable{
+    display: flex;
+    position: fixed;
+    flex-direction: column;
+    top: 12%;
+    background-color: #FED1DC;
+    border: solid rgb(98, 2, 128);
+}
     header nav .listaMenu{
         display: none;
     }
@@ -72,14 +80,32 @@ header nav{
                 right: 0;
                 bottom: 0;
             }
-
+.movilSearchBar{
+    display: block;
+    position: fixed;
+    top: 3.5%;
+    right: 18%;
+    font-size: large;
+}
     header .SearchBar{
         width: 25%;
         text-align: right;
     }
+    .falseButton{
+     
+        border: none;
+        border-radius: 5px;
+        background-color: var(--button);
+        padding: 0.5rem;
+        color: var(--blanco);
+        font-size: 1.5rem;
+    }
+
+
         header .SearchBar input{
             display: none;
         }
+    
             header .SearchBar button{
                 border: none;
                 border-radius: 5px;

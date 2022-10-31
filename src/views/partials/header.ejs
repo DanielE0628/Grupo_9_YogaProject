@@ -1,20 +1,9 @@
 <header>
     <nav>
-        <ul class="listaMenu Izq">
+        <ul class="listaMenu Izq" id="menuHeader">
             <% if (locals.isLogged) { %>
 
-                <li>
-                    <a href="/users/profile">
-                        <img src="/images/users/profileImages/<%= locals.userLogged.imagenUsuario %>"
-                            alt="imagen de imagenUsuario" 
-                            width="40" height="40 " 
-                            style="border-radius: 100%; border:solid 1px var(--button);"
-                        >
-                        <p>
-                            Hola <%= locals.userLogged.nombre_y_apellido%>
-                        </p>
-                    </a>
-                </li>
+                
                 <li class="menu">
                     <a href="/">
                         <i class="fa-solid fa-bars"></i>
@@ -39,6 +28,20 @@
                         </p>
                     </a>
                 </li>
+
+                <li>
+                    <a href="/users/profile/">
+                        <img src="/images/users/profileImages/<%= locals.userLogged.avatar %>"
+                            alt="imagen de imagenUsuario" 
+                            width="40" height="40 " 
+                            style="border-radius: 100%; border:solid 1px var(--button);"
+                        >
+                        <p>
+                            Hola <%= locals.userLogged.name%>
+                        </p>
+                    </a>
+                </li>
+          
                 <li class="logout">
                     <a href="/users/logout">
                         <i class="fa-solid fa-right-to-bracket"></i>
@@ -66,6 +69,7 @@
                             <i class="fa-solid fa-basket-shopping"></i>
                         </a>
                     </li>
+                    </li>
                     <li class="login">
                         <a href="/users/login">
                             Login 
@@ -75,8 +79,8 @@
 
                     <% } %>
         </ul>
-        <div class="menuHamburguesa">
-            <button><i class="fa-solid fa-bars"></i></button>
+        <div class="menuHamburguesa" >
+            <button id="menuHeaderButton"><i class="fa-solid fa-bars" ></i></button>
         </div>
     </nav>
     <div class="logo">
@@ -91,8 +95,10 @@
             </div>
         </a>
     </div>
-    <form class="SearchBar">
-        <input type="text" placeholder="Buscar productos, marcas">
-        <button><i class="fa-solid fa-magnifying-glass"></i></button>
+   
+    <form class="SearchBar" name="search" action="/products/search/" method="GET">
+        <input type="text" name="search" placeholder="Buscar productos, marcas">
+        <button id="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
     </form>
+    <script src="/js/partials/header.js"></script>
 </header>

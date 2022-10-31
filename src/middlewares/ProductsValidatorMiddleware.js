@@ -2,52 +2,34 @@ const { body } = require ( 'express-validator' );
 
 
 //Validaciones
-const registerValidation = [
-	body("nombre_y_apellido")
+const createProductValidation = [
+	body("name")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
-		.isLength( {min: 3} ).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength( {max: 15} ).withMessage("El Nombre debe tener máximo 15 caracteres")
+		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres")
     ,
 	
-	body("email")
-		.notEmpty().withMessage("Por favor complete con su email").bail()
-		.isEmail().withMessage("Por favor ingrese un email válido")
+	body("category_id")
+		.notEmpty().withMessage("Por favor elija una categoria")
     ,
     
-    body("fecha_de_nacimiento")
-        .notEmpty().withMessage("Por favor complete con una fecha").bail()
-        .isDate({min: 1920-01-01}).withMessage("Por favor ingrese una fecha mayor a 01/01/1920").bail()
-        .isDate({max: 2003-06-27}).withMessage("Por favor ingrese una fecha menor a 27/06/2003")
+    body("price")
+        .notEmpty().withMessage("Por favor ingrese el precio")
     ,
 
-	body("pasword")
-		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
-		.isLength( {min: 5} ).withMessage("La contraseña debe tener al menos 5 caracteres").bail()
-		.isLength( {max: 15} ).withMessage("La contraseña debe tener máximo 15 caracteres")
-        .isStrongPassword().withMessage("La contraseña debe contener un caracter especial").bail()
-    ,
-
-	// body("comfirmPasword")
-    //     .notEmpty().withMessage("Ingrese nuevamente la contraseña")
-    //     // .equals(body.pasword).withMessage("Las contraseñas no coinciden")
-    //     ,
+	body("description")
+		.notEmpty().withMessage("Por favor complete la descripcion").bail()
+		.isLength( {min: 20} ).withMessage("La descripcion debe tener al menos 20 caracteres").bail()
+		.isLength( {max: 500} ).withMessage("La descripcion debe tener un maximo 500 caracteres")
         
-	
-    // body('avatar')
-	// 	.custom((value, {req}) => {
-	// 		let file = req.file;
-	// 		let acceptedExtensions = [ '..jpg', '.png', '.gif' ];
-
-	// 		if ( !file ) {
-	// 			throw new Error ('tienes que subir una imagen');
-	// 		} else {
-	// 			let fileExtension = path.extname ( file.originalname );
-	// 			if ( !acceptedExtension.includes( fileExtension ) ) {
-	// 			    throw new Error ('Las extensiones de archivos permitidas son ${ acceptedExtensions.join ( ', ' ) }' );
-	// 			}
-	// 		return true;
-    //         }
-	// 	})
+    ,
+	// body("talle_id")
+	// .notEmpty().withMessage("Por favor elija un talle")
+    ,
+	body("marca_id")
+	.notEmpty().withMessage("Por favor elija una marca")
+    ,    
+	body("stock")
+		.notEmpty().withMessage("Por favor ingrese la cantidad de stock del producto")
 ];
 
-module.exports = registerValidation;
+module.exports = createProductValidation;

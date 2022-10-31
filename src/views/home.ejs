@@ -1,37 +1,62 @@
-<!DOCTYPE html>
-<html lang="es">
-    
-    <%- include('./partials/head') %>
+<%- include('./partials/head', {title: 'Inicio' , estilo:'/stylesheets/home-style.css'}) %>
+<head>
+        <link rel="stylesheet" href="/stylesheets/productos-style.css">
+</head>
 
-    <body>
-        
-        <%- include('./partials/header') %>
-        
-        <main>
-            <section class="logo">
-                <div class="textLogo">
-                    <h1 class="nombreLogo">Aluna</h1>
-                    <h2 class="nombreLogo">Yoga</h2>
-                </div>
-                <div class="imgLogo">
-                    <img src="/images/logoPag/lotus_color.png" alt="logo">
-                </div>
-            </section>
-        
+<body>
+
+    <%- include('./partials/header') %>
+
+    <section class="homePage">
+        <section class="logo">
+            <div class="textLogo">
+                <h1 class="nombreLogo">Aluna</h1>
+                <h2 class="nombreLogo">Yoga</h2>
+            </div>
+            <div class="imgLogo">
+                <img src="/images/logoPag/lotus_color.png" alt="logo">
+            </div>
+        </section>
+
+        <% if (locals.isLogged && locals.userLogged.isAdmin===true) { %>
+
             <section class="links">
                 <nav class="nav">
-                    <a href="/products" >Productos</a>
-                    <a href="/products/create" >Crear Productos</a>
-                    <a href="/cart" >Carrito</a>
+                    <a href="/">Home</a>
+                    <a href="/products">Productos</a>
+                    <a href="/products/create">Crear Productos</a>
+                    <a href="/cart">Carrito</a>
                     <a href="/users/list">Usuarios</a>
-                    <a href="/users/instructors">Instructores</a>
-                    <a href="/users/register" >Registro</a>
-                    <a href="/users/login" >Login</a>
+                    <a href="/users/register">Registro</a>
+                    <a href="/users/login">Login</a>
                 </nav>
             </section>
-        </main>
 
+        <% } else if (locals.isLogged) { %>
+
+            <section class="links">
+                <nav class="nav">
+                    <a href="/">Home</a>
+                    <a href="/products">Productos</a>
+                    <a href="/cart">Carrito</a>
+                    <a href="/users/profile">Perfil</a>
+                    <a href="/users/logout">Cerrar Sesión </a>
+                </nav>
+            </section>
+        <% } else { %>
+            <section class="links">
+                <nav class="nav">
+                    <a href="/">Home</a>
+                    <a href="/products">Productos</a>
+                    <a href="/users/register">Registro</a>
+                    <a href="/users/login">Login</a>
+                </nav>
+            </section>
+        <% } %>
+    </section>
+    <%- include('./products/productsInHome') %>
     <%- include('./partials/footer') %>
+    <script src="/js/home.js"></script>
+</body>
 
-    </body>
 </html>

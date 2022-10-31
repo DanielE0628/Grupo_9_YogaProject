@@ -1,127 +1,479 @@
-//Express
-const fs = require('fs');
 const path = require('path');
-//datos JSON
-const productsFilePath = path.join(__dirname, '../data/productsDataBase.json');
-const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-const toThousand = n => n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-
-const estilos = {
-    productos: '/stylesheets/productos-style.css',
-    detalleProducto:'/stylesheets/detail-style.css',
-    crearProducto:'/stylesheets/product-create-style.css'
-    
-};
+//-----------Validator--------------
+const { validationResult } = require('express-validator');
+//--------Sequelize----------
+const db = require('../database/models');
+const sequelize = db.sequelize;
+const { Op, where } = require("sequelize");
 
 
-const controlador = { 
+
+//Aqui tienen una forma de llamar a cada uno de los modelos
+// const {Category, Product, etc} = require('../database/models');
+
+//Aquí tienen otra forma de llamar a los modelos creados
+const products = db.Products;
+const categorys = db.Categorys;
+const marcas = db.Marcas;
+const talles = db.Talles;
+
+// .Promesas
+
+
+
+const controller = {
+    //---------------------------------GUESTS-------------------------------------
     //todos los productos
-    index: (req, res) => {
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        res.render('products/products',{products:products, title: 'Productos', estilo: estilos.productos });
+    list: (req, res) => {
+        let promCategorys = categorys.findAll({where: { logicDelete: 1 }})
+        let promMarcas = marcas.findAll({where: { logicDelete: 1 }})
+        let promProducts = products.findAll({
+            where: { logicDelete: 1 },
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+        Promise.all([promProducts, promCategorys, promMarcas])
+            .then(([products, allCategorys, allMarcas]) => {
+
+                res.render('products/products', { products, allCategorys, allMarcas });
+            })
+            .catch(error => res.send(error))
     },
-    //detalla de un producto
+    //detalle de un producto
     detail: (req, res) => {
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        const idProduct = req.params.id;
-        const product = products.find( item => item.id == idProduct)
-        res.render('products/detail', { product ,title: 'DetalleDeProductos', estilo: estilos.detalleProducto});
+        products.findByPk(req.params.id, {
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+            .then((product) => {
+                res.render("products/detail", { product })
+            })
+    },
+    //Buscar prodcutos
+    search: (req, res) => {
+        let search = req.query.search
+        let promCategorys = categorys.findAll()
+        let promMarcas = marcas.findAll()
+        let promProducts = products.findAll({
+            where: { name: { [Op.like]: '%' + `${search}` + '%' } },
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+        Promise.all([promProducts, promCategorys, promMarcas])
+            .then(([products, allCategorys, allMarcas]) => {
+                res.render('products/products', { products, allCategorys, allMarcas });
+            })
+            .catch(error => res.send(error))
+
+
+    },
+    //---------------------------- Menu----------------------------------
+    // menuCategory: (req, res)=>{
+    //     let promCategorys = categorys.findAll()
+    //     let promMarcas = marcas.findAll()
+    //     let promProducts = products.findAll({
+    //         where:{ category_id:{  [Op.eq] : req.body.category} },
+    //         include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+    //     })
+    //     Promise.all([promProducts, promCategorys, promMarcas])
+    //     .then(([products, allCategorys, allMarcas])=>{
+    //         res.render('products/products',{ products, allCategorys, allMarcas});
+    //     })
+    //     .catch(error => res.send(error))
+    // },
+    //---------------------------- Filro----------------------------------
+    filter: (req, res) => {
+        //---------categoria-------------
+        let categoria = req.body.category;
+        //---------marca-------------
+        let marca = req.body.marca;
+        //-----------------------condicional where------------------
+        let whereIf = {};
+        if (categoria && !marca) { whereIf = { category_id: categoria } }
+        else if (!categoria && marca) { whereIf = { marca_id: marca } }
+        else if (categoria && marca) { whereIf = [{ category_id: categoria }, { marca_id: marca }] }
+        //-----------------------------orden------------
+        //-------precio------------
+        let orderPrice = req.body.orderPrice;
+        let price = "";
+        if (orderPrice == 1) { price = ["finalPrice"] } else { price = ["finalPrice", "DESC"] };
+        //----------nombre---------
+        let orderAlfa = req.body.orderAlfa;
+        let alfa = "";
+        if (orderAlfa == 1) { alfa = ["name"] } else { alfa = ["name", "DESC"] };
+        //-------fecha------
+        let orderDate = req.body.orderDate;
+        if (orderDate) { ordeDateIf = ["created_at"] };
+        // condicional Order
+        let orderIf = "";
+        if (orderPrice && !orderAlfa && !orderDate) { orderIf = [price] }
+        else if (orderPrice && orderAlfa && !orderDate) { orderIf = [price, alfa] }
+        else if (orderPrice && orderAlfa && orderDate) { orderIf = [price, alfa, "created_at"] }
+        else if (!orderPrice && orderAlfa && !orderDate) { orderIf = [alfa] }
+        else if (!orderPrice && orderAlfa && orderDate) { orderIf = [alfa, "created_at"] }
+        else if (!orderPrice && !orderAlfa && orderDate) { orderIf = ["created_at"] };
+        //-----------promesas---------------
+        let promCategorys = categorys.findAll()
+        let promMarcas = marcas.findAll()
+        let promProducts = products.findAll({
+            where: whereIf,
+            order: orderIf,
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+        Promise.all([promProducts, promCategorys, promMarcas])
+            .then(([products, allCategorys, allMarcas]) => {
+                console.log(orderIf)
+
+
+                res.render('products/products', { products, allCategorys, allMarcas });
+            })
+            .catch(error => res.send(error))
+
+
+    },
+    //---------------------------------USERS--------------------------------------
+    // comprar ---------- en construccion
+    buy: (req, res) => {
+        // cantidades
+        let cant = 1;
+        //arrays de ids o de id de prodcutos
+        let productsIdCart = [];
+        //ver si es un All o un ByPk
+        products.findByPk({
+            where: productsIdCart,
+        })
+            .then(product => {
+                return product.decrement('stock', { by: cant })
+            }).then(product => {
+                res.redirect("/")
+                // Postgres will return the updated user by default (unless disabled by setting { returning: false })
+                // In other dialects, you'll want to call user.reload() to get the updated instance...
+            })
+            .catch(error => res.send(error))
+    },
+    //---------------------------------ADMINS / CRUD-----------------------------------------------
+    //---------------------------- Products----------------------------------
+    //lista        
+    productsList: (req, res) => {
+
+        products.findAll({
+            // where:{logicDelete: 1 },
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+            .then((allProducts) => {
+                res.render('products/list', { allProducts});
+            })
+            .catch(error => res.send(error))
+    },
+    //detalle de un producto
+    detail: (req, res) => {
+        products.findByPk(req.params.id, {
+            include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
+        })
+            .then((product) => {
+                res.render("products/detail", { product })
+            })
     },
 
-    //crear producto
+    //crear Producto
+
     create: (req, res) => {
-        res.render('products/product-create', {title: 'CrearProducto', estilo: estilos.crearProducto});
+        //-------------promesas-----------
+        let promCategorys = categorys.findAll({where: { logicDelete: 1 }})
+        let promMarcas = marcas.findAll({where: { logicDelete: 1 }})
+        let promTalles = talles.findAll()
+        Promise.all([promCategorys, promMarcas, promTalles])
+            .then(([allCategorys, allMarcas, allTalles, products]) => {
+                res.render('products/product-create', { allCategorys, allMarcas, allTalles })
+            }).catch(error => res.send(error))
     },
-    
+
     store: (req, res) => {
-        //llamar de DATA JSON todos los productos
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        //crear nuevo producto
-        const newProduct = req.body;
-        //new id
-        newProduct.id = products.length + 1;
-        // agragar imagen
-        if(req.file){
-			newProduct.image = req.file.filename;
-		}else{
-			newProduct.image = "default-image.png";
-		}
-        //agregar nuevo porducto a DATA JSON
-        products.push(newProduct);
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-		res.redirect('/')
+        //--------------fecha----------------
+        let date = new Date();
+        // -----------descuento--------
+        let discount = req.body.discount;
+        //---Precio Final -----
+        let price = req.body.price;
+        let finalPrice = price;
+        if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
+        //----- imagen------
+        let imagen = "";
+        if (!req.file) { imagen = "default.jpg" }
+        else {
+            imagen = req.file.filename
+        }
+        // promesas
+        products.create({
+            name: req.body.name,
+            category_id: req.body.category_id,
+            price: req.body.price,
+            discount: req.body.discount,
+            finalPrice: finalPrice,
+            description: req.body.description,
+            talle_id: req.body.talle_id,
+            marca_id: req.body.marca_id,
+            stock: req.body.stock,
+            image: imagen,
+            created_at: date
+        })
+            .then((product) => {
+                res.redirect("/");
+            })
     },
-    //editar un producto
+    //editar productos
     edit: (req, res) => {
-        //llamar de DATA JSON todos los productos
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        //buscamos la id del prodcuto a editar
-        const idProduct = req.params.id;
-        const productEdit = products.find( item => item.id == idProduct)
-        //renderisamos la vista
-        res.render('products/product-edit',{productEdit, title: 'Editanado Prodcuto: ', estilo: estilos.crearProducto});
+        let promProduct = products.findByPk(req.params.id, { include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }] })
+        let promCategorys = categorys.findAll()
+        let promMarcas = marcas.findAll()
+        // let promTalles = talles.findAll()
+        Promise.all([promProduct, promCategorys, promMarcas])
+            .then(([product, allCategorys, allMarcas]) => {
+                res.render('products/product-edit', { product, allCategorys, allMarcas });
+            })
+            .catch(error => res.send(error))
     },
-    update: (req, res) =>{
-        //llamar de DATA JSON todos los productos
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        //buscamos la id del prodcuto a editar
-        const idProduct = req.params.id;
-        // agregamos el/los nuevos parametros del producto a editar
-        const productEdit = req.body;
-        //edtiamos los parametros
-        products.forEach(product => {
-            if (idProduct == product.id){
-                product.name = productEdit.name;
-				product.price = productEdit.price;
-				product.discount = productEdit.discount;
-				product.category = productEdit.category;
-                product.subCategory = productEdit.subCategory;
-                product.quality = productEdit.quality;
-				product.description = productEdit.description;
-                if(req.file){
-					product.image = req.file.filename;
-				}
-            }
+
+    update: (req, res) => {
+        //--------------fecha----------------
+        let date = new Date();
+        //---Precio Final -----
+        let price = req.body.price;
+        let discount = req.body.discount;
+        let finalPrice = price;
+        if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
+        // -----Imagen----
+        let editProduct = {
+            name: req.body.name,
+            category_id: req.body.category_id,
+            price: req.body.price,
+            discount: req.body.discount,
+            description: req.body.description,
+            talle_id: req.body.talle_id,
+            marca_id: req.body.marca_id,
+            stock: req.body.stock,
+            finalPrice: finalPrice,
+            updated_at: date
+        }
+        if (req.file) { editProduct.image = req.file.filename }
+        // promesas
+        products.update(
+            editProduct
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((product) => {
+                res.redirect('../../products/detail/' + req.params.id)
+            })
+    },
+
+    //borrar productos
+    delete: (req, res) => {
+        products.findByPk(req.params.id)
+            .then((product) => {
+                console.log(product);
+                res.render('products/product-delete', { product });
+            })
+            .catch(error => res.send(error))
+    },
+    destroy: (req, res) => {
+        products.destroy({
+            where: { id: req.params.id }
         });
-        fs.writeFileSync(productsFilePath, JSON.stringify(products, null, ' '));
-		res.redirect('/products');
+        res.redirect('/products');
     },
-    destroy: (req, res) =>{
-        //llamar de DATA JSON todos los productos
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-        //buscamos la id del prodcuto a eliminar
-        const idProduct = req.params.id;
-        //buscamos la imagen y la eliminamos
-        products.forEach(product => {
-            if(idProduct == product.id){
-                if(product.image && product.image != "default-image.png" ){
-                    const imagePath = path.join(__dirname, '../../public/images/products', product.image);
-					fs.unlinkSync(imagePath)
+    LogicDelete: (req, res) => {
+        let logicDeleteProduct = {
+            logicDelete: 0
+        }
+        products.update(
+            logicDeleteProduct
+            , {
+                where: {
+                    id: req.params.id
                 }
-            }
-        })
-        //flitramos al idproduct para dejarlo afuera del nuevo database
-        const productsList = products.filter(item => item.id != idProduct ) 
-        fs.writeFileSync(productsFilePath, JSON.stringify(productsList, null, ' '));
-		res.redirect('/products')
+            })
+            .then((products) => {
+
+                res.redirect("/products")
+            })
     },
-    destroyImg: (req, res) =>{
-         //llamar de DATA JSON todos los productos
-        const products = JSON.parse(fs.readFileSync(productsFilePath, 'utf-8'));
-         //buscamos la id del prodcuto a eliminar
-        const idProduct = req.params.id; 
-        //buscamos la imagen y la eliminamos
-        products.forEach(product => {
-            if(idProduct == product.id){
-                if(product.image && product.image != "default-image.png" ){
-                    const imagePath = path.join(__dirname, '../../public/images/products', product.image);
-					fs.unlinkSync(imagePath)
+    restoreProduct: (req, res) => {
+        let productRestored = {
+            logicDelete: 1
+        }
+        products.update(
+            productRestored
+            , {
+                where: {
+                    id: req.params.id
                 }
-            } product.image = "default-image.png";	
+            })
+            .then((products) => {
+
+                res.redirect("/products")
+            })
+    },
+    //---------------------------- Category----------------------------------
+    //lista
+    listCategorys: (req, res) => {
+        categorys.findAll()
+            .then((allCategorys) => {
+                res.render('products/categorys/list', { allCategorys });
+            })
+            .catch(error => res.send(error))
+    },
+    // crear
+    storeCategory: (req, res) => {
+        let date = new Date();
+        categorys.create({
+            nombre: req.body.nombre,
+            created_at: date
         })
-        res.redirect('/products')
+            .then((category) => {
+                res.redirect("/products/categorys");
+            })
+    },
+    // editar
+    updateCategory: (req, res) => {
+        let date = new Date();
+        let editCategory = {
+            nombre: req.body.nombre,
+            updated_at: date
+        }
+        categorys.update(
+            editCategory
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((category) => {
+
+                res.redirect("/products/categorys")
+            })
+    },
+
+    //borrar 
+    LogicCategoryDelete: (req, res) => {
+        let logicDeleteCategory = {
+            logicDelete: 0
+        }
+        categorys.update(
+            logicDeleteCategory
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((allCategorys) => {
+
+                res.redirect("/products/categorys")
+            })
+    },
+    restoreCategory: (req, res) => {
+        let categoryRestored = {
+            logicDelete: 1
+        }
+       categorys.update(
+            categoryRestored
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((allCategorys) => {
+
+                res.redirect("/products/categorys")
+            })
+    },
+    destroyCategory: (req, res) => {
+        categorys.destroy({
+            where: { id: req.params.id }
+        });
+        res.redirect("/products/categorys");
+    },
+
+    //---------------------------- Marcas----------------------------------
+
+    //lista
+    listMarcas: (req, res) => {
+        marcas.findAll()
+            .then((allMarcas) => {
+                res.render('products/marcas/list', { allMarcas });
+            })
+            .catch(error => res.send(error))
+    },
+    // crear
+    storeMarca: (req, res) => {
+        let date = new Date();
+        marcas.create({
+            nombre: req.body.nombre,
+            created_at: date
+        })
+            .then((marca) => {
+                res.redirect("/products/marcas");
+            })
+    },
+    // editar
+    updateMarca: (req, res) => {
+        let date = new Date();
+        let editMarca = {
+            nombre: req.body.nombre,
+            updated_at: date
+        }
+        marcas.update(
+            editMarca
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((marca) => {
+
+                res.redirect("/products/marcas")
+            })
+    },
+
+    //borrar 
+    LogicMarcaDelete: (req, res) => {
+        let logicDeleteMarca = {
+            logicDelete: 0
+        }
+        marcas.update(
+            logicDeleteMarca
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((allMarcas) => {
+
+                res.redirect("/products/marcas")
+            })
+    },
+    restoreMarca: (req, res) => {
+        let marcaRestored = {
+            logicDelete: 1
+        }
+       marcas.update(
+            marcaRestored
+            , {
+                where: {
+                    id: req.params.id
+                }
+            })
+            .then((allMarcas) => {
+
+                res.redirect("/products/marcas")
+            })
+    },
+    destroyMarca: (req, res) => {
+        marcas.destroy({
+            where: { id: req.params.id }
+        });
+        res.redirect("/products/marcas");
     },
 }
 
 
-module.exports = controlador;
+module.exports = controller;

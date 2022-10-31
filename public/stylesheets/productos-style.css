@@ -1,8 +1,7 @@
-root{
-    color:blue;
-}
-
-main{
+ .contenedor-main{
+    width: 100%;
+    display: flex;
+    font-size: 14px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -10,14 +9,12 @@ main{
     justify-content: center;
 }
 .contenedor-main-productos{
-    width: 100%;
-    display: flex;
+    
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
 }
 .contenedor-main-rutas{
-    margin: 0;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
@@ -31,7 +28,7 @@ main{
     justify-content:space-between;
     margin: 1rem 0;
     width: 90%;
-    height: 20vh;
+    height: 18vh;
     background-color: aliceblue;
     box-shadow: 0px 0px 10px rgb(100, 100, 100);  
 }
@@ -41,6 +38,7 @@ main{
     height: 100%;
 }
 .contenedor-main-productos-articulos-imagen img{
+    padding: 5%;
     height: 100%;
     width: 100%;
 }
@@ -60,31 +58,61 @@ main{
     color: var(--logo);
 }
 
-.contenedor-main-filtro{
-    display: none;
-
+.filtro{
+    position:sticky;
+    display: flex;
+    left: 0;
+    top: 10%;
+    z-index: 100;
+    margin: 0;
+    width: 70%;
+    height: 50%;
+    max-height: 100%;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 1rem;
+    border: solid 2px var(--logoMain);
+    background-color: var(--header);
+    order: -100;
+    margin: 1rem 0;
+    
 }
-.contenedor-main-filtro-button{
+.filtro-order{
+    display: flex;
+    flex-direction: column;
+}
+.filtro-button{
+    display: block;
     color:white;
     padding: 0.5rem;
     border-radius: 0 25% 25% 0;
     position: fixed;
     left: 0;
-    top: 50%;
-    z-index: 100;
+    top: 30%;
+    z-index: 101;
     margin: 0;
 }
-.contenedor-main-filtro-button i{
+.filtro-movil-button i{
     color: white;
     font-size: 2rem;
     font-weight: bold;
 }
-.contenedor-main-filtro-lista{
+.filto{
     font-size: 100%;
-    display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
 }
-.contenedor-main-ofertas-titulo{
+.title{
+    width: 100%;
+    text-align: center;
+}
+
+.ofertas{
+    border-top: 1px black solid;
+    margin-top: 5%;
+    width: 100%;
+}
+/* .contenedor-main-ofertas-titulo{
     width: 100%;
     text-align: center;
     color: var(--button);
@@ -92,17 +120,14 @@ main{
 }
 .contenedor-main-ofertas{
     width: 100%;
-    display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
-    padding: 2%;
 }
 .contenedor-main-ofertas-articulos{
-    width: 40%;
+    width: 100%;
     padding: 0.5rem;
 
-    display: flex;
     flex-wrap: wrap ;
     flex-direction: column;
     justify-content: space-between;
@@ -127,7 +152,7 @@ main{
     border: solid 2px aliceblue;
     border-radius: 1rem;
     padding: 1rem;
-}
+} */
 
 @media (min-width:360px){
 }
@@ -154,44 +179,59 @@ main{
         height: 30vh;
     }
     
-    .contenedor-main-filtro-button{
+    .filtro-button{
         display: none;       
     }
 
-    .contenedor-main-filtro{
+    .filtro{
         width: 20%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
         padding: 1rem;
-        border: dotted 2px var(--logoMain);
+        border: solid 2px var(--logoMain);
         background-color: var(--header);
         order: -1;
         margin: 1rem 0;
+        
     }
-    .contenedor-main-filtro-lista{
+    .filtro-form div{
         display: flex;
         flex-wrap: wrap;
         flex-direction: column;
         justify-content: space-between;
         text-align: left;
+     
     }
-    .contenedor-main-filtro-lista h2{
+    .filtro-checkbox{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        list-style: none;
+        line-height: 1.5rem;
+    }
+    .filtro-order{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: center;
+        line-height: 1.5rem;
+      
+    }
+    .filtro h3{
         margin: 0;
     }
-    .contenedor-main-filtro-lista div{
+ 
+    .filtro-buttons{
         display: flex;
         flex-wrap: wrap;
-        flex-direction: column;
-        justify-content: space-between;
-        text-align: left;
-    }
-    .contenedor-main-filtro-lista-boton-borrar{
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
+        width: 70%;
         justify-content: center;
         align-items: center;
+        margin: 0.25rem;
     }
     .contenedor-main-ofertas-articulos{
         width: 20%;

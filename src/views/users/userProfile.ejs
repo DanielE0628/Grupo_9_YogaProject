@@ -1,74 +1,119 @@
 <!DOCTYPE html>
 <html lang="es">
-    <%- include('../partials/head', {title: 'userDetail', estilo:'/stylesheets/usersRegister-style.css'}) %>
+    <%- include('../partials/head', {title: 'userDetail', estilo:'/stylesheets/form-style.css'}) %>
     <body>
         <%- include('../partials/header') %>
         <main>          
-            <form name="Detail" action="/users/edit/<%=user.id%>" method="post" enctype="multipart/form-data">
-                
-                <h2>¡Hola <%= user.nombre_y_apellido %>! </h2></br>
+            <form name="Profile" action="/users/profile/<%= user.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+                <h2>¡Hola <%= user.name %>! </h2></br>
 
                 <div class="foto">
                     <label for="imagenUsuario">
                         <img 
                             class="img" 
-                            src="/images/users/profileImages/<%= user.imagenUsuario%>" 
+                            src="/images/users/profileImages/<%= user.avatar%>" 
                             alt="imagenUsuario"
                         >
                     </label>
                 </div>
 
+                <div class="campo file">
+                    <input 
+                        id="imagenUsuario" 
+                        type="file" 
+                        name="imagenUsuario"
+                        accept="image/png, image/jpeg , image/jpg"
+                    >
+                </div>
+
+                <% if ( locals.errors && errors.imagenUsuario) { %>
+                    <span class="text-danger">
+                        <%= errors.imagenUsuario.msg %>
+                    </span>
+                <% } %>
+
                 <div class="campo">
-                    <label for="nombre-y-apellido">
-                        <i class="fa-solid fa-user"></i>
+                    <label for="nombre">
+                        <i class="fa-solid fa-user">
+                        </i> Nombre: 
                     </label>
                     <input 
-                        class="nombre_y_apellido" 
+                        class="nombre" 
                         type="text" 
-                        name="nombre_y_apellido" 
-                        id="nombre-y-apellido" 
-                        value= '<%= user.nombre_y_apellido %>' 
+                        name="nombre" 
+                        id="nombre" 
+                        value= '<%= user.name%>' 
                         minlength="3"
                         required
                     >
-                        <span class="feedback"></span>
                 </div>
-                
+                <% if (locals.error && errors.nombre) { %>
+                    <span class="feedback text-danger">
+                        <%= errors.nombre.msg %>
+                    </span>
+                <% } %>
+
                 <div class="campo">
-                    <label for="email">
-                        <i class="fa-solid fa-at"></i>
+                    <label for="apellido">
+                        <i class="fa-solid fa-user">
+                        </i> Apellido: 
                     </label>
                     <input 
-                        type="email" 
-                        name="email" 
-                        id="email" 
-                        value= '<%= user.email %>' 
+                        class="apellido" 
+                        type="text" 
+                        name="apellido" 
+                        id="apellido" 
+                        placeholder="agrega tu apellido"
+                        value= '<%= user.lastName %>' 
+                        minlength="3"
                         required
                     >
-                    <span class="feedback"></span>
                 </div>
+                <% if (locals.error && errors.apellido) { %>
+                    <span class="feedback text-danger">
+                        <%= errors.apellido.msg %>
+                    </span>
+                <% } %>
                 
                 <div class="campo">
                     <label for="fecha_de_nacimiento">
-                        <i class="fa-solid fa-calendar-days"></i>
+                        <i class="fa-solid fa-calendar-days">
+                        </i> Fecha de Nacimiento: 
                     </label>
                     <input 
                         type="date" 
                         name="fecha_de_nacimiento" 
                         id="fecha_de_nacimiento" 
-                        value= '<%= user.fecha_de_nacimiento %>' 
+                        value= '<%= user.birthdate %>'
+                        max="2004-01-01"
+                        min="1900-01-01" 
                         required
                     >
-                    <span class="feedback"></span>
                 </div>
-            </form>
+                <% if (locals.error && errors.fecha_de_nacimiento) { %>
+                    <span class="feedback text-danger">
+                        <%= errors.fecha_de_nacimiento.msg %>
+                    </span>
+                <% } %>
+
+                <div class="campo">
+                    <label for="email">
+                        <i class="fa-solid fa-at">
+                        </i> Correo: 
+                    </label>
+                    <span style="text-align: left;">
+                        <%= user.email %> 
+                    </span> 
+                </div>
                 
                 <div class="botones">
-                    <form method="GET" action="/users/edit/<%= user.id %>">
-                        <button type="submit">Editar</button>
-                    </form>
+                    
+                    <button type="submit">Editar</button>
+                    
                 </div>
+            </form>
         </main>
         <%- include('../partials/footer') %>
+        <script src="/js/users/userProfile.js"></script>
     </body>
 </html>

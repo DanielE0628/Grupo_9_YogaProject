@@ -14,8 +14,8 @@
                 
                 <li >
                     <div class="card">
-                        <img class="img" src="/images/users/profileImages/<%= users[i].imagenUsuario%>" alt="">
-                        <a href="/users/detail/<%= users[i].id %>"><%= users[i].nombre_y_apellido %></a>
+                        <img class="img" src="/images/users/profileImages/<%= users[i].avatar%>" alt="">
+                        <a href="/users/detail/<%= users[i].id %>"><%= users[i].name %></a>
                         
                     </div>
                 </li>
@@ -29,6 +29,6 @@
         </main>
 
         <%- include('../partials/footer') %>
-
+        <script src="/js/users/userList.js"></script>
     </body>
 </html>
