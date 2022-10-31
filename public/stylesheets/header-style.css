@@ -171,10 +171,8 @@ header nav{
             align-items: center;
             justify-content: space-between;
             text-decoration: none;
-            color: var(--button);
         }
             header nav .listaMenu a p{
-                border-left: 3px solid var(--button);
                 padding-left: 0.2rem;
             }
             header nav .listaMenu a i{

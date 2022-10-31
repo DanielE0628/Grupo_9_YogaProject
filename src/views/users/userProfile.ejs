@@ -11,8 +11,9 @@
                     <label for="imagenUsuario">
                         <img 
                             class="img" 
-                            src="/images/users/profileImages/<%= user.avatar%>" 
+                            src="/images/users/profileImages/<%= user.avatar%>"
                             alt="imagenUsuario"
+                            style="border-radius: 10%; border:solid 1px var(--button);box-shadow: 2px 2px 6px;"
                         >
                     </label>
                 </div>
@@ -105,10 +106,73 @@
                         <%= user.email %> 
                     </span> 
                 </div>
+
+                <% if (locals.isLogged && locals.userLogged.isAdmin === true) { %>
+                    <div class="campo">
+                        <label> Activar Usuario: </label>
+                        <label>
+                            Si
+                            <input 
+                            type="radio" 
+                            name="activarUser"
+                            id="activarUser"
+                            value= "true"
+                            <% if (user.isActive) { %>
+                                checked
+                            <% } %>
+                            >
+                        </label>
+                            
+                        <label>
+                            No
+                            <input 
+                            type="radio" 
+                            name="activarUser"
+                            id="desactivarUser"
+                            value= "false"
+                            <% if (!user.isActive) { %>
+                                checked
+                            <% } %>
+                            >
+                        </label>
+                    </div>
+                    <div class="campo">
+                        <label> Hacer Admin: </label>
+                        <label>
+                            Si
+                            <input 
+                            type="radio" 
+                            name="userAdmin"
+                            id="hacerAdmin"
+                            value= "true"
+                            <% if (user.isAdmin) { %>
+                                checked
+                            <% } %>
+                            >
+                        </label>
+                            
+                        <label>
+                            No
+                            <input 
+                            type="radio" 
+                            name="userAdmin"
+                            id="deshacerAdmin"
+                            value= "false"
+                            <% if (!user.isAdmin) { %>
+                                checked
+                            <% } %>
+                            >
+                        </label>
+                    </div>
+                    <% } %>
                 
                 <div class="botones">
                     
                     <button type="submit">Editar</button>
+            
+                    <form name="ProfileDelete" action="/users/profile/<%= user.id %>?_method=DELETE" method="POST">
+                        <button type="submit">Eliminar</button>
+                    </form>
                     
                 </div>
             </form>

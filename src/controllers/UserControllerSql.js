@@ -4,11 +4,9 @@ const bcryptjs = require('bcryptjs');
 
 const db = require('../database/models');
 const sequelize = db.sequelize;
-const { Op, where } = require("sequelize")
-
+const { Op, where } = require("sequelize");
 
 const controlador = {
-
     vistaLista: (req, res) => {
         db.Users.findAll()
             .then((users) => {
@@ -99,16 +97,16 @@ const controlador = {
         res.render('users/userLogin');
     },
 
-    login: (req, res) => {
-        let userLogged = "";
+    login: async (req, res) => {
+        try {
+            const userToLogin = await db.Users.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            if (userToLogin.dataValues.isActive) {
 
-        db.Users.findOne({
-            where: {
-                email: req.body.email
-            }
-        })
-            .then((userToLogin) => {
-                userLogged = {
+                let userLogged = {
                     id: userToLogin.id,
                     cart: userToLogin.cart,
                     avatar: userToLogin.avatar,
@@ -134,8 +132,6 @@ const controlador = {
                     let passCompared = bcryptjs.compareSync(req.body.password, userToLogin.password);
                     if (passCompared) {
                         req.session.userLogged = userLogged;
-                        console.log('userLogged in login');
-                        console.log(userLogged);
                         res.redirect('/');
                     }
 
@@ -148,14 +144,25 @@ const controlador = {
                     })
                 }
 
-                return res.render('users/userLogin', {
-                    errors: {
-                        email: {
-                            msg: 'Email no registrado'
-                        }
+            }
+            return res.render('users/userLogin', {
+                errors: {
+                    email: {
+                        msg: 'Email no registrado'
                     }
-                });
-            })
+                }
+            });
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController login!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
+
+
+
+
     },
 
     logout: (req, res) => {
@@ -164,47 +171,57 @@ const controlador = {
         return res.redirect('/');
     },
 
-    vistaProfile: (req, res) => {
-        console.log('req.cookies.userEmail in profile')
-        console.log(req.cookies.userEmail)
+    vistaProfile: async (req, res) => {
         //buscar usuario en db
-        db.Users.findByPk(req.session.userLogged.id)
-            .then((userDb) => {
-                res.render('users/userProfile', { user: userDb });
-            })
+        const userDb = await db.Users.findByPk(req.session.userLogged.id)
+
+        res.render('users/userProfile', { user: userDb });
+
     },
 
-    editar: (req, res) => {
-        //buscar usuario por ID en db
-        db.Users.findOne({
-            where: {
-                id: req.params.id
+    editar: async (req, res) => {
+        try {
+            //buscar usuario por ID en db
+            const userDb = await db.Users.findOne({
+                where: {
+                    id: req.params.id
+                }
+            });
+            //agregar imagen 
+            let imagen = userDb.avatar;
+            if (req.file) {
+                imagen = req.file.filename
+            };
+            //editar usuario
+            let userToEdit = {
+                avatar: imagen,
+                name: req.body.nombre,
+                lastName: req.body.apellido,
+                birthdate: req.body.fecha_de_nacimiento,
+            };
+            if (req.session.userLogged.isAdmin) {
+                userToEdit.isActive = req.body.activarUser;
+                userToEdit.isAdmin = req.body.userAdmin;
             }
-        })
-            .then((userDb) => {
-                //agregar imagen 
-                let imagen = userDb.avatar;
-                if (req.file) {
-                    imagen = req.file.filename
-                }
-                //editar usuario
-                let userToEdit = {
-                    avatar: imagen,
-                    name: req.body.nombre,
-                    lastName: req.body.apellido,
-                    birthdate: req.body.fecha_de_nacimiento,
-                }
 
-                db.Users.update(userToEdit, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
-                    .then(() => {
-                        req.session.userLogged = userDb
-                        res.redirect(`/`);
-                    })
-            })
+            await db.Users.update(userToEdit, {
+                where: {
+                    id: req.params.id
+                }
+            });
+            const userEdit = await db.Users.findByPk(req.params.id)
+            if (req.session.userLogged.email === userEdit.dataValues.email) {
+                req.session.userLogged = userEdit.dataValues;
+            }
+            res.redirect(`${req._parsedOriginalUrl.pathname}`)
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController editar!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
+
 
         // //Validar datos usuario
         // const resultValidation = validationResult(req);
@@ -216,34 +233,89 @@ const controlador = {
         // };
     },
 
-    logicDelete: (req, res) => {
-        db.Users.findByPk(req.params.id)
-            .then((userDb) => {
-                let userToEdit = {
-                    active: false,
+    logicDelete: async (req, res) => {
+        try {
+            const userDb = await db.Users.findByPk(req.params.id)
+
+            let userToEdit = userDb.dataValues
+            userToEdit.isActive = false
+            console.log(userToEdit)
+
+            await db.Users.update(userToEdit, {
+                where: {
+                    id: req.params.id
                 }
-                db.Users.update(userToEdit, {
-                    where: {
-                        id: req.params.id
-                    }
-                })
-                    .then(() => {
-                        req.session.userLogged = false;
-                        res.redirect(`/`);
-                    })
             })
+
+            req.session.userLogged = false;
+            res.redirect(`/`);
+
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController logicDelete!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
     },
 
-    eliminar: (req, res) => {
-        db.Users.destroy({
-            where: {
-                id: req.body.id
-            }
-        })
-            .then((userDelete) => {
-                res.render(`el usuario ${userDelete.name} fue eliminado`)
-            })
+    vistaDelete: async (req, res) => {
+
+        //buscar usuario en db
+        const userDb = await db.Users.findByPk(req.params.id)
+
+        res.render('users/userDelete', { user: userDb });
+
     },
+
+    eliminar: async (req, res) => {
+        try {
+            let borrarUser = req.body.borrarUser
+
+            if (borrarUser != "false") {
+                const userAdmin = await db.Users.findOne({
+                    where: {
+                        email: req.session.userLogged.email
+                    }
+                })
+
+                const userToDelete = await db.Users.findByPk(req.body.borrarUser)
+
+                if (userAdmin) {
+                    let passCompared = bcryptjs.compareSync(req.body.password, userAdmin.password);
+                    
+                    if (passCompared) {
+                        await db.Users.destroy({
+                            where: {
+                                id: req.body.borrarUser
+                            }
+                        })
+                        console.log('************************----------------------************************')
+                        console.log(`El usuario ${userToDelete.name} fue eliminado por ${userAdmin.name}`)
+                        console.log('************************----------------------************************')
+                        res.redirect('/users/list')
+                    }
+
+                    return res.render(`users/userDelete`, {
+                        errors: {
+                            password: {
+                                msg: 'las credenciales son inválidas'
+                            }
+                        },
+                        user: userToDelete.dataValues
+                    })
+                    
+                }
+            }
+            res.redirect('/users/list')
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController eliminar!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
+    }
 };
 
 module.exports = controlador;
