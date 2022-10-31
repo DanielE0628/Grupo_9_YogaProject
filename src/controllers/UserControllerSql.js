@@ -214,6 +214,7 @@ const controlador = {
                 req.session.userLogged = userEdit.dataValues;
             }
             res.redirect(`${req._parsedOriginalUrl.pathname}`)
+            res.redirect('/users/list')
 
         } catch (error) {
             console.log('************************-----------ERROR-----------************************')
@@ -232,6 +233,20 @@ const controlador = {
         //     })
         // };
     },
+    vistaLogicDelete: async (req, res) => {
+        try {
+            //buscar usuario en db
+            const userDb = await db.Users.findByPk(req.params.id)
+            res.render('users/userProfileDelete', { user: userDb });
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController vistaLogicDelete!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
+
+    },
 
     logicDelete: async (req, res) => {
         try {
@@ -239,16 +254,30 @@ const controlador = {
 
             let userToEdit = userDb.dataValues
             userToEdit.isActive = false
-            console.log(userToEdit)
+            
+            let passCompared = bcryptjs.compareSync(req.body.password, userDb.password);
 
-            await db.Users.update(userToEdit, {
-                where: {
-                    id: req.params.id
-                }
+            if (passCompared) {
+                await db.Users.update(userToEdit, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+    
+                req.session.userLogged = false;
+                res.redirect(`/`);
+            }
+
+            return res.render(`users/userProfileDelete`, {
+                errors: {
+                    password: {
+                        msg: 'las credenciales son inválidas'
+                    }
+                },
+                user: userToEdit
             })
 
-            req.session.userLogged = false;
-            res.redirect(`/`);
+            
 
 
         } catch (error) {
@@ -283,7 +312,7 @@ const controlador = {
 
                 if (userAdmin) {
                     let passCompared = bcryptjs.compareSync(req.body.password, userAdmin.password);
-                    
+
                     if (passCompared) {
                         await db.Users.destroy({
                             where: {
@@ -304,7 +333,7 @@ const controlador = {
                         },
                         user: userToDelete.dataValues
                     })
-                    
+
                 }
             }
             res.redirect('/users/list')

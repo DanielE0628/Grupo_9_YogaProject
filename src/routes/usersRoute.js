@@ -17,14 +17,15 @@ router.get('/register', guestMiddleware, userControllerSql.vistaRegister);
 router.post('/register', uploadFile.single('imagenUsuario'), validations, userControllerSql.registro);
 
 /* Lista Usuarios*/
-router.get('/list', authAdminMiddleware,userControllerSql.vistaLista);
+router.get('/list', authAdminMiddleware, userControllerSql.vistaLista);
 router.get('/detail/:id', authAdminMiddleware,userControllerSql.vistaDetalle);
 router.put('/detail/:id', userControllerSql.editar);
 
 /* Editar Usuario */
 router.get('/profile/:id', authMiddleware, userControllerSql.vistaProfile);
 router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
-router.delete('/profile/:id', userControllerSql.logicDelete);
+router.get('/profile/delete/:id', authMiddleware, userControllerSql.vistaLogicDelete);
+router.delete('/profile/delete/:id', userControllerSql.logicDelete);
 
 /* Eliminar Usuario */
 router.get('/delete/:id', authAdminMiddleware,userControllerSql.vistaDelete);
@@ -33,6 +34,6 @@ router.delete('/delete/:id', userControllerSql.eliminar);
 /* Login*/
 router.get('/login', guestMiddleware, userControllerSql.vistaLogin);
 router.post('/login', userControllerSql.login);
-router.get('/logout', userControllerSql.logout);
+router.get('/logout', authMiddleware, userControllerSql.logout);
 
 module.exports = router;
