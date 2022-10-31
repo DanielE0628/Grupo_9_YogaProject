@@ -1,4 +1,5 @@
- .contenedor-main{
+
+.contenedor-main{
     width: 100%;
     display: flex;
     font-size: 14px;
@@ -59,8 +60,9 @@
 }
 
 .filtro{
+    
     position:sticky;
-    display: flex;
+    display: none;
     left: 0;
     top: 10%;
     z-index: 100;

@@ -12,7 +12,8 @@ fetch('http://localhost:3420/api/v1/products')
 .then(data => {
   console.log(data);
   // todos los productos
-  let products = data.products;
+  let products = data.allProducts;
+
 
   products.forEach((product) => {
     

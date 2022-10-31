@@ -78,7 +78,7 @@ window.onload = function () {
     .then(response => response.json())
     .then(data => {
       console.log(data);
-      let products = data.products;
+      let products = data.allProducts;
     
       //array de porductos
     let carrusel=  products.filter(data => data.discount >0);

@@ -47,7 +47,7 @@ router.post('/create',upload.single("image"), productsController.store);
 router.get('/delete/:id', productsController.delete);
 router.put('/delete/:id/', productsController.LogicDelete);
 
-// restaurar porducto
+// restaurar producto
 router.put('/restore/:id/', productsController.restoreProduct);
 // destruir porducto
  router.delete('/destroy/:id/', productsController.destroy);

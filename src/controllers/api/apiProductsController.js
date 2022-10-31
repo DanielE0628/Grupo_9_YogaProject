@@ -31,20 +31,47 @@ const controller = {
     //---------------------------------GUESTS-------------------------------------
          //todos los productos
          "list": (req, res) => {
+       
+           // enpaginados
+        //    const empaginados = 
+        //    let setLimit = ((newLimit)=>{
+        //     limit = newLimit
+        //    });
+        //     next(()=>{ if( products.length > limit){
+        //    offSet= offSet + limit;
+        // }});
+        // previus(()=>{ if( offSet >= limit){
+        //     offSet= offSet - limit;
+        //  }});
+        
+            //promesas
+            //productos
             let promCategorys = categorys.findAll()
             let promMarcas = marcas.findAll()
-            let promProducts =products.findAll({
-                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
+            //productos
+                //limit y offset
+                
+           const limit = 10;
+           const offSet = 0;
+            let promProducts =
+            products.findAll({
+                include:[{association:"categorys"},{association:"marcas"},{association:"talles"}],
+                limit:limit,
+                offset: req.offset
             })
-            Promise.all([promProducts, promCategorys, promMarcas])
-                .then(([products, allCategorys, allMarcas])=>{
+        
+            Promise.all([promProducts, promCategorys, promMarcas, offSet, limit ])
+                .then(([allProducts, allCategorys, allMarcas])=>{
                     return res.status(200).json({
                         meta: {
                             status: 200,
-                            total: products.length,
+                            total: allProducts.length,
                             url: 'api/v1/products'
                         },
-                        products
+                    
+                        allProducts,
+                        offSet
+                      
                     })
                 })            
                 .catch(error => {
@@ -57,9 +84,20 @@ const controller = {
             products.findByPk(req.params.id,{
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}]
             })
-                .then((product)=>{
-                    return res.json("products/detail", {product})
+            .then((product)=>{
+                return res.status(200).json({
+                    meta: {
+                        status: 200,
+                        total: product.length,
+                        url: 'api/v1/products/detail/'
+                    },
+                   product
                 })
+            })            
+            .catch(error => {
+                console.log(error)
+                res.status(500).json({mensaje: 'Error de conexion'})
+            });
         },
         //Buscar prodcutos
         search: (req, res) => {    

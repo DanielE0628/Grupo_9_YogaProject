@@ -24,6 +24,19 @@ window.onload = function(){
     //--------------header fin------------
     //------------------------------------
 
+const talle = document.querySelector("#talle");
+const category =  document.querySelector("#categoty_id");
+category.addEventListener("mouseover", (e)=>{
+    if (category.value !== 1){
+        talle.style.display = "none"
+    }
+
+})
+
+
+
+
+
 
 
     

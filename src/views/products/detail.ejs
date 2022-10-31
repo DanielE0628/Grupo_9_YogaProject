@@ -96,7 +96,9 @@
 							<p>Lo sentimos, este producto no se encuentra disponible en estos momentos</p>
 						<hr> 
 						<% } %>
-						<!-- Admisnistradores -->
+
+						<!-- --------------Admisnistradores--------------- -->
+						<% if( user.name){ %>
 						<h3 class="title">Admisnistradores</h3>
 						<div>
 						<button class="admins">
@@ -115,6 +117,7 @@
 						<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
 							<button type="submit" class="admins">ELIMINAR IMAGEN</button>
 						</form>
+						<% } %>
 						<% } %>
 					</div>
 					</article>
