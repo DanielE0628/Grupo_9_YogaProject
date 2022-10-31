@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
-    
-    <%- include('../partials/head', {title: 'ListaDeUsuarios', estilo:'/stylesheets/style.css'}) %>
+
+<%- include('../partials/head', {title: 'ListaDeUsuarios' , estilo:'/stylesheets/usersList-style.css'}) %>
 
     <body>
-        
+
         <%- include('../partials/header') %>
 
-        <main> 
-        <h1>Lista de Usarios</h1>
-        <ul>
-            <% for (let i = 0; i < users.length; i++) { %>
+            <main>
+                <h1 class="title">Lista de Usarios</h1>
                 
-                <li >
-                    <div class="card">
-                        <img class="img" src="/images/users/profileImages/<%= users[i].avatar%>" alt="">
-                        <a href="/users/detail/<%= users[i].id %>"><%= users[i].name %></a>
-                        
+                
+                <% for (let i=0; i < users.length; i++) { %>
+                <div class="card">
+
+                    <img class="img" src="/images/users/profileImages/<%= users[i].avatar%>" alt="">
+                    <div class="datos">
+                        <div clas="dato">
+                            <h4>Nombre: </h4>
+                            <p>
+                                <%= users[i].name %>
+                            </p>
+                        </div>
+                        <div clas="dato">
+                            <h4>Correo: </h4>
+                            <p>
+                                <%= users[i].email %>
+                            </p>
+                        </div>
+                        <div clas="dato">
+                            <h4>Admin: </h4>
+                            <p>
+                                <%= users[i].isAdmin %>
+                            </p>
+                        </div>
+                        <div clas="dato">
+                            <h4>Ativo: </h4>
+                            <p>
+                                <%= users[i].isActive %>
+                            </p>
+                        </div>
                     </div>
-                </li>
-            <% } %>                    
-        </ul>
-        <h2>Search</h2>
-        <form action="/users/search"method="GET">
-            <input type="text"name="search">
-            <button type="submit">Buscar</button>
-        
-        </main>
+                    <button><a href="/users/detail/<%= users[i].id %>">Detalle</a></button>
+
+                </div>
+                <% } %>
+            </main>
 
         <%- include('../partials/footer') %>
         <script src="/js/users/userList.js"></script>
     </body>
+
 </html>

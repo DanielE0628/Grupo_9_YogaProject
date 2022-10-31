@@ -4,7 +4,7 @@
     <body>
         <%- include('../partials/header') %>
         <main>          
-            <form name="Detail" action="/users/detail/<%= user.id %>?_method=PUT" method="POST">
+            <form name="Delete" action="/users/delete/<%= user.id %>?_method=DELETE" method="POST">
                 <h2>Perfil de <%= user.name %> </h2></br>
 
                 <div class="foto">
@@ -68,17 +68,14 @@
                     </p>
                 </div>
                 <div class="campo">
-                    <label> Activar Usuario: </label>
+                    <label> ¿Seguro que quiere Eliminar el Usuario?: </label>
                     <label>
                         Si
                         <input 
                         type="radio" 
-                        name="activarUser"
+                        name="borrarUser"
                         id="activarUser"
-                        value= "true"
-                        <% if (user.isActive) { %>
-                            checked
-                        <% } %>
+                        value= <%= user.id %>
                         >
                     </label>
                         
@@ -86,50 +83,39 @@
                         No
                         <input 
                         type="radio" 
-                        name="activarUser"
+                        name="borrarUser"
                         id="desactivarUser"
-                        value= "false"
-                        <% if (!user.isActive) { %>
-                            checked
-                        <% } %>
+                        value="false"
+                        checked
                         >
                     </label>
                 </div>
                 <div class="campo">
-                    <label> Hacer Admin: </label>
-                    <label>
-                        Si
-                        <input 
-                        type="radio" 
-                        name="userAdmin"
-                        id="hacerAdmin"
-                        value= "true"
-                        <% if (user.isAdmin) { %>
-                            checked
-                        <% } %>
-                        >
+                    <label for="password">
+                        <i class="fa-solid fa-unlock">
+                        </i> Contraseña: 
                     </label>
-                        
-                    <label>
-                        No
-                        <input 
-                        type="radio" 
-                        name="userAdmin"
-                        id="deshacerAdmin"
-                        value= "false"
-                        <% if (!user.isAdmin) { %>
-                            checked
-                        <% } %>
-                        >
-                    </label>
+                    <input 
+                        type="password" 
+                        name="password" 
+                        id="password" 
+                        placeholder="Contraseña" 
+                        minlength="7"
+                        required>
                 </div>
+                <% if ( locals.errors && errors.password) { %>
+                    <span class="text-danger">
+                        <%= errors.password.msg %>
+                    </span>
+                <% } %>
+
+                    
                 
                 <div class="botones">
-                    <button class="text-left" type="submit">Editar</button>
+                    <button type="submit">ELIMINAR</button>
                 </div>
                 <div class="forgot">
-                    <a class="text-left" href="/users/list">Volver</a>
-                    <a class="text-right" href="/users/delete/<%= user.id %>">Eliminar Usuario</a>
+                    <a class="text-left" href="/users/detail/<%= user.id %>">Volver</a>
                 </div>
             </form>
         </main>

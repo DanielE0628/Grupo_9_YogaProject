@@ -37,7 +37,6 @@ const registerValidation = [
 	body('imagenUsuario')
 		.custom((value, { req }) => {
 			let file = req.file;
-			console.log(file);
 			let acceptedExtensions = ['.jpg', '.png', '.jpeg'];
 
 			if (!file) {

@@ -36,7 +36,6 @@ footer {
         }
         footer .redesSociales i{
             font-size: 2rem;
-            color: var(--button);
         }
     footer .preguntasFrecuentes{
         width: 100%;
@@ -46,18 +45,15 @@ footer {
             text-decoration: none;
             display: flex;
             flex-wrap: wrap;
-            color: black;
             justify-content: center;
             align-items: center;
             font-size: 2rem;
             text-align: center;
         }
         footer .preguntasFrecuentes i{
-            color: var(--button);
             font-size: 2rem;
         }
         footer .preguntasFrecuentes p{
-            color: var(--button);
             font-size: 2rem;
             width: 70%;
         }
