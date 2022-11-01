@@ -43,12 +43,12 @@
                         type="text" 
                         name="nombre" 
                         id="nombre" 
-                        value= '<%= user.name%>' 
-                        minlength="3"
+                        value= '<%= user.name%>'
+                        minlength="1"
                         required
                     >
                 </div>
-                <% if (locals.error && errors.nombre) { %>
+                <% if (locals.errors && errors.nombre) { %>
                     <span class="feedback text-danger">
                         <%= errors.nombre.msg %>
                     </span>
@@ -66,15 +66,16 @@
                         id="apellido" 
                         placeholder="agrega tu apellido"
                         value= '<%= user.lastName %>' 
-                        minlength="3"
+                        minlength="1"
                         required
                     >
                 </div>
-                <% if (locals.error && errors.apellido) { %>
+                <% if (locals.errors && errors.apellido) { %>
                     <span class="feedback text-danger">
                         <%= errors.apellido.msg %>
                     </span>
                 <% } %>
+                
                 
                 <div class="campo">
                     <label for="fecha_de_nacimiento">
@@ -88,10 +89,9 @@
                         value= '<%= user.birthdate %>'
                         max="2004-01-01"
                         min="1900-01-01" 
-                        required
                     >
                 </div>
-                <% if (locals.error && errors.fecha_de_nacimiento) { %>
+                <% if (locals.errors && errors.fecha_de_nacimiento) { %>
                     <span class="feedback text-danger">
                         <%= errors.fecha_de_nacimiento.msg %>
                     </span>
