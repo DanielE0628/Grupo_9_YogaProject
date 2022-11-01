@@ -55,7 +55,7 @@ const cartRouter = require('./routes/cartRoute')
 
 //rutas API
 const apiProductsRouter = require('./routes/api/apiProductsRoute');
-
+const apiUsersRouter = require('./routes/api/apiUsersRoute');
 //linkS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
@@ -64,7 +64,7 @@ app.use("/cart", cartRouter);
 
 // links apis
 app.use("/api/v1/products", apiProductsRouter);
-
+app.use("/api/v1/users", apiUsersRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
