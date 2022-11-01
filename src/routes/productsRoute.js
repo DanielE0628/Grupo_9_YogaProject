@@ -4,7 +4,7 @@ const router = express.Router();
 //Multer
 const upload = require("../middlewares/productsMulterMiddleware")
 //Validaciones
-const validations = require("../middlewares/productsValidatorMiddleware");
+const validationsProducts = require("../middlewares/productsValidatorMiddleware");
 //Controller
 const productsController = require("../controllers/productsController");
 const cartController = require("../controllers/cartController");

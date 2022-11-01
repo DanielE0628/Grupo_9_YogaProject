@@ -25,8 +25,8 @@ const controller = {
     //---------------------------------GUESTS-------------------------------------
     //todos los productos
     list: (req, res) => {
-        let promCategorys = categorys.findAll({where: { logicDelete: 1 }})
-        let promMarcas = marcas.findAll({where: { logicDelete: 1 }})
+        let promCategorys = categorys.findAll({ where: { logicDelete: 1 } })
+        let promMarcas = marcas.findAll({ where: { logicDelete: 1 } })
         let promProducts = products.findAll({
             where: { logicDelete: 1 },
             include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
@@ -158,7 +158,7 @@ const controller = {
             include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
         })
             .then((allProducts) => {
-                res.render('products/list', { allProducts});
+                res.render('products/list', { allProducts });
             })
             .catch(error => res.send(error))
     },
@@ -174,11 +174,11 @@ const controller = {
 
     //crear Producto
 
-    create: async(req, res) => {
-        
+    create: async (req, res) => {
+
         //-------------promesas-----------
-        let promCategorys = categorys.findAll({where: { logicDelete: 1 }})
-        let promMarcas = marcas.findAll({where: { logicDelete: 1 }})
+        let promCategorys = categorys.findAll({ where: { logicDelete: 1 } })
+        let promMarcas = marcas.findAll({ where: { logicDelete: 1 } })
         let promTalles = talles.findAll()
         Promise.all([promCategorys, promMarcas, promTalles])
             .then(([allCategorys, allMarcas, allTalles]) => {
@@ -187,54 +187,72 @@ const controller = {
     },
 
     store: async (req, res) => {
-        try{
-        //validaciones
-        const resultValidation = validationResult(req);
-        if (resultValidation.errors.length > 0) {
-            return res.render('products/product-create', {
-                errors: resultValidation.mapped(),
-                oldData: req.body
-            })
-        };
-            //si no hay errores --->
-        //--------------fecha----------------
-        let date = new Date();
-        // -----------descuento--------
-        let discount = req.body.discount;
-        //---Precio Final -----
-        let price = req.body.price;
-        let finalPrice = price;
-        if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
-        //----- imagen------
-        let imagen = "";
-        if (!req.file) { imagen = "default.jpg" }
-        else {
-            imagen = req.file.filename
-        }
-        // promesas
-        await products.create({
-            name: req.body.name,
-            category_id: req.body.category_id,
-            price: req.body.price,
-            discount: req.body.discount,
-            finalPrice: finalPrice,
-            description: req.body.description,
-            talle_id: req.body.talle_id,
-            marca_id: req.body.marca_id,
-            stock: req.body.stock,
-            image: imagen,
-            created_at: date
-        })
-            .then((product) => {
-                res.redirect("/");
-            })
-            }catch (error) {
-                console.log('************************-----------ERROR-----------************************')
-                console.log('In userController registro!!!');
-                console.log(error);
-                res.send("Error de proceso")
+        try {
+            //-------------promesas-----------
+            let allCategorys = await categorys.findAll({ where: { logicDelete: 1 } })
+            let allMarcas = await marcas.findAll({ where: { logicDelete: 1 } })
+            let allTalles = await talles.findAll()
+
+            //validaciones
+            const resultValidation = validationResult(req);
+            console.log(resultValidation.errors)
+            
+            
+            if (resultValidation.errors.length >0) {
+                res.render('products/product-create', {
+                    allCategorys, allMarcas, allTalles,
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
+                })
             }
-    
+                //si no hay errores --->
+            
+                if (req.body) {
+                    //--------------fecha----------------
+                    let date = new Date();
+                    // -----------descuento--------
+                    let discount = req.body.discount;
+                    //---Precio Final -----
+                    let price = req.body.price;
+                    let finalPrice = price;
+                    if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
+                    //----- imagen------
+                    let imagen = "";
+                    if (!req.file) { imagen = "default.jpg" }
+                    else {
+                        imagen = req.file.filename
+                    }
+                    // promesas
+                    const newProduct= { 
+                        name: req.body.name,
+                        category_id: req.body.category_id,
+                        price: req.body.price,
+                        discount: req.body.discount,
+                        finalPrice: finalPrice,
+                        description: req.body.description,
+                        talle_id: req.body.talle_id,
+                        marca_id: req.body.marca_id,
+                        stock: req.body.stock,
+                        image: imagen,
+                        created_at: date}
+
+                     // promesas
+
+                    const product = await products.create(
+                    newProduct
+                    )
+                    if (product) {
+                        res.redirect("/");
+                    }
+
+            }
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In productsController store!!!');
+            console.log(error);
+           
+        }
+
     },
     //editar productos
     edit: (req, res) => {
@@ -392,7 +410,7 @@ const controller = {
         let categoryRestored = {
             logicDelete: 1
         }
-       categorys.update(
+        categorys.update(
             categoryRestored
             , {
                 where: {
@@ -473,7 +491,7 @@ const controller = {
         let marcaRestored = {
             logicDelete: 1
         }
-       marcas.update(
+        marcas.update(
             marcaRestored
             , {
                 where: {

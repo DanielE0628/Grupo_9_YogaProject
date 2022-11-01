@@ -1,11 +1,12 @@
 const { body } = require ( 'express-validator' );
-
+const path = require('path');
 
 //Validaciones
 const createProductValidation = [
 	body("name")
+		
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
-		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres")
+		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres").bail()
     ,
 	
 	body("category_id")
@@ -13,7 +14,7 @@ const createProductValidation = [
     ,
     
     body("price")
-        .notEmpty().isDecimal().withMessage("Por favor ingrese el precio")
+        .notEmpty().isNumeric().withMessage("Por favor ingrese el precio")
     ,
 
 	body("description")
@@ -24,12 +25,13 @@ const createProductValidation = [
     ,
 	// body("talle_id")
 	// .notEmpty().withMessage("Por favor elija un talle")
-    ,
+    // ,
 	body("marca_id")
 	.notEmpty().withMessage("Por favor elija una marca")
     ,    
 	body("stock")
-		.notEmpty().isNumeric(). withMessage("Por favor ingrese la cantidad de stock del producto")
+		.notEmpty(). withMessage("Por favor ingrese la cantidad de stock del producto").bail()
+		.isNumeric(). withMessage("Por favor solamente ingrese digitos numericos")
 	,
 		body('image')
 		.custom((value, { req }) => {
