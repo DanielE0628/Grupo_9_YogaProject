@@ -13,7 +13,7 @@ const createProductValidation = [
     ,
     
     body("price")
-        .notEmpty().withMessage("Por favor ingrese el precio")
+        .notEmpty().isDecimal().withMessage("Por favor ingrese el precio")
     ,
 
 	body("description")
@@ -29,7 +29,23 @@ const createProductValidation = [
 	.notEmpty().withMessage("Por favor elija una marca")
     ,    
 	body("stock")
-		.notEmpty().withMessage("Por favor ingrese la cantidad de stock del producto")
+		.notEmpty().isNumeric(). withMessage("Por favor ingrese la cantidad de stock del producto")
+	,
+		body('image')
+		.custom((value, { req }) => {
+			let file = req.file;
+			let acceptedExtensions = ['.jpg', '.png', '.jpeg', '.gif'];
+
+			if (!file) {
+				return true
+			} else {
+				let fileExtension = path.extname(file.originalname);
+				if (!acceptedExtensions.includes(fileExtension)) {
+					throw new Error('Las tipos de archivos permitidos son: ' + `${ acceptedExtensions.join( ', ' ) }`);
+				}
+				return true;
+			}
+		})	
 ];
 
 module.exports = createProductValidation;
