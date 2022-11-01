@@ -26,9 +26,11 @@
                     <a href="/products">Productos</a>
                     <a href="/products/create">Crear Productos</a>
                     <a href="/cart">Carrito</a>
+                    <a href="/users/profile/<%= locals.userLogged.id %>">Perfil</a>
                     <a href="/users/list">Usuarios</a>
                     <a href="/users/register">Registro</a>
                     <a href="/users/login">Login</a>
+                    <a href="/users/logout">Cerrar Sesión </a>
                 </nav>
             </section>
 
@@ -39,7 +41,7 @@
                     <a href="/">Home</a>
                     <a href="/products">Productos</a>
                     <a href="/cart">Carrito</a>
-                    <a href="/users/profile">Perfil</a>
+                    <a href="/users/profile/<%= locals.userLogged.id %>">Perfil</a>
                     <a href="/users/logout">Cerrar Sesión </a>
                 </nav>
             </section>

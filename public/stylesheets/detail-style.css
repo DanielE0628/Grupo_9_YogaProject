@@ -1,9 +1,11 @@
-*{
-  box-sizing: border-box;
+body{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  
 }
 .title{
   font-size: 100%;
-  font-weight: 400;
   
 }
 .main {

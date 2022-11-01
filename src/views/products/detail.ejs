@@ -1,147 +1,162 @@
 <!DOCTYPE html>
 <html lang="es">
 <!-- Include Head -->
-<%- include('../partials/head', {title: 'Detalle producto' , estilo:'/stylesheets/detail-style.css'}) %>
+<%- include('../partials/head', {title: 'Detalle producto' , estilo:'/stylesheets/usersList-style.css'}) %>
 
 	<body>
 		<!-- Header -->
 		<%- include('../partials/header') %>
 
-		<!-- main -->
-		<div class="center">
-			<!-- titulo -->
-			<div class="title">
-				<h1>
+		<main>
+			<!-- main -->
+			<article class="card">
+				<!-- titulo -->
+
+				<h1 class="title">
 					Detalle del producto: <%= product.name %>
 				</h1>
-			</div>
-			<div class="main">
-				<div>
-					<!-- imagen -->
-					<div class="imagen">
-						<img class="imagen" src="/images/products/<%= product.image %>" alt="product image">
-					</div>
 
-					<hr>
-					<div class="campo">
-						<article class="product-detail-info">
-							<!-- Descripción -->
-							<div class="description">
+				<!-- imagen -->
+				<img class="imgProduct" src="/images/products/<%= product.image %>" alt="product image">
+
+				<div class="datos">
+					<!-- Descripción -->
+					<div class="dato">
+						<ul>
+							<li>
+								<h5>
+									Descripción:
+								</h5>
 								<p>
 									<%= product.description %>
 								</p>
-							</div>
-							<hr>
-							<!-- detalles -->
-							<div class="details">
-								<!-- Nombre -->
-								<!-- <h2 class="details-font"><%= product.name %></h2> -->
-								<!-- Categoria -->
-								<h3 class="details-font">Categoria: <%= product.categorys.nombre %>
-								</h3>
-								<!-- Marca -->
-								<h4 class="details-font">Marca: <%= product.marcas.nombre %>
-								</h4>
-								<!-- Talle -->
-								<% if(product.category_id==1){ %>
-									<h4 class="details-font">Talle: <%= product.talles.nombre %>
-									</h4>
-								<% } %>
-										<!-- Precio -->
-
-								<% if(product.discount > 0){ %>
-
-									<!-- Descuento -->
-									<h3 class="details-font price">
-										Descuento <%= product.discount %> % OFF
-									</h3>
-
-									<h5 class="details-font price">
-										Costo Final: <% } %> $ <%= product.finalPrice %>
+								<p>
+									Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque itaque dolorem blanditiis ipsa rem modi nobis nulla qui consequatur impedit autem, illum fuga? Voluptate voluptates neque praesentium modi quas odit?
+								</p>
+							</li>
+							<li>
+								<h5>
+									Categoria: 
+								</h5>
+								<p>
+									<%= product.categorys.nombre %>
+								</p>
+							</li>
+							<li>
+								<h5>
+									Marca:
+								</h5>
+								<p>
+									<%= product.marcas.nombre %>
+								</p>
+							</li>
+							<% if(product.category_id==1){ %>
+								<li>
+									<h5>
+										Talle:
 									</h5>
+									<p>
+										<%= product.talles.nombre %>
+									</p>
+								</li>
+							<% } %>
 
-									<!-- Stock -->
-
+							<li>
 								<% if ( product.stock> 0) { %>
-									<h4 class="details-font">
-										</p>
+									<h4 style="color:darkblue">
 										Stock: <%= product.stock %>
 									</h4>
 								<% } else { %>
-									<h2 class="details-font">
+									<h4 style="color:darkgray">
 										Sin stock por el momento
-									</h2>
+									</h4>
 								<% } %>
-
-							</div>
-							<hr>
-							<!-- cuotas y envio -->
-							<div class="pago-envio">
-								<ul class="actions-list">
-									<li>
-										<i class="fas fa-credit-card"></i>
-										<p>Pagá en 12 cuotas sin interes</p>
-									</li>
-									<li>
-										<i class="fas fa-store"></i>
-										<p>Retiro gratis en locales del vendedor</p>
-									</li>
-								</ul>
-								<hr>
-							</div>
-								<!-- botones comprar y carrito -->
-						<% if (locals.isLogged) { %>
-
-							<div class="buttons">
-								<% if(product.logicDelete===1){ %>
-									<div class="buttons compra">
-										<button><i class="fa-solid fa-cart-plus"></i></button>
-										<button>COMPRAR</button>
-									</div>
-								<% }else {%>
-									<p>Lo sentimos, este producto no se encuentra disponible en estos momentos</p>
-									<hr>
+							</li>
+							<li>
+								<% if(product.discount> 0){ %>
+									<!-- Descuento -->
+									<h3 style="color:darkred">
+										Descuento <%= product.discount %> % OFF
+									</h3>
 								<% } %>
-							</div>
-						<% } %>
-
-						<!-- --------------Admisnistradores--------------- -->
-						<% if (locals.isLogged && locals.userLogged.isAdmin===true) { %>
-							
-							<h3 class="title">Hola Admin locals.userLogged.name</h3>
-							<div>
-								<button class="admins">
-									<a href="/products/edit/<%= product.id %>">EDITAR
-										PRODUCTO</a>
-								</button>
-								<% if(product.logicDelete===1){ %>
-									<form action="/products/delete/<%= product.id %>?_method=PUT" method="POST">
-										<button type="submit" class="admins">ELIMINAR
-											PRODUCTO</button>
-									</form>
-								<% }else {%>
-									<form action="/products/restore/<%= product.id %>?_method=PUT" method="POST">
-										<button type="submit" class="admins">
-											RESTAURAR PRODUCTO
-										</button>
-									</form>
-								<% } %>
-									<% if(product.image !="default.jpg" ){ %>
-										<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
-											<button type="submit" class="admins">
-												ELIMINAR IMAGEN
-											</button>
-										</form>
-									<% } %>
-							</div>
-						<% } %>
-						</article>
+								<h4 style="color:darkgreen">
+									Costo Final: $ <%= product.finalPrice %>
+								</h4>
+							</li>
+						</ul>
 					</div>
+				
+					<!-- cuotas y envio -->
+					<div class="dato">
+						<ul>
+							<li>
+								<i class="fas fa-credit-card"></i> 
+								Pagá en 12 cuotas sin interes
+							</li>
+							<li>
+								<i class="fas fa-store"></i> 
+								Retiro gratis en locales del vendedor
+							</li>
+						</ul>
+					</div>
+			
+					<!-- botones comprar y carrito -->
+					<% if (locals.isLogged) { %>
+						<div class="buttons">
+							<% if(product.logicDelete===1){ %>
+								<div class="buttons compra">
+									<button><i class="fa-solid fa-cart-plus"></i> Agregar al Carrito</button>
+									<button>COMPRAR</button>
+								</div>
+							<% }else {%>
+								<p>
+									Lo sentimos, este producto no se encuentra disponible en estos momentos
+								</p>
+									
+							<% } %>
+						</div>
+					<% } %>
 				</div>
-			</div>
-		</div>
-		<!-- /product detail -->
 
+				<!-- --------------Admisnistradores--------------- -->
+				<% if (locals.isLogged && locals.userLogged.isAdmin===true) { %>
+					<div class="admin">
+						<h3 class="title">
+							Hola Admin <%= locals.userLogged.name %>
+						</h3>
+						<div class="buttons">
+							<button>
+								<a href="/products/edit/<%= product.id %>">
+									EDITAR PRODUCTO
+								</a>
+							</button>
+							<% if(product.logicDelete===1){ %>
+								<form action="/products/delete/<%= product.id %>?_method=PUT" method="POST">
+									<button type="submit">
+										ELIMINAR PRODUCTO
+									</button>
+								</form>
+							<% }else {%>
+								<form action="/products/restore/<%= product.id %>?_method=PUT"
+									method="POST">
+									<button type="submit">
+										RESTAURAR PRODUCTO
+									</button>
+								</form>
+							<% } %>
+							<% if(product.image !="default.jpg" ){ %>
+								<form action="/products/delete/img/<%= product.id %>?_method=DELETE" method="POST">
+									<button type="submit">
+										ELIMINAR IMAGEN
+									</button>
+								</form>
+							<% } %>
+						</div>
+					</div>
+				<% } %>
+			</article>
+			<!-- /product detail -->
+		</main>
 		<!-- footer -->
 		<%- include('../partials/footer') %>
 		<!-- /footer -->
