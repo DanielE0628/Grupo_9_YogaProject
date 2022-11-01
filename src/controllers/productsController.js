@@ -174,18 +174,29 @@ const controller = {
 
     //crear Producto
 
-    create: (req, res) => {
+    create: async(req, res) => {
+        
         //-------------promesas-----------
         let promCategorys = categorys.findAll({where: { logicDelete: 1 }})
         let promMarcas = marcas.findAll({where: { logicDelete: 1 }})
         let promTalles = talles.findAll()
         Promise.all([promCategorys, promMarcas, promTalles])
-            .then(([allCategorys, allMarcas, allTalles, products]) => {
+            .then(([allCategorys, allMarcas, allTalles]) => {
                 res.render('products/product-create', { allCategorys, allMarcas, allTalles })
             }).catch(error => res.send(error))
     },
 
-    store: (req, res) => {
+    store: async (req, res) => {
+        try{
+        //validaciones
+        const resultValidation = validationResult(req);
+        if (resultValidation.errors.length > 0) {
+            return res.render('products/product-create', {
+                errors: resultValidation.mapped(),
+                oldData: req.body
+            })
+        };
+            //si no hay errores --->
         //--------------fecha----------------
         let date = new Date();
         // -----------descuento--------
@@ -201,7 +212,7 @@ const controller = {
             imagen = req.file.filename
         }
         // promesas
-        products.create({
+        await products.create({
             name: req.body.name,
             category_id: req.body.category_id,
             price: req.body.price,
@@ -217,6 +228,13 @@ const controller = {
             .then((product) => {
                 res.redirect("/");
             })
+            }catch (error) {
+                console.log('************************-----------ERROR-----------************************')
+                console.log('In userController registro!!!');
+                console.log(error);
+                res.send("Error de proceso")
+            }
+    
     },
     //editar productos
     edit: (req, res) => {
