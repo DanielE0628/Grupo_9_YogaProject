@@ -25,71 +25,76 @@ const controlador = {
         res.render('users/userRegister');
     },
 
-    registro: (req, res) => {
-        //Validar nuevo usuario
-        const resultValidation = validationResult(req);
+    registro: async (req, res) => {
+        try {
+            //Validar nuevo usuario
+            const resultValidation = validationResult(req);
 
-        //Validar nuevo usuario
-        if (resultValidation.errors.length > 0) {
-            return res.render('users/userRegister', {
-                errors: resultValidation.mapped(),
-                oldData: req.body
-            })
-        };
-
-        //buscar usuario por email en db
-        db.Users.findOne({
-            where: {
-                email: req.body.email
-            }
-        })
-            .then((userDb) => {
-                //Validar usuario existente
-                if (userDb) {
-                    return res.render('users/userRegister', {
-                        errors: {
-                            email: {
-                                msg: 'Este email ya está registrado'
-                            }
-                        },
-                        oldData: req.body
-                    })
-                };
-            })
-
-        //crear nuevo usuario
-        let userToCreate = {
-            avatar: "",
-            email: req.body.email,
-            name: req.body.nombre,
-            birthdate: req.body.fecha_de_nacimiento,
-            password: bcryptjs.hashSync(req.body.password, 10),
-        }
-
-        //comparar contraseñas 
-        let comparePass = bcryptjs.compareSync(req.body.comfirmPassword, userToCreate.password);
-
-        if (!comparePass) {
-            return res.render('users/userRegister', {
-                errors: {
-                    comfirmPassword: {
-                        msg: 'Las contraseñas no coinciden'
-                    }
-                },
-                oldData: req.body
-            })
-        } else {
-            //agregar imagen o imagen default
-            let imagen = 'default-user.png';
-            if (req.file) {
-                imagen = req.file.filename;
-            }
-            userToCreate.avatar = imagen;
-            //Guardar usuarion en Db
-            db.Users.create(userToCreate)
-                .then(() => {
-                    res.redirect("/users/login");
+            //Validar nuevo usuario
+            if (resultValidation.errors.length > 0) {
+                return res.render('users/userRegister', {
+                    errors: resultValidation.mapped(),
+                    oldData: req.body
                 })
+            };
+
+            //buscar usuario por email en db
+            const userDb = await db.Users.findOne({
+                where: {
+                    email: req.body.email
+                }
+            })
+            //Validar usuario existente
+            if (userDb) {
+                return res.render('users/userRegister', {
+                    errors: {
+                        email: {
+                            msg: 'Este email ya está registrado'
+                        }
+                    },
+                    oldData: req.body
+                })
+            };
+
+
+            //crear nuevo usuario
+            let userToCreate = {
+                avatar: "",
+                email: req.body.email,
+                name: req.body.nombre,
+                birthdate: req.body.fecha_de_nacimiento,
+                password: bcryptjs.hashSync(req.body.password, 10),
+            }
+
+            //comparar contraseñas 
+            let comparePass = bcryptjs.compareSync(req.body.comfirmPassword, userToCreate.password);
+
+            if (!comparePass) {
+                return res.render('users/userRegister', {
+                    errors: {
+                        comfirmPassword: {
+                            msg: 'Las contraseñas no coinciden'
+                        }
+                    },
+                    oldData: req.body
+                })
+            } else {
+                //agregar imagen o imagen default
+                let imagen = 'default-user.png';
+                if (req.file) {
+                    imagen = req.file.filename;
+                }
+                userToCreate.avatar = imagen;
+                //Guardar usuarion en Db
+                await db.Users.create(userToCreate)
+                res.redirect("/users/login");
+            }
+
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In userController registro!!!');
+            console.log(error);
+            res.send("Error de proceso")
         }
     },
 
@@ -213,7 +218,7 @@ const controlador = {
             if (req.session.userLogged.email === userEdit.dataValues.email) {
                 req.session.userLogged = userEdit.dataValues;
             }
-            res.redirect(`${req._parsedOriginalUrl.pathname}`)
+            // res.redirect(`${req._parsedOriginalUrl.pathname}`)
             res.redirect('/users/list')
 
         } catch (error) {
@@ -254,7 +259,7 @@ const controlador = {
 
             let userToEdit = userDb.dataValues
             userToEdit.isActive = false
-            
+
             let passCompared = bcryptjs.compareSync(req.body.password, userDb.password);
 
             if (passCompared) {
@@ -263,7 +268,7 @@ const controlador = {
                         id: req.params.id
                     }
                 })
-    
+
                 req.session.userLogged = false;
                 res.redirect(`/`);
             }
@@ -277,7 +282,7 @@ const controlador = {
                 user: userToEdit
             })
 
-            
+
 
 
         } catch (error) {
