@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator');
 const db = require('../../database/models');
 const sequelize = db.sequelize;
 const { Op, where } = require("sequelize");
+const { logicDelete } = require('../UserControllerSql');
 
 const estilos = {
     productos: '/stylesheets/productos-style.css',
@@ -24,43 +25,20 @@ const talles = db.Talles;
 
 
 const controller = {
-    hola: (req, res) => {
-        return res.json("hola")
-    },
 
     //---------------------------------GUESTS-------------------------------------
          //todos los productos
          "list": (req, res) => {
-       
-           // enpaginados
-        //    const empaginados = 
-        //    let setLimit = ((newLimit)=>{
-        //     limit = newLimit
-        //    });
-        //     next(()=>{ if( products.length > limit){
-        //    offSet= offSet + limit;
-        // }});
-        // previus(()=>{ if( offSet >= limit){
-        //     offSet= offSet - limit;
-        //  }});
-        
-            //promesas
-            //productos
-            let promCategorys = categorys.findAll()
-            let promMarcas = marcas.findAll()
-            //productos
-                //limit y offset
-                
-           const limit = 10;
-           const offSet = 0;
+            let promCategorys = categorys.findAll( {where: {logicDelete: 1}});
+            let promMarcas = marcas.findAll({ where: {logicDelete: 1}});
             let promProducts =
             products.findAll({
+                where: {logicDelete: 1},
                 include:[{association:"categorys"},{association:"marcas"},{association:"talles"}],
-                limit:limit,
-                offset: req.offset
+                
             })
         
-            Promise.all([promProducts, promCategorys, promMarcas, offSet, limit ])
+            Promise.all([promProducts, promCategorys, promMarcas,  ])
                 .then(([allProducts, allCategorys, allMarcas])=>{
                     return res.status(200).json({
                         meta: {
@@ -70,7 +48,7 @@ const controller = {
                         },
                     
                         allProducts,
-                        offSet
+                      
                       
                     })
                 })            
@@ -88,7 +66,6 @@ const controller = {
                 return res.status(200).json({
                     meta: {
                         status: 200,
-                        total: product.length,
                         url: 'api/v1/products/detail/'
                     },
                    product
