@@ -174,8 +174,6 @@ const controlador = {
                                 req.session.userLogged = userLogged;
                                 res.redirect('/');
                             }
-
-
                         }
                     }
                 }
@@ -206,11 +204,20 @@ const controlador = {
     },
 
     vistaProfile: async (req, res) => {
-        //buscar usuario en db
-        const userDb = await db.Users.findByPk(req.session.userLogged.id)
+        try {
+            //buscar usuario en db
+            const userDb = await db.Users.findByPk(req.params.id);
+            if (userDb) {
+                return res.render('users/userProfile', { user: userDb.dataValues });
+            }
+            res.status(404).render("not-found")
 
-        res.render('users/userProfile', { user: userDb });
-
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************');
+            console.log('In userController vistaProfile!!!');
+            console.log(error);
+            res.send("Error de proceso");
+        }
     },
 
     editar: async (req, res) => {
@@ -231,7 +238,6 @@ const controlador = {
                 user.name = req.body.nombre;
                 user.lastName = req.body.apellido;
                 user.birthdate = req.body.fecha_de_nacimiento;
-
 
                 return res.render('users/userProfile', {
                     errors: resultValidation.mapped(),
