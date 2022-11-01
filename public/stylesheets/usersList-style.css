@@ -1,3 +1,4 @@
+
 main{
     background-color: var(--main);
     display: flex;
@@ -17,81 +18,29 @@ h4, p{
     main .card{
         display: flex;
         flex-wrap: wrap;
+        flex-direction: column;
         padding: 20px;
         margin: 20px ;
         background-color: var(--blanco);
         flex-grow : 0.6;
         align-items: center;
-        justify-content:center;
         box-shadow: 0px 0px 10px var(--sombra);
-        width: 90%;
+        width: 100%;
     }
 
-        .img{
+        .card .img{
             border-radius: 10%; 
             border:solid 1px var(--button);
             box-shadow: 2px 2px 6px;
             margin-bottom: 10%;
         }
 
-        .imgProduct{
-            width: 90%;
-            height: auto;
-        }
-
-        .datos{
+        .card .datos{
             border-top: 1px solid var(--button);
             padding: 10% 0;
             flex-wrap: wrap;
-            width: 100%;
-            border-bottom: 1px solid var(--button);
         }
-        .dato{
-            width: 100%;
-        }
-
-        .dato p{
-            display: block;
-        }
-
-        .buttons{
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-around;
-            width: 100%;
-            margin: 1rem 0;
-        }
-
-        button{
-            margin: 0.5rem;
-        }
-        li{
-            display: flex;
-            flex-wrap: wrap;
-            text-align: center;
-            margin: 1rem 0;
-            width: auto;
-        }
-        li i{
-            margin-right: 0.5rem;
-        }
-        h5{
-            text-align: left;
-            width: auto;
-            margin-right: 0.5rem;
-        }
-        p{
-            text-align: justify;
-            width: auto;
-        }
-        .admin{
-            padding: 1rem;
-            background-color: lightgreen;
-            width: 100%;
-            
-        }
-        .admin .buttons{
+        .datos .dato{
             width: 100%;
         }
 
@@ -102,22 +51,14 @@ h4, p{
         }
         
         @media (min-width: 43rem){/* Media Breakpoints para tablet */
-            .imgProduct{
-                width:50%
-            }
-            .datos{
-                width: 50%;
-                padding: 1rem;
+            main .card{
+                max-width: 40%;
             }
         }
         
         @media (min-width: 62rem){/* Media Breakpoints para Monitor */
-            .imgProduct{
-                width:30%
-            }
-            .datos{
-                width: 70%;
-                padding: 1rem;
+            main .card{
+                max-width: 20%;
             }
         }
         
