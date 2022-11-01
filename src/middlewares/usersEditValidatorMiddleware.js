@@ -7,15 +7,13 @@ const editValidation = [
 	body("nombre")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
 		.isAlpha().withMessage("Por favor complete solo con letras sin espacios").bail()
-		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
+		.isLength({ min: 2 }).withMessage("El Nombre debe tener al menos 2 caracteres")
 	,
 
 	body("apellido")
 		.notEmpty().withMessage("Por favor complete con su nombre").bail()
 		.isAlpha().withMessage("Por favor complete solo con letras sin espacios").bail()
-		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 15 caracteres")
+		.isLength({ min: 2 }).withMessage("El Nombre debe tener al menos 2 caracteres")
 	,
 
 	body("fecha_de_nacimiento")
@@ -29,7 +27,7 @@ const editValidation = [
 		.custom((value, { req }) => {
 			let file = req.file;
 			console.log(file);
-			let acceptedExtensions = ['.jpg', '.png', '.jpeg'];
+			let acceptedExtensions = ['.jpg', '.png', '.jpeg', '.gif'];
 
 			if (!file) {
 				return true

@@ -47,8 +47,14 @@
                             id="password" 
                             placeholder="Contraseña" 
                             minlength="7"
-                            required>
+                            required
+                        >
                     </div>
+                    <% if ( locals.errors && errors.password) { %>
+                        <span class="text-danger">
+                            <%= errors.password.msg %>
+                        </span>
+                    <% } %>
 
                     <div class="checkbox">
                         <input type="checkbox" name="recordar">

@@ -61,7 +61,7 @@
                         placeholder="Nombre" 
                         class="nombre_y_apellido form-control <%= locals.errors && errors.nombre_y_apellido ? 'is-invalid' : null %>" 
                         value= "<%= locals.oldData ? oldData.nombre : null %>"
-                        minlength="3"
+                        minlength="1"
                         required
                     >
                 </div>

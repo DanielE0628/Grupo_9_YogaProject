@@ -7,8 +7,7 @@ const registerValidation = [
 	body("nombre")
 		.notEmpty().withMessage("Por favor complete solo con su primer nombre").bail()
 		.isAlpha().withMessage("Por favor complete solo con letras, sin espacios o caracteres especiales").bail()
-		.isLength({ min: 3 }).withMessage("El Nombre debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 30 }).withMessage("El Nombre debe tener máximo 30 caracteres, sino use un disminutuvo de su nombre")
+		.isLength({ min: 2 }).withMessage("El Nombre debe tener al menos 2 caracteres").bail()
 	,
 
 	body("email")
@@ -24,9 +23,8 @@ const registerValidation = [
 
 	body("password")
 		.notEmpty().withMessage("Por favor complete con una contraseña").bail()
-		.isLength({ min: 3 }).withMessage("La contraseña debe tener al menos 3 caracteres").bail()
-		.isLength({ max: 15 }).withMessage("La contraseña debe tener máximo 15 caracteres")
-	// .isStrongPassword().withMessage("La contraseña debe contener un caracter especial")
+		.isLength({ min: 8 }).withMessage("La contraseña debe tener al menos 3 caracteres").bail()
+		// .isStrongPassword().withMessage("La contraseña debe contener letras mayúsculas, minúsculas, un número y un carácter especial.")
 	,
 
 	body("comfirmPassword")
@@ -37,7 +35,7 @@ const registerValidation = [
 	body('imagenUsuario')
 		.custom((value, { req }) => {
 			let file = req.file;
-			let acceptedExtensions = ['.jpg', '.png', '.jpeg'];
+			let acceptedExtensions = ['.jpg', '.png', '.jpeg', '.gif'];
 
 			if (!file) {
 				return true

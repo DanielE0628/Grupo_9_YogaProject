@@ -104,59 +104,89 @@ const controlador = {
 
     login: async (req, res) => {
         try {
-            const userToLogin = await db.Users.findOne({
-                where: {
-                    email: req.body.email
-                }
-            })
-            if (userToLogin.dataValues.isActive) {
-
-                let userLogged = {
-                    id: userToLogin.id,
-                    cart: userToLogin.cart,
-                    avatar: userToLogin.avatar,
-                    email: userToLogin.email,
-                    name: userToLogin.name,
-                    lastName: userToLogin.lastName,
-                    birthdate: userToLogin.birthdate,
-                    isAdmin: userToLogin.isAdmin,
-                    created_at: userToLogin.created_at,
-                    updated_at: userToLogin.updated_at,
-                    isActive: userToLogin.isActive
-                }
-
-                if (req.body.recordar) {
-                    res.cookie(
-                        'userEmail',
-                        req.body.email,
-                        { maxAge: ((1000 * 60) * 60) }
-                    )
-                }
-
-                if (userToLogin) {
-                    let passCompared = bcryptjs.compareSync(req.body.password, userToLogin.password);
-                    if (passCompared) {
-                        req.session.userLogged = userLogged;
-                        res.redirect('/');
+            if (!req.body.email) {
+                return res.render('users/userLogin', {
+                    errors: {
+                        email: {
+                            msg: 'complete este campo'
+                        }
                     }
+                })
+            }
 
+            if (!req.body.password) {
+                return res.render('users/userLogin', {
+                    errors: {
+                        password: {
+                            msg: 'complete este campo'
+                        }
+                    }
+                })
+            }
+
+            if (req.body.email) {
+                const userToLogin = await db.Users.findOne({
+                    where: {
+                        email: req.body.email
+                    }
+                })
+
+                if (!userToLogin) {
                     return res.render('users/userLogin', {
                         errors: {
                             email: {
-                                msg: 'las credenciales son inválidas'
+                                msg: 'Email no registrado'
                             }
                         }
                     })
                 }
 
-            }
-            return res.render('users/userLogin', {
-                errors: {
-                    email: {
-                        msg: 'Email no registrado'
+                if (userToLogin.dataValues.isActive) {
+                    let userLogged = {
+                        id: userToLogin.id,
+                        cart: userToLogin.cart,
+                        avatar: userToLogin.avatar,
+                        email: userToLogin.email,
+                        name: userToLogin.name,
+                        lastName: userToLogin.lastName,
+                        birthdate: userToLogin.birthdate,
+                        isAdmin: userToLogin.isAdmin,
+                        created_at: userToLogin.created_at,
+                        updated_at: userToLogin.updated_at,
+                        isActive: userToLogin.isActive
+                    }
+
+                    if (req.body.recordar) {
+                        res.cookie(
+                            'userEmail',
+                            req.body.email,
+                            { maxAge: ((1000 * 60) * 60) }
+                        )
+                    }
+
+                    if (userToLogin) {
+                        if (req.body.password) {
+                            let passCompared = bcryptjs.compareSync(req.body.password, userToLogin.password);
+                            if (passCompared) {
+                                req.session.userLogged = userLogged;
+                                res.redirect('/');
+                            }
+
+
+                        }
                     }
                 }
-            });
+
+                if (!userToLogin.dataValues.isActive) {
+                    return res.render('users/userLogin', {
+                        errors: {
+                            email: {
+                                msg: 'Usuario inactivo'
+                            }
+                        }
+                    })
+                }
+            }
 
         } catch (error) {
             console.log('************************-----------ERROR-----------************************')
@@ -164,10 +194,6 @@ const controlador = {
             console.log(error);
             res.send("Error de proceso")
         }
-
-
-
-
     },
 
     logout: (req, res) => {
@@ -192,11 +218,34 @@ const controlador = {
                     id: req.params.id
                 }
             });
+            //Validar nuevo usuario
+            const resultValidation = validationResult(req);
+
+            //Validar nuevo usuario
+            if (resultValidation.errors.length > 0) {
+                let user = userDb.dataValues;
+
+                user.name = req.body.nombre;
+                user.lastName = req.body.apellido;
+                user.birthdate = req.body.fecha_de_nacimiento;
+
+
+                return res.render('users/userProfile', {
+                    errors: resultValidation.mapped(),
+                    user,
+                }
+                )
+            };
+
+
+
             //agregar imagen 
             let imagen = userDb.avatar;
+
             if (req.file) {
                 imagen = req.file.filename
             };
+
             //editar usuario
             let userToEdit = {
                 avatar: imagen,
@@ -204,6 +253,7 @@ const controlador = {
                 lastName: req.body.apellido,
                 birthdate: req.body.fecha_de_nacimiento,
             };
+
             if (req.session.userLogged.isAdmin) {
                 userToEdit.isActive = req.body.activarUser;
                 userToEdit.isAdmin = req.body.userAdmin;
@@ -214,7 +264,9 @@ const controlador = {
                     id: req.params.id
                 }
             });
+
             const userEdit = await db.Users.findByPk(req.params.id)
+
             if (req.session.userLogged.email === userEdit.dataValues.email) {
                 req.session.userLogged = userEdit.dataValues;
             }
@@ -227,16 +279,6 @@ const controlador = {
             console.log(error);
             res.send("Error de proceso")
         }
-
-
-        // //Validar datos usuario
-        // const resultValidation = validationResult(req);
-        // if (resultValidation.errors.length > 0) {
-        //     return res.render('users/userProfile', { user },{
-        //         errors: resultValidation.mapped(),
-        //         oldData: req.body
-        //     })
-        // };
     },
     vistaLogicDelete: async (req, res) => {
         try {
