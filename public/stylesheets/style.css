@@ -78,6 +78,9 @@ a i{
 ul{
     list-style-type: none;
 }
+body{
+    min-height: 100vh;
+}
 
 @media (min-width: 62rem){/* Media Breakpoints para Monitor */
     button:hover{

@@ -193,15 +193,8 @@ const controller = {
 
     store: async (req, res) => {
         try {
-            //-------------promesas-----------
-            
-
-            console.log('**********--------------------____________________req.body____________________--------------------**********')
-            console.log(req.body)
             //validaciones
             const resultValidation = validationResult(req);
-            console.log('**********--------------------____________________resultValidation.errors____________________--------------------**********')
-            console.log(resultValidation.errors)
             if (resultValidation.errors.length > 0) {
                 let allCategorys = await categorys.findAll({ where: { logicDelete: 1 } });
                 let allMarcas = await marcas.findAll({ where: { logicDelete: 1 } });
@@ -253,10 +246,8 @@ const controller = {
                 created_at: date
             }
             // promesas
-            console.log('**********--------------------____________________product____________________--------------------**********')
-            console.log(product)
             await products.create(product);
-            res.redirect("/");
+            return res.redirect("/");
 
         } catch (error) {
             console.log('************************-----------ERROR-----------************************')
@@ -267,51 +258,82 @@ const controller = {
 
     },
     //editar productos
-    edit: (req, res) => {
-        let promProduct = products.findByPk(req.params.id, { include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }] })
-        let promCategorys = categorys.findAll()
-        let promMarcas = marcas.findAll()
-        // let promTalles = talles.findAll()
-        Promise.all([promProduct, promCategorys, promMarcas])
-            .then(([product, allCategorys, allMarcas]) => {
-                res.render('products/product-edit', { product, allCategorys, allMarcas });
-            })
-            .catch(error => res.send(error))
+    edit: async (req, res) => {
+        try {
+            let product = await products.findByPk(req.params.id, { include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }] })
+            let allCategorys = await categorys.findAll()
+            let allMarcas = await marcas.findAll()
+            let allTalles = await talles.findAll()
+            res.render('products/product-edit', { product, allCategorys, allMarcas, allTalles });
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In productController update!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
     },
 
-    update: (req, res) => {
-        //--------------fecha----------------
-        let date = new Date();
-        //---Precio Final -----
-        let price = req.body.price;
-        let discount = req.body.discount;
-        let finalPrice = price;
-        if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
-        // -----Imagen----
-        let editProduct = {
-            name: req.body.name,
-            category_id: req.body.category_id,
-            price: req.body.price,
-            discount: req.body.discount,
-            description: req.body.description,
-            talle_id: req.body.talle_id,
-            marca_id: req.body.marca_id,
-            stock: req.body.stock,
-            finalPrice: finalPrice,
-            updated_at: date
-        }
-        if (req.file) { editProduct.image = req.file.filename }
-        // promesas
-        products.update(
-            editProduct
-            , {
+    update: async (req, res) => {
+        try {
+            id = req.body.id
+            // validaciones
+            const resultEditValidation = validationResult(req);
+
+            if (resultEditValidation.errors.length > 0) {
+                let product = await products.findByPk(id, { include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }] })
+                let allCategorys = await categorys.findAll()
+                let allMarcas = await marcas.findAll()
+                let allTalles = await talles.findAll()
+                return res.render('products/product-edit', { product, allCategorys, allMarcas, allTalles, 
+                    errors: resultEditValidation.mapped(),
+                    oldData: req.body,
+                })
+            };
+
+            //--------------fecha----------------
+            let date = new Date();
+            
+            //---Precio Final -----
+            let price = req.body.price;
+            let discount = req.body.discount;
+            let finalPrice = price;
+            if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
+            
+            // -----Imagen----
+            let editProduct = {
+                name: req.body.name,
+                category_id: req.body.category_id,
+                price: req.body.price,
+                discount: req.body.discount,
+                description: req.body.description,
+                marca_id: req.body.marca_id,
+                stock: req.body.stock,
+                finalPrice: finalPrice,
+                updated_at: date,
+            }
+            if (req.file) { 
+                editProduct.image = req.file.filename 
+            }
+            if (req.body.talle_id) { 
+                editProduct.talle_id = req.body.talle_id 
+            }
+
+            // promesas
+            await products.update(editProduct, {
                 where: {
-                    id: req.params.id
+                    id: id
                 }
             })
-            .then((product) => {
-                res.redirect('../../products/detail/' + req.params.id)
-            })
+            
+                
+            return res.redirect(`/products/detail/${id}`)
+                
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In productController update!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
     },
 
     //borrar productos

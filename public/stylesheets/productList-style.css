@@ -5,6 +5,17 @@ main{
     justify-content:center;
     padding: 3%;
 }
+li h2{
+    padding: 0.5rem;
+    border: 1px solid darkgreen;
+    border-radius: 0.5rem;
+}
+h3{
+    text-align: left;
+    width: auto;
+    padding-right: 1rem;
+
+}
 .title{
     width: 100%;
     text-align: center;
@@ -76,11 +87,7 @@ h4, p{
         li i{
             margin-right: 0.5rem;
         }
-        h5, h4, h3{
-            text-align: left;
-            width: auto;
-            margin-right: 0.5rem;
-        }
+        
         p{
             text-align: justify;
             width: auto;
