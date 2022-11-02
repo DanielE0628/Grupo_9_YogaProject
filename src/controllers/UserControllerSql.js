@@ -29,7 +29,10 @@ const controlador = {
         try {
             //Validar nuevo usuario
             const resultValidation = validationResult(req);
-
+            console.log(resultValidation.errors)
+        
+            
+            console.log(req.body)
             //Validar nuevo usuario
             if (resultValidation.errors.length > 0) {
                 return res.render('users/userRegister', {
@@ -37,7 +40,7 @@ const controlador = {
                     oldData: req.body
                 })
             };
-
+      
             //buscar usuario por email en db
             const userDb = await db.Users.findOne({
                 where: {

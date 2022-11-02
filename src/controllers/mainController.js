@@ -21,7 +21,8 @@ const controlador = {
         let promCategorys = categorys.findAll({ where: { logicDelete: 1 } })
         let promMarcas = marcas.findAll({ where: { logicDelete: 1 } })
         let promProducts = products.findAll({
-            where: { logicDelete: 1 },
+            where: { logicDelete: 1, discount:{[Op.gt]:0} },
+            limit:4,
             include: [{ association: "categorys" }, { association: "marcas" }, { association: "talles" }]
         })
         Promise.all([promProducts, promCategorys, promMarcas])
