@@ -102,8 +102,10 @@
 						<div class="buttons">
 							<% if(product.logicDelete===1){ %>
 								<div class="buttons compra">
-									<button><i class="fa-solid fa-cart-plus"></i> Agregar al Carrito</button>
-									<button>COMPRAR</button>
+									<button type="submit" id="<%= product.id %>"class="cart"><i class="fa-solid fa-cart-plus "></i> Agregar al Carrito</button>
+									<button>  <a href="/cart" >
+										Comprar
+									</a>   </button>
 								</div>
 							<% }else {%>
 								<p>

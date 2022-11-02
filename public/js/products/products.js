@@ -28,16 +28,33 @@ window.onload = function () {
     
     
     
-    
+    //------------------------------------
+    //--------------carrito ------------
+    //------------------------------------
     
     //add carrito
-    let prodcuto = document.querySelector(' #product')
-    let botonComprar = document.querySelector(' #comprar')
-    console.log("Script running")
-    botonComprar.addEventListener('click', (e) => {
-        e.preventDefault;
-        console.log('Estoy comprando')
-    })
+
+let carrito = [];
+let botonComprar = document.querySelector(".boton_add")
+
+botonComprar.addEventListener('click', (e) => {
+    let item = e.target.id 
+    if (localStorage.getItem('carrito')){
+        const carrito = JSON.parse(localStorage.getItem('carrito'))
+        if (!carrito.find((id) => id.id == item)){
+            carrito.push({ id:item, cantidad:1})
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+        }
+    }
+    else{
+        carrito.push({ id:item, cantidad:1})
+        localStorage.setItem("carrito", JSON.stringify(carrito))
+    }
+})
+
+//------------------------------------
+    //--------------carrito fin------------
+    //------------------------------------
 
 
 
@@ -158,4 +175,4 @@ playIntervalo();
     //--------------- carrusel ofertas FIN -----------------
     //------------------------------------------------------
 
-    }  
+}  

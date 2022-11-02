@@ -63,11 +63,14 @@
                                                             <a href="/products/detail/<%= products.id %>">Detalles</a>
                                                         </div>
                                                         <div class="contenedor-main-productos-articulos-button ">
-                                                            <button><i class="fa-solid fa-cart-plus"></i></button>
-                                                            <button type="submit" class="add-to-cart" name="comprar"
-                                                                id="<%=products.id%>">
-                                                                Comprar
+                                                            <% if(locals.isLogged){%>
+                                                            <button type="submit" id="<%=products.id%>" class="fa-solid fa-cart-plus boton_add"><i ></i></button>
+                                                            <button type="submit" class="comprar" name="comprar"  id="<%=products.id%>">
+                                                                <a href="/cart" >
+                                                                    Comprar
+                                                                </a>    
                                                             </button>
+                                                            <% } %>
                                                         </div>
                                         </div>
                                     </article>
@@ -118,7 +121,7 @@
                                             </div>
                                             <div class="contenedor-main-productos-articulos-button">
                                                 <form id="product">
-                                                    <!-- <button><i class="fa-solid fa-cart-plus"></i></button> -->
+                                                    <button ><i class="fa-solid fa-cart-plus"></i></button>
                                                     <button type="submit" name="comprar" id="comprar">
                                                         Comprar
                                                     </button>
@@ -193,7 +196,7 @@
 
             <%- include('../partials/footer') %>
 
-                <script src="/js/products/products.js"></script>
+            <script  src="/js/products/products.js"></script>
     </body>
 
 </html>

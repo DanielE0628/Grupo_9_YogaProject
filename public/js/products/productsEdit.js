@@ -77,9 +77,7 @@ window.onload = function(){
             errores.push("debe elejir una marca")
          }
            //Stock
-        if( inputCategory.value >0){
-            errores.push("el stock no puede ser menor a 0")
-         }
+   
          //errores
        if(errores.length > 0){
         e.preventDefault();
