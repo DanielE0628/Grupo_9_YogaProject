@@ -3,15 +3,16 @@ const express = require('express');
 const router = express.Router();
 //Multer
 const upload = require("../middlewares/productsMulterMiddleware")
-//Validaciones
-const validationsProducts = require("../middlewares/productsValidatorMiddleware");
 //Controller
 const productsController = require("../controllers/productsController");
 const cartController = require("../controllers/cartController");
 
+
+//Middlewares
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 const authAdminMiddleware = require('../middlewares/authAdminMiddleware');
+const validationsCreate = require("../middlewares/productsCreateValidatorMiddleware");
 
 
 router.get('/', productsController.list);
@@ -20,13 +21,13 @@ router.get('/', productsController.list);
 router.get('/detail/:id/', productsController.detail); 
 
 //carrito
-// router.get('/cart', cartController.cartVista); 
+router.get('/cart', cartController.cartView); 
 
 //----------------Search Bar-------------------------
-router.get("/search/", productsController.search)
+router.get("/search/", productsController.search);
 
 //---------------- Filtros -------------------------
-router.post("/filter/", productsController.filter)
+router.post("/filter/", productsController.filter);
 
 //---------------- Category menu -------------------------
 // router.post("/category/", productsController.menuCategory)
@@ -41,7 +42,7 @@ router.post("/filter/", productsController.filter)
 router.get('/list', productsController.productsList); 
 // //crear producto
 router.get('/create', authAdminMiddleware, productsController.create); 
-router.post('/create',upload.single("image"), productsController.store); 
+router.post('/create',upload.single("image"), validationsCreate, productsController.store); 
 
 // //editar producto
  router.get('/edit/:id/', authAdminMiddleware, productsController.edit);

@@ -47,6 +47,7 @@ const controlador = {
                     email: req.body.email
                 }
             })
+
             //Validar usuario existente
             if (userDb) {
                 return res.render('users/userRegister', {
@@ -58,7 +59,6 @@ const controlador = {
                     oldData: req.body
                 })
             };
-
 
             //crear nuevo usuario
             let userToCreate = {

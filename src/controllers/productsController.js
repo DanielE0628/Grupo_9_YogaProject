@@ -175,82 +175,93 @@ const controller = {
     //crear Producto
 
     create: async (req, res) => {
+        try {
+            //-------------promesas-----------
+            const allCategorys = await categorys.findAll({ where: { logicDelete: 1 } })
+            const allMarcas = await marcas.findAll({ where: { logicDelete: 1 } })
+            const allTalles = await talles.findAll()
+            res.render('products/product-create', { allCategorys, allMarcas, allTalles })
 
-        //-------------promesas-----------
-        let promCategorys = categorys.findAll({ where: { logicDelete: 1 } })
-        let promMarcas = marcas.findAll({ where: { logicDelete: 1 } })
-        let promTalles = talles.findAll()
-        Promise.all([promCategorys, promMarcas, promTalles])
-            .then(([allCategorys, allMarcas, allTalles]) => {
-                res.render('products/product-create', { allCategorys, allMarcas, allTalles })
-            }).catch(error => res.send(error))
+        } catch (error) {
+            console.log('************************-----------ERROR-----------************************')
+            console.log('In productController create!!!');
+            console.log(error);
+            res.send("Error de proceso")
+        }
     },
 
     store: async (req, res) => {
         try {
             //-------------promesas-----------
-            let allCategorys = await categorys.findAll({ where: { logicDelete: 1 } })
-            let allMarcas = await marcas.findAll({ where: { logicDelete: 1 } })
-            let allTalles = await talles.findAll()
+            
 
+            console.log('**********--------------------____________________req.body____________________--------------------**********')
+            console.log(req.body)
             //validaciones
-            // const resultValidation = validationResult(req);
-            // console.log(resultValidation.errors)
-            
-            
-            // if (resultValidation.errors.length >0) {
-            //     res.render('products/product-create', {
-            //         allCategorys, allMarcas, allTalles,
-            //         errors: resultValidation.mapped(),
-            //         oldData: req.body
-            //     })
-            // }
-                //si no hay errores --->
-            
-                if (req.body) {
-                    //--------------fecha----------------
-                    let date = new Date();
-                    // -----------descuento--------
-                    let discount = req.body.discount;
-                    //---Precio Final -----
-                    let price = req.body.price;
-                    let finalPrice = price;
-                    if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
-                    //----- imagen------
-                    let imagen = "";
-                    if (!req.file) { imagen = "default.jpg" }
-                    else {
-                        imagen = req.file.filename
-                    }
-                    // promesas
-                    const newProduct= { 
-                        name: req.body.name,
-                        category_id: req.body.category_id,
-                        price: req.body.price,
-                        discount: req.body.discount,
-                        finalPrice: finalPrice,
-                        description: req.body.description,
-                        talle_id: req.body.talle_id,
-                        marca_id: req.body.marca_id,
-                        stock: req.body.stock,
-                        image: imagen,
-                        created_at: date}
+            const resultValidation = validationResult(req);
+            console.log('**********--------------------____________________resultValidation.errors____________________--------------------**********')
+            console.log(resultValidation.errors)
+            if (resultValidation.errors.length > 0) {
+                let allCategorys = await categorys.findAll({ where: { logicDelete: 1 } });
+                let allMarcas = await marcas.findAll({ where: { logicDelete: 1 } });
+                let allTalles = await talles.findAll();
 
-                     // promesas
+                return res.render('products/product-create', { 
+                    allCategorys, 
+                    allMarcas, 
+                    allTalles,
+                    errors: resultValidation.mapped(),
+                    oldData: req.body,
+                })
+            };
+            //si no hay errores --->
 
-                    const product = await products.create(
-                    newProduct
-                    )
-                    if (product) {
-                        res.redirect("/");
-                    }
+            //--------------fecha----------------
+            let date = new Date();
 
+            // -----------descuento--------
+            let discount = req.body.discount;
+
+            //---Precio Final -----
+            let price = req.body.price;
+            let finalPrice = price;
+            if (discount != 0) {
+                finalPrice = (price - (price * discount / 100))
+            } else {
+                discount = 0
             }
+
+            //----- imagen------
+            let imagen = "";
+            if (!req.file) { imagen = "default.jpg" }
+            else {
+                imagen = req.file.filename
+            }
+
+            let product = {
+                name: req.body.name,
+                category_id: req.body.category_id,
+                price: req.body.price,
+                discount: req.body.discount,
+                finalPrice: finalPrice,
+                description: req.body.description,
+                talle_id: req.body.talle_id,
+                marca_id: req.body.marca_id,
+                stock: req.body.stock,
+                image: imagen,
+                created_at: date
+            }
+            // promesas
+            console.log('**********--------------------____________________product____________________--------------------**********')
+            console.log(product)
+            await products.create(product);
+            res.redirect("/");
+
         } catch (error) {
             console.log('************************-----------ERROR-----------************************')
-            console.log('In productsController store!!!');
+            console.log('In productController store!!!');
             console.log(error);
-           
+            res.send("Error de proceso")
         }
 
     },
