@@ -46,6 +46,7 @@ const controller = {
             .then((product) => {
                 res.render("products/detail", { product })
             })
+            .catch(error => res.send(error))
     },
     //Buscar prodcutos
     search: (req, res) => {
