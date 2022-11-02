@@ -1,10 +1,11 @@
+const path = require('path');
 const { body } = require ( 'express-validator' );
 
 
 //Validaciones
 const createProductValidation = [
 	body("name")
-		.notEmpty().withMessage("Por favor complete con su nombre").bail()
+		.notEmpty().withMessage("Por favor complete este campo").bail()
 		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres")
     ,
 	
@@ -13,25 +14,31 @@ const createProductValidation = [
     ,
     
     body("price")
-        .notEmpty().isDecimal().withMessage("Por favor ingrese el precio")
+        .notEmpty().withMessage("Por favor complete este campo").bail()
+		.isDecimal().withMessage("Por favor ingrese números")
+    ,
+
+	body("discount")
+        .notEmpty().withMessage("Por favor complete este campo").bail()
+		.isInt().withMessage("Por favor ingrese números enteros")
     ,
 
 	body("description")
-		.notEmpty().withMessage("Por favor complete la descripcion").bail()
+		.notEmpty().withMessage("Por favor complete una descripcion").bail()
 		.isLength( {min: 20} ).withMessage("La descripcion debe tener al menos 20 caracteres").bail()
 		.isLength( {max: 500} ).withMessage("La descripcion debe tener un maximo 500 caracteres")
-        
     ,
-	// body("talle_id")
-	// .notEmpty().withMessage("Por favor elija un talle")
-    ,
+
 	body("marca_id")
 	.notEmpty().withMessage("Por favor elija una marca")
-    ,    
+    ,   
+
 	body("stock")
-		.notEmpty().isNumeric(). withMessage("Por favor ingrese la cantidad de stock del producto")
+		.notEmpty().withMessage("Por favor complete este campo").bail()
+		.isNumeric(). withMessage("Por favor ingrese solo numeros para indicar el stock")
 	,
-		body('image')
+
+	body('image')
 		.custom((value, { req }) => {
 			let file = req.file;
 			let acceptedExtensions = ['.jpg', '.png', '.jpeg', '.gif'];
@@ -46,6 +53,7 @@ const createProductValidation = [
 				return true;
 			}
 		})	
+	,
 ];
 
 module.exports = createProductValidation;

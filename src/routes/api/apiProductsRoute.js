@@ -3,8 +3,7 @@ const express = require('express');
 const router = express.Router();
 //Multer
 const upload = require("../../middlewares/productsMulterMiddleware")
-//Validaciones
-const validations = require("../../middlewares/productsValidatorMiddleware");
+
 //Controller
 const apiProductsController = require("../../controllers/api/apiProductsController");
 

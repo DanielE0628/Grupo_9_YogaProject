@@ -37,12 +37,12 @@
 }
 
 .text-danger{
-    color: red;
-    background-color: #9C9C9C;
+    color: darkred;
+    background-color: darkgrey;
     text-transform: uppercase;
     font-weight: bold;
     padding: 0.5rem;
-    border: solid 1px red;
+    border: solid 0.5rem red;
 }
 
 main{
