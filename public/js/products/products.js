@@ -35,9 +35,9 @@ window.onload = function () {
     //add carrito
 
 let carrito = [];
-let botonComprar = document.querySelector("button .boton_add")
+let botonComprar = document.querySelectorAll(".boton_add")
 
-botonComprar.forEach((boton) =>{ 
+botonComprar.forEach(boton =>{ 
     boton.addEventListener('click', (e) => {
         let item = e.target.id 
         console.log(boton);
@@ -45,7 +45,7 @@ botonComprar.forEach((boton) =>{
         if (localStorage.getItem('carrito')){
             const carrito = JSON.parse(localStorage.getItem('carrito'))
             if (!carrito.find((id) => id.id == item)){
-                return carrito.push({ id:item, cantidad:1})
+                 carrito.push({ id:item, cantidad:1})
                 localStorage.setItem("carrito", JSON.stringify(carrito))
             }
         }

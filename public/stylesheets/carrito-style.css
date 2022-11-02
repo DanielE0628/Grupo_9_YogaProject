@@ -15,9 +15,13 @@ body{
     border-radius: 30px;
 }
 
+.cart_products{
+    border-bottom: solid 3px rgb(0, 132, 160);
+    margin-bottom: 2%;
+    overflow: scroll;
+}
 .purchase_warning{
     display: block;
-    border : red solid 1px;
     color: rgb(0, 132, 160);
     padding: 2px;
     border-bottom: solid 1.5px rgb(0, 132, 160);
@@ -26,20 +30,13 @@ body{
     font-weight:lighter;
 }
 
-.cart_products{
-    border-bottom: solid 3px rgb(0, 132, 160);
-    margin-bottom: 2%;
-    overflow: scroll;
-}
-
 .added_product {
     color: rgb(0, 132, 160);
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     margin: 1% 1% 1.5% ;
-    position: relative;
-}
+    position: relative;}
 #product_name{
     width: 99%;
     margin: 2%;

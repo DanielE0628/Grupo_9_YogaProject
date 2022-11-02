@@ -56,15 +56,15 @@ window.onload = () => {
 
                 
 
+                container.appendChild(addedProduct);
                 container.appendChild(warning);
-                    container.appendChild(addedProduct);
-                    addedProduct.appendChild(h3);
-                    addedProduct.appendChild(img);
-                    addedProduct.appendChild(productInfo);
-                        // if(product.size){    
-                        // productInfo.appendChild(productSize);
-                        // }
-                        
+                addedProduct.appendChild(h3);
+                addedProduct.appendChild(img);
+                addedProduct.appendChild(productInfo);
+                // if(product.size){    
+                    // productInfo.appendChild(productSize);
+                    // }
+                    
                     productInfo.appendChild(productQuantity);
                     
                     for (let i = 1; i <= product.stock ; i++){
@@ -89,5 +89,9 @@ window.onload = () => {
         container.appendChild(emptyCartWarning);
         checkout.style.display = "none"
     }
+
+
+
+
 
 }
