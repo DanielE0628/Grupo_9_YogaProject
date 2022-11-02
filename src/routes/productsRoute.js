@@ -72,7 +72,7 @@ router.put('/categorys/restore/:id/', productsController.restoreCategory);
 // //crear editar eliminar marca
 router.get('/marcas/', authAdminMiddleware, productsController.listMarcas); 
 router.post('/marcas/create', productsController.storeMarca); 
- router.put('/marcas/edit/:id', productsController.updateMarca); 
+router.put('/marcas/edit/:id', productsController.updateMarca); 
 router.put('/marcas/delete/:id/', productsController.LogicCategoryDelete);
 router.put('/marcas/restore/:id/', productsController.LogicCategoryDelete);
 

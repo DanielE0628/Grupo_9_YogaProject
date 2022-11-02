@@ -9,10 +9,16 @@
         <%- include('../partials/header') %>
 
         <main class="main-container">    
-            <form action="/products/create" method="post" enctype="multipart/form-data">
+            <form action="/products/create" method="post" enctype="multipart/form-data" id="form">
             <div>     
                 <h2 class="products-title"> Formulario de Creacion de Productos</i></h2> 
             </div>
+            <!-- errores -->
+            <section class="errores">
+                <ul>
+                    
+                </ul>
+            </section>
                     <!-- name -->
                 <div class="campo">
                     <label for="name" class="form-label">Nombre: </label>

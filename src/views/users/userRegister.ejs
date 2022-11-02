@@ -9,7 +9,12 @@
 
         <main>          
             
-            <form name="Register" action="/users/register" method="post" enctype="multipart/form-data">
+            <form name="Register" action="/users/register" method="post" enctype="multipart/form-data" id="form">
+                <section class="errores">
+                    <ul>
+                        
+                    </ul>
+                </section>
                 <!-- <div class="foto">
                         <label for="avatar">
                             <i class="fa-solid fa-circle-user"></i>
@@ -56,6 +61,7 @@
                         </i> Nombre: 
                     </label>
                     <input 
+                        id="name"
                         type="text" 
                         name="nombre" 
                         placeholder="Nombre" 
