@@ -194,17 +194,17 @@ const controller = {
             let allTalles = await talles.findAll()
 
             //validaciones
-            const resultValidation = validationResult(req);
-            console.log(resultValidation.errors)
+            // const resultValidation = validationResult(req);
+            // console.log(resultValidation.errors)
             
             
-            if (resultValidation.errors.length >0) {
-                res.render('products/product-create', {
-                    allCategorys, allMarcas, allTalles,
-                    errors: resultValidation.mapped(),
-                    oldData: req.body
-                })
-            }
+            // if (resultValidation.errors.length >0) {
+            //     res.render('products/product-create', {
+            //         allCategorys, allMarcas, allTalles,
+            //         errors: resultValidation.mapped(),
+            //         oldData: req.body
+            //     })
+            // }
                 //si no hay errores --->
             
                 if (req.body) {
