@@ -6,7 +6,7 @@ window.onload = () => {
     app.appendChild(container);
     
     const warning = document.createElement("p");
-    warning.setAttribute("class","warning");
+    warning.setAttribute("class","purchase_warning");
     warning.textContent = "Los productos en el carrito no serán reservados hasta completar la compra";
 
     const emptyCartWarning = document.createElement("p");
@@ -35,6 +35,7 @@ window.onload = () => {
                 img.setAttribute("src","/images/products/"+`${product.image}`); 
                 img.setAttribute("alt",`${product.name}`);
                 img.setAttribute("id",`${product.name}`);
+                img.setAttribute("class","product_image");
 
                 const productInfo = document.createElement("div");
                 productInfo.setAttribute("class","product_info");
@@ -76,16 +77,17 @@ window.onload = () => {
                     productInfo.appendChild(productPrice);
             })
         });
+        
+        const goToPay = document.querySelector("#go_to_pay")
+        goToPay.addEventListener("click",(e)=>{
+            console.log
+            let carrito = []
+            localStorage.setItem("carrito", JSON.stringify(carrito))
+            window.location.reload()
+        })
     }else{
         container.appendChild(emptyCartWarning);
         checkout.style.display = "none"
     }
-
-    const goToPay = document.querySelector("#go_to_pay")
-    goToPay.addEventListener("click",(e)=>{
-        let carrito = []
-        localStorage.setItem("carrito", JSON.stringify(carrito))
-        window.location.reload()
-    })
 
 }

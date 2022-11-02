@@ -98,3 +98,37 @@
     <script src="/js/carrito.js"> </script>
 </body>
 </html>
+
+
+
+
+<!--// SECTION ADDED PRODUCT DEL NUEVO CARRITO
+ <main class="main_container">
+        <section class="cart_products">
+            <p class="purchase_warning"> Los productos en el carrito no serán reservados hasta completar la compra</p>
+            <% let carrito= [1,2,3,4] %>
+            <% for(i=0; i < carrito.length; i++) { %> 
+         
+            <div class="added_product">
+              
+                <h3 id= "product_name"> <%=product[i].name %> </h3> 
+                <img src="/images/products/<%=product[i].image %>" alt="product image" id="product_image">
+            <div class="product_info">
+                 <p id="product_quantity"> </p> 
+                <% if(product.category_id == 1){ %>
+                    <p id= "product_size"> <%= product[i].talles.nombre %></p> 
+                   <% } %>
+                <p id= "product_price">$ <%= product[i].finalPrice%></p> 
+            </div>
+
+             <div class= "product_info">
+                    <p id= "product_size"> product[i].size </p>
+                </div>
+                 CANTIDAD CON SELECT O CON INPUT? ES UN FORM??  
+                <div class= "product_info">
+                    <p id= "product_price"> product[i].price</p>
+                </div> -->
+                <!-- BOTON PARA QUITAR UN PRODUCTO DEL CARRITO ES UN FORM??  
+            </div>
+            <% } %>
+        </section> -->

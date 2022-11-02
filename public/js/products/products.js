@@ -37,19 +37,23 @@ window.onload = function () {
 let carrito = [];
 let botonComprar = document.querySelector("button .boton_add")
 
-botonComprar.addEventListener('click', (e) => {
-    let item = e.target.id 
-    if (localStorage.getItem('carrito')){
-        const carrito = JSON.parse(localStorage.getItem('carrito'))
-        if (!carrito.find((id) => id.id == item)){
+botonComprar.forEach(boton =>{ 
+    boton.addEventListener('click', (e) => {
+        let item = e.target.id 
+        console.log(boton);
+        console.log(item);
+        if (localStorage.getItem('carrito')){
+            const carrito = JSON.parse(localStorage.getItem('carrito'))
+            if (!carrito.find((id) => id.id == item)){
+                carrito.push({ id:item, cantidad:1})
+                localStorage.setItem("carrito", JSON.stringify(carrito))
+            }
+        }
+        else{
             carrito.push({ id:item, cantidad:1})
             localStorage.setItem("carrito", JSON.stringify(carrito))
         }
-    }
-    else{
-        carrito.push({ id:item, cantidad:1})
-        localStorage.setItem("carrito", JSON.stringify(carrito))
-    }
+    })
 })
 
 //------------------------------------
