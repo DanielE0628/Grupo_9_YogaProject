@@ -16,18 +16,35 @@ header nav{
 }
 .menuDesplegable{
     display: flex;
-    position: fixed;
     flex-direction: column;
-    top: 12%;
-    background-color: #FED1DC;
+    justify-content: center;
+    width:50%;
+    position: absolute;
+    top: 5rem;
+    left: 0;
+
+    background-color: var(--header);
     border: solid rgb(98, 2, 128);
+}
+.menuDesplegable li{
+    margin: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;;
+}
+.menuDesplegable img{
+    display: none;
 }
     header nav .listaMenu{
         display: none;
     }
     header .menuHamburguesa{
         display: flex;
-        justify-content: flex-start;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    header .menuHamburguesa a{
+    margin-left: 0.5rem;
     }
         header .menuHamburguesa button{
             border: none;
@@ -36,6 +53,7 @@ header nav{
             color: var(--blanco);
             border-radius: 5px;
             padding: 0.5rem;
+            
                     
         }
             header .menuHamburguesa button i{

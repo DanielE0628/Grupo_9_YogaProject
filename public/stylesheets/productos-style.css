@@ -55,7 +55,7 @@
     flex-direction: column;
     justify-items: center;
 }
-.contenedor-main-productos-articulos-detalles a{
+.action-button a{
     color: var(--logo);
 }
 
