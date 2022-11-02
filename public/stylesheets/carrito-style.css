@@ -16,6 +16,8 @@ body{
 }
 
 .purchase_warning{
+    display: block;
+    border : red solid 1px;
     color: rgb(0, 132, 160);
     padding: 2px;
     border-bottom: solid 1.5px rgb(0, 132, 160);
