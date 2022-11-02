@@ -6,19 +6,16 @@ const upload = require("../middlewares/productsMulterMiddleware")
 //Controller
 const productsController = require("../controllers/productsController");
 const cartController = require("../controllers/cartController");
-
-
 //Middlewares
-const guestMiddleware = require('../middlewares/guestMiddleware');
-const authMiddleware = require('../middlewares/authMiddleware');
 const authAdminMiddleware = require('../middlewares/authAdminMiddleware');
-const validationsCreate = require("../middlewares/productsCreateValidatorMiddleware");
+const validationsCreateProduct = require("../middlewares/productsCreateValidatorMiddleware");
+const validationsEditProduct = require("../middlewares/productsCreateValidatorMiddleware");
 
 
 router.get('/', productsController.list);
 
 //un producto 
-router.get('/detail/:id/', productsController.detail); 
+router.get('/detail/:id', productsController.detail); 
 
 //carrito
 // router.get('/cart', cartController.cartVista); 
@@ -42,20 +39,20 @@ router.post("/filter/", productsController.filter);
 router.get('/list', productsController.productsList); 
 // //crear producto
 router.get('/create', authAdminMiddleware, productsController.create); 
-router.post('/create',upload.single("image"), validationsCreate, productsController.store); 
+router.post('/create',authAdminMiddleware, upload.single("image"), validationsCreateProduct, productsController.store); 
 
 // //editar producto
- router.get('/edit/:id/', authAdminMiddleware, productsController.edit);
- router.put('/edit/:id',upload.single('image'), productsController.update); 
+ router.get('/edit/:id', authAdminMiddleware, productsController.edit);
+ router.put('/edit/:id', upload.single('image'), validationsEditProduct, productsController.update); 
 
 // //eliminar Producto
 router.get('/delete/:id', authAdminMiddleware, productsController.delete);
-router.put('/delete/:id/', productsController.LogicDelete);
+router.put('/delete/:id', productsController.LogicDelete);
 
 // restaurar producto
-router.put('/restore/:id/', productsController.restoreProduct);
+router.put('/restore/:id', authAdminMiddleware, productsController.restoreProduct);
 // destruir porducto
- router.delete('/destroy/:id/', productsController.destroy);
+ router.delete('/destroy/:id', productsController.destroy);
  //router.delete('/delete/img/:id', productsController.destroyImg); 
 
 
@@ -66,16 +63,16 @@ router.put('/restore/:id/', productsController.restoreProduct);
 router.get('/categorys', authAdminMiddleware, productsController.listCategorys); 
 router.post('/categorys/create', productsController.storeCategory); 
 router.put('/categorys/edit/:id', productsController.updateCategory); 
-router.put('/categorys/delete/:id/', productsController.LogicCategoryDelete);
-router.put('/categorys/restore/:id/', productsController.restoreCategory);  
+router.put('/categorys/delete/:id', productsController.LogicCategoryDelete);
+router.put('/categorys/restore/:id', productsController.restoreCategory);  
 //------------------marcas------------------------
 
 // //crear editar eliminar marca
 router.get('/marcas/', authAdminMiddleware, productsController.listMarcas); 
 router.post('/marcas/create', productsController.storeMarca); 
 router.put('/marcas/edit/:id', productsController.updateMarca); 
-router.put('/marcas/delete/:id/', productsController.LogicCategoryDelete);
-router.put('/marcas/restore/:id/', productsController.LogicCategoryDelete);
+router.put('/marcas/delete/:id', productsController.LogicCategoryDelete);
+router.put('/marcas/restore/:id', productsController.LogicCategoryDelete);
 
 //----------------------------------------------
 //------------------CRUD FIN------------------------
