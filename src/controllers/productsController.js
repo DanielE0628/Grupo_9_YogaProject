@@ -175,7 +175,6 @@ const controller = {
     //crear Producto
 
     create: async (req, res) => {
-<<<<<<< HEAD
         try {
             //-------------promesas-----------
             const allCategorys = await categorys.findAll({ where: { logicDelete: 1 } })
@@ -189,23 +188,11 @@ const controller = {
             console.log(error);
             res.send("Error de proceso")
         }
-=======
-
-        //-------------promesas-----------
-        let promCategorys = categorys.findAll({ where: { logicDelete: 1 } })
-        let promMarcas = marcas.findAll({ where: { logicDelete: 1 } })
-        let promTalles = talles.findAll()
-        Promise.all([promCategorys, promMarcas, promTalles])
-            .then(([allCategorys, allMarcas, allTalles]) => {
-                res.render('products/product-create', { allCategorys, allMarcas, allTalles })
-            }).catch(error => res.send(error))
->>>>>>> 91bf6009c15428918a2771163f3adb7f94229624
     },
 
     store: async (req, res) => {
         try {
             //-------------promesas-----------
-<<<<<<< HEAD
             
 
             console.log('**********--------------------____________________req.body____________________--------------------**********')
@@ -275,70 +262,6 @@ const controller = {
             console.log('In productController store!!!');
             console.log(error);
             res.send("Error de proceso")
-=======
-            let allCategorys = await categorys.findAll({ where: { logicDelete: 1 } })
-            let allMarcas = await marcas.findAll({ where: { logicDelete: 1 } })
-            let allTalles = await talles.findAll()
-
-            //validaciones
-            const resultValidation = validationResult(req);
-            console.log(resultValidation.errors)
-            
-            
-            if (resultValidation.errors.length >0) {
-                res.render('products/product-create', {
-                    allCategorys, allMarcas, allTalles,
-                    errors: resultValidation.mapped(),
-                    oldData: req.body
-                })
-            }
-                //si no hay errores --->
-            
-                if (req.body) {
-                    //--------------fecha----------------
-                    let date = new Date();
-                    // -----------descuento--------
-                    let discount = req.body.discount;
-                    //---Precio Final -----
-                    let price = req.body.price;
-                    let finalPrice = price;
-                    if (discount != 0) { finalPrice = (price - (price * discount / 100)) }
-                    //----- imagen------
-                    let imagen = "";
-                    if (!req.file) { imagen = "default.jpg" }
-                    else {
-                        imagen = req.file.filename
-                    }
-                    // promesas
-                    const newProduct= { 
-                        name: req.body.name,
-                        category_id: req.body.category_id,
-                        price: req.body.price,
-                        discount: req.body.discount,
-                        finalPrice: finalPrice,
-                        description: req.body.description,
-                        talle_id: req.body.talle_id,
-                        marca_id: req.body.marca_id,
-                        stock: req.body.stock,
-                        image: imagen,
-                        created_at: date}
-
-                     // promesas
-
-                    const product = await products.create(
-                    newProduct
-                    )
-                    if (product) {
-                        res.redirect("/");
-                    }
-
-            }
-        } catch (error) {
-            console.log('************************-----------ERROR-----------************************')
-            console.log('In productsController store!!!');
-            console.log(error);
-           
->>>>>>> 91bf6009c15428918a2771163f3adb7f94229624
         }
 
     },
