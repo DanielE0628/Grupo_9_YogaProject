@@ -64,7 +64,7 @@
                                                         </div>
                                                         <div class="contenedor-main-productos-articulos-button ">
                                                             <% if(locals.isLogged){%>
-                                                            <button type="submit" id="<%=products.id%>" class="fa-solid fa-cart-plus boton_add"><i ></i></button>
+                                                            <button type="submit" id="<%=products.id%>" ><i class="fa-solid fa-cart-plus boton_add"></i> Agregar</button>
                                                             <button type="submit" class="comprar" name="comprar"  id="<%=products.id%>">
                                                                 <a href="/cart" >
                                                                     Comprar
@@ -121,7 +121,7 @@
                                             </div>
                                             <div class="contenedor-main-productos-articulos-button">
                                                 <form id="product">
-                                                    <button ><i class="fa-solid fa-cart-plus"></i></button>
+                                                    <button ><i class="fa-solid fa-cart-plus"></i> Agregar</button>
                                                     <button type="submit" name="comprar" id="comprar">
                                                         Comprar
                                                     </button>

@@ -2,7 +2,7 @@ const path = require('path');
 const { body } = require ( 'express-validator' );
 
 //Validaciones
-const createProductValidation = [
+const editProductValidation = [
 	body("name")
 		.notEmpty().withMessage("Por favor complete este campo").bail()
 		.isLength( {min: 5} ).withMessage("El Nombre debe tener al menos 5 caracteres")
@@ -55,4 +55,4 @@ const createProductValidation = [
 	,
 ];
 
-module.exports = createProductValidation;
+module.exports = editProductValidation;

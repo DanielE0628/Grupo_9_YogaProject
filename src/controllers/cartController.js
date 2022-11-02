@@ -43,6 +43,7 @@ const controlador ={
         .then((product)=>{
         res.render('products/cart', {product})
         })
+        .catch(error => res.send(error))
     },
 }
 module.exports = controlador;

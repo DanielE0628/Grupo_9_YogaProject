@@ -59,7 +59,7 @@
                         </p>
                     </a>
                 </li>
-                <% }else{ %>
+            <% }else{ %>
                     <li class="menu">
                         <a href="/">
                             Menú 
@@ -85,12 +85,21 @@
                             <i class="fa-solid fa-right-to-bracket"></i>
                         </a>
                     </li>
-
-                    <% } %>
+            <% } %>
         </ul>
         <div class="menuHamburguesa" >
             <button id="menuHeaderButton"><i class="fa-solid fa-bars" ></i></button>
+            <% if (locals.isLogged) { %>
+                <a href="/users/profile/<%=locals.userLogged.id%>">
+                    <img src="/images/users/profileImages/<%= locals.userLogged.avatar %>"
+                        alt="imagen de imagenUsuario" 
+                        width="40" height="40 " 
+                        style="border-radius: 100%; border:solid 1px var(--button);"
+                    >
+                </a>
+            <% } %>
         </div>
+        
     </nav>
     <div class="logo">
         <a href="/">

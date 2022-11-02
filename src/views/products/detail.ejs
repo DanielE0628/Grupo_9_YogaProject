@@ -30,9 +30,6 @@
 								<p>
 									<%= product.description %>
 								</p>
-								<p>
-									Lorem ipsum dolor sit amet consectetur adipisicing elit. Cumque itaque dolorem blanditiis ipsa rem modi nobis nulla qui consequatur impedit autem, illum fuga? Voluptate voluptates neque praesentium modi quas odit?
-								</p>
 							</li>
 							<li>
 								<h5>
@@ -105,8 +102,10 @@
 						<div class="buttons">
 							<% if(product.logicDelete===1){ %>
 								<div class="buttons compra">
-									<button><i class="fa-solid fa-cart-plus"></i> Agregar al Carrito</button>
-									<button>COMPRAR</button>
+									<button type="submit" id="<%= product.id %>"class="cart"><i class="fa-solid fa-cart-plus "></i> Agregar al Carrito</button>
+									<button>  <a href="/cart" >
+										Comprar
+									</a>   </button>
 								</div>
 							<% }else {%>
 								<p>
