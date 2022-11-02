@@ -35,7 +35,7 @@ window.onload = function () {
     //add carrito
 
 let carrito = [];
-let botonComprar = document.querySelectorAll(".boton_add")
+let botonComprar = document.querySelector("button .boton_add")
 
 botonComprar.forEach((boton) =>{ 
     boton.addEventListener('click', (e) => {
