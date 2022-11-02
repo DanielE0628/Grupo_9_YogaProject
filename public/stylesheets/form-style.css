@@ -5,6 +5,13 @@ main{
     justify-content:center;
     padding: 3%;
 }
+
+input{
+    background-color: lightgrey;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
+
     main form{
         display: flex;
         flex-wrap: wrap;
@@ -53,7 +60,7 @@ main{
     main form .campo{
         padding: 2%;
     }
-
+    
     main form p input{
         width: auto;
         

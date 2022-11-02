@@ -3,15 +3,16 @@ const express = require('express');
 const router = express.Router();
 //Multer
 const upload = require("../middlewares/productsMulterMiddleware")
-//Validaciones
-const validations = require("../middlewares/productsValidatorMiddleware");
 //Controller
 const productsController = require("../controllers/productsController");
 const cartController = require("../controllers/cartController");
 
+
+//Middlewares
 const guestMiddleware = require('../middlewares/guestMiddleware');
 const authMiddleware = require('../middlewares/authMiddleware');
 const authAdminMiddleware = require('../middlewares/authAdminMiddleware');
+const validationsCreate = require("../middlewares/productsCreateValidatorMiddleware");
 
 
 router.get('/', productsController.list);
@@ -23,10 +24,10 @@ router.get('/detail/:id/', productsController.detail);
 router.get('/cart', cartController.cartView); 
 
 //----------------Search Bar-------------------------
-router.get("/search/", productsController.search)
+router.get("/search/", productsController.search);
 
 //---------------- Filtros -------------------------
-router.post("/filter/", productsController.filter)
+router.post("/filter/", productsController.filter);
 
 //---------------- Category menu -------------------------
 // router.post("/category/", productsController.menuCategory)
@@ -41,7 +42,7 @@ router.post("/filter/", productsController.filter)
 router.get('/list', productsController.productsList); 
 // //crear producto
 router.get('/create', authAdminMiddleware, productsController.create); 
-router.post('/create',upload.single("image"), productsController.store); 
+router.post('/create',upload.single("image"), validationsCreate, productsController.store); 
 
 // //editar producto
  router.get('/edit/:id/', authAdminMiddleware, productsController.edit);
@@ -72,7 +73,7 @@ router.put('/categorys/restore/:id/', productsController.restoreCategory);
 // //crear editar eliminar marca
 router.get('/marcas/', authAdminMiddleware, productsController.listMarcas); 
 router.post('/marcas/create', productsController.storeMarca); 
- router.put('/marcas/edit/:id', productsController.updateMarca); 
+router.put('/marcas/edit/:id', productsController.updateMarca); 
 router.put('/marcas/delete/:id/', productsController.LogicCategoryDelete);
 router.put('/marcas/restore/:id/', productsController.LogicCategoryDelete);
 
