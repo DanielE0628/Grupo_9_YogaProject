@@ -1,66 +1,94 @@
-
+main h2, h3, h4{
+    display: block;
+    width: 100%;
+}
 .contenedor-main{
-    width: 100%;
-    display: flex;
-    font-size: 14px;
-    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
     justify-content: center;
+    width: 100%;
+    padding: 1rem;
 }
+
 .contenedor-main-productos{
-    
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-.contenedor-main-rutas{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    align-items: center;
-    width: 100%;
+    justify-content: center;
+    padding: 0 1rem 2rem;
 }
 
 .contenedor-main-productos-articulos{
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content:space-between;
-    margin: 1rem 0;
-    width: 80%;
-    height: 18vh;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    margin: 1rem 0; 
     background-color: aliceblue;
-    box-shadow: 0px 0px 10px rgb(100, 100, 100);  
+    box-shadow: 0px 0px 10px rgb(100, 100, 100); 
 }
 
 .contenedor-main-productos-articulos-imagen{
-    width: 35%;
-    height: 100%;
-}
-.contenedor-main-productos-articulos-imagen img{
-    padding: 5%;
-    height: 100%;
+    display: flex;
     width: 100%;
+    margin-bottom: 1rem;
 }
-.contenedor-main-productos-articulos-detalles{
-    margin: auto;
-    width: 65%;
+    .contenedor-main-productos-articulos-imagen img{
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+        flex-grow: 10%;
+        
 
-    padding: 0.5rem;
-    text-align: center;
-    font-size: 1rem;
- 
+        
+    }
+.contenedor-main-productos-articulos-detalles{
     display: flex;
     flex-direction: column;
-    justify-items: center;
+    width: 100%;
+    padding: 1rem;
+    padding-top: 2rem;
+    border-top: 0.2rem solid var(--logoMain);
+}
+.contenedor-main-productos-articulos-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .action-button a{
+    display: flex;
+    width: 100%;
+    text-align: center;
+    padding: 1rem 0;
     color: var(--logo);
+}
+.boton{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 1rem;
+}
+
+#ofertas{
+    position: relative;
+    padding: 2rem;
+}
+#retroceder{
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+}
+#avanzar{
+    position: absolute;
+    right: 0;
+    bottom: 50%;
 }
 
 .filtro{
-    
     position:sticky;
     display: none;
     left: 0;
@@ -68,7 +96,6 @@
     z-index: 100;
     margin: 0;
     width: 70%;
-    height: 50%;
     max-height: 100%;
     flex-wrap: wrap;
     justify-content: center;
@@ -77,30 +104,34 @@
     background-color: var(--header);
     order: -100;
     margin: 1rem 0;
-    
 }
 .filtro-order{
     display: flex;
     flex-direction: column;
 }
+.filtro-order button{
+    margin: 1rem;
+}
 .filtro-button{
     display: block;
+    font-size: 1rem ;
     color:white;
-    padding: 0.5rem;
-    border-radius: 0 25% 25% 0;
+    padding: 1rem;
+    border-radius: 0 1rem 1rem 0;
     position: fixed;
     left: 0;
     top: 30%;
     z-index: 101;
-    margin: 0;
+    margin: 0rem;
+}
+.filtro i{
+    font-size: 2rem;
 }
 .filtro-movil-button i{
     color: white;
-    font-size: 2rem;
     font-weight: bold;
 }
 .filto{
-    font-size: 100%;
     flex-wrap: wrap;
     flex-direction: column;
 }
@@ -114,87 +145,82 @@
     margin-top: 5%;
     width: 100%;
 }
-/* .contenedor-main-ofertas-titulo{
-    width: 100%;
-    text-align: center;
-    color: var(--button);
-    text-shadow: 2px 2px 6px var(--blanco);
-}
-.contenedor-main-ofertas{
-    width: 100%;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-}
-.contenedor-main-ofertas-articulos{
-    width: 100%;
-    padding: 0.5rem;
-
-    flex-wrap: wrap ;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    
-    font-size: 1rem;
-    text-align: center;
-    
-    background-color: aliceblue;
-    box-shadow: 0px 0px 10px rgb(100, 100, 100);
-    margin: 1rem 0;
-}
-
-.contenedor-main-ofertas p{
-    display: none;
-}
-
-.contenedor-main-ofertas img{
-    width: 50%;
-}
-.contenedor-main-clases{
-    border: solid 2px aliceblue;
-    border-radius: 1rem;
-    padding: 1rem;
-} */
-
-@media (min-width:360px){
-}
-@media (min-width:768px){
-    .contenedor-main-padre{
-        display: flex;
-        flex-wrap: wrap;
-        align-items: stretch;
-        justify-content: center;
-        width: 100%;
-          
+@media (max-width: 43rem){/* Media Breakpoints para celus */ 
+    .filtro{
+        display: none;
     }
+    
+}
+
+@media (min-width: 43rem){/* Media Breakpoints para tablet */
     .contenedor-main-productos{
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 80%;
+        justify-content: left;
     }
-
+    #ofertas{
+        justify-content:center;
+    }
     .contenedor-main-productos-articulos{
         width: 45%;
-        margin: 1rem 0;
-        height: 30vh;
+        margin: 1rem;
     }
-    
+    #retroceder{
+        left: 20%;
+        bottom: 50%;
+    }
+    #avanzar{
+        right: 20%;
+        bottom: 50%;
+    }
+}
+
+@media (min-width: 62rem){/* Media Breakpoints para Monitor */
+    .contenedor-main-productos-articulos{
+        flex-direction: row;
+    }
+    .contenedor-main-productos-articulos-imagen{
+        display: flex;
+        width: 30%;
+        margin: 0;
+    }
+    .contenedor-main-productos-articulos-detalles{
+        display: flex;
+        flex-direction: column;
+        width: 50%;
+        padding: 1rem;
+        border: none;
+        border-left: 0.2rem solid var(--logoMain);
+    }
+    #retroceder{
+        bottom: 30%;
+    }
+    #avanzar{
+        bottom: 30%;
+    }
+
+    .contenedor-main{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0;
+    }
+    .listado{
+        width: 80%;
+    }
     .filtro-button{
         display: none;       
     }
-
     .filtro{
-        width: 20%;
         display: flex;
         flex-wrap: wrap;
         justify-content: center;
+        width: 20%;
+        height: 50%;
         padding: 1rem;
         border: solid 2px var(--logoMain);
         background-color: var(--header);
         order: -1;
-        margin: 1rem 0;
+        margin: 0;
         
     }
     .filtro-form div{
@@ -203,7 +229,6 @@
         flex-direction: column;
         justify-content: space-between;
         text-align: left;
-     
     }
     .filtro-checkbox{
         display: flex;
@@ -221,25 +246,20 @@
         justify-content: space-between;
         text-align: center;
         line-height: 1.5rem;
-      
     }
     .filtro h3{
         margin: 0;
     }
- 
     .filtro-buttons{
         display: flex;
         flex-wrap: wrap;
         width: 70%;
         justify-content: center;
         align-items: center;
-        margin: 0.25rem;
+        margin: 1rem;
     }
-    .contenedor-main-ofertas-articulos{
-        width: 20%;
-    }
+
 }
 
-@media (min-width:1000px){
-
+@media (min-width: 82rem){/* Media Breakpoints para TV */
 }

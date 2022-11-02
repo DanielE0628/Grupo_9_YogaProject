@@ -39,14 +39,16 @@
 									<%= product.categorys.nombre %>
 								</p>
 							</li>
-							<li>
-								<h5>
-									Marca:
-								</h5>
-								<p>
-									<%= product.marcas.nombre %>
-								</p>
-							</li>
+							<% if(product.marcas){ %>
+								<li>
+									<h5>
+										Marca:
+									</h5>
+									<p>
+										<%= product.marcas.nombre %>
+									</p>
+								</li>
+							<% } %>
 							<% if(product.category_id==1){ %>
 								<li>
 									<h5>
@@ -69,16 +71,24 @@
 									</h4>
 								<% } %>
 							</li>
-							<li>
-								<% if(product.discount> 0){ %>
+							<% if(product.discount> 0){ %>
+								<li>
 									<!-- Descuento -->
-									<h3 style="color:darkred">
-										Descuento <%= product.discount %> % OFF
+									<h3 style="text-decoration:line-through;">
+										Precio: <%= product.price %> $
 									</h3>
+								</li>
+								<li>
+									<h3 style="color:darkred">
+										Descuento: <%= product.discount %> % OFF
+									</h3>
+								</li>
+									
 								<% } %>
-								<h4 style="color:darkgreen">
+							<li>
+								<h2 style="color:darkgreen">
 									Costo Final: $ <%= product.finalPrice %>
-								</h4>
+								</h2>
 							</li>
 						</ul>
 					</div>
