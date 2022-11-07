@@ -38,11 +38,9 @@
 
 .text-danger{
     color: darkred;
-    background-color: darkgrey;
     text-transform: uppercase;
     font-weight: bold;
     padding: 0.5rem;
-    border: solid 0.5rem red;
 }
 
 main{

@@ -14,28 +14,28 @@ const authAdminMiddleware = require('../middlewares/authAdminMiddleware');
 
 /* Crear Usuario */
 router.get('/register', guestMiddleware, userControllerSql.vistaRegister); 
-router.post('/register', guestMiddleware, uploadFile.single('imagenUsuario'), validationsReg, userControllerSql.registro);
+router.post('/register', uploadFile.single('imagenUsuario'), validationsReg, userControllerSql.registro);
 
 /* Lista Usuarios*/
 router.get('/list', authAdminMiddleware, userControllerSql.vistaLista);
 router.get('/detail/:id', authAdminMiddleware,userControllerSql.vistaDetalle);
-router.put('/detail/:id', authAdminMiddleware, userControllerSql.editar);
+router.put('/detail/:id', userControllerSql.editar);
 
 /* Eliminar Usuario */
 router.get('/delete/:id', authAdminMiddleware, userControllerSql.vistaDelete);
-router.delete('/delete/:id',  authAdminMiddleware, userControllerSql.eliminar);
+router.delete('/delete/:id', userControllerSql.eliminar);
 
 /* Editar Usuario */
 router.get('/profile/:id', authMiddleware, userControllerSql.vistaProfile);
-router.put('/profile/:id', authMiddleware, uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
+router.put('/profile/:id', uploadFile.single('imagenUsuario'), validationsEdit, userControllerSql.editar);
 router.get('/profile/delete/:id', authMiddleware, userControllerSql.vistaLogicDelete);
-router.delete('/profile/delete/:id', authMiddleware, userControllerSql.logicDelete);
+router.delete('/profile/delete/:id', userControllerSql.logicDelete);
 
 
 
 /* Login*/
 router.get('/login', guestMiddleware, userControllerSql.vistaLogin);
-router.post('/login', guestMiddleware, userControllerSql.login);
+router.post('/login', userControllerSql.login);
 router.get('/logout', authMiddleware, userControllerSql.logout);
 
 module.exports = router;
